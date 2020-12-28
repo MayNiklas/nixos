@@ -10,6 +10,8 @@
       ./hardware-configuration.nix
     ];
 
+  nixpkgs = { config.allowUnfree = true; };
+
   # Use the systemd-boot EFI boot loader.
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;
@@ -61,6 +63,7 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   
+  services.xserver.videoDrivers = [ "nvidia" ];  
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
