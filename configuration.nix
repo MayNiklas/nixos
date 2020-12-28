@@ -5,12 +5,10 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
-  nixpkgs = { config.allowUnfree = true; };
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./xserver.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   # boot.loader.systemd-boot.enable = true;
@@ -26,7 +24,7 @@
 
   boot.initrd.luks.devices = {
     root = {
-    # Get UUID from blkid /dev/sda2
+      # Get UUID from blkid /dev/sda2
       device = "/dev/disk/by-uuid/ea8b02e5-d2ee-44f8-a056-c55fba0d5c93";
       preLVM = true;
       allowDiscards = true;
@@ -58,16 +56,6 @@
     keyMap = "de";
   };
 
-  # Enable the Plasma 5 Desktop Environment.
-  services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];  
-
-  # Configure keymap in X11
-  services.xserver.layout = "de";
-  services.xserver.xkbOptions = "eurosign:e";
-
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
@@ -83,20 +71,15 @@
     isNormalUser = true;
     home = "/home/nik";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    openssh.authorizedKeys.keyFiles = [
-      (builtins.fetchurl { url = "https://github.com/mayniklas.keys"; })
-    ];
+    openssh.authorizedKeys.keyFiles =
+      [ (builtins.fetchurl { url = "https://github.com/mayniklas.keys"; }) ];
   };
 
   nix.allowedUsers = [ "nik" ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    wget vim
-    firefox
-    git
-  ];
+  environment.systemPackages = with pkgs; [ wget vim firefox git nixfmt ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -131,4 +114,3 @@
   system.stateVersion = "20.09"; # Did you read the comment?
 
 }
-
