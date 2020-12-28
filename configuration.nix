@@ -79,7 +79,27 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ wget vim firefox git nixfmt ];
+  environment.systemPackages = with pkgs; [
+    wget
+    vim
+    firefox
+    git
+    nixfmt
+    vlc
+    htop
+    nvtop
+    youtube-dl
+    ansible
+    obs-studio
+    atom
+    glances
+    chromium
+    signal-desktop
+    discord
+    teamspeak_client
+    bash-completion
+    yubioath-desktop
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
