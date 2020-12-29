@@ -8,6 +8,7 @@
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./xserver.nix
+    ./yubikey.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
