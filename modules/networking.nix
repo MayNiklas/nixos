@@ -10,7 +10,6 @@
 
     # Enables wireless support via wpa_supplicant.
     # networking.wireless.enable = true;
-    
 
     # The global useDHCP flag is deprecated, therefore explicitly set to false here.
     # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -33,4 +32,10 @@
       192.168.5.15 vsphere.local
     '';
   };
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
 }
