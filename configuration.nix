@@ -8,27 +8,13 @@
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./bootloader.nix
+    ./networking.nix
     ./xserver.nix
     ./yubikey.nix
   ];
 
-  networking.hostName = "water-on-fire"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
-
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  networking.useDHCP = false;
-  networking.interfaces.enp36s0.useDHCP = true;
-  networking.interfaces.enp43s0.useDHCP = true;
-  networking.interfaces.wlo1.useDHCP = true;
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
