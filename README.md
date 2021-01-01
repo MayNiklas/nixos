@@ -17,7 +17,7 @@ While this project helped me to convert friends & family using ArchLinux instead
 
 As I wrote before, I love to define my digital infrastructure with code. The advantage of using NixOS is simple: it's made for this kind of deployment! I don't have to ansible my way through the install.
 
-**TL;DR** NixOS offers methods of configuration, I former had to implement myself using Ansible. Also: I like to check out new stuff!
+**TL;DR** NixOS offers methods of configuration I formerly had to implement myself using Ansible. Also, I like to check out new stuff!
 
 ---
 
