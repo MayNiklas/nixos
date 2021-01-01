@@ -7,30 +7,10 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./bootloader.nix
     ./xserver.nix
     ./yubikey.nix
   ];
-
-  # Use the systemd-boot EFI boot loader.
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
-
-  # Use the Grub2 as bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.efiSupport = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.cleanTmpDir = true;
-
-  boot.initrd.luks.devices = {
-    root = {
-      # Get UUID from blkid /dev/sda2
-      device = "/dev/disk/by-uuid/ea8b02e5-d2ee-44f8-a056-c55fba0d5c93";
-      preLVM = true;
-      allowDiscards = true;
-    };
-  };
 
   networking.hostName = "water-on-fire"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
