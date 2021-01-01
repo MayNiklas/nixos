@@ -9,8 +9,8 @@ This one has to go to @pinpox !
 Months ago, you told me about NixOS. You kept me posted while switching your infrastructure to NixOS. You really are a big help in my current learning process. You took yourself a lot of time explaining stuff in detail while also helping me with problems that accured.
 Thank you!! You are big help!
 
-After using Arch for most of 2020, I've decided to give NixOS a chance in 2021. While I'm quite happy with my current Arch Linux workstation, there are some quite appearing characteristics NixOS has to offer.
 ### Preamble
+After using Arch for most of 2020, I've decided to give NixOS a chance in 2021. While I'm quite happy with my current Arch Linux workstation, there are some quite appealing characteristics NixOS has to offer.
 
 When looking at my GitHub projects you will notice: I'm a big fan of Ansible and other forms of automatically deploying infrastructure. I've ansibled myself through the ArchLinux install - something Ansible isn't really made for (which challenged me to do so in the first place!).
 While this project helped me to convert friends & family using ArchLinux instead of Windows, personally I've decided to try out something different for myself: NixOS.
