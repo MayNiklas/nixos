@@ -33,16 +33,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.nik = {
-    isNormalUser = true;
-    home = "/home/nik";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    openssh.authorizedKeys.keyFiles =
-      [ (builtins.fetchurl { url = "https://github.com/mayniklas.keys"; }) ];
-  };
-
-  nix.allowedUsers = [ "nik" ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
