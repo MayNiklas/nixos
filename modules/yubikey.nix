@@ -1,6 +1,10 @@
 { config, pkgs, lib, ... }: {
   programs.ssh.startAgent = false;
 
+  environment.systemPackages = with pkgs; [
+    yubioath-desktop
+  ];
+
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;

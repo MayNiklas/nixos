@@ -51,7 +51,6 @@
     discord
     teamspeak_client
     bash-completion
-    yubioath-desktop
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
