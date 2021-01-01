@@ -33,24 +33,24 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    wget
-    vim
+    ansible
+    atom
+    bash-completion
+    chromium
+    discord
     firefox
     git
-    nixfmt
-    vlc
-    htop
-    nvtop
-    youtube-dl
-    ansible
-    obs-studio
-    atom
     glances
-    chromium
+    htop
+    nixfmt
+    nvtop
+    obs-studio
     signal-desktop
-    discord
     teamspeak_client
-    bash-completion
+    vim
+    vlc
+    wget
+    youtube-dl
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
