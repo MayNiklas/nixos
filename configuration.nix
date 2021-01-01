@@ -7,10 +7,10 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./bootloader.nix
-    ./networking.nix
-    ./xserver.nix
-    ./yubikey.nix
+    .modules/bootloader.nix
+    .modules/networking.nix
+    .modules/xserver.nix
+    .modules/yubikey.nix
   ];
 
   # Set your time zone.
