@@ -15,7 +15,7 @@ After using Arch for most of 2020, I've decided to give NixOS a chance in 2021. 
 When looking at my GitHub projects you will notice: I'm a big fan of Ansible and other forms of automatically deploying infrastructure. I've ansibled myself through the ArchLinux install - something Ansible isn't really made for (which challenged me to do so in the first place!).
 While this project helped me to convert friends & family using ArchLinux instead of Windows, personally I've decided to try out something different for myself: NixOS.
 
-As I wrote before, I love to put my infrastructure into some form of code. The advantage of using NixOS is simple: it's made for this kind of deployment! I don't have to ansible my way through the install.
+As I wrote before, I love to define my digital infrastructure with code. The advantage of using NixOS is simple: it's made for this kind of deployment! I don't have to ansible my way through the install.
 
 **TL;DR** NixOS offers methods of configuration, I former had to implement myself using Ansible. Also: I like to check out new stuff!
 
