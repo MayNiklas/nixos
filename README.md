@@ -64,6 +64,10 @@ myself using Ansible. Also, I like to check out new stuff!
 - [Home-manager](https://rycee.gitlab.io/home-manager/) Manual
 - [Home-manager](https://rycee.gitlab.io/home-manager/options.html)
   Configuration options reference
+- [Why NixOS?](https://www.youtube.com/watch?v=bEUiXDJbwW8) Introduction video
+  about NixOS
+- [Nix Flakes 101](https://www.youtube.com/watch?v=QXUlhnhuRX4) Good video about
+  flakes
 
 ### Community
 
