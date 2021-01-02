@@ -5,7 +5,7 @@ I'm not an expert at NixOS (yet)! But I'm willing to learn.
 In case you think I could do something better don't hesitate to tell me!
 
 ### Note of thanks
-This one has to go to @pinpox !
+This one has to go to [@pinpox](https://github.com/pinpox) !
 Months ago, you told me about NixOS. You kept me posted while switching your infrastructure to NixOS. You really are a big help in my current learning process. You took a lot of time out of your day to explain examples in detail while also helping me with problems that occured.
 Thank you!! You are big help!
 
