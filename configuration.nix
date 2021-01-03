@@ -34,23 +34,11 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     ansible
-    atom
     bash-completion
-    chromium
-    discord
-    firefox
     git
-    glances
-    htop
     nixfmt
-    nvtop
-    obs-studio
-    signal-desktop
-    teamspeak_client
-    vim
-    vlc
+    python
     wget
-    youtube-dl
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
