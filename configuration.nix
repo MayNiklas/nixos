@@ -13,6 +13,7 @@
 
     # Modules
     ./modules/bootloader.nix
+    ./modules/docker.nix
     ./modules/locale.nix
     ./modules/networking.nix
     ./modules/openssh.nix
