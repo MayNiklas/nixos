@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }: {
 
-  environment.systemPackages = with pkgs; [
-    docker-compose
-  ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+  environment.systemPackages = with pkgs; [ docker-compose ];
 
   virtualisation.docker.enable = true;
 
