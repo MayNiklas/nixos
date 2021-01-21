@@ -10,6 +10,7 @@
 
     # Users
     ./users/nik.nix
+    ./users/root.nix
 
     # Modules
     ./modules/bootloader.nix
