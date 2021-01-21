@@ -18,6 +18,7 @@
         i3lock
         i3blocks
         arandr
+        rofi
         xorg.xmodmap
         xorg.xdpyinfo
         pulsemixer
@@ -25,5 +26,6 @@
       ];
     };
   };
+  programs.nm-applet.enable = true;
   nixpkgs = { config.allowUnfree = true; };
 }
