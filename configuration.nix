@@ -18,7 +18,8 @@
     ./modules/networking.nix
     ./modules/openssh.nix
     ./modules/virtualization.nix
-    ./modules/kde-plasma.nix
+    # ./modules/kde-plasma.nix
+    ./modules/i3.nix
     ./modules/yubikey.nix
   ];
 
