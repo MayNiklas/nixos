@@ -14,6 +14,7 @@
 
     # Modules
     ./modules/bootloader.nix
+    ./modules/bluetooth.nix    
     ./modules/locale.nix
     ./modules/networking.nix
     ./modules/openssh.nix
@@ -29,8 +30,6 @@
   
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
-  services.blueman.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
