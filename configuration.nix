@@ -13,6 +13,8 @@
     ./users/root.nix
 
     # Modules
+    # ./modules/kde-plasma.nix
+    # ./modules/i3.nix    
     ./modules/bootloader.nix
     ./modules/bluetooth.nix    
     ./modules/locale.nix
@@ -20,8 +22,7 @@
     ./modules/openssh.nix
     ./modules/sound.nix
     ./modules/virtualization.nix
-    # ./modules/kde-plasma.nix
-    ./modules/i3.nix
+    ./modules/xserver.nix
     ./modules/yubikey.nix
   ];
 
