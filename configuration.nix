@@ -17,6 +17,7 @@
     ./modules/locale.nix
     ./modules/networking.nix
     ./modules/openssh.nix
+    ./modules/sound.nix
     ./modules/virtualization.nix
     # ./modules/kde-plasma.nix
     ./modules/i3.nix
@@ -25,17 +26,7 @@
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-
-  # Enable sound.
-  sound.enable = true;
-  hardware = {
-    bluetooth.enable = true;
-    pulseaudio = {
-      enable = true;
-      package = pkgs.pulseaudioFull; # using full build of PulseAudio
-    };
-  };
-
+  
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
