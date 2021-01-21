@@ -26,6 +26,5 @@
       ];
     };
   };
-  programs.nm-applet.enable = true;
   nixpkgs = { config.allowUnfree = true; };
 }
