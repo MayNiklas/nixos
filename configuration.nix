@@ -17,7 +17,7 @@
     ./modules/networking.nix
     ./modules/openssh.nix
     ./modules/virtualization.nix
-    ./modules/xserver.nix
+    ./modules/kde-plasma.nix
     ./modules/yubikey.nix
   ];
 
