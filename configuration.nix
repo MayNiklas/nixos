@@ -28,10 +28,18 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware = {
+    bluetooth.enable = true;
+    pulseaudio = {
+      enable = true;
+      package = pkgs.pulseaudioFull; # using full build of PulseAudio
+    };
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
+
+  services.blueman.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
