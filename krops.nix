@@ -10,12 +10,6 @@ let
 
   source = lib.evalSource [{
 
-    # You might want to set your nixpkgs branch here
-    nixpkgs.git = {
-      ref = "origin/nixos-unstable";
-      url = "https://github.com/NixOS/nixpkgs";
-    };
-
     # Copy repository to /var/src
     machine-config.file = toString ./.;
   }];
