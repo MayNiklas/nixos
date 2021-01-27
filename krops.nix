@@ -12,7 +12,7 @@ let
 
     # You might want to set your nixpkgs branch here
     nixpkgs.git = {
-      ref = "origin/nixos-20.09";
+      ref = "origin/nixos-unstable";
       url = "https://github.com/NixOS/nixpkgs";
     };
 
