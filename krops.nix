@@ -17,7 +17,7 @@ let
     };
 
     # Copy repository to /var/src
-    machine-config.file = toString ../nixos;
+    machine-config.file = toString ./.;
   }];
 in {
 
