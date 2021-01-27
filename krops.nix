@@ -16,8 +16,8 @@ let
       url = "https://github.com/NixOS/nixpkgs";
     };
 
-    # Use the existing confiruatio.nix file as base
-    nixos-config.file = toString ./configuration.nix;
+    # Copy repository to /var/src
+    machine-config.file = toString ../nixos;
   }];
 in {
 
