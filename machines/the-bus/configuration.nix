@@ -10,13 +10,13 @@
     ./hardware-configuration.nix
 
     # Users
-    ./users/nik.nix
-    ./users/root.nix
+    ../../users/nik.nix
+    ../../users/root.nix
 
     # Modules
-    ./modules/locale.nix
-    ./modules/openssh.nix
-    # ./modules/plex.nix
+    ../../modules/locale.nix
+    ../../modules/openssh.nix
+    # ../../modules/plex.nix
   ];
 
   virtualisation.libvirtd.enable = true;
