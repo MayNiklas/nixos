@@ -8,33 +8,32 @@ let
   lib = import "${krops}/lib";
   pkgs = import "${krops}/pkgs" { };
 
-  source = lib.evalSource [{
+  source = name:
+    lib.evalSource [{
+      nixos-config.symlink =
+        "machine-config/machines/${name}/configuration.nix";
 
-    # Copy repository to /var/src
-    machine-config.file = toString ./.;
-  }];
+      # Copy repository to /var/src
+      machine-config.file = toString ./.;
+    }];
 in {
 
-  # Create a deploment for localhost. You can define multiple hosts here, with
-  # arbitrary names
   localhost = pkgs.krops.writeDeploy "deploy-localhost" {
     source = source;
     # You can use arbitrary targets here, as long as SSH is correctly
     # configured
     target = "root@localhost";
   };
+  
+  water-on-fire = pkgs.krops.writeDeploy "deploy-water-on-fire" {
+    source = source "water-on-fire";
+    target = "root@water-on-fire";
+  };
 
-  # Here is how you would add other machines:
-  #
-  # server02 = pkgs.krops.writeDeploy "deploy-server02" {
-  #    source = source;
-  #    target = "root@server01";
-  #  };
-
-  # server02 = pkgs.krops.writeDeploy "deploy-server02" {
-  #    source = source;
-  #    target = "root@server02.mydomain.org";
-  #  };
+  the-bus = pkgs.krops.writeDeploy "deploy-the-bus" {
+    source = source "the-bus";
+    target = "root@the-bus";
+  };
 
   # Full example:
   # https://tech.ingolf-wagner.de/nixos/krops/
