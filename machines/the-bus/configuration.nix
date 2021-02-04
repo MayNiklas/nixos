@@ -15,6 +15,7 @@
 
     # Modules
     ../../modules/locale.nix
+    ../../modules/hosts.nix
     ../../modules/openssh.nix
     # ../../modules/plex.nix
   ];
