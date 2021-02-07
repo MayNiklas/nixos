@@ -32,6 +32,9 @@
   
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
+  networking = {
+    hostName = "water-on-fire";
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

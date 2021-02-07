@@ -15,6 +15,7 @@
 
     # Modules
     ../../modules/docker.nix
+    ../../modules/networking.nix
     ../../modules/locale.nix
     ../../modules/hosts.nix
     ../../modules/openssh.nix
@@ -24,8 +25,6 @@
 
   networking = {
     hostName = "the-bus";
-    nameservers = [ "192.168.5.10" "192.168.5.1" "1.1.1.1" ];
-    networkmanager.enable = true;
   };
 
   boot = {

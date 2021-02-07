@@ -2,9 +2,6 @@
 
   networking = {
 
-    # Define your hostname
-    hostName = "water-on-fire";
-
     # Define the DNS servers
     nameservers = [ "192.168.5.10" "192.168.5.1" "1.1.1.1" ];
 
@@ -21,17 +18,6 @@
 
     # Enable networkmanager
     networkmanager.enable = true;
-
-    # Configure network proxy if necessary
-    # networking.proxy.default = "http://user:password@proxy:port/";
-    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-    # Additional hosts to put in /etc/hosts
-    extraHosts = ''
-      # local
-      192.168.5.15 vsphere.local
-    '';
-  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
