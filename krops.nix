@@ -24,12 +24,14 @@ in {
     # configured
     target = "root@localhost";
   };
-  
+
+  # nix-build ./krops.nix -A water-on-fire && ./result -j16
   water-on-fire = pkgs.krops.writeDeploy "deploy-water-on-fire" {
     source = source "water-on-fire";
     target = "root@water-on-fire";
   };
 
+  # nix-build ./krops.nix -A the-bus && ./result -j4
   the-bus = pkgs.krops.writeDeploy "deploy-the-bus" {
     source = source "the-bus";
     target = "root@the-bus";
