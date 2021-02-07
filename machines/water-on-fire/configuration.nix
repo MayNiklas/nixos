@@ -9,21 +9,22 @@
     ./hardware-configuration.nix
 
     # Users
-    ./users/nik.nix
-    ./users/root.nix
+    ../../users/nik.nix
+    ../../users/root.nix
 
     # Modules
     # ./modules/kde-plasma.nix
     # ./modules/i3.nix    
-    ./modules/bootloader.nix
-    ./modules/bluetooth.nix    
-    ./modules/locale.nix
-    ./modules/networking.nix
-    ./modules/openssh.nix
-    ./modules/sound.nix
-    ./modules/virtualization.nix
-    ./modules/xserver.nix
-    ./modules/yubikey.nix
+    ../../modules/bootloader.nix
+    ../../modules/bluetooth.nix    
+    ../../modules/locale.nix
+    ../../modules/networking.nix
+    ../../modules/openssh.nix
+    ../../modules/hosts.nix
+    ../../modules/sound.nix
+    ../../modules/virtualization.nix
+    ../../modules/xserver.nix
+    ../../modules/yubikey.nix
   ];
 
   # Enable CUPS to print documents.
