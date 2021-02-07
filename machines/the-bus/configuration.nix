@@ -17,11 +17,9 @@
     ../../modules/locale.nix
     ../../modules/hosts.nix
     ../../modules/openssh.nix
+    ../../modules/virtualization.nix
     # ../../modules/plex.nix
   ];
-
-  virtualisation.libvirtd.enable = true;
-  programs.dconf.enable = true;
 
   networking = {
     hostName = "the-bus";
@@ -43,13 +41,11 @@
   };
 
   environment.systemPackages = with pkgs; [
-    ansible
     bash-completion
     git
     nixfmt
     wget
     htop
-    virt-manager
   ];
 
   # This value determines the NixOS release from which the default
