@@ -13,8 +13,6 @@
     ../../users/root.nix
 
     # Modules
-    # ./modules/kde-plasma.nix
-    # ./modules/i3.nix    
     ../../modules/bootloader.nix
     ../../modules/bluetooth.nix    
     ../../modules/locale.nix
@@ -27,11 +25,6 @@
     ../../modules/yubikey.nix
   ];
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-  
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
   networking = {
     hostName = "water-on-fire";
   };
@@ -47,14 +40,6 @@
     wget
     pavucontrol
   ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
   # List services that you want to enable:
 
