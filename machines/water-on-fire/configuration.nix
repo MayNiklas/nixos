@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -17,6 +17,7 @@
     ../../modules/bluetooth.nix
     ../../modules/locale.nix
     ../../modules/networking.nix
+    ../../modules/nvidia.nix
     ../../modules/openssh.nix
     ../../modules/hosts.nix
     ../../modules/sound.nix
@@ -38,10 +39,6 @@
     wget
     pavucontrol
   ];
-
-  services.xserver = { videoDrivers = [ "nvidia" ]; };
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [ "nvidia-x11" "nvidia-settings" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
