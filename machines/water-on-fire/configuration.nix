@@ -14,7 +14,7 @@
 
     # Modules
     ../../modules/bootloader.nix
-    ../../modules/bluetooth.nix    
+    ../../modules/bluetooth.nix
     ../../modules/locale.nix
     ../../modules/networking.nix
     ../../modules/openssh.nix
@@ -25,9 +25,7 @@
     ../../modules/yubikey.nix
   ];
 
-  networking = {
-    hostName = "water-on-fire";
-  };
+  networking = { hostName = "water-on-fire"; };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -41,7 +39,11 @@
     pavucontrol
   ];
 
-  # List services that you want to enable:
+  services.xserver = { videoDrivers = [ "nvidia" ]; };
+  nixpkgs = {
+    config.allowUnfreePredicate = pkg:
+      builtins.elem (lib.getName pkg) [ "plexmediaserver" ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

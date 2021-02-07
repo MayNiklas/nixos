@@ -1,7 +1,6 @@
 { config, pkgs, lib, ... }: {
   # Enable the X11 windowing system.
   services.xserver = {
-    videoDrivers = [ "nvidia" ];
     layout = "de";
     xkbOptions = "eurosign:e";
     enable = true;
@@ -41,5 +40,4 @@
 
     displayManager.lightdm.enable = true;
   };
-  nixpkgs = { config.allowUnfree = true; };
 }
