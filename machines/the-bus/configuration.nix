@@ -14,6 +14,7 @@
     ../../users/root.nix
 
     # Modules
+    ../../modules/docker.nix
     ../../modules/locale.nix
     ../../modules/hosts.nix
     ../../modules/openssh.nix

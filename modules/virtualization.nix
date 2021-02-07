@@ -1,8 +1,6 @@
 { config, pkgs, lib, ... }: {
 
-  environment.systemPackages = with pkgs; [ docker-compose virt-manager ];
-
-  virtualisation.docker.enable = true;
+  environment.systemPackages = with pkgs; [ virt-manager ];
 
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;

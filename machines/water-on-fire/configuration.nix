@@ -22,7 +22,7 @@
     ../../modules/openssh.nix
     ../../modules/hosts.nix
     ../../modules/sound.nix
-    ../../modules/virtualization.nix
+    ../../modules/docker.nix
     ../../modules/xserver.nix
     ../../modules/yubikey.nix
   ];
