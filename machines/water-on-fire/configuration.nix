@@ -26,6 +26,9 @@
     ../../modules/yubikey.nix
   ];
 
+  mainUser = "nik";
+  mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
+
   networking = { hostName = "water-on-fire"; };
 
   # List packages installed in system profile. To search, run:

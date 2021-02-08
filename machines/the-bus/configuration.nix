@@ -23,6 +23,9 @@
     # ../../modules/plex.nix
   ];
 
+  mainUser = "nik";
+  mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
+
   networking = {
     hostName = "the-bus";
   };

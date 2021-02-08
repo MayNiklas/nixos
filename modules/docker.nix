@@ -4,4 +4,6 @@
 
   virtualisation.docker.enable = true;
 
+  users.extraUsers.${config.mainUser}.extraGroups = [ "docker" ];
+
 }

@@ -5,4 +5,6 @@
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
 
+  users.extraUsers.${config.mainUser}.extraGroups = [ "libvirtd" ];
+
 }
