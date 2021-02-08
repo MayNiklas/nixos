@@ -19,6 +19,7 @@
     ../../modules/networking.nix
     ../../modules/nvidia.nix
     ../../modules/openssh.nix
+    ../../modules/options.nix
     ../../modules/hosts.nix
     ../../modules/sound.nix
     ../../modules/docker.nix

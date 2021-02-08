@@ -19,6 +19,7 @@
     ../../modules/locale.nix
     ../../modules/hosts.nix
     ../../modules/openssh.nix
+    ../../modules/options.nix
     ../../modules/virtualization.nix
     # ../../modules/plex.nix
   ];
