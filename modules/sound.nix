@@ -8,4 +8,6 @@
     extraModules = [ pkgs.pulseaudio-modules-bt ];
   };
 
+  environment.systemPackages = with pkgs; [ pavucontrol ];
+
 }
