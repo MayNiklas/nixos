@@ -14,6 +14,7 @@
     ../../users/root.nix
 
     # Modules
+    ../../modules/docker.nix
     ../../modules/grub.nix
     ../../modules/networking.nix
     ../../modules/locale.nix
@@ -21,6 +22,9 @@
     ../../modules/openssh.nix
     ../../modules/options.nix
     ../../modules/plex.nix
+
+    # Containers
+    ../../modules/containers/web-youtube-dl.nix
   ];
 
   mainUser = "nik";
