@@ -14,6 +14,7 @@
     ../../users/root.nix
 
     # Modules
+    ../../modules/grub.nix
     ../../modules/networking.nix
     ../../modules/locale.nix
     ../../modules/hosts.nix
@@ -27,19 +28,6 @@
 
   networking = {
     hostName = "quinjet";
-  };
-
-  boot = {
-    loader = {
-      grub = {
-        enable = true;
-        version = 2;
-        device = "nodev";
-        efiSupport = true;
-      };
-      efi.canTouchEfiVariables = true;
-    };
-    cleanTmpDir = true;
   };
 
   environment.systemPackages = with pkgs; [
