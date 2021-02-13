@@ -25,6 +25,7 @@
 
     # Containers
     ../../modules/containers/web-youtube-dl.nix
+    ../../modules/containers/scene-extractor-AOS.nix
   ];
 
   mainUser = "nik";
