@@ -15,7 +15,7 @@
   };
   # networking.firewall.allowedTCPPorts = [ 8181 ];
   fileSystems."/mnt/plex-media" = {
-    device = "192.168.5.10:/volume1/plex-media";
+    device = "${config.nasIP}:/volume1/plex-media";
     options = [ "nolock" "soft" "ro" ];
     fsType = "nfs";
   };
