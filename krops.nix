@@ -31,6 +31,12 @@ in {
     target = "root@water-on-fire";
   };
 
+  # nix-build ./krops.nix -A quinjet && ./result -j8
+  quinjet = pkgs.krops.writeDeploy "deploy-quinjet" {
+    source = source "quinjet";
+    target = "root@quinjet";
+  };
+
   # nix-build ./krops.nix -A the-bus && ./result -j4
   the-bus = pkgs.krops.writeDeploy "deploy-the-bus" {
     source = source "the-bus";
