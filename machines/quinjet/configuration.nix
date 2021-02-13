@@ -25,6 +25,7 @@
 
   mainUser = "nik";
   mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
+  nasIP = "192.168.5.10";
 
   networking = {
     hostName = "quinjet";

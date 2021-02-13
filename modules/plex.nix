@@ -7,13 +7,13 @@
       dataDir = "/var/lib/plex";
     };
     tautulli = {
-      enable = false;
+      enable = true;
       package = pkgs.tautulli;
       port = 8181;
       dataDir = "/var/lib/plexpy";
     };
   };
-  # networking.firewall.allowedTCPPorts = [ 8181 ];
+  networking.firewall.allowedTCPPorts = [ 8181 ];
   fileSystems."/mnt/plex-media" = {
     device = "${config.nasIP}:/volume1/plex-media";
     options = [ "nolock" "soft" "ro" ];
