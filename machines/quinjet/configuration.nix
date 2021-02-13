@@ -34,6 +34,7 @@
   environment.systemPackages = with pkgs; [
     bash-completion
     git
+    intel-gpu-tools
     nixfmt
     wget
     htop
