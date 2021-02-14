@@ -19,6 +19,11 @@
     options = [ "nolock" "soft" "ro" ];
     fsType = "nfs";
   };
+  fileSystems."/mnt/media" = {
+    device = "${config.nasIP}:/volume1/media";
+    options = [ "nolock" "soft" "ro" ];
+    fsType = "nfs";
+  };
   nixpkgs = {
     config.allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [ "plexmediaserver" ];
