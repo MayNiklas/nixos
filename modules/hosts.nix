@@ -3,6 +3,15 @@
   networking = {
     # Additional hosts to put in /etc/hosts
     extraHosts = ''
+      #
+      192.168.5.1  unifi
+      192.168.5.10 ds1819
+      192.168.5.11 quinjet
+      192.168.5.12 nuc8-i5-2
+      192.168.5.13 nuc8-i5-3
+      192.168.5.14 the-bus
+      192.168.5.15 vsphere
+      192.168.5.64 water-on-fire
       # local
       192.168.5.1  unifi.local
       192.168.5.10 ds1819.local
