@@ -24,6 +24,7 @@
     options = [ "nolock" "soft" "ro" ];
     fsType = "nfs";
   };
+  systemd.services.plex = { after = [ "mnt-media.mount mnt-plex\x2dmedia.mount" ]; };
   nixpkgs = {
     config.allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [ "plexmediaserver" ];
