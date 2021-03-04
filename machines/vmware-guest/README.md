@@ -2,6 +2,9 @@
 
 EFI install without swap partition
 ```bash
+# execute as root
+sudo su
+
 # create partitions
 parted /dev/sda -- mklabel gpt
 parted /dev/sda -- mkpart ESP fat32 1MiB 512MiB
@@ -17,11 +20,23 @@ mount /dev/disk/by-label/nixos /mnt
 mkdir -p /mnt/boot
 mount /dev/disk/by-label/boot /mnt/boot
 
+# generate hardware-configuration.nix
+nixos-generate-config --root /mnt
+
+# mv hardware-configuration.nix
+cp /mnt/etc/nixos/hardware-configuration.nix ~/
+
+# delete /mnt/etc/nixos
+rm -rf /mnt/etc/nixos
+
 # clone repository
-sudo nix run nixpkgs.git -c git clone https://github.com/MayNiklas/nixos.git /mnt/etc/nixos
+nix run nixpkgs.git -c git clone https://github.com/MayNiklas/nixos.git /mnt/etc/nixos
+
+# recover generated hardware-configuration.nix
+mv ~/hardware-configuration.nix /mnt/etc/nixos/machines/vmware-guest/
 
 # link config
-sudo ln -s /mnt/etc/nixos/machines/vmware-guest/configuration.nix /mnt/etc/nixos/configuration.nix
+ln -s /mnt/etc/nixos/machines/vmware-guest/configuration.nix /mnt/etc/nixos/configuration.nix
 
 # install os
 nixos-install
