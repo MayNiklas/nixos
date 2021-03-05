@@ -10,4 +10,6 @@
 
   environment.systemPackages = with pkgs; [ pavucontrol ];
 
+  users.extraUsers.${config.mainUser}.extraGroups = [ "audio" ];
+
 }

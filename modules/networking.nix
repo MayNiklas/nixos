@@ -12,4 +12,5 @@
     # networking.firewall.allowedTCPPorts = [ ... ];
     # networking.firewall.allowedUDPPorts = [ ... ];
   };
+  users.extraUsers.${config.mainUser}.extraGroups = [ "networkmanager" ];
 }

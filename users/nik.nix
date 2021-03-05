@@ -3,7 +3,7 @@
   users.users.nik = {
     isNormalUser = true;
     home = "/home/nik";
-    extraGroups = [ "wheel" "audio" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     openssh.authorizedKeys.keyFiles =
       [ (builtins.fetchurl { url = "https://github.com/mayniklas.keys"; }) ];
   };
