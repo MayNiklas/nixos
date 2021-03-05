@@ -13,4 +13,7 @@
     options = [ "nolock" "soft" "ro" ];
     fsType = "nfs";
   };
+  systemd.services.docker-scene-extractor-AOS = {
+    after = [ "mnt-plexx2dmedia.mount" ];
+  };
 }
