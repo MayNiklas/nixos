@@ -1,0 +1,41 @@
+---
+kind: pipeline
+name: default
+type: docker
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: Build water-on-fire
+  image: nixpkgs/nix-flakes
+  commands:
+  - nix-build ./krops.nix -A water-on-fire
+  environment:
+    NIX_PATH: nixpkgs=channel:nixos-unstable
+
+- name: Build quinjet
+  image: nixpkgs/nix-flakes
+  commands:
+  - nix-build ./krops.nix -A quinjet
+  environment:
+    NIX_PATH: nixpkgs=channel:nixos-unstable
+    
+- name: Build the-bus
+  image: nixpkgs/nix-flakes
+  commands:
+  - nix-build ./krops.nix -A the-bus
+  environment:
+    NIX_PATH: nixpkgs=channel:nixos-unstable
+
+- name: sucess
+  image: nixpkgs/nix-flakes
+  commands:
+  - echo "sucess!"
+  environment:
+    NIX_PATH: nixpkgs=channel:nixos-unstable
+  depends_on:
+  - Build water-on-fire
+  - Build quinjet
+  - Build the-bus
