@@ -13,7 +13,7 @@
     ../../users/root.nix
 
     # Modules
-    ../../modules/bootloader.nix
+    ../../modules/grub-luks.nix
     ../../modules/bluetooth.nix
     ../../modules/locale.nix
     ../../modules/networking.nix
@@ -29,6 +29,7 @@
 
   mainUser = "nik";
   mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
+  uuid = "ea8b02e5-d2ee-44f8-a056-c55fba0d5c93";
 
   networking = { hostName = "water-on-fire"; };
 
