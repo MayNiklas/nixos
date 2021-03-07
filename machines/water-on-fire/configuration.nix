@@ -13,7 +13,7 @@
     ../../users/root.nix
 
     # Modules
-    ../../modules/bootloader.nix
+    ../../modules/grub-luks.nix
     ../../modules/bluetooth.nix
     ../../modules/locale.nix
     ../../modules/networking.nix
