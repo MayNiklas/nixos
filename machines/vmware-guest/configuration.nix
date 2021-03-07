@@ -16,6 +16,7 @@
     # Modules
     ../../modules/grub.nix
     ../../modules/locale.nix
+    ../../modules/nix-common.nix
     ../../modules/openssh.nix
   ];
 
