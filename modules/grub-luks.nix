@@ -21,4 +21,5 @@
       };
     };
   };
+  options.uuid = lib.mkOption { type = lib.types.str; };
 }
