@@ -30,7 +30,7 @@
 
   mainUser = "nik";
   mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
-  uuid = "ea8b02e5-d2ee-44f8-a056-c55fba0d5c93";
+  boot.initrd.luks.devices.boot.device = "/dev/disk/by-uuid/ea8b02e5-d2ee-44f8-a056-c55fba0d5c93";
 
   networking = { hostName = "water-on-fire"; };
 
