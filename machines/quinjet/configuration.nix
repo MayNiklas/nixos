@@ -16,6 +16,7 @@
     # Modules
     ../../modules/docker.nix
     ../../modules/grub.nix
+    ../../modules/nix-common.nix
     ../../modules/networking.nix
     ../../modules/locale.nix
     ../../modules/hosts.nix
