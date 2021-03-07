@@ -17,6 +17,7 @@
     ../../modules/bluetooth.nix
     ../../modules/locale.nix
     ../../modules/networking.nix
+    ../../modules/nix-common.nix
     ../../modules/nvidia.nix
     ../../modules/openssh.nix
     ../../modules/options.nix
