@@ -14,8 +14,6 @@
     cleanTmpDir = true;
     initrd.luks.devices = {
       root = {
-        # Get UUID from blkid /dev/sda2
-        device = "/dev/disk/by-uuid/${config.uuid}";
         preLVM = true;
         allowDiscards = true;
       };
