@@ -23,6 +23,7 @@
     ../../modules/openssh.nix
     ../../modules/options.nix
     ../../modules/plex.nix
+    ../../modules/zsh.nix
 
     # Containers
     ../../modules/containers/web-youtube-dl.nix
