@@ -29,12 +29,16 @@ steps:
   environment:
     NIX_PATH: nixpkgs=channel:nixos-unstable
 
-- name: sucess
-  image: nixpkgs/nix-flakes
-  commands:
-  - echo "sucess!"
-  environment:
-    NIX_PATH: nixpkgs=channel:nixos-unstable
+- name: notify
+  image: drillster/drone-email
+  settings:
+    username: apikey
+    from:
+      from_secret: email_from
+    host:
+      from_secret: email_host
+    password:
+      from_secret: email_password
   depends_on:
   - Build water-on-fire
   - Build quinjet
