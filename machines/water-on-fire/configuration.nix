@@ -35,7 +35,7 @@
   mayniklas = {
     grub-luks = {
       enable = true;
-      uuid = "/dev/disk/by-uuid/ea8b02e5-d2ee-44f8-a056-c55fba0d5c93";
+      uuid = "ea8b02e5-d2ee-44f8-a056-c55fba0d5c93";
     };
   };
 
