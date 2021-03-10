@@ -26,6 +26,7 @@
     ../../modules/docker.nix
     ../../modules/xserver.nix
     ../../modules/yubikey.nix
+    ../../modules/zsh.nix
   ];
 
   mainUser = "nik";
