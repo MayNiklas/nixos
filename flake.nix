@@ -63,18 +63,18 @@
       base-modules-desktop = [
         ./users/nik.nix
         { home-manager.users.nik = nixos-home.nixosModules.desktop; }
-        ../../modules/bluetooth.nix
-        ../../modules/locale.nix
-        ../../modules/networking.nix
-        ../../modules/nix-common.nix
-        ../../modules/openssh.nix
-        ../../modules/options.nix
-        ../../modules/hosts.nix
-        ../../modules/sound.nix
-        ../../modules/docker.nix
-        ../../modules/xserver.nix
-        ../../modules/yubikey.nix
-        ../../modules/zsh.nix
+        ./modules/bluetooth.nix
+        ./modules/locale.nix
+        ./modules/networking.nix
+        ./modules/nix-common.nix
+        ./modules/openssh.nix
+        ./modules/hosts.nix
+        ./modules/options.nix
+        ./modules/sound.nix
+        ./modules/docker.nix
+        ./modules/xserver.nix
+        ./modules/yubikey.nix
+        ./modules/zsh.nix
       ];
     in {
 
@@ -85,6 +85,15 @@
             # Machine specific config
             ./machines/water-on-fire/configuration.nix
             ./machines/water-on-fire/hardware-configuration.nix
+
+            # Users
+            ./users/nik.nix
+            ./users/root.nix
+
+            # Modules
+            ./modules/grub-luks.nix
+            ./modules/flakes.nix
+            ./modules/nvidia.nix
           ];
         };
 
