@@ -3,32 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { config, pkgs, ... }:
 
-{
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-
-    # Users
-    ../../users/nik.nix
-    ../../users/root.nix
-
-    # Modules
-    ../../modules/grub-luks.nix
-    ../../modules/bluetooth.nix
-    ../../modules/flakes.nix
-    ../../modules/locale.nix
-    ../../modules/networking.nix
-    ../../modules/nix-common.nix
-    ../../modules/nvidia.nix
-    ../../modules/openssh.nix
-    ../../modules/options.nix
-    ../../modules/hosts.nix
-    ../../modules/sound.nix
-    ../../modules/docker.nix
-    ../../modules/xserver.nix
-    ../../modules/yubikey.nix
-    ../../modules/zsh.nix
-  ];
 
   mainUser = "nik";
   mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
