@@ -49,15 +49,15 @@
       base-modules-server = [
         ./users/nik.nix
         { home-manager.users.nik = nixos-home.nixosModules.server; }
-        ../../modules/docker.nix
-        ../../modules/grub.nix
-        ../../modules/nix-common.nix
-        ../../modules/networking.nix
-        ../../modules/locale.nix
-        ../../modules/hosts.nix
-        ../../modules/openssh.nix
-        ../../modules/options.nix
-        ../../modules/zsh.nix
+        ./modules/docker.nix
+        ./modules/grub.nix
+        ./modules/nix-common.nix
+        ./modules/networking.nix
+        ./modules/locale.nix
+        ./modules/hosts.nix
+        ./modules/openssh.nix
+        ./modules/options.nix
+        ./modules/zsh.nix
       ];
 
       base-modules-desktop = [
