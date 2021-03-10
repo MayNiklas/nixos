@@ -92,7 +92,6 @@
 
             # Modules
             ./modules/grub-luks.nix
-            ./modules/flakes.nix
             ./modules/nvidia.nix
           ];
         };

@@ -4,6 +4,11 @@
 
   nix = {
 
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+
     # Save space by hardlinking store files
     autoOptimiseStore = true;
 
