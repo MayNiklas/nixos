@@ -15,6 +15,7 @@
     # Modules
     ../../modules/grub-luks.nix
     ../../modules/bluetooth.nix
+    ../../modules/flakes.nix
     ../../modules/locale.nix
     ../../modules/networking.nix
     ../../modules/nix-common.nix
