@@ -48,6 +48,7 @@
 
       base-modules-server = [
         ./users/nik.nix
+        ./users/root.nix
         { home-manager.users.nik = nixos-home.nixosModules.server; }
         ./modules/docker.nix
         ./modules/grub.nix
@@ -62,6 +63,7 @@
 
       base-modules-desktop = [
         ./users/nik.nix
+        ./users/root.nix
         { home-manager.users.nik = nixos-home.nixosModules.desktop; }
         ./modules/bluetooth.nix
         ./modules/locale.nix
@@ -85,10 +87,6 @@
             # Machine specific config
             ./machines/water-on-fire/configuration.nix
             ./machines/water-on-fire/hardware-configuration.nix
-
-            # Users
-            ./users/nik.nix
-            ./users/root.nix
 
             # Modules
             ./modules/grub-luks.nix
