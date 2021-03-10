@@ -3,52 +3,52 @@
 
 let
 
-  krops = (import <nixpkgs> { }).fetchgit {
-    url = "https://cgit.krebsco.de/krops/";
-    rev = "v1.17.0";
-    sha256 = "150jlz0hlb3ngf9a1c9xgcwzz1zz8v2lfgnzw08l3ajlaaai8smd";
-  };
-
+  # Basic krops setup
+  krops = builtins.fetchGit { url = "https://cgit.krebsco.de/krops/"; };
   lib = import "${krops}/lib";
   pkgs = import "${krops}/pkgs" { };
 
   source = name:
     lib.evalSource [{
-      nixos-config.symlink =
-        "machine-config/machines/${name}/configuration.nix";
 
-      # Copy repository to /var/src
+      # Copy over the whole repo. By default nixos-rebuild will use the
+      # currents system hostname to lookup the right nixos configuration in
+      # `nixosConfigurations` from flake.nix
       machine-config.file = toString ./.;
     }];
 
-  water-on-fire = pkgs.krops.writeDeploy "deploy-water-on-fire" {
-    source = source "water-on-fire";
-    target = "root@water-on-fire";
-  };
+  command = targetPath: ''
+    nix-shell -p git --run '
+      nixos-rebuild switch -v --show-trace --flake ${targetPath}/machine-config || \
+        nixos-rebuild switch -v --show-trace --flake ${targetPath}/machine-config
+    '
+  '';
 
-  quinjet = pkgs.krops.writeDeploy "deploy-quinjet" {
-    source = source "quinjet";
-    target = "root@quinjet";
-  };
+  # Convenience function to define machines with connection parameters and
+  # configuration source
+  createHost = name: target:
+    pkgs.krops.writeCommand "deploy-${name}" {
+      inherit command;
+      source = source name;
+      target = target;
+    };
 
-  the-bus = pkgs.krops.writeDeploy "deploy-the-bus" {
-    source = source "the-bus";
-    target = "root@the-bus";
-  };
+in rec {
 
-in {
+  # Define deployments
 
-  # nix-build ./krops.nix -A water-on-fire && ./result -j16
-  water-on-fire = water-on-fire;
+  # Run with (e.g.):
+  # nix-build ./krop.nix -A kartoffel && ./result
 
-  # nix-build ./krops.nix -A quinjet && ./result -j8
-  quinjet = quinjet;
+  # Individual machines
+  water-on-fire = createHost "water-on-fire" "root@192.168.5.63";
+  quinjet = createHost "quinjet" "root@192.168.5.11";
+  the-bus = createHost "the-bus" "root@192.168.5.12";
 
-  # nix-build ./krops.nix -A the-bus && ./result -j4
-  the-bus = the-bus;
+  # Groups
+  all = pkgs.writeScript "deploy-all"
+    (lib.concatStringsSep "\n" [ water-on-fire quinjet the-bus ]);
 
-  # nix-build ./krops.nix -A all && ./result -j16
-  all = pkgs.writeScript "deploy-all-servers"
-    (lib.concatStringsSep "\n" [ water-on-fire quinjet ]);
-
+  servers = pkgs.writeScript "deploy-servers"
+    (lib.concatStringsSep "\n" [ quinjet the-bus ]);
 }
