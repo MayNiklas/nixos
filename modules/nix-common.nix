@@ -1,5 +1,7 @@
 { config, pkgs, ... }: {
 
+  nixpkgs = { config.allowUnfree = true; };
+
   nix = {
 
     # Save space by hardlinking store files
