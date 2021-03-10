@@ -8,26 +8,29 @@ platform:
   arch: amd64
 
 steps:
-- name: Build water-on-fire
+- name: Show flake info
   image: nixpkgs/nix-flakes
   commands:
-  - nix-build ./krops.nix -A water-on-fire
+  - nix --experimental-features "nix-command flakes" flake show
+  - nix --experimental-features "nix-command flakes" flake info
+  - nix --experimental-features "nix-command flakes" flake list-inputs
   environment:
     NIX_PATH: nixpkgs=channel:nixos-unstable
 
-- name: Build quinjet
+- name: Run flake checks
   image: nixpkgs/nix-flakes
   commands:
-  - nix-build ./krops.nix -A quinjet
+  - nix --experimental-features "nix-command flakes" flake check --show-trace
   environment:
     NIX_PATH: nixpkgs=channel:nixos-unstable
-    
-- name: Build the-bus
+
+- name: Build all hosts
   image: nixpkgs/nix-flakes
   commands:
-  - nix-build ./krops.nix -A the-bus
+  - nix-build krops.nix -A all
   environment:
     NIX_PATH: nixpkgs=channel:nixos-unstable
+
 
 - name: notify
   image: drillster/drone-email
@@ -39,7 +42,3 @@ steps:
       from_secret: email_host
     password:
       from_secret: email_password
-  depends_on:
-  - Build water-on-fire
-  - Build quinjet
-  - Build the-bus
