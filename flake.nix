@@ -99,6 +99,11 @@
             # Machine specific config
             ./machines/quinjet/configuration.nix
             ./machines/quinjet/hardware-configuration.nix
+
+            # Modules
+            ./modules/plex.nix
+            ./modules/containers/web-youtube-dl.nix
+            ./modules/containers/scene-extractor-AOS.nix
           ];
         };
 
