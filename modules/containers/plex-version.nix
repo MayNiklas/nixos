@@ -3,6 +3,6 @@
     autoStart = true;
     image = "mayniki/plex-version";
     extraOptions = [ "--env-file=/docker/plex-version/envfile" ];
-    volumes = [ "/docker/plex-version/data:/data:rw" ];
+    volumes = [ "/docker/plex-version/data:/app/data:rw" ];
   };
 }
