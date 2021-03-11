@@ -5,52 +5,14 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-
-    # Users
-    ../../users/nik.nix
-    ../../users/root.nix
-
-    # Modules
-    ../../modules/docker.nix
-    ../../modules/networking.nix
-    ../../modules/locale.nix
-    ../../modules/hosts.nix
-    ../../modules/openssh.nix
-    ../../modules/options.nix
-    ../../modules/virtualization.nix
-    # ../../modules/plex.nix
-  ];
 
   mainUser = "nik";
   mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
+  nasIP = "192.168.5.10";
 
-  networking = {
-    hostName = "the-bus";
-  };
+  networking = { hostName = "the-bus"; };
 
-  boot = {
-    loader = {
-      grub = {
-        enable = true;
-        version = 2;
-        device = "nodev";
-        efiSupport = true;
-      };
-      efi.canTouchEfiVariables = true;
-    };
-    cleanTmpDir = true;
-  };
-
-  environment.systemPackages = with pkgs; [
-    bash-completion
-    git
-    nixfmt
-    wget
-    htop
-  ];
+  environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
