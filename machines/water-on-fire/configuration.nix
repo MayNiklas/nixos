@@ -1,37 +1,14 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
+
 { config, pkgs, ... }:
 
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-
-    # Users
-    ../../users/nik.nix
-    ../../users/root.nix
-
-    # Modules
-    ../../modules/grub-luks.nix
-    ../../modules/bluetooth.nix
-    ../../modules/flakes.nix
-    ../../modules/locale.nix
-    ../../modules/networking.nix
-    ../../modules/nix-common.nix
-    ../../modules/nvidia.nix
-    ../../modules/openssh.nix
-    ../../modules/options.nix
-    ../../modules/hosts.nix
-    ../../modules/sound.nix
-    ../../modules/docker.nix
-    ../../modules/xserver.nix
-    ../../modules/yubikey.nix
-    ../../modules/zsh.nix
-  ];
 
   mainUser = "nik";
   mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
+  nasIP = "192.168.5.10";
 
   # Get UUID from blkid /dev/sda2
   mayniklas = {
