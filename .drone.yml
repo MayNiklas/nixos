@@ -31,6 +31,29 @@ steps:
   environment:
     NIX_PATH: nixpkgs=channel:nixos-unstable
 
+- name: Update flake.lock
+  image: nixpkgs/nix-flakes
+  commands:
+  - nix flake update --recreate-lock-file
+  environment:
+    NIX_PATH: nixpkgs=channel:nixos-unstable
+
+- name: Push updated flake.lock
+  image: appleboy/drone-git-push
+  settings:
+    branch: update-flake
+    remote: git@github.com:MayNiklas/nixos.git
+    force: true
+    commit: true
+    force: true
+    commit_message: "❄️ Update flake.lock"
+    ssh_key:
+      from_secret: deploy_key
+  when:
+    branch:
+    - main
+    event:
+    - push
 
 - name: notify
   image: drillster/drone-email
