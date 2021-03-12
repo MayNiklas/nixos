@@ -54,6 +54,7 @@ steps:
     - main
     event:
     - push
+    - cron
 
 - name: notify
   image: drillster/drone-email
@@ -65,3 +66,8 @@ steps:
       from_secret: email_host
     password:
       from_secret: email_password
+  when:
+    branch:
+    - main
+    event:
+    - push
