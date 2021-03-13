@@ -31,7 +31,7 @@ steps:
   environment:
     NIX_PATH: nixpkgs=channel:nixos-unstable
 
-- name: notify
+- name: notify on failure
   image: drillster/drone-email
   settings:
     username: apikey
@@ -70,7 +70,7 @@ steps:
     ssh_key:
       from_secret: deploy_key
 
-- name: notify
+- name: notify on failure
   image: drillster/drone-email
   settings:
     username: apikey
