@@ -45,6 +45,11 @@ steps:
     status:
     - failure
 
+trigger:
+  branch:
+    exclude:
+    - update-flake
+
 ---
 kind: pipeline
 name: flake update
