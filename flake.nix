@@ -91,6 +91,7 @@
             # Modules
             ./modules/grub-luks.nix
             ./modules/nvidia.nix
+            ./modules/screen-configs/CS2420-AW3420.nix 
           ];
         };
 
