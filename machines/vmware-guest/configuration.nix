@@ -2,29 +2,25 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, modulesPath, ... }:
 
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    "${toString modulesPath}/virtualisation/vmware-image.nix"
 
     # Users
     ../../users/nik.nix
     ../../users/root.nix
 
     # Modules
-    ../../modules/grub.nix
     ../../modules/locale.nix
     ../../modules/nix-common.nix
     ../../modules/openssh.nix
   ];
 
-  networking = {
-    hostName = "nixos-vm";
-    useDHCP = false;
-    interfaces.ens192.useDHCP = true;
-  };
+  networking.hostName = "nixos-vm";
 
   environment.systemPackages = with pkgs; [
     bash-completion
