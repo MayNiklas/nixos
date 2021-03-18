@@ -31,6 +31,26 @@
   ];
 
   virtualisation.vmware.guest.enable = true;
+  
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/nixos";
+    autoResize = true;
+    fsType = "ext4";
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-label/ESP";
+    fsType = "vfat";
+  };
+
+  boot.growPartition = true;
+
+  boot.loader.grub = {
+    version = 2;
+    device = "nodev";
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
