@@ -35,6 +35,7 @@ steps:
 trigger:
   branch:
   - main
+  - update-flake
   event:
   - push
   - cron
