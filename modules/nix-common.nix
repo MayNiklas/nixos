@@ -9,6 +9,10 @@
       experimental-features = nix-command flakes ca-references
     '';
 
+    binaryCachePublicKeys = ["cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY="];
+    binaryCaches = [ "https://cache.lounge.rocks" ];
+    trustedBinaryCaches =  ["https://cache.lounge.rocks"];
+      
     # Save space by hardlinking store files
     autoOptimiseStore = true;
 
