@@ -19,10 +19,6 @@ steps:
 - name: Run flake checks
   commands:
   - nix --experimental-features "nix-command flakes" flake check --show-trace
-  
-- name: Build water-on-fire
-  commands:
-  - nix build '.#nixosConfigurations.water-on-fire.config.system.build.toplevel'
 
 - name: Build quinjet
   commands:
@@ -31,6 +27,10 @@ steps:
 - name: Build the-bus
   commands:
   - nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel'
+
+- name: Build water-on-fire
+  commands:
+  - nix build '.#nixosConfigurations.water-on-fire.config.system.build.toplevel'
   
 trigger:
   branch:
