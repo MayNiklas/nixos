@@ -31,6 +31,13 @@ steps:
 - name: Build the-bus
   commands:
   - nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel'
+  
+trigger:
+  branch:
+  - main
+  event:
+  - push
+  - cron
 
 ---
 kind: pipeline
