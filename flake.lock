@@ -27,11 +27,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1616408626,
-        "narHash": "sha256-mxUAKZKX3E/DXBGAu8B2WisDOfCmgll/e0/iGf1AFJM=",
+        "lastModified": 1616601316,
+        "narHash": "sha256-Yc+tRQReEeUfiY3yrLy6CxM0I+ccGzHXoVHqMOE3+gs=",
         "owner": "mayniklas",
         "repo": "nixos-home",
-        "rev": "2d029803589b2ddc29232c1583484c87b2998235",
+        "rev": "d4746a20f780f3c9f751435ed9c39feaa859e080",
         "type": "github"
       },
       "original": {
