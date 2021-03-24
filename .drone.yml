@@ -1,3 +1,37 @@
+kind: pipeline
+type: exec
+name: Build all hosts
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+
+- name: Show flake info
+  commands:
+  - nix --experimental-features "nix-command flakes" flake show
+  - nix --experimental-features "nix-command flakes" flake metadata
+
+- name: Run flake checks
+  commands:
+  - nix --experimental-features "nix-command flakes" flake check --show-trace
+  
+- name: Build water-on-fire
+  commands:
+  - nix build '.#nixosConfigurations.water-on-fire.config.system.build.toplevel'
+
+- name: Build quinjet
+  commands:
+  - nix build '.#nixosConfigurations.quinjet.config.system.build.toplevel'
+
+- name: Build the-bus
+  commands:
+  - nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel'
+
 ---
 kind: pipeline
 name: build check
