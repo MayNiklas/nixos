@@ -10,8 +10,8 @@
     '';
 
     binaryCachePublicKeys = [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
-    binaryCaches = lib.mkForce [ "https://cache.nixos.org" "https://cache.lounge.rocks" ];
-    trustedBinaryCaches = [ "https://cache.nixos.org" "https://cache.lounge.rocks" ];
+    binaryCaches = lib.mkForce [ "https://cache.lounge.rocks" "https://cache.nixos.org" ];
+    trustedBinaryCaches = [ "https://cache.lounge.rocks" "https://cache.nixos.org" ];
       
     # Save space by hardlinking store files
     autoOptimiseStore = true;
