@@ -11,7 +11,8 @@
     nixos-home.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-home }:
+  outputs = { self, ... }@inputs:
+    with inputs;
     let
       # Function to create defult (common) system config options
       defFlakeSystem = baseCfg:
