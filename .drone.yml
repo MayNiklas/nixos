@@ -22,15 +22,15 @@ steps:
 
 - name: Build quinjet
   commands:
-  - nix build '.#nixosConfigurations.quinjet.config.system.build.toplevel' --show-trace
+  - nix build -v '.#nixosConfigurations.quinjet.config.system.build.toplevel'
 
 - name: Build the-bus
   commands:
-  - nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel' --show-trace
+  - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel'
 
 - name: Build water-on-fire
   commands:
-  - nix build '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --show-trace
+  - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel'
   
 trigger:
   branch:
