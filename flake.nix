@@ -55,8 +55,8 @@
         ./modules/grub.nix
         ./modules/nix-common.nix
         ./modules/networking.nix
-        ./modules/hosts.nix
         ./modules/locale
+        ./modules/hosts
         ./modules/openssh.nix
         ./modules/options.nix
         ./modules/zsh.nix
@@ -71,7 +71,7 @@
         ./modules/networking.nix
         ./modules/nix-common.nix
         ./modules/openssh.nix
-        ./modules/hosts.nix
+        ./modules/hosts
         ./modules/options.nix
         ./modules/sound.nix
         ./modules/docker
