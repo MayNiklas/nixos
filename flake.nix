@@ -76,7 +76,7 @@
         ./modules/sound.nix
         ./modules/docker.nix
         ./modules/xserver.nix
-        ./modules/yubikey.nix
+        ./modules/yubikey
         ./modules/zsh.nix
       ];
     in {
@@ -108,7 +108,7 @@
             ./modules/containers/scene-extractor-AOS.nix
             ./modules/containers/plex-version.nix
             ./modules/containers/in-stock.nix
-            ./modules/yubikey.nix
+            ./modules/yubikey
           ];
         };
 

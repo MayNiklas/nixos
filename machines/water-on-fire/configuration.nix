@@ -10,9 +10,10 @@
   mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
   nasIP = "192.168.5.10";
 
-  # Get UUID from blkid /dev/sda2
   mayniklas = {
     bluetooth = { enable = true; };
+    yubikey = { enable = true; };
+    # Get UUID from blkid /dev/sda2
     grub-luks = {
       enable = true;
       uuid = "ea8b02e5-d2ee-44f8-a056-c55fba0d5c93";

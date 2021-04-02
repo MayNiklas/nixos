@@ -10,6 +10,8 @@
   mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
   nasIP = "192.168.5.10";
 
+  mayniklas = { yubikey = { enable = true; }; };
+
   networking = { hostName = "quinjet"; };
 
   environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
