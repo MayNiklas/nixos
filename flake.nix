@@ -103,7 +103,7 @@
             ./machines/quinjet/hardware-configuration.nix
 
             # Modules
-            ./modules/plex.nix
+            ./modules/plex
             ./modules/containers/web-youtube-dl.nix
             ./modules/containers/scene-extractor-AOS.nix
             ./modules/containers/plex-version.nix
