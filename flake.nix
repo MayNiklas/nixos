@@ -55,8 +55,8 @@
         ./modules/grub.nix
         ./modules/nix-common.nix
         ./modules/networking.nix
-        ./modules/locale.nix
         ./modules/hosts.nix
+        ./modules/locale
         ./modules/openssh.nix
         ./modules/options.nix
         ./modules/zsh.nix
@@ -67,7 +67,7 @@
         ./users/root.nix
         { home-manager.users.nik = nixos-home.nixosModules.desktop; }
         ./modules/bluetooth
-        ./modules/locale.nix
+        ./modules/locale
         ./modules/networking.nix
         ./modules/nix-common.nix
         ./modules/openssh.nix
