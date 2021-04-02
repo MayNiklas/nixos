@@ -52,13 +52,13 @@
         ./users/root.nix
         { home-manager.users.nik = nixos-home.nixosModules.server; }
         ./modules/docker
-        ./modules/grub.nix
-        ./modules/nix-common.nix
-        ./modules/networking.nix
+        ./modules/grub
+        ./modules/nix-common
+        ./modules/networking
         ./modules/locale
         ./modules/hosts
-        ./modules/openssh.nix
-        ./modules/options.nix
+        ./modules/openssh
+        ./modules/options
         ./modules/zsh.nix
       ];
 
@@ -68,16 +68,16 @@
         { home-manager.users.nik = nixos-home.nixosModules.desktop; }
         ./modules/bluetooth
         ./modules/locale
-        ./modules/networking.nix
-        ./modules/nix-common.nix
-        ./modules/openssh.nix
+        ./modules/networking
+        ./modules/nix-common
+        ./modules/openssh
         ./modules/hosts
-        ./modules/options.nix
-        ./modules/sound.nix
+        ./modules/options
+        ./modules/sound
         ./modules/docker
-        ./modules/xserver.nix
+        ./modules/xserver
         ./modules/yubikey
-        ./modules/zsh.nix
+        ./modules/zsh
       ];
     in {
 
@@ -91,8 +91,8 @@
 
             # Modules
             ./modules/grub-luks
-            ./modules/nvidia.nix
-            ./modules/screen-configs/CS2420-AW3420.nix 
+            ./modules/nvidia
+            ./modules/screen-configs/CS2420-AW3420.nix
           ];
         };
 
