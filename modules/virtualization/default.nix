@@ -1,10 +1,21 @@
-{ config, pkgs, lib, ... }: {
+{ lib, pkgs, config, ... }:
+with lib;
+let cfg = config.mayniklas.virtualisation;
+in {
 
-  environment.systemPackages = with pkgs; [ virt-manager ];
+  options.mayniklas.virtualisation = {
+    enable = mkEnableOption "activate virtualisation" // { default = true; };
+  };
 
-  virtualisation.libvirtd.enable = true;
-  programs.dconf.enable = true;
+  config = mkIf cfg.enable {
 
-  users.extraUsers.${config.mainUser}.extraGroups = [ "libvirtd" ];
+    environment.systemPackages = with pkgs; [ virt-manager ];
+
+    virtualisation.libvirtd.enable = true;
+    programs.dconf.enable = true;
+
+    users.extraUsers.${config.mainUser}.extraGroups = [ "libvirtd" ];
+
+  };
 
 }
