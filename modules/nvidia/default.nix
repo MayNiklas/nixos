@@ -1,5 +1,16 @@
-{ config, pkgs, lib, ... }: {
-  services.xserver = { videoDrivers = [ "nvidia" ]; };
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [ "nvidia-x11" "nvidia-settings" ];
+{ lib, pkgs, config, ... }:
+with lib;
+let cfg = config.mayniklas.nvidia;
+in {
+
+  options.mayniklas.nvidia = {
+    enable = mkEnableOption "activate nvidia" // { default = true; };
+  };
+
+  config = mkIf cfg.enable {
+    services.xserver = { videoDrivers = [ "nvidia" ]; };
+    nixpkgs.config.allowUnfreePredicate = pkg:
+      builtins.elem (lib.getName pkg) [ "nvidia-x11" "nvidia-settings" ];
+  };
+
 }
