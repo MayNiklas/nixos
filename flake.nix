@@ -66,7 +66,7 @@
         ./users/nik.nix
         ./users/root.nix
         { home-manager.users.nik = nixos-home.nixosModules.desktop; }
-        ./modules/bluetooth.nix
+        ./modules/bluetooth
         ./modules/locale.nix
         ./modules/networking.nix
         ./modules/nix-common.nix
