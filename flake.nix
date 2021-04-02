@@ -90,7 +90,7 @@
             ./machines/water-on-fire/hardware-configuration.nix
 
             # Modules
-            ./modules/grub-luks.nix
+            ./modules/grub-luks
             ./modules/nvidia.nix
             ./modules/screen-configs/CS2420-AW3420.nix 
           ];
