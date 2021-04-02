@@ -59,7 +59,7 @@
         ./modules/hosts
         ./modules/openssh
         ./modules/options
-        ./modules/zsh.nix
+        ./modules/zsh
       ];
 
       base-modules-desktop = [
