@@ -51,7 +51,7 @@
         ./users/nik.nix
         ./users/root.nix
         { home-manager.users.nik = nixos-home.nixosModules.server; }
-        ./modules/docker.nix
+        ./modules/docker
         ./modules/grub.nix
         ./modules/nix-common.nix
         ./modules/networking.nix
@@ -74,7 +74,7 @@
         ./modules/hosts.nix
         ./modules/options.nix
         ./modules/sound.nix
-        ./modules/docker.nix
+        ./modules/docker
         ./modules/xserver.nix
         ./modules/yubikey
         ./modules/zsh.nix
