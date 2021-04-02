@@ -3,7 +3,9 @@ with lib;
 let cfg = config.mayniklas.hosts;
 in {
 
-  options.mayniklas.hosts = { enable = mkEnableOption "activate hosts" // { default = true; };
+  options.mayniklas.hosts = {
+    enable = mkEnableOption "activate hosts" // { default = true; };
+  };
 
   config = mkIf cfg.enable {
 
