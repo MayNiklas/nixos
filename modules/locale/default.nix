@@ -3,7 +3,9 @@ with lib;
 let cfg = config.mayniklas.locale;
 in {
 
-  options.mayniklas.locale = { enable = mkEnableOption "activate locale" // { default = true; };
+  options.mayniklas.locale = {
+    enable = mkEnableOption "activate locale" // { default = true; };
+  };
 
   config = mkIf cfg.enable {
 
