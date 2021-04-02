@@ -1,3 +1,4 @@
+---
 kind: pipeline
 type: exec
 name: Build all hosts
@@ -15,6 +16,7 @@ steps:
   commands:
   - nix --experimental-features "nix-command flakes" flake show
   - nix --experimental-features "nix-command flakes" flake metadata
+  - nix --experimental-features "nix-command flakes" flake check
 
 - name: Run flake checks
   commands:
@@ -31,7 +33,7 @@ steps:
 - name: Build water-on-fire
   commands:
   - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel'
-  
+
 trigger:
   branch:
   - main
@@ -39,58 +41,6 @@ trigger:
   event:
   - push
   - cron
-
----
-kind: pipeline
-name: build check
-type: docker
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-# - name: Show flake info
-#   image: nixpkgs/nix-flakes
-#   commands:
-#   - nix --experimental-features "nix-command flakes" flake show
-#   - nix --experimental-features "nix-command flakes" flake info
-#   - nix --experimental-features "nix-command flakes" flake list-inputs
-#   environment:
-#     NIX_PATH: nixpkgs=channel:nixos-unstable
-
-- name: Run flake checks
-  image: nixpkgs/nix-flakes
-  commands:
-  - nix --experimental-features "nix-command flakes" flake check --show-trace
-  environment:
-    NIX_PATH: nixpkgs=channel:nixos-unstable
-
-- name: Build all hosts
-  image: nixpkgs/nix-flakes
-  commands:
-  - nix-build krops.nix -A all
-  environment:
-    NIX_PATH: nixpkgs=channel:nixos-unstable
-
-- name: notify on failure
-  image: drillster/drone-email
-  settings:
-    username: apikey
-    from:
-      from_secret: email_from
-    host:
-      from_secret: email_host
-    password:
-      from_secret: email_password
-  when:
-    status:
-    - failure
-
-trigger:
-  branch:
-    exclude:
-    - update-flake
 
 ---
 kind: pipeline
