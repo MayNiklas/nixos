@@ -108,6 +108,7 @@
             ./modules/containers/scene-extractor-AOS.nix
             ./modules/containers/plex-version.nix
             ./modules/containers/in-stock.nix
+            ./modules/pihole
             ./modules/yubikey
           ];
         };
