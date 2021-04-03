@@ -75,7 +75,6 @@
         ./modules/options
         ./modules/sound
         ./modules/docker
-        ./modules/xserver
         ./modules/yubikey
         ./modules/zsh
       ];
@@ -93,6 +92,7 @@
             ./modules/grub-luks
             ./modules/nvidia
             ./modules/screen-configs/CS2420-AW3420.nix
+            ./modules/xserver
           ];
         };
 
