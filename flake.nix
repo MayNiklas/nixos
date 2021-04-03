@@ -120,6 +120,7 @@
             
             # Modules
             ./modules/grub
+            ./modules/kde
           ];
         };
       };
