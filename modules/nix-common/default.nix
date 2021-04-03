@@ -1,29 +1,45 @@
-{ config, pkgs, lib, ... }: {
+{ lib, pkgs, config, ... }:
+with lib;
+let cfg = config.mayniklas.nix-common;
+in {
 
-  nixpkgs = { config.allowUnfree = true; };
+  options.mayniklas.nix-common = {
+    enable = mkEnableOption "activate nix-common" // { default = true; };
+  };
 
-  nix = {
+  config = mkIf cfg.enable {
 
-    package = pkgs.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes ca-references
-    '';
+    nixpkgs = { config.allowUnfree = true; };
 
-    binaryCachePublicKeys = [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
-    binaryCaches = lib.mkForce [ "https://cache.lounge.rocks" "https://cache.nixos.org" ];
-    trustedBinaryCaches = [ "https://cache.lounge.rocks" "https://cache.nixos.org" ];
-      
-    # Save space by hardlinking store files
-    autoOptimiseStore = true;
+    nix = {
 
-    # Clean up old generations after 30 days
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
+      package = pkgs.nixFlakes;
+      extraOptions = ''
+        experimental-features = nix-command flakes ca-references
+      '';
+
+      # binary cache -> build by DroneCI
+      binaryCachePublicKeys =
+        [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
+      binaryCaches =
+        lib.mkForce [ "https://cache.lounge.rocks" "https://cache.nixos.org" ];
+      trustedBinaryCaches =
+        [ "https://cache.lounge.rocks" "https://cache.nixos.org" ];
+
+      # Save space by hardlinking store files
+      autoOptimiseStore = true;
+
+      # Clean up old generations after 30 days
+      gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 30d";
+      };
+
+      # Users allowed to run nix
+      allowedUsers = [ "root" ];
+
     };
 
-    # Users allowed to run nix
-    allowedUsers = [ "root" ];
   };
 }
