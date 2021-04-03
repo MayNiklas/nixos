@@ -43,7 +43,7 @@ in {
       };
 
       displayManager.lightdm.enable = true;
-    
+
     };
 
   };
