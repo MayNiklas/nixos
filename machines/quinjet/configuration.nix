@@ -10,7 +10,13 @@
   mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
   nasIP = "192.168.5.10";
 
-  mayniklas = { yubikey = { enable = true; }; };
+  mayniklas = {
+    yubikey = { enable = true; };
+    pihole = {
+      enable = true;
+      port = "8080";
+    };
+  };
 
   networking = { hostName = "quinjet"; };
 

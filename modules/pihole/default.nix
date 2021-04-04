@@ -4,10 +4,10 @@ let cfg = config.mayniklas.pihole;
 in {
 
   options.mayniklas.pihole = {
-    enable = mkEnableOption "activate pihole" // { default = true; };
+    enable = mkEnableOption "activate pihole";
     port = mkOption {
       type = types.str;
-      default = "8080";
+      default = "80";
     };
     timezone = mkOption {
       type = types.str;
@@ -17,6 +17,14 @@ in {
       type = types.str;
       default = "/docker/pihole";
     };
+    DNS1 = mkOption {
+      type = types.str;
+      default = "1.1.1.1";
+    };
+    DNS2 = mkOption {
+      type = types.str;
+      default = "8.8.8.8";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -24,7 +32,11 @@ in {
     virtualisation.oci-containers.containers.pihole = {
       autoStart = true;
       image = "pihole/pihole:latest";
-      environment = { TZ = "${cfg.timezone}"; };
+      environment = {
+        TZ = "${cfg.timezone}";
+        DNS1 = "${cfg.DNS1}";
+        DNS2 = "${cfg.DNS2}";
+      };
       ports = [
         "53:53/tcp"
         "53:53/udp"
