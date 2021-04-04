@@ -16,6 +16,10 @@
       enable = true;
       port = "8080";
     };
+    librespeedtest = {
+      enable = true;
+      port = "8000";
+    };
     plex = { enable = true; };
   };
 

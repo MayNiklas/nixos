@@ -109,6 +109,7 @@
             ./modules/containers/plex-version.nix
             ./modules/containers/in-stock.nix
             ./modules/pihole
+            ./modules/librespeedtest
             ./modules/yubikey
           ];
         };
