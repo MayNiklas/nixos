@@ -4,7 +4,7 @@ let cfg = config.mayniklas.plex;
 in {
 
   options.mayniklas.plex = {
-    enable = mkEnableOption "activate plex" // { default = true; };
+    enable = mkEnableOption "activate plex";
   };
 
   config = mkIf cfg.enable {

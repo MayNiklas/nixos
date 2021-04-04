@@ -16,6 +16,7 @@
       enable = true;
       port = "8080";
     };
+    plex = { enable = true; };
   };
 
   networking = { hostName = "quinjet"; };
