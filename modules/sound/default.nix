@@ -4,7 +4,7 @@ let cfg = config.mayniklas.sound;
 in {
 
   options.mayniklas.sound = {
-    enable = mkEnableOption "activate sound" // { default = true; };
+    enable = mkEnableOption "activate sound";
   };
 
   config = mkIf cfg.enable {
