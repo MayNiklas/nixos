@@ -13,16 +13,15 @@
   mayniklas = {
     docker = { enable = true; };
     yubikey = { enable = true; };
-    plex = { enable = true; };
     pihole = {
       enable = true;
       port = "8080";
     };
+    plex = { enable = true; };
     librespeedtest = {
       enable = true;
       port = "8000";
     };
-    plex = { enable = true; };
   };
 
   networking = { hostName = "quinjet"; };
