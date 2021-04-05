@@ -3,9 +3,7 @@ with lib;
 let cfg = config.mayniklas.docker;
 in {
 
-  options.mayniklas.docker = {
-    enable = mkEnableOption "activate docker" // { default = true; };
-  };
+  options.mayniklas.docker = { enable = mkEnableOption "activate docker"; };
 
   config = mkIf cfg.enable {
 

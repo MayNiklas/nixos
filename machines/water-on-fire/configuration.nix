@@ -12,6 +12,7 @@
 
   mayniklas = {
     bluetooth = { enable = true; };
+    docker = { enable = true; };
     sound = { enable = true; };
     yubikey = { enable = true; };
     # Get UUID from blkid /dev/sda2

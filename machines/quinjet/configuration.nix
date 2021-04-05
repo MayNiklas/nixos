@@ -11,6 +11,7 @@
   nasIP = "192.168.5.10";
 
   mayniklas = {
+    docker = { enable = true; };
     yubikey = { enable = true; };
     plex = { enable = true; };
     pihole = {
