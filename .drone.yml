@@ -26,10 +26,6 @@ steps:
   commands:
   - nix build -v '.#nixosConfigurations.quinjet.config.system.build.toplevel'
 
-- name: Build the-bus
-  commands:
-  - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel'
-
 - name: Build water-on-fire
   commands:
   - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel'
