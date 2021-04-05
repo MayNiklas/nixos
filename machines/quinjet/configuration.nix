@@ -12,6 +12,7 @@
 
   mayniklas = {
     yubikey = { enable = true; };
+    plex = { enable = true; };
     pihole = {
       enable = true;
       port = "8080";

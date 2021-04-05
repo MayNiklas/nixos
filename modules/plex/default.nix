@@ -3,9 +3,7 @@ with lib;
 let cfg = config.mayniklas.plex;
 in {
 
-  options.mayniklas.plex = {
-    enable = mkEnableOption "activate plex";
-  };
+  options.mayniklas.plex = { enable = mkEnableOption "activate plex"; };
 
   config = mkIf cfg.enable {
     services = {
