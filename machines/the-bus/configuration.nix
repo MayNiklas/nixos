@@ -6,7 +6,10 @@
 
 {
 
-  mayniklas = { grub.enable = true; };
+  mayniklas = {
+    grub.enable = true;
+    hosts.enable = true;
+  };
 
   mainUser = "nik";
   mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
