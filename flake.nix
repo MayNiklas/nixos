@@ -9,6 +9,9 @@
 
     nixos-home.url = "github:mayniklas/nixos-home";
     nixos-home.inputs.nixpkgs.follows = "nixpkgs";
+
+    pinpox.url = "github:pinpox/nixos";
+    pinpox.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, ... }@inputs:
@@ -22,6 +25,7 @@
             # Add home-manager option to all configs
             ({ ... }: {
               imports = [
+                pinpox.nixosModules.hello
                 {
                   # Set the $NIX_PATH entry for nixpkgs. This is necessary in
                   # this setup with flakes, otherwise commands like `nix-shell
@@ -121,7 +125,7 @@
             # Machine specific config
             ./machines/the-bus/configuration.nix
             ./machines/the-bus/hardware-configuration.nix
-            
+
             # Modules
             ./modules/grub
             ./modules/kde
