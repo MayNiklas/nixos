@@ -4,7 +4,7 @@ let cfg = config.mayniklas.vmware-guest;
 in {
 
   options.mayniklas.vmware-guest = {
-    enable = mkEnableOption "activate vmware-guest" // { default = true; };
+    enable = mkEnableOption "activate vmware-guest";
   };
 
   config = mkIf cfg.enable {
