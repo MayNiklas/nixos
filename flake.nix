@@ -80,6 +80,8 @@
       ];
     in {
 
+      nixosModules = { hello = import ./modules/hello;
+
       nixosConfigurations = {
 
         water-on-fire = defFlakeSystem {
