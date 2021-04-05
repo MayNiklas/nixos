@@ -6,6 +6,8 @@
 
 {
 
+  mayniklas = { grub.enable = true; };
+
   mainUser = "nik";
   mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
   nasIP = "192.168.5.10";
