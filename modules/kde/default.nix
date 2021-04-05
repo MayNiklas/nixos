@@ -3,9 +3,7 @@ with lib;
 let cfg = config.mayniklas.kde;
 in {
 
-  options.mayniklas.kde = {
-    enable = mkEnableOption "activate kde" // { default = true; };
-  };
+  options.mayniklas.kde = { enable = mkEnableOption "activate kde"; };
 
   config = mkIf cfg.enable {
 
