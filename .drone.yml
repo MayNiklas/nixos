@@ -36,6 +36,7 @@ trigger:
   - update-flake
   event:
   - push
+  - pull_request
   - cron
 
 ---
