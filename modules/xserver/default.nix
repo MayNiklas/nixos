@@ -3,9 +3,7 @@ with lib;
 let cfg = config.mayniklas.xserver;
 in {
 
-  options.mayniklas.xserver = {
-    enable = mkEnableOption "activate xserver" // { default = true; };
-  };
+  options.mayniklas.xserver = { enable = mkEnableOption "activate xserver"; };
 
   config = mkIf cfg.enable {
 

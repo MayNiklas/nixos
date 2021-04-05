@@ -18,6 +18,7 @@
       enable = true;
       uuid = "ea8b02e5-d2ee-44f8-a056-c55fba0d5c93";
     };
+    xserver = { enable = true; };
   };
 
   networking = { hostName = "water-on-fire"; };
