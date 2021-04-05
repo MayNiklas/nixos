@@ -12,6 +12,7 @@
 
   mayniklas = {
     docker = { enable = true; };
+    grub = { enable = true; };
     yubikey = { enable = true; };
     pihole = {
       enable = true;

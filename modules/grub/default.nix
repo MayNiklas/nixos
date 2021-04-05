@@ -3,9 +3,7 @@ with lib;
 let cfg = config.mayniklas.grub;
 in {
 
-  options.mayniklas.grub = {
-    enable = mkEnableOption "activate grub" // { default = true; };
-  };
+  options.mayniklas.grub = { enable = mkEnableOption "activate grub"; };
 
   config = mkIf cfg.enable {
 
