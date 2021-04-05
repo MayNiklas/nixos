@@ -2,9 +2,9 @@
 with lib;
 let cfg = config.mayniklas.services.hellonik;
 in {
-  options.pinpox.services.hellonik = {
+  options.mayniklas.services.hellonik = {
     enable = mkEnableOption "hellonik service";
-    greeter123 = mkOption {
+    greeter = mkOption {
       type = types.str;
       default = "nik";
       example = "world";
