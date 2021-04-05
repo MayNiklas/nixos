@@ -4,7 +4,7 @@ let cfg = config.mayniklas.virtualisation;
 in {
 
   options.mayniklas.virtualisation = {
-    enable = mkEnableOption "activate virtualisation" // { default = true; };
+    enable = mkEnableOption "activate virtualisation";
   };
 
   config = mkIf cfg.enable {
