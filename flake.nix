@@ -80,7 +80,7 @@
       ];
     in {
 
-      nixosModules = { hello = import ./modules/hello;
+      nixosModules = { hellonik = import ./modules/hellonik; };
 
       nixosConfigurations = {
 
