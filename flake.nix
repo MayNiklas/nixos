@@ -80,6 +80,8 @@
       ];
     in {
 
+      nixosModules = { hellonik = import ./modules/hellonik; };
+
       nixosConfigurations = {
 
         water-on-fire = defFlakeSystem {
