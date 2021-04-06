@@ -4,7 +4,7 @@ let cfg = config.mayniklas.in-stock-bot;
 in {
 
   options.mayniklas.in-stock-bot = {
-    enable = mkEnableOption "activate in-stock-bot" // { default = true; };
+    enable = mkEnableOption "activate in-stock-bot";
   };
 
   config = mkIf cfg.enable {

@@ -14,6 +14,7 @@
     docker = { enable = true; };
     grub = { enable = true; };
     hosts = { enable = true; };
+    in-stock-bot = { enable = true; };
     yubikey = { enable = true; };
     locale = { enable = true; };
     networking = { enable = true; };
