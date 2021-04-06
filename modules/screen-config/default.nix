@@ -4,7 +4,7 @@ let cfg = config.mayniklas.eizo-alienware;
 in {
 
   options.mayniklas.eizo-alienware = {
-    enable = mkEnableOption "eizo-alienware" // { default = true; };
+    enable = mkEnableOption "eizo-alienware";
   };
 
   config = mkIf cfg.enable {

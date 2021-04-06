@@ -83,6 +83,7 @@
         openssh = import ./modules/openssh;
         options = import ./modules/options;
         pihole = import ./modules/pihole;
+        screen-config = import ./modules/screen-config;
         plex = import ./modules/plex;
         sound = import ./modules/sound;
         xserver = import ./modules/xserver;
@@ -103,9 +104,6 @@
             # Machine specific config
             ./machines/water-on-fire/configuration.nix
             ./machines/water-on-fire/hardware-configuration.nix
-
-            # Modules
-            ./modules/screen-configs/CS2420-AW3420.nix
           ];
         };
 
