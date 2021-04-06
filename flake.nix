@@ -10,7 +10,7 @@
     nixos-home.url = "github:mayniklas/nixos-home";
     nixos-home.inputs.nixpkgs.follows = "nixpkgs";
 
-    pinpox.url = "github:pinpox/nixos";
+    pinpox.url = "github:pinpox/nixos?rev=2212778ccd38a027eaa914c379eed841ae7a7a95";
     pinpox.inputs.nixpkgs.follows = "nixpkgs";
   };
 
