@@ -34,7 +34,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with self.inputs.nixpkgs; [
+  environment.systemPackages = with self.inputs.nixpkgs.legacyPackages.x86_64-linux; [
     ansible
     bash-completion
     git
