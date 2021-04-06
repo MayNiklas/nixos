@@ -81,6 +81,7 @@
         openssh = import ./modules/openssh;
         options = import ./modules/options;
         pihole = import ./modules/pihole;
+        server = import ./modules/server;
         screen-config = import ./modules/screen-config;
         plex = import ./modules/plex;
         sound = import ./modules/sound;

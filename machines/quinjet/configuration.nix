@@ -24,6 +24,7 @@
     };
     plex = { enable = true; };
     plex-version-bot = { enable = true; };
+    server = { enable = true; };
     scene-extractor = { enable = true; };
     librespeedtest = {
       enable = true;
