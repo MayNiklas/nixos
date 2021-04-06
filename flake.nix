@@ -103,7 +103,6 @@
           imports = base-modules-desktop ++ [
             # Machine specific config
             ./machines/water-on-fire/configuration.nix
-            ./machines/water-on-fire/hardware-configuration.nix
           ];
         };
 
@@ -111,7 +110,6 @@
           imports = base-modules-server ++ [
             # Machine specific config
             ./machines/quinjet/configuration.nix
-            ./machines/quinjet/hardware-configuration.nix
           ];
         };
 
