@@ -56,36 +56,37 @@
         ./users/nik.nix
         ./users/root.nix
         { home-manager.users.nik = nixos-home.nixosModules.server; }
-        ./modules/docker
-        ./modules/grub
-        ./modules/nix-common
-        ./modules/networking
-        ./modules/locale
-        ./modules/hosts
-        ./modules/openssh
-        ./modules/options
-        ./modules/zsh
       ];
 
       base-modules-desktop = [
         ./users/nik.nix
         ./users/root.nix
         { home-manager.users.nik = nixos-home.nixosModules.desktop; }
-        ./modules/bluetooth
-        ./modules/locale
-        ./modules/networking
-        ./modules/nix-common
-        ./modules/openssh
-        ./modules/hosts
-        ./modules/options
-        ./modules/sound
-        ./modules/docker
-        ./modules/yubikey
-        ./modules/zsh
       ];
+
     in {
 
-      nixosModules = { hellonik = import ./modules/hellonik; };
+      nixosModules = {
+        bluetooth = import ./modules/bluetooth;
+        docker = import ./modules/docker;
+        grub = import ./modules/grub;
+        grub-luks = import ./modules/grub-luks;
+        hellonik = import ./modules/hellonik;
+        hosts = import ./modules/hosts;
+        kde = import ./modules/kde;
+        librespeedtest = import ./modules/librespeedtest;
+        locale = import ./modules/locale;
+        networking = import ./modules/networking;
+        nix-common = import ./modules/nix-common;
+        nvidia = import ./modules/nvidia;
+        openssh = import ./modules/openssh;
+        options = import ./modules/options;
+        pihole = import ./modules/pihole;
+        sound = import ./modules/sound;
+        xserver = import ./modules/xserver;
+        yubikey = import ./modules/yubikey;
+        zsh = import ./modules/zsh;
+      };
 
       nixosConfigurations = {
 
@@ -96,10 +97,7 @@
             ./machines/water-on-fire/hardware-configuration.nix
 
             # Modules
-            ./modules/grub-luks
-            ./modules/nvidia
             ./modules/screen-configs/CS2420-AW3420.nix
-            ./modules/xserver
           ];
         };
 
@@ -109,15 +107,11 @@
             ./machines/quinjet/configuration.nix
             ./machines/quinjet/hardware-configuration.nix
 
-            # Modules
-            ./modules/plex
+            # Containers
             ./modules/containers/web-youtube-dl
             ./modules/containers/scene-extractor-AOS
             ./modules/containers/plex-version
             ./modules/containers/in-stock
-            ./modules/pihole
-            ./modules/librespeedtest
-            ./modules/yubikey
           ];
         };
 
@@ -126,10 +120,6 @@
             # Machine specific config
             ./machines/the-bus/configuration.nix
             ./machines/the-bus/hardware-configuration.nix
-
-            # Modules
-            ./modules/grub
-            ./modules/kde
           ];
         };
       };
