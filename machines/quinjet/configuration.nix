@@ -25,6 +25,7 @@
       port = "8080";
     };
     plex = { enable = true; };
+    plex-version-bot = { enable = true; };
     librespeedtest = {
       enable = true;
       port = "8000";
