@@ -24,7 +24,10 @@
     };
     plex = { enable = true; };
     plex-version-bot = { enable = true; };
-    server = { enable = true; };
+    server = {
+      enable = true;
+      homeConfig = self.inputs.nixos-home.nixosModules.server;
+    };
     scene-extractor = { enable = true; };
     librespeedtest = {
       enable = true;
