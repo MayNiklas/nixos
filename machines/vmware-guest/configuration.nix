@@ -30,7 +30,7 @@
   ];
 
   virtualisation.vmware.guest.enable = true;
-  
+
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
     autoResize = true;
