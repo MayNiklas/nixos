@@ -82,6 +82,7 @@
         openssh = import ./modules/openssh;
         options = import ./modules/options;
         pihole = import ./modules/pihole;
+        plex = import ./modules/plex;
         sound = import ./modules/sound;
         xserver = import ./modules/xserver;
         yubikey = import ./modules/yubikey;
