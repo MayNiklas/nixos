@@ -11,10 +11,6 @@
     hosts.enable = true;
   };
 
-  mainUser = "nik";
-  mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
-  nasIP = "192.168.5.10";
-
   networking = { hostName = "the-bus"; };
 
   environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
