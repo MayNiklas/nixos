@@ -31,6 +31,7 @@
       enable = true;
       port = "8000";
     };
+    youtube-dl = { enable = true; };
     zsh = { enable = true; };
   };
 
