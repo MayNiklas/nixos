@@ -10,7 +10,10 @@
 
   mayniklas = {
     bluetooth = { enable = true; };
-    desktop = { enable = true; };
+    desktop = {
+      enable = true;
+      homeConfig = self.inputs.nixos-home.nixosModules.desktop;
+    };
     docker = { enable = true; };
     eizo-alienware = { enable = true; };
     hosts = { enable = true; };
