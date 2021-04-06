@@ -36,7 +36,7 @@
 
   networking = { hostName = "quinjet"; };
 
-  environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
+  environment.systemPackages = with self.inputs.nixpkgs; [ bash-completion git nixfmt wget ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

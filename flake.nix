@@ -52,9 +52,8 @@
           ];
         };
 
-      base-modules-server = [
-        { home-manager.users.nik = nixos-home.nixosModules.server; }
-      ];
+      base-modules-server =
+        [{ home-manager.users.nik = nixos-home.nixosModules.server; }];
 
       base-modules-desktop =
         [{ home-manager.users.nik = nixos-home.nixosModules.desktop; }];
@@ -94,9 +93,7 @@
         youtube-dl = import ./modules/containers/web-youtube-dl;
       };
 
-      nixosConfigurations = {
-
-           # Each subdirectory in ./machins is a host. Add them all to
+      # Each subdirectory in ./machins is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
       nixosConfigurations = builtins.listToAttrs (map (x: {
@@ -107,6 +104,5 @@
           ];
         };
       }) (builtins.attrNames (builtins.readDir ./machines)));
-      };
     };
 }
