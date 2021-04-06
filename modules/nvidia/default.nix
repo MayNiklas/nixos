@@ -3,9 +3,7 @@ with lib;
 let cfg = config.mayniklas.nvidia;
 in {
 
-  options.mayniklas.nvidia = {
-    enable = mkEnableOption "activate nvidia" // { default = true; };
-  };
+  options.mayniklas.nvidia = { enable = mkEnableOption "activate nvidia"; };
 
   config = mkIf cfg.enable {
     services.xserver = { videoDrivers = [ "nvidia" ]; };
