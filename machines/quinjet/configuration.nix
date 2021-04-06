@@ -26,6 +26,7 @@
     };
     plex = { enable = true; };
     plex-version-bot = { enable = true; };
+    scene-extractor = { enable = true; };
     librespeedtest = {
       enable = true;
       port = "8000";
