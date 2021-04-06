@@ -97,19 +97,16 @@
       nixosConfigurations = {
 
         water-on-fire = defFlakeSystem {
-          imports = base-modules-desktop ++ [
-            # Machine specific config
-            ./machines/water-on-fire/configuration.nix
+            imports = base-modules-desktop ++ [
+            (import (./machines/water-on-fire/configuration.nix") { inherit self; })
           ];
         };
 
         quinjet = defFlakeSystem {
-          imports = base-modules-server ++ [
-            # Machine specific config
-            ./machines/quinjet/configuration.nix
+            imports = base-modules-serverp ++ [
+            (import (./machines/quinjet/configuration.nix") { inherit self; })
           ];
         };
-
       };
     };
 }
