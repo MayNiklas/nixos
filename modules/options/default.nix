@@ -1,9 +1,16 @@
-{ config, lib, ... }: {
+{ lib, pkgs, config, ... }:
+with lib;
+let cfg = config.mayniklas.var;
+in {
 
-  options.mainUser = lib.mkOption { type = lib.types.str; };
+  options.mayniklas.var.mainUser = lib.mkOption {
+    type = lib.types.str;
+    default = "nik";
+  };
 
-  options.mainUserHome = lib.mkOption { type = lib.types.str; };
-
-  options.nasIP = lib.mkOption { type = lib.types.str; };
+  options.mayniklas.var.nasIP = lib.mkOption {
+    type = lib.types.str;
+    default = "192.168.5.10";
+  };
 
 }

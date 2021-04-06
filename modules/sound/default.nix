@@ -3,9 +3,7 @@ with lib;
 let cfg = config.mayniklas.sound;
 in {
 
-  options.mayniklas.sound = {
-    enable = mkEnableOption "activate sound";
-  };
+  options.mayniklas.sound = { enable = mkEnableOption "activate sound"; };
 
   config = mkIf cfg.enable {
 
@@ -19,7 +17,7 @@ in {
 
     environment.systemPackages = with pkgs; [ pavucontrol ];
 
-    users.extraUsers.${config.mainUser}.extraGroups = [ "audio" ];
+    users.extraUsers.${config.mayniklas.var.mainUser}.extraGroups = [ "audio" ];
 
   };
 }

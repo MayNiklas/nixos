@@ -3,7 +3,9 @@ with lib;
 let cfg = config.mayniklas.networking;
 in {
 
-  options.mayniklas.networking = { enable = mkEnableOption "activate networking"; };
+  options.mayniklas.networking = {
+    enable = mkEnableOption "activate networking";
+  };
 
   config = mkIf cfg.enable {
 
@@ -19,6 +21,7 @@ in {
       # networking.firewall.allowedTCPPorts = [ ... ];
       # networking.firewall.allowedUDPPorts = [ ... ];
     };
-    users.extraUsers.${config.mainUser}.extraGroups = [ "networkmanager" ];
+    users.extraUsers.${config.mayniklas.var.mainUser}.extraGroups =
+      [ "networkmanager" ];
   };
 }

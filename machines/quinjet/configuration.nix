@@ -6,10 +6,6 @@
 
 {
 
-  mainUser = "nik";
-  mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
-  nasIP = "192.168.5.10";
-
   mayniklas = {
     docker = { enable = true; };
     grub = { enable = true; };

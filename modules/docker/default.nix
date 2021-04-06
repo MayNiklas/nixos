@@ -17,7 +17,8 @@ in {
       };
     };
 
-    users.extraUsers.${config.mainUser}.extraGroups = [ "docker" ];
+    users.extraUsers.${config.mayniklas.var.mainUser}.extraGroups =
+      [ "docker" ];
 
   };
 }

@@ -18,7 +18,7 @@ in {
       autoStart = true;
     };
     fileSystems."/mnt/plex-media" = {
-      device = "${config.nasIP}:/volume1/plex-media";
+      device = "${config.mayniklas.var.nasIP}:/volume1/plex-media";
       options = [ "nolock" "soft" "ro" ];
       fsType = "nfs";
     };

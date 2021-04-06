@@ -22,12 +22,12 @@ in {
     };
     networking.firewall.allowedTCPPorts = [ 8181 ];
     fileSystems."/mnt/plex-media" = {
-      device = "${config.nasIP}:/volume1/plex-media";
+      device = "${config.mayniklas.var.nasIP}:/volume1/plex-media";
       options = [ "nolock" "soft" "ro" ];
       fsType = "nfs";
     };
     fileSystems."/mnt/media" = {
-      device = "${config.nasIP}:/volume1/media";
+      device = "${config.mayniklas.var.nasIP}:/volume1/media";
       options = [ "nolock" "soft" "ro" ];
       fsType = "nfs";
     };

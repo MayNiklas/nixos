@@ -14,7 +14,8 @@ in {
     virtualisation.libvirtd.enable = true;
     programs.dconf.enable = true;
 
-    users.extraUsers.${config.mainUser}.extraGroups = [ "libvirtd" ];
+    users.extraUsers.${config.mayniklas.var.mainUser}.extraGroups =
+      [ "libvirtd" ];
 
   };
 
