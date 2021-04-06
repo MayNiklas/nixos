@@ -3,9 +3,7 @@ with lib;
 let cfg = config.mayniklas.networking;
 in {
 
-  options.mayniklas.networking = {
-    enable = mkEnableOption "activate networking" // { default = true; };
-  };
+  options.mayniklas.networking = { enable = mkEnableOption "activate networking"; };
 
   config = mkIf cfg.enable {
 
