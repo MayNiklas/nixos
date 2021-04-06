@@ -116,13 +116,6 @@
           ];
         };
 
-        the-bus = defFlakeSystem {
-          imports = base-modules-desktop ++ [
-            # Machine specific config
-            ./machines/the-bus/configuration.nix
-            ./machines/the-bus/hardware-configuration.nix
-          ];
-        };
       };
     };
 }
