@@ -96,17 +96,17 @@
 
       nixosConfigurations = {
 
-        water-on-fire = defFlakeSystem {
-            imports = base-modules-desktop ++ [
-            (import (./machines/water-on-fire/configuration.nix") { inherit self; })
+           # Each subdirectory in ./machins is a host. Add them all to
+      # nixosConfiguratons. Host configurations need a file called
+      # configuration.nix that will be read first
+      nixosConfigurations = builtins.listToAttrs (map (x: {
+        name = x;
+        value = defFlakeSystem {
+          imports = [
+            (import (./machines + "/${x}/configuration.nix") { inherit self; })
           ];
         };
-
-        quinjet = defFlakeSystem {
-            imports = base-modules-serverp ++ [
-            (import (./machines/quinjet/configuration.nix") { inherit self; })
-          ];
-        };
+      }) (builtins.attrNames (builtins.readDir ./machines)));
       };
     };
 }
