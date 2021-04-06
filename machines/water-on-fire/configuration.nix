@@ -10,6 +10,7 @@
 
   mayniklas = {
     bluetooth = { enable = true; };
+    desktop = { enable = true; };
     docker = { enable = true; };
     eizo-alienware = { enable = true; };
     hosts = { enable = true; };

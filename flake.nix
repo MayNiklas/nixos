@@ -58,17 +58,15 @@
         { home-manager.users.nik = nixos-home.nixosModules.server; }
       ];
 
-      base-modules-desktop = [
-        ./users/nik.nix
-        ./users/root.nix
-        { home-manager.users.nik = nixos-home.nixosModules.desktop; }
-      ];
+      base-modules-desktop =
+        [{ home-manager.users.nik = nixos-home.nixosModules.desktop; }];
 
     in {
 
       nixosModules = {
         # modules
         bluetooth = import ./modules/bluetooth;
+        desktop = import ./modules/desktop;
         docker = import ./modules/docker;
         grub = import ./modules/grub;
         grub-luks = import ./modules/grub-luks;
