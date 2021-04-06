@@ -24,6 +24,7 @@
       enable = true;
       port = "8000";
     };
+    zsh = { enable = true; };
   };
 
   networking = { hostName = "quinjet"; };

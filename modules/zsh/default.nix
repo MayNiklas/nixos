@@ -3,9 +3,7 @@ with lib;
 let cfg = config.mayniklas.zsh;
 in {
 
-  options.mayniklas.zsh = {
-    enable = mkEnableOption "activate zsh" // { default = true; };
-  };
+  options.mayniklas.zsh = { enable = mkEnableOption "activate zsh"; };
 
   config = mkIf cfg.enable {
 

@@ -23,6 +23,7 @@
     };
     nvidia = { enable = true; };
     xserver = { enable = true; };
+    zsh = { enable = true; };
   };
 
   networking = { hostName = "water-on-fire"; };
