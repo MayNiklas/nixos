@@ -53,8 +53,6 @@
         };
 
       base-modules-server = [
-        ./users/nik.nix
-        ./users/root.nix
         { home-manager.users.nik = nixos-home.nixosModules.server; }
       ];
 
