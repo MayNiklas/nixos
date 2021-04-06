@@ -21,6 +21,7 @@
       enable = true;
       uuid = "ea8b02e5-d2ee-44f8-a056-c55fba0d5c93";
     };
+    nix-common = { enable = true; };
     nvidia = { enable = true; };
     openssh = { enable = true; };
     xserver = { enable = true; };

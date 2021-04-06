@@ -15,6 +15,7 @@
     grub = { enable = true; };
     hosts = { enable = true; };
     yubikey = { enable = true; };
+    nix-common = { enable = true; };
     openssh = { enable = true; };
     pihole = {
       enable = true;

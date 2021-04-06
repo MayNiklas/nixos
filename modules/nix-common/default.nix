@@ -3,9 +3,7 @@ with lib;
 let cfg = config.mayniklas.nix-common;
 in {
 
-  options.mayniklas.nix-common = {
-    enable = mkEnableOption "activate nix-common" // { default = true; };
-  };
+  options.mayniklas.nix-common = { enable = mkEnableOption "activate nix-common"; };
 
   config = mkIf cfg.enable {
 
