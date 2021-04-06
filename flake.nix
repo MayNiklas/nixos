@@ -110,10 +110,10 @@
 
             # Modules
             ./modules/plex
-            ./modules/containers/web-youtube-dl.nix
-            ./modules/containers/scene-extractor-AOS.nix
-            ./modules/containers/plex-version.nix
-            ./modules/containers/in-stock.nix
+            ./modules/containers/web-youtube-dl
+            ./modules/containers/scene-extractor-AOS
+            ./modules/containers/plex-version
+            ./modules/containers/in-stock
             ./modules/pihole
             ./modules/librespeedtest
             ./modules/yubikey
