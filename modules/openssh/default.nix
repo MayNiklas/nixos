@@ -3,9 +3,7 @@ with lib;
 let cfg = config.mayniklas.openssh;
 in {
 
-  options.mayniklas.openssh = {
-    enable = mkEnableOption "activate openssh" // { default = true; };
-  };
+  options.mayniklas.openssh = { enable = mkEnableOption "activate openssh"; };
 
   config = mkIf cfg.enable {
 
