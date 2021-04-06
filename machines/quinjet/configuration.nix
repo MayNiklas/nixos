@@ -15,6 +15,7 @@
     grub = { enable = true; };
     hosts = { enable = true; };
     yubikey = { enable = true; };
+    locale = { enable = true; };
     networking = { enable = true; };
     nix-common = { enable = true; };
     openssh = { enable = true; };
