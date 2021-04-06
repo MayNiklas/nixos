@@ -67,6 +67,7 @@
     in {
 
       nixosModules = {
+        # modules
         bluetooth = import ./modules/bluetooth;
         docker = import ./modules/docker;
         grub = import ./modules/grub;
@@ -87,6 +88,12 @@
         xserver = import ./modules/xserver;
         yubikey = import ./modules/yubikey;
         zsh = import ./modules/zsh;
+
+        # containers
+        in-stock-bot = import ./modules/containers/in-stock;
+        plex-version = import ./modules/containers/plex-version;
+        scene-extractor = import ./modules/containers/scene-extractor-AOS;
+        youtube-dl = import ./modules/containers/web-youtube-dl;
       };
 
       nixosConfigurations = {
@@ -107,12 +114,6 @@
             # Machine specific config
             ./machines/quinjet/configuration.nix
             ./machines/quinjet/hardware-configuration.nix
-
-            # Containers
-            ./modules/containers/web-youtube-dl
-            ./modules/containers/scene-extractor-AOS
-            ./modules/containers/plex-version
-            ./modules/containers/in-stock
           ];
         };
 
