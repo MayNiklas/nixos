@@ -52,12 +52,6 @@
           ];
         };
 
-      base-modules-server =
-        [{ home-manager.users.nik = nixos-home.nixosModules.server; }];
-
-      base-modules-desktop =
-        [{ home-manager.users.nik = nixos-home.nixosModules.desktop; }];
-
     in {
 
       nixosModules = {
