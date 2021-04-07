@@ -19,6 +19,13 @@ in {
 
     environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
+    mayniklas = {
+      locale.enable = true;
+      nix-common.enable = true;
+      openssh.enable = true;
+      zsh.enable = true;
+    };
+
   };
 }
 

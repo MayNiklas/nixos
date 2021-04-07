@@ -14,10 +14,7 @@
     hosts = { enable = true; };
     in-stock-bot = { enable = true; };
     yubikey = { enable = true; };
-    locale = { enable = true; };
     networking = { enable = true; };
-    nix-common = { enable = true; };
-    openssh = { enable = true; };
     pihole = {
       enable = true;
       port = "8080";
@@ -34,7 +31,6 @@
       port = "8000";
     };
     youtube-dl = { enable = true; };
-    zsh = { enable = true; };
   };
 
   networking = { hostName = "quinjet"; };
