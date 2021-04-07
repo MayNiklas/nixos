@@ -19,6 +19,19 @@ in {
 
     environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
+    mayniklas = {
+      bluetooth.enable = true;
+      docker.enable = true;
+      sound.enable = true;
+      locale.enable = true;
+      hosts.enable = true;
+      networking.enable = true;
+      nix-common.enable = true;
+      openssh.enable = true;
+      yubikey.enable = true;
+      zsh.enable = true;
+    };
+
   };
 }
 

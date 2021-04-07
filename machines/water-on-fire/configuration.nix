@@ -9,28 +9,18 @@
   imports = [ ./hardware-configuration.nix ];
 
   mayniklas = {
-    bluetooth = { enable = true; };
     desktop = {
       enable = true;
       homeConfig = self.inputs.nixos-home.nixosModules.desktop;
     };
-    docker = { enable = true; };
     eizo-alienware = { enable = true; };
-    hosts = { enable = true; };
-    sound = { enable = true; };
-    yubikey = { enable = true; };
     # Get UUID from blkid /dev/sda2
     grub-luks = {
       enable = true;
       uuid = "ea8b02e5-d2ee-44f8-a056-c55fba0d5c93";
     };
-    locale = { enable = true; };
-    networking = { enable = true; };
-    nix-common = { enable = true; };
     nvidia = { enable = true; };
-    openssh = { enable = true; };
     xserver = { enable = true; };
-    zsh = { enable = true; };
   };
 
   networking = { hostName = "water-on-fire"; };
