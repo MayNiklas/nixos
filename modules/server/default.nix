@@ -8,14 +8,16 @@ in {
   options.mayniklas.server = {
     enable = mkEnableOption "Enable the default server configuration";
     homeConfig = mkOption {
-       type = types.attrs;
-       default = null;
+      type = types.attrs;
+      default = null;
     };
   };
 
   config = mkIf cfg.enable {
 
     home-manager.users.nik = cfg.homeConfig;
+
+    environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
   };
 }

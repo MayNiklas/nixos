@@ -8,14 +8,16 @@ in {
   options.mayniklas.desktop = {
     enable = mkEnableOption "Enable the default desktop configuration";
     homeConfig = mkOption {
-       type = types.attrs;
-       default = null;
+      type = types.attrs;
+      default = null;
     };
   };
 
   config = mkIf cfg.enable {
 
     home-manager.users.nik = cfg.homeConfig;
+
+    environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
   };
 }

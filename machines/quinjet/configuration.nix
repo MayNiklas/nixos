@@ -39,13 +39,6 @@
 
   networking = { hostName = "quinjet"; };
 
-  environment.systemPackages = with self.inputs.nixpkgs.legacyPackages.x86_64-linux; [
-    bash-completion
-    git
-    nixfmt
-    wget
-  ];
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

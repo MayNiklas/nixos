@@ -35,17 +35,6 @@
 
   networking = { hostName = "water-on-fire"; };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with self.inputs.nixpkgs.legacyPackages.x86_64-linux; [
-    ansible
-    bash-completion
-    git
-    nixfmt
-    python
-    wget
-  ];
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
