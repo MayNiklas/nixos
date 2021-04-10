@@ -20,26 +20,6 @@
         "type": "github"
       }
     },
-    "nixos-home": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1617044571,
-        "narHash": "sha256-1D0a9l+t7gyX6SEMeV/W08jYV08tzlxbKXsFR/XZ7Do=",
-        "owner": "mayniklas",
-        "repo": "nixos-home",
-        "rev": "9b6f15fcef88cdfcef5c681e87964acfcbd9f29a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mayniklas",
-        "repo": "nixos-home",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1617899217,
@@ -59,7 +39,6 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nixos-home": "nixos-home",
         "nixpkgs": "nixpkgs"
       }
     }
