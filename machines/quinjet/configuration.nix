@@ -23,7 +23,7 @@
     plex-version-bot = { enable = true; };
     server = {
       enable = true;
-      homeConfig = self.inputs.nixos-home.nixosModules.server;
+      homeConfig = { imports = [ ../../home-manager/home-server.nix ]; };
     };
     scene-extractor = { enable = true; };
     librespeedtest = {

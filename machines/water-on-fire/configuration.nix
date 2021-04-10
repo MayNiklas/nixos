@@ -11,7 +11,7 @@
   mayniklas = {
     desktop = {
       enable = true;
-      homeConfig = self.inputs.nixos-home.nixosModules.desktop;
+      homeConfig = { imports = [ ../../home-manager/home.nix ]; };
     };
     eizo-alienware = { enable = true; };
     # Get UUID from blkid /dev/sda2
