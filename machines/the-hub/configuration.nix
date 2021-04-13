@@ -2,6 +2,8 @@
 
 {
 
+  imports = [ ./wg-server.nix ];
+  
   mayniklas = {
     server = {
       enable = true;
