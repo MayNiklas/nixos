@@ -43,11 +43,12 @@ in rec {
   # Individual machines
   water-on-fire = createHost "water-on-fire" "root@192.168.5.63";
   quinjet = createHost "quinjet" "root@192.168.5.11";
+  the-hub = createHost "the-hub" "root@the-hub";
 
   # Groups
   all = pkgs.writeScript "deploy-all"
-    (lib.concatStringsSep "\n" [ water-on-fire quinjet ]);
+    (lib.concatStringsSep "\n" [ water-on-fire quinjet the-hub ]);
 
   servers =
-    pkgs.writeScript "deploy-servers" (lib.concatStringsSep "\n" [ quinjet ]);
+    pkgs.writeScript "deploy-servers" (lib.concatStringsSep "\n" [ quinjet the-hub ]);
 }
