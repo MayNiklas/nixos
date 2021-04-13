@@ -31,7 +31,7 @@ in {
         192.168.5.64 water-on-fire.local
 
         # external
-        37.120.177.174 the-hub
+        5.181.49.14 the-hub
       '';
     };
 
