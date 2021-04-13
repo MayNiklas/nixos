@@ -1,9 +1,11 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, modulesPath, ... }:
 
 with lib;
 let cfg = config.mayniklas.kvm-guest;
 
 in {
+
+  imports = [ "${modulesPath}/profiles/qemu-guest.nix" ];
 
   options.mayniklas.kvm-guest = {
     enable = mkEnableOption "activate kvm-guest";
@@ -11,25 +13,21 @@ in {
 
   config = mkIf cfg.enable {
 
-    imports = [ <nixpkgs/nixos/modules/profiles/qemu-guest.nix> ];
+    services.qemuGuest.enable = true;
 
-    config = {
-
-      services.qemuGuest.enable = true;
-
-      # Basic VM settings
-      fileSystems."/" = {
-        device = "/dev/disk/by-label/nixos";
-        fsType = "ext4";
-        autoResize = true;
-      };
-
-      boot.growPartition = true;
-      boot.kernelParams = [ "console=ttyS0" ];
-      boot.loader.grub.device = "/dev/sda";
-      boot.loader.timeout = 0;
-
+    # Basic VM settings
+    fileSystems."/" = {
+      device = "/dev/disk/by-label/nixos";
+      fsType = "ext4";
+      autoResize = true;
     };
 
+    boot.growPartition = true;
+    boot.kernelParams = [ "console=ttyS0" ];
+    boot.loader.grub.device = "/dev/sda";
+    boot.loader.timeout = 0;
+
   };
+
 }
+

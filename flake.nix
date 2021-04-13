@@ -57,6 +57,7 @@
         hellonik = import ./modules/hellonik;
         hosts = import ./modules/hosts;
         kde = import ./modules/kde;
+        kvm-guest = import ./modules/kvm-guest;
         librespeedtest = import ./modules/librespeedtest;
         locale = import ./modules/locale;
         networking = import ./modules/networking;
