@@ -13,4 +13,9 @@ in {
     default = "192.168.5.10";
   };
 
+  options.mayniklas.system = lib.mkOption {
+    type = lib.types.str;
+    default = "x86_64-linux";
+  };
+
 }
