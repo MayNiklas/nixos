@@ -70,6 +70,7 @@
         screen-config = import ./modules/screen-config;
         plex = import ./modules/plex;
         sound = import ./modules/sound;
+        vmware-guest = import ./modules/vmware-guest;
         xserver = import ./modules/xserver;
         yubikey = import ./modules/yubikey;
         zsh = import ./modules/zsh;
