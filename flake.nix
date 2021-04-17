@@ -19,24 +19,25 @@
           modules = [
             # Add home-manager option to all configs
             ({ ... }: {
-              imports = builtins.attrValues self.nixosModules ++ [
-                {
-                  # Set the $NIX_PATH entry for nixpkgs. This is necessary in
-                  # this setup with flakes, otherwise commands like `nix-shell
-                  # -p pkgs.htop` will keep using an old version of nixpkgs.
-                  # With this entry in $NIX_PATH it is possible (and
-                  # recommended) to remove the `nixos` channel for both users
-                  # and root e.g. `nix-channel --remove nixos`. `nix-channel
-                  # --list` should be empty for all users afterwards
-                  nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-                }
-                baseCfg
-                home-manager.nixosModules.home-manager
-                # DONT set useGlobalPackages! It's not necessary in newer
-                # home-manager versions and does not work with configs using
-                # `nixpkgs.config`
-                { home-manager.useUserPackages = true; }
-              ];
+              imports = builtins.attrValues self.nixosModules
+                ++ builtins.attrValues self.nixosContainers ++ [
+                  {
+                    # Set the $NIX_PATH entry for nixpkgs. This is necessary in
+                    # this setup with flakes, otherwise commands like `nix-shell
+                    # -p pkgs.htop` will keep using an old version of nixpkgs.
+                    # With this entry in $NIX_PATH it is possible (and
+                    # recommended) to remove the `nixos` channel for both users
+                    # and root e.g. `nix-channel --remove nixos`. `nix-channel
+                    # --list` should be empty for all users afterwards
+                    nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+                  }
+                  baseCfg
+                  home-manager.nixosModules.home-manager
+                  # DONT set useGlobalPackages! It's not necessary in newer
+                  # home-manager versions and does not work with configs using
+                  # `nixpkgs.config`
+                  { home-manager.useUserPackages = true; }
+                ];
               # Let 'nixos-version --json' know the Git revision of this flake.
               system.configurationRevision =
                 nixpkgs.lib.mkIf (self ? rev) self.rev;
@@ -47,40 +48,20 @@
 
     in {
 
-      nixosModules = {
-        # modules
-        bluetooth = import ./modules/bluetooth;
-        desktop = import ./modules/desktop;
-        docker = import ./modules/docker;
-        grub = import ./modules/grub;
-        grub-luks = import ./modules/grub-luks;
-        hellonik = import ./modules/hellonik;
-        hosts = import ./modules/hosts;
-        kde = import ./modules/kde;
-        kvm-guest = import ./modules/kvm-guest;
-        librespeedtest = import ./modules/librespeedtest;
-        locale = import ./modules/locale;
-        networking = import ./modules/networking;
-        nix-common = import ./modules/nix-common;
-        nvidia = import ./modules/nvidia;
-        openssh = import ./modules/openssh;
-        options = import ./modules/options;
-        pihole = import ./modules/pihole;
-        server = import ./modules/server;
-        screen-config = import ./modules/screen-config;
-        plex = import ./modules/plex;
-        sound = import ./modules/sound;
-        vmware-guest = import ./modules/vmware-guest;
-        xserver = import ./modules/xserver;
-        yubikey = import ./modules/yubikey;
-        zsh = import ./modules/zsh;
-
+      nixosContainers = {
         # containers
-        in-stock-bot = import ./modules/containers/in-stock;
-        plex-version = import ./modules/containers/plex-version;
-        scene-extractor = import ./modules/containers/scene-extractor-AOS;
-        youtube-dl = import ./modules/containers/web-youtube-dl;
+        in-stock-bot = import ./containers/in-stock;
+        plex-version = import ./containers/plex-version;
+        scene-extractor = import ./containers/scene-extractor-AOS;
+        youtube-dl = import ./containers/web-youtube-dl;
       };
+
+      # Output all modules in ./modules to flake. Modules should be in
+      # individual subdirectories and contain a default.nix file
+      nixosModules = builtins.listToAttrs (map (x: {
+        name = x;
+        value = import (./modules + "/${x}");
+      }) (builtins.attrNames (builtins.readDir ./modules)));
 
       # Each subdirectory in ./machins is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
