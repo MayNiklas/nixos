@@ -37,7 +37,6 @@ steps:
 trigger:
   branch:
   - main
-  - update-flake
   event:
   - push
   - pull_request
@@ -45,14 +44,70 @@ trigger:
 
 ---
 kind: pipeline
-name: flake update
+type: exec
+name: build flake update
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+
+- name: flake update
+  commands:
+  - nix --experimental-features "nix-command flakes" flake update --inputs-from nixpkgs
+  
+- name: Show git diff
+  commands:
+  - git diff
+
+- name: Show flake info
+  commands:
+  - nix --experimental-features "nix-command flakes" flake show
+  - nix --experimental-features "nix-command flakes" flake metadata
+  - nix --experimental-features "nix-command flakes" flake check
+
+- name: Run flake checks
+  commands:
+  - nix --experimental-features "nix-command flakes" flake check --show-trace
+
+- name: Build quinjet
+  commands:
+  - nix build -v '.#nixosConfigurations.quinjet.config.system.build.toplevel'
+
+- name: Build the-hub
+  commands:
+  - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel'
+
+- name: Build water-on-fire
+  commands:
+  - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel'
+
+trigger:
+  branch:
+  - main
+  event:
+  - push
+  - pull_request
+  - cron
+
+---
+kind: pipeline
+name: push flake update
 type: docker
 
 steps:
 - name: Update flake.lock
   image: nixpkgs/nix-flakes
   commands:
-  - nix flake update
+  - flake update --inputs-from nixpkgs
+  - flake show
+  - flake metadata
+  - flake check
+  - flake check --show-trace
   environment:
     NIX_PATH: nixpkgs=channel:nixos-unstable
 
