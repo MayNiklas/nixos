@@ -3,11 +3,17 @@ with lib;
 let cfg = config.mayniklas.nginx;
 in {
 
-  options.mayniklas.nginx = { enable = mkEnableOption "activate nginx"; };
+  options.mayniklas.nginx = {
+    enable = mkEnableOption "activate nginx";
+    email = mkOption {
+      type = types.str;
+      default = "acme@niklas-steffen.de";
+    };
+  };
 
   config = mkIf cfg.enable {
 
-    security.acme.email = "acme@niklas-steffen.de";
+    security.acme.email = "${cfg.email}";
     security.acme.acceptTerms = true;
 
     services.nginx = {
