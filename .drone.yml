@@ -103,11 +103,11 @@ steps:
 - name: Update flake.lock
   image: nixpkgs/nix-flakes
   commands:
-  - flake update --inputs-from nixpkgs
-  - flake show
-  - flake metadata
-  - flake check
-  - flake check --show-trace
+  - nix flake update --inputs-from nixpkgs
+  - nix flake show
+  - nix flake metadata
+  - nix flake check
+  - nix flake check --show-trace
   environment:
     NIX_PATH: nixpkgs=channel:nixos-unstable
 
