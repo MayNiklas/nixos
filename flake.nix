@@ -48,13 +48,12 @@
 
     in {
 
-      nixosContainers = {
-        # containers
-        in-stock-bot = import ./containers/in-stock;
-        plex-version = import ./containers/plex-version;
-        scene-extractor = import ./containers/scene-extractor-AOS;
-        youtube-dl = import ./containers/web-youtube-dl;
-      };
+      # Output all modules in ./containers to flake. Modules should be in
+      # individual subdirectories and contain a default.nix file
+      nixosContainers = builtins.listToAttrs (map (x: {
+        name = x;
+        value = import (./containers + "/${x}");
+      }) (builtins.attrNames (builtins.readDir ./containers)));
 
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
