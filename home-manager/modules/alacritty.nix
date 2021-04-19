@@ -20,9 +20,7 @@ in {
           y = 3;
         };
       };
-      cursor = {
-        style = "Beam";
-      };
+      cursor = { style = "Beam"; };
       colors = {
         primary = {
           background = "0x${vars.colors.base00}";

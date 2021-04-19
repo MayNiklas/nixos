@@ -4,7 +4,7 @@
 
   # Enable ip forwarding, so wireguard peers can reach eachother
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
-  
+
   # enable NAT
   # networking.nat.enable = true;
   # networking.nat.externalInterface = "ens3";
@@ -38,11 +38,21 @@
       peers = [
         {
           publicKey = "dR4HocvCeIAq/+CmjfQxZ5lnPC9revbMSU1J7gB9Cl0=";
-          allowedIPs = [ "10.88.88.2/32" "192.168.5.0/24" "192.168.15.0/24" "192.168.20.0/24" ];
+          allowedIPs = [
+            "10.88.88.2/32"
+            "192.168.5.0/24"
+            "192.168.15.0/24"
+            "192.168.20.0/24"
+          ];
         }
         {
           publicKey = "NeHl2LXjivsfYlBjfTz6fuMV/Wf/95j3Sb69WyKLrnI=";
-          allowedIPs = [ "10.88.88.3/32" "192.168.88.0/24" "192.168.99.0/24" "192.168.23.8/29" ];
+          allowedIPs = [
+            "10.88.88.3/32"
+            "192.168.88.0/24"
+            "192.168.99.0/24"
+            "192.168.23.8/29"
+          ];
         }
         {
           publicKey = "m8X/POOpYspeCITzRKLWPQBl2jdKYine0XCAC8lVYCE=";

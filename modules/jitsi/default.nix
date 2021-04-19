@@ -34,7 +34,7 @@ in {
       allowedTCPPorts = [ 80 443 ];
       allowedUDPPorts = [ 10000 ];
     };
-    
+
     mayniklas.nginx.enable = true;
 
   };

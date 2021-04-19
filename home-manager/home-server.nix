@@ -13,14 +13,7 @@
   nixpkgs.config = { allowUnfree = true; };
 
   # Install these packages for my user
-  home.packages = with pkgs; [
-    gcc
-    htop
-    intel-gpu-tools
-    iperf3
-    nmap
-    unzip
-  ];
+  home.packages = with pkgs; [ gcc htop intel-gpu-tools iperf3 nmap unzip ];
 
   # Imports
   imports = [ ./modules/git.nix ./modules/vim.nix ./modules/zsh.nix ];

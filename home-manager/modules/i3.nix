@@ -34,7 +34,7 @@ in {
     config = {
       modifier = "Mod4";
 
- #     bars = [ ]; 
+      #     bars = [ ]; 
       bars = [{
         position = "top";
         statusCommand = "${pkgs.i3status}/bin/i3status";
@@ -55,7 +55,8 @@ in {
           notification = false;
         }
         {
-          command = "${pkgs.feh}/bin/feh --bg-fill ~/wallpaper-CS2420.jpg wallpaper-AW3420.jpg";
+          command =
+            "${pkgs.feh}/bin/feh --bg-fill ~/wallpaper-CS2420.jpg wallpaper-AW3420.jpg";
           always = true;
           notification = false;
         }
@@ -136,8 +137,7 @@ in {
           "XF86MonBrightnessUp" =
             "exec xbacklight -inc 20"; # increase screen brightness
 
-          "Print" =
-            "exec gnome-screenshot -c -i";
+          "Print" = "exec gnome-screenshot -c -i";
         };
 
       terminal = "alacritty";
