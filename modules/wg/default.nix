@@ -16,8 +16,14 @@ in {
       default = 58102;
     };
     allowedIPs = mkOption {
-      type = types.str;
-      default = "10.88.88.0/24";
+      type = with types; listOf str;
+      default = [ "10.88.88.0/24" ];
+      description = ''
+        List of IP (v4 or v6) addresses with CIDR masks from
+        which this peer is allowed to send incoming traffic and to which
+        outgoing traffic for this peer is directed. The catch-all 0.0.0.0/0 may
+        be specified for matching all IPv4 addresses, and ::/0 may be specified
+        for matching all IPv6 addresses.'';
     };
   };
 
@@ -35,7 +41,7 @@ in {
 
         publicKey = "vpXKrLE0M7eH3GVd1I/OrfMRYQrq+TapUYfGyV1D4SQ=";
 
-        allowedIPs = [ "${cfg.allowedIPs}" ];
+        allowedIPs = cfg.allowedIPs;
 
         endpoint = "the-hub:58102";
 
