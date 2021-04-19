@@ -34,6 +34,7 @@ in {
     '';
 
     wireguard.interfaces.wg0.peers = [
+      # S2S home
       {
         publicKey = "dR4HocvCeIAq/+CmjfQxZ5lnPC9revbMSU1J7gB9Cl0=";
         allowedIPs = [
@@ -43,6 +44,7 @@ in {
           "192.168.20.0/24"
         ];
       }
+      # S2S G.
       {
         publicKey = "NeHl2LXjivsfYlBjfTz6fuMV/Wf/95j3Sb69WyKLrnI=";
         allowedIPs = [
@@ -52,18 +54,22 @@ in {
           "192.168.23.8/29"
         ];
       }
+      # S2S M.
       {
         publicKey = "m8X/POOpYspeCITzRKLWPQBl2jdKYine0XCAC8lVYCE=";
         allowedIPs = [ "10.88.88.4/32" "192.168.42.0/24" ];
       }
+      # S2S Lep.
       {
         publicKey = "ffd7LTN66FX269qTyDxT2e4kfuo7b5cRQruUzneVOzs=";
         allowedIPs = [ "10.88.88.5/32" "192.168.98.0/24" ];
       }
+      # S2S K.
       {
         publicKey = "x6r6/fKy1Yq2jqf0MngnpEJ6dPa/elf3nYPmNJ+5Myc=";
         allowedIPs = [ "10.88.88.6/32" "192.168.22.0/24" ];
       }
+      # iMac B.
       {
         publicKey = "fnuGuNVPco092ZV9zDNYY55tW/pzdRBltij9X/5DcUU=";
         allowedIPs = [ "10.88.88.9/32" ];
@@ -88,11 +94,12 @@ in {
         publicKey = "IG6shrAvupzelwaFBYDd476Xu9uUehoMYAcz80mGTGE=";
         allowedIPs = [ "10.88.88.23/32" ];
       }
-      # Desktop
+      # water-on-fire
       {
         publicKey = "dWMWrCKd/vTDhs+15YiFeSQziZACBiOK/f3vC5x73Qc=";
         allowedIPs = [ "10.88.88.24/32" ];
       }
+      # MacBook M.
       {
         publicKey = "tY4kwJFserZZTHsfBzaQX05zFbPoPf90EYFQOmaE+zY=";
         allowedIPs = [ "10.88.88.150/32" ];
