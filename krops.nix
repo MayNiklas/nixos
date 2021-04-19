@@ -41,8 +41,8 @@ in rec {
   # nix-build ./krop.nix -A kartoffel && ./result
 
   # Individual machines
-  water-on-fire = createHost "water-on-fire" "root@192.168.5.63";
-  quinjet = createHost "quinjet" "root@192.168.5.11";
+  water-on-fire = createHost "water-on-fire" "root@water-on-fire";
+  quinjet = createHost "quinjet" "root@quinjet";
   the-hub = createHost "the-hub" "root@the-hub";
 
   # Groups
