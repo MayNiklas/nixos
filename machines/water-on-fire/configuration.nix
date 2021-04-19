@@ -22,7 +22,6 @@
     nvidia = { enable = true; };
     wg = {
       enable = true;
-      client = true;
       ip = "10.88.88.88";
     };
     xserver = { enable = true; };

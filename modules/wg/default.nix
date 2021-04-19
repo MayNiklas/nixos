@@ -5,7 +5,7 @@ in {
 
   options.mayniklas.wg = {
     enable = mkEnableOption "activate wireguard";
-    client = mkEnableOption "activate default peer";
+    server = mkEnableOption "activate server mode";
     ip = mkOption {
       type = types.str;
       default = "10.88.88.1";
@@ -32,7 +32,7 @@ in {
         privateKeyFile = toString /var/src/secrets/wireguard/private;
         generatePrivateKeyFile = true;
 
-        peers = mkIf cfg.client [{
+        peers = mkIf (cfg.server != true) [{
 
           publicKey = "vpXKrLE0M7eH3GVd1I/OrfMRYQrq+TapUYfGyV1D4SQ=";
 
