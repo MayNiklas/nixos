@@ -20,6 +20,11 @@
       uuid = "ea8b02e5-d2ee-44f8-a056-c55fba0d5c93";
     };
     nvidia = { enable = true; };
+    wg = {
+      enable = true;
+      client = true;
+      ip = "10.88.88.88";
+    };
     xserver = { enable = true; };
   };
 
