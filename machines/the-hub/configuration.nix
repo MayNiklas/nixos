@@ -88,6 +88,11 @@ in {
         publicKey = "IG6shrAvupzelwaFBYDd476Xu9uUehoMYAcz80mGTGE=";
         allowedIPs = [ "10.88.88.23/32" ];
       }
+      # Desktop
+      {
+        publicKey = "dWMWrCKd/vTDhs+15YiFeSQziZACBiOK/f3vC5x73Qc=";
+        allowedIPs = [ "10.88.88.24/32" ];
+      }
       {
         publicKey = "tY4kwJFserZZTHsfBzaQX05zFbPoPf90EYFQOmaE+zY=";
         allowedIPs = [ "10.88.88.150/32" ];

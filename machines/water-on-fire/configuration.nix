@@ -22,7 +22,8 @@
     nvidia = { enable = true; };
     wg = {
       enable = true;
-      ip = "10.88.88.88";
+      ip = "10.88.88.24";
+      allowedIPs = [ "10.88.88.0/24" ];
     };
     xserver = { enable = true; };
   };
