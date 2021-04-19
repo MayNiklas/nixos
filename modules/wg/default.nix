@@ -5,11 +5,15 @@ in {
 
   options.mayniklas.wg = {
     enable = mkEnableOption "activate wireguard";
-    server = mkEnableOption "activate server mode";
+    server = mkEnableOption "activate wireguard server mode";
     ip = mkOption {
       type = types.str;
       default = "10.88.88.1";
       example = "10.88.88.20";
+    };
+    port = mkOption {
+      type = types.int;
+      default = 58102;
     };
     allowedIPs = mkOption {
       type = types.str;
@@ -19,32 +23,31 @@ in {
 
   config = mkIf cfg.enable {
 
-    # Enable Wireguard
-    networking.wireguard.interfaces = {
+    networking.wireguard.interfaces.wg0 = {
+      ips = [ "${cfg.ip}/24" ];
+      listenPort = mkIf cfg.server cfg.port;
 
-      wg0 = {
+      # Path to the private key file
+      privateKeyFile = toString /var/src/secrets/wireguard/private;
+      generatePrivateKeyFile = true;
 
-        # Determines the IP address and subnet of the client's end of the
-        # tunnel interface.
-        ips = [ "${cfg.ip}/24" ];
+      peers = mkIf (cfg.server != true) [{
 
-        # Path to the private key file
-        privateKeyFile = toString /var/src/secrets/wireguard/private;
-        generatePrivateKeyFile = true;
+        publicKey = "vpXKrLE0M7eH3GVd1I/OrfMRYQrq+TapUYfGyV1D4SQ=";
 
-        peers = mkIf (cfg.server != true) [{
+        allowedIPs = [ "${cfg.allowedIPs}" ];
 
-          publicKey = "vpXKrLE0M7eH3GVd1I/OrfMRYQrq+TapUYfGyV1D4SQ=";
+        endpoint = "the-hub:58102";
 
-          allowedIPs = [ "${cfg.allowedIPs}" ];
+        persistentKeepalive = 25;
 
-          endpoint = "the-hub:58102";
-
-          persistentKeepalive = 25;
-
-        }];
-
-      };
+      }];
     };
+
+    # Enable ip forwarding, so wireguard peers can reach eachother
+    boot.kernel.sysctl."net.ipv4.ip_forward" = mkIf cfg.server 1;
+
+    networking.firewall.allowedUDPPorts = mkIf cfg.server [ cfg.port ];
+
   };
 }
