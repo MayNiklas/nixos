@@ -30,6 +30,11 @@
       enable = true;
       port = "8000";
     };
+    wg = {
+      enable = true;
+      ip = "10.88.88.10";
+      allowedIPs = [ "10.88.88.0/24" ];
+    };
     youtube-dl = { enable = true; };
   };
 

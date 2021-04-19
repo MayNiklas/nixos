@@ -74,6 +74,11 @@ in {
         publicKey = "fnuGuNVPco092ZV9zDNYY55tW/pzdRBltij9X/5DcUU=";
         allowedIPs = [ "10.88.88.9/32" ];
       }
+      # quinjet
+      {
+        publicKey = "lgEYddHkOxjEVqgnQruhwsRa/riiGm1jgcInDtCjfiU=";
+        allowedIPs = [ "10.88.88.10/32" ];
+      }
       # 13 inch MacBook Pro
       {
         publicKey = "DiYQ6+0EvA6kG5w07I+y5GUp1Qxekj3txjgLmK9q3CI=";
