@@ -6,6 +6,7 @@ in {
   options.mayniklas.wg = {
     enable = mkEnableOption "activate wireguard";
     server = mkEnableOption "activate wireguard server mode";
+    router = mkEnableOption "activate wireguard router mode";
     ip = mkOption {
       type = types.str;
       default = "10.88.88.1";
@@ -51,7 +52,8 @@ in {
     };
 
     # Enable ip forwarding, so wireguard peers can reach eachother
-    boot.kernel.sysctl."net.ipv4.ip_forward" = mkIf cfg.server 1;
+    boot.kernel.sysctl."net.ipv4.ip_forward" =
+      mkIf cfg.server mkIf cfg.router 1;
 
     networking.firewall.allowedUDPPorts = mkIf cfg.server [ cfg.port ];
 

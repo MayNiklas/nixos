@@ -32,6 +32,7 @@
     };
     wg = {
       enable = true;
+      router = true;
       ip = "10.88.88.10";
       allowedIPs = [ "10.88.88.0/24" ];
     };
