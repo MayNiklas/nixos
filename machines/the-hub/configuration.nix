@@ -36,7 +36,7 @@ in {
     wireguard.interfaces.wg0.peers = [
       # S2S home
       {
-        publicKey = "dR4HocvCeIAq/+CmjfQxZ5lnPC9revbMSU1J7gB9Cl0=";
+        publicKey = "lgEYddHkOxjEVqgnQruhwsRa/riiGm1jgcInDtCjfiU=";
         allowedIPs = [
           "10.88.88.2/32"
           "192.168.5.0/24"
@@ -73,11 +73,6 @@ in {
       {
         publicKey = "fnuGuNVPco092ZV9zDNYY55tW/pzdRBltij9X/5DcUU=";
         allowedIPs = [ "10.88.88.9/32" ];
-      }
-      # quinjet
-      {
-        publicKey = "lgEYddHkOxjEVqgnQruhwsRa/riiGm1jgcInDtCjfiU=";
-        allowedIPs = [ "10.88.88.10/32" ];
       }
       # 13 inch MacBook Pro
       {
