@@ -10,6 +10,11 @@ in {
   config = mkIf cfg.enable {
 
     nixpkgs = { config.allowUnfree = true; };
+    
+    nixpkgs.localSystem = {
+      system = "${config.mayniklas.system}";
+      config = "${config.mayniklas.system-config}";
+    };
 
     nix = {
 

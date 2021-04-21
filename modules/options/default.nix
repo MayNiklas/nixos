@@ -18,4 +18,9 @@ in {
     default = "x86_64-linux";
   };
 
+  options.mayniklas.system-config = lib.mkOption {
+    type = lib.types.str;
+    default = "x86_64-unknown-linux-gnu";
+  };
+
 }

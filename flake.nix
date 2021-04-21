@@ -13,9 +13,8 @@
     with inputs;
     let
       # Function to create defult (common) system config options
-      defFlakeSystem = systemArch: baseCfg:
+      defFlakeSystem = baseCfg:
         nixpkgs.lib.nixosSystem {
-          system = "${systemArch}";
           modules = [
             # Add home-manager option to all configs
             ({ ... }: {
@@ -67,7 +66,7 @@
       # configuration.nix that will be read first
       nixosConfigurations = builtins.listToAttrs (map (x: {
         name = x;
-        value = defFlakeSystem "x86_64-linux" {
+        value = defFlakeSystem {
           imports = [
             (import (./machines + "/${x}/configuration.nix") { inherit self; })
           ];
