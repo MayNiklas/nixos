@@ -34,6 +34,10 @@ steps:
   commands:
   - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel'
 
+- name: Build pi4b
+  commands:
+  - nix build -v '.#nixosConfigurations.pi4b.config.system.build.toplevel'
+
 trigger:
   branch:
   - main
@@ -85,6 +89,10 @@ steps:
 - name: Build water-on-fire
   commands:
   - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel'
+
+- name: Build pi4b
+  commands:
+  - nix build -v '.#nixosConfigurations.pi4b.config.system.build.toplevel'
 
 trigger:
   branch:

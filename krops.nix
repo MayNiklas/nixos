@@ -44,6 +44,7 @@ in rec {
   water-on-fire = createHost "water-on-fire" "root@water-on-fire";
   quinjet = createHost "quinjet" "root@quinjet";
   the-hub = createHost "the-hub" "root@the-hub";
+  pi4b = createHost "pi4b" "root@pi4b";
 
   # Groups
   all = pkgs.writeScript "deploy-all"
