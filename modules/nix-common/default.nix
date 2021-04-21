@@ -21,6 +21,9 @@ in {
       package = pkgs.nixFlakes;
       extraOptions = ''
         experimental-features = nix-command flakes ca-references
+        # Free up to 1GiB whenever there is less than 100MiB left.
+        min-free = ${toString (100 * 1024 * 1024)}
+        max-free = ${toString (1024 * 1024 * 1024)}
       '';
 
       # binary cache -> build by DroneCI
