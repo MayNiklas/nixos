@@ -55,6 +55,7 @@
   };
 
   networking = { hostName = "quinjet"; };
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 

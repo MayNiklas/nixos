@@ -52,7 +52,7 @@ in {
     };
 
     # Enable ip forwarding, so wireguard peers can reach eachother
-    boot.kernel.sysctl."net.ipv4.ip_forward" = mkIf (cfg.server or cfg.router) 1;
+    boot.kernel.sysctl."net.ipv4.ip_forward" = mkIf cfg.server 1;
 
     networking.firewall.allowedUDPPorts = mkIf cfg.server [ cfg.port ];
 
