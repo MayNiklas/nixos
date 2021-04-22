@@ -13,6 +13,14 @@ in {
       enable = true;
       host = "0.0.0.0";
       port = 5000;
+      plugins = plugins:
+        with plugins; [
+          curaenginelegacy
+          telegram
+          themeify
+          stlviewer
+          octoprint-dashboard
+        ];
     };
 
     networking.firewall.allowedTCPPorts = [ 5000 ];
