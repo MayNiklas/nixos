@@ -1,8 +1,9 @@
-{ self, ... }:{
+{ self, ... }: {
 
   imports = [ ./hardware-configuration.nix ];
 
   mayniklas = {
+    octoprint.enable = true;
     server = {
       enable = true;
       homeConfig = { imports = [ ../../home-manager/home-server.nix ]; };
