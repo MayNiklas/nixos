@@ -46,7 +46,7 @@ in {
 
         endpoint = "the-hub:58102";
 
-        persistentKeepalive = 25;
+        persistentKeepalive = 15;
 
       }];
     };
