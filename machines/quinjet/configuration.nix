@@ -30,32 +30,10 @@
       enable = true;
       port = "8000";
     };
-    wg = {
-      enable = true;
-      router = true;
-      ip = "10.88.88.2";
-      allowedIPs = [
-        "10.88.88.1/32"
-        "10.88.88.3/32"
-        "10.88.88.6/32"
-        "10.88.88.20/32"
-        "10.88.88.21/32"
-        "10.88.88.22/32"
-        "10.88.88.23/32"
-        "10.88.88.24/32"
-        "10.88.88.201/32"
-        "192.168.22.0/24"
-        "192.168.42.0/24"
-        "192.168.88.0/24"
-        "192.168.98.0/24"
-        "192.168.99.0/24"
-      ];
-    };
     youtube-dl = { enable = true; };
   };
 
   networking = { hostName = "quinjet"; };
-  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
