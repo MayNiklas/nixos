@@ -14,7 +14,7 @@
   networking = {
     hostName = "pi4b"; # Define your hostname.
     networkmanager = { enable = true; };
-    wireless.enable = false;
+    wireless.enable = true;
   };
 
   system.stateVersion = "21.03";
