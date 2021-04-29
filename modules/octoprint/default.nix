@@ -24,6 +24,7 @@ in {
     };
 
     networking.firewall.allowedTCPPorts = [ 5000 ];
+    users.extraUsers.octoprint.extraGroups = [ "dialout" ];
 
   };
 }
