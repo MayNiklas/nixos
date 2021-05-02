@@ -11,6 +11,11 @@ in {
 
   config = mkIf cfg.enable {
 
+    mayniklas = {
+      system = "aarch64-linux";
+      system-config = "aarch64-unknown-linux-gnu";
+    };
+
     # Required for the Wireless firmware
     hardware.enableRedistributableFirmware = true;
 

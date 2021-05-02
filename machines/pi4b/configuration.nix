@@ -7,8 +7,6 @@
       enable = true;
       homeConfig = { imports = [ ../../home-manager/home-server.nix ]; };
     };
-    system = "aarch64-linux";
-    system-config = "aarch64-unknown-linux-gnu";
   };
 
   networking = {
