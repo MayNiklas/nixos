@@ -15,7 +15,6 @@ in {
       port = 5000;
       plugins = plugins:
         with plugins; [
-          curaenginelegacy
           telegram
           themeify
           stlviewer
