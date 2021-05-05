@@ -23,7 +23,7 @@ in {
     };
 
     networking.firewall.allowedTCPPorts = [ 5000 ];
-    users.extraUsers.octoprint.extraGroups = [ "dialout" ];
+    users.extraUsers.octoprint.extraGroups = [ "dialout" "video" ];
 
   };
 }
