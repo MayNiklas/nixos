@@ -11,7 +11,15 @@ in {
 
     environment.systemPackages = with pkgs; [ virt-manager ];
 
-    virtualisation.libvirtd.enable = true;
+    virtualisation.libvirtd = {
+      enable = true;
+      allowedBridges = [ "br0" ];
+      qemuOvmf = true;
+      qemuRunAsRoot = false;
+      onBoot = "ignore";
+      onShutdown = "shutdown";
+    };
+
     programs.dconf.enable = true;
 
     users.extraUsers.${config.mayniklas.var.mainUser}.extraGroups =
