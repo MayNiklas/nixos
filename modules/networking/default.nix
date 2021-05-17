@@ -12,7 +12,7 @@ in {
     networking = {
 
       # Define the DNS servers
-      nameservers = [ "192.168.5.10" "192.168.5.1" "1.1.1.1" ];
+      nameservers = [ "192.168.5.1" "1.1.1.1" ];
 
       # Enable networkmanager
       networkmanager.enable = true;
