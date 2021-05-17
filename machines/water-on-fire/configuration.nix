@@ -25,10 +25,16 @@
       ip = "10.88.88.24";
       allowedIPs = [ "10.88.88.0/24" ];
     };
+    virtualisation.enable = true;
     xserver = { enable = true; };
   };
 
-  networking = { hostName = "water-on-fire"; };
+  networking = {
+    hostName = "water-on-fire";
+    useDHCP = false;
+    interfaces.br0.useDHCP = true;
+    bridges.br0.interfaces = [ "enp36s0" "enp43s0" ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

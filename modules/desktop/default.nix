@@ -25,7 +25,6 @@ in {
       sound.enable = true;
       locale.enable = true;
       hosts.enable = true;
-      networking.enable = true;
       nix-common.enable = true;
       openssh.enable = true;
       yubikey.enable = true;
