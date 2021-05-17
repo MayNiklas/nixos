@@ -18,25 +18,24 @@
           modules = [
             # Add home-manager option to all configs
             ({ ... }: {
-              imports = builtins.attrValues self.nixosModules
-                ++ builtins.attrValues self.nixosContainers ++ [
-                  {
-                    # Set the $NIX_PATH entry for nixpkgs. This is necessary in
-                    # this setup with flakes, otherwise commands like `nix-shell
-                    # -p pkgs.htop` will keep using an old version of nixpkgs.
-                    # With this entry in $NIX_PATH it is possible (and
-                    # recommended) to remove the `nixos` channel for both users
-                    # and root e.g. `nix-channel --remove nixos`. `nix-channel
-                    # --list` should be empty for all users afterwards
-                    nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-                  }
-                  baseCfg
-                  home-manager.nixosModules.home-manager
-                  # DONT set useGlobalPackages! It's not necessary in newer
-                  # home-manager versions and does not work with configs using
-                  # `nixpkgs.config`
-                  { home-manager.useUserPackages = true; }
-                ];
+              imports = builtins.attrValues self.nixosModules ++ [
+                {
+                  # Set the $NIX_PATH entry for nixpkgs. This is necessary in
+                  # this setup with flakes, otherwise commands like `nix-shell
+                  # -p pkgs.htop` will keep using an old version of nixpkgs.
+                  # With this entry in $NIX_PATH it is possible (and
+                  # recommended) to remove the `nixos` channel for both users
+                  # and root e.g. `nix-channel --remove nixos`. `nix-channel
+                  # --list` should be empty for all users afterwards
+                  nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+                }
+                baseCfg
+                home-manager.nixosModules.home-manager
+                # DONT set useGlobalPackages! It's not necessary in newer
+                # home-manager versions and does not work with configs using
+                # `nixpkgs.config`
+                { home-manager.useUserPackages = true; }
+              ];
               # Let 'nixos-version --json' know the Git revision of this flake.
               system.configurationRevision =
                 nixpkgs.lib.mkIf (self ? rev) self.rev;
@@ -46,13 +45,6 @@
         };
 
     in {
-
-      # Output all modules in ./containers to flake. Modules should be in
-      # individual subdirectories and contain a default.nix file
-      nixosContainers = builtins.listToAttrs (map (x: {
-        name = x;
-        value = import (./containers + "/${x}");
-      }) (builtins.attrNames (builtins.readDir ./containers)));
 
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
