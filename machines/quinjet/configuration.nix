@@ -14,7 +14,6 @@
     hosts = { enable = true; };
     in-stock-bot = { enable = true; };
     yubikey = { enable = true; };
-    networking = { enable = true; };
     pihole = {
       enable = true;
       port = "8080";
@@ -33,7 +32,12 @@
     youtube-dl = { enable = true; };
   };
 
-  networking = { hostName = "quinjet"; };
+  networking = {
+    hostName = "quinjet";
+    useDHCP = false;
+    interfaces.br0.useDHCP = true;
+    bridges.br0.interfaces = [ "eno1" ];
+  };
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
