@@ -29,6 +29,7 @@
       enable = true;
       port = "8000";
     };
+    virtualisation = { enable = true; };
     youtube-dl = { enable = true; };
   };
 
