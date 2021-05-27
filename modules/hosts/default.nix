@@ -32,6 +32,7 @@ in {
 
         # external
         5.181.49.14 the-hub
+        37.120.177.174 the-bus
       '';
     };
 
