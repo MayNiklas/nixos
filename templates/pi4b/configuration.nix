@@ -1,7 +1,6 @@
 { self, ... }: {
 
   mayniklas = {
-    octoprint.enable = true;
     pi4b.enable = true;
     server = {
       enable = true;
@@ -10,7 +9,7 @@
   };
 
   networking = {
-    hostName = "pi4b"; # Define your hostname.
+    hostName = "pi4b";
     networkmanager = { enable = true; };
   };
 

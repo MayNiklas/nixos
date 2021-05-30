@@ -45,7 +45,6 @@ in rec {
   quinjet = createHost "quinjet" "root@quinjet";
   the-hub = createHost "the-hub" "root@the-hub";
   the-bus = createHost "the-bus" "root@the-bus";
-  pi4b = createHost "pi4b" "root@pi4b";
 
   # Groups
   all = pkgs.writeScript "deploy-all"
