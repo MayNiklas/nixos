@@ -24,19 +24,19 @@ steps:
 
 - name: Build quinjet
   commands:
-  - nix build -v '.#nixosConfigurations.quinjet.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.quinjet.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
 - name: Build the-hub
   commands:
-  - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
 - name: Build the-bus
   commands:
-  - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
 - name: Build water-on-fire
   commands:
-  - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
 trigger:
   branch:
@@ -80,19 +80,19 @@ steps:
 
 - name: Build quinjet
   commands:
-  - nix build -v '.#nixosConfigurations.quinjet.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.quinjet.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
 - name: Build the-hub
   commands:
-  - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
 - name: Build the-bus
   commands:
-  - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
 - name: Build water-on-fire
   commands:
-  - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
 trigger:
   branch:
