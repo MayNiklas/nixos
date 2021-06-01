@@ -1,5 +1,10 @@
 { self, ... }: {
 
+  # to build disk image:
+  # nix build .#nixosConfigurations.vmware-template.config.system.build.vmwareImage
+
+  imports = [ ./hardware-configuration.nix ];
+
   mayniklas = {
     server = {
       enable = true;
