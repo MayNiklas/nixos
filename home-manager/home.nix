@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 
-let darknet = pkgs.callPackage ./packages/darknet { };
+let darknet = pkgs.callPackage ../packages/darknet { };
 
 in {
   # Let Home Manager install and manage itself.
