@@ -32,7 +32,7 @@ stdenv.mkDerivation rec {
 
   doCheck = true;
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Convolutional Neural Networks";
     longDescription = ''
       Darknet is an open source neural network framework written in C and CUDA.
