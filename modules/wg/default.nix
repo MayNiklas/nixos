@@ -33,6 +33,14 @@ in {
     networking.wireguard.interfaces.wg0 = {
       ips = [ "${cfg.ip}/24" ];
       listenPort = mkIf cfg.server cfg.port;
+      
+      postSetup = mkIf cfg.server ''
+        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.88.88.0/24 -o ens3 -j MASQUERADE
+      '';
+
+      postShutdown = mkIf cfg.server ''
+        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.88.88.0/24 -o ens3 -j MASQUERADE
+      '';
 
       # Path to the private key file
       privateKeyFile = toString /var/src/secrets/wireguard/private;
