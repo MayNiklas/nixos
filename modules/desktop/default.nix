@@ -22,6 +22,7 @@ in {
     mayniklas = {
       bluetooth.enable = true;
       docker.enable = true;
+      fonts.enable = true;
       sound.enable = true;
       locale.enable = true;
       hosts.enable = true;
