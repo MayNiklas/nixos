@@ -1,4 +1,5 @@
 { config, pkgs, ... }:
+let
 
 in {
   # Let Home Manager install and manage itself.
@@ -16,7 +17,6 @@ in {
   home.packages = with pkgs; [
     _1password-gui
     atom
-    discord
     discord
     darknet
     dolphin
