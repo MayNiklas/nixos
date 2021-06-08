@@ -46,6 +46,13 @@
           ];
         };
 
+      # nixpkgs with overlay applied and opitons set
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        overlays = [ self.overlay ];
+        config.allowUnfree = true;
+      };
+
     in {
 
       # Expose overlay to flake outputs, to allow using it from other flakes.
@@ -69,26 +76,15 @@
           ];
         };
       }) (builtins.attrNames (builtins.readDir ./machines)));
-    } //
 
-    # (flake-utils.lib.eachSystem [ "aarch64-linux" "i686-linux" "x86_64-linux" ])
-    (flake-utils.lib.eachSystem [ "i686-linux" "x86_64-linux" ]) (system:
-      let
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = [ self.overlay ];
-          config = {
-            allowUnsupportedSystem = true;
-            allowUnfree = true;
-          };
-        };
-      in rec {
+      packages."x86_64-linux" = {
+        # My packages
+        darknet = pkgs.darknet;
+      };
 
-        packages = flake-utils.lib.flattenTree { darknet = pkgs.darknet; };
-
-        apps = {
-          # Allow custom packages to be run using `nix run`
-          darknet = flake-utils.lib.mkApp { drv = packages.darknet; };
-        };
-      });
+      apps."x86_64-linux" = {
+        # Allow custom packages to be run using `nix run`
+        darknet = flake-utils.lib.mkApp { drv = packages.darknet; };
+      };
+    };
 }
