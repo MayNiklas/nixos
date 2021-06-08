@@ -80,7 +80,7 @@
 
         apps = {
           # Allow custom packages to be run using `nix run`
-          darknet = darknet.lib.mkApp { drv = packages.darknet; };
+          darknet = flake-utils.lib.mkApp { drv = packages.darknet; };
         };
       });
 }
