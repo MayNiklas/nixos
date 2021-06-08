@@ -71,9 +71,17 @@
       }) (builtins.attrNames (builtins.readDir ./machines)));
     } //
 
-    (flake-utils.lib.eachSystem [ "aarch64-linux" "i686-linux" "x86_64-linux" ])
-    (system:
-      let pkgs = nixpkgs.legacyPackages.${system}.extend self.overlay;
+    # (flake-utils.lib.eachSystem [ "aarch64-linux" "i686-linux" "x86_64-linux" ])
+    (flake-utils.lib.eachSystem [ "i686-linux" "x86_64-linux" ]) (system:
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [ self.overlay ];
+          config = {
+            allowUnsupportedSystem = true;
+            allowUnfree = true;
+          };
+        };
       in rec {
 
         packages = flake-utils.lib.flattenTree { darknet = pkgs.darknet; };
