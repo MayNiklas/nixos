@@ -10,7 +10,12 @@ in {
   mayniklas = {
     server = {
       enable = true;
-      homeConfig = { imports = [ ../../home-manager/home-server.nix ]; };
+      homeConfig = {
+        imports = [
+          ../../home-manager/home-server.nix
+          { nixpkgs.overlays = [ self.overlay ]; }
+        ];
+      };
     };
     kvm-guest.enable = true;
     wg = {

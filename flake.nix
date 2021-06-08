@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -28,6 +29,7 @@
                   # and root e.g. `nix-channel --remove nixos`. `nix-channel
                   # --list` should be empty for all users afterwards
                   nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+                  nixpkgs.overlays = [ self.overlay ];
                 }
                 baseCfg
                 home-manager.nixosModules.home-manager
@@ -45,6 +47,9 @@
         };
 
     in {
+
+      # Expose overlay to flake outputs, to allow using it from other flakes.
+      overlay = final: prev: (import ./overlays) final prev;
 
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
@@ -64,5 +69,26 @@
           ];
         };
       }) (builtins.attrNames (builtins.readDir ./machines)));
-    };
+    } //
+
+    # (flake-utils.lib.eachSystem [ "aarch64-linux" "i686-linux" "x86_64-linux" ])
+    (flake-utils.lib.eachSystem [ "i686-linux" "x86_64-linux" ]) (system:
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [ self.overlay ];
+          config = {
+            allowUnsupportedSystem = true;
+            allowUnfree = true;
+          };
+        };
+      in rec {
+
+        packages = flake-utils.lib.flattenTree { darknet = pkgs.darknet; };
+
+        apps = {
+          # Allow custom packages to be run using `nix run`
+          darknet = flake-utils.lib.mkApp { drv = packages.darknet; };
+        };
+      });
 }

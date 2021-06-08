@@ -22,7 +22,12 @@
     plex-version-bot = { enable = true; };
     server = {
       enable = true;
-      homeConfig = { imports = [ ../../home-manager/home-server.nix ]; };
+      homeConfig = {
+        imports = [
+          ../../home-manager/home-server.nix
+          { nixpkgs.overlays = [ self.overlay ]; }
+        ];
+      };
     };
     scene-extractor = { enable = true; };
     librespeedtest = {
