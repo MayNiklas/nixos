@@ -29,6 +29,7 @@
                   # and root e.g. `nix-channel --remove nixos`. `nix-channel
                   # --list` should be empty for all users afterwards
                   nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+                  nixpkgs.overlays = [ self.overlay ];
                 }
                 baseCfg
                 home-manager.nixosModules.home-manager
@@ -46,6 +47,9 @@
         };
 
     in {
+
+      # Expose overlay to flake outputs, to allow using it from other flakes.
+      overlay = final: prev: (import ./overlays) final prev;
 
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
@@ -65,5 +69,18 @@
           ];
         };
       }) (builtins.attrNames (builtins.readDir ./machines)));
-    };
+    } //
+
+    (flake-utils.lib.eachSystem [ "aarch64-linux" "i686-linux" "x86_64-linux" ])
+    (system:
+      let pkgs = nixpkgs.legacyPackages.${system}.extend self.overlay;
+      in rec {
+
+        packages = flake-utils.lib.flattenTree { darknet = pkgs.darknet; };
+
+        apps = {
+          # Allow custom packages to be run using `nix run`
+          darknet = darknet.lib.mkApp { drv = packages.darknet; };
+        };
+      });
 }
