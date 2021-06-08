@@ -97,6 +97,7 @@ steps:
 trigger:
   branch:
   - main
+  - overlay
   event:
   - push
   - pull_request
