@@ -88,6 +88,7 @@
           anki-bin = pkgs.anki-bin;
           darknet = pkgs.darknet;
           plex = pkgs.plex;
+          plexRAW = pkgs.plexRAW;
         };
 
         apps = {
@@ -95,6 +96,7 @@
           anki-bin = flake-utils.lib.mkApp { drv = packages.anki-bin; };
           darknet = flake-utils.lib.mkApp { drv = packages.darknet; };
           plex = flake-utils.lib.mkApp { drv = packages.plex; };
+          plexRAW = flake-utils.lib.mkApp { drv = packages.plexRAW; };
         };
       });
 }
