@@ -8,6 +8,10 @@ in {
     uuid = mkOption {
       type = types.str;
       default = "NULL";
+      description = ''
+        The UUID of the encrypted root partition.
+        Check with blkid /dev/sda2.
+      '';
     };
   };
 
