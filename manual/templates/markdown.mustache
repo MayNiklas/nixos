@@ -1,0 +1,24 @@
+{{#options}}
+### {{key}}
+{{value.description}}
+- **Type:** {{value.type}}
+- **Read-only:** {{value.readOnly}}
+
+#### Default
+```
+{{value.default}}
+```
+
+#### Example
+```
+{{value.example}}
+```
+
+#### Declarations:
+{{#value.declarations}}
+- `{{.}}`
+{{/value.declarations}}
+
+---
+
+{{/options}}
