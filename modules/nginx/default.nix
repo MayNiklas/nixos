@@ -8,6 +8,9 @@ in {
     email = mkOption {
       type = types.str;
       default = "acme@niklas-steffen.de";
+      description = ''
+        Documentation placeholder
+      '';
     };
   };
 

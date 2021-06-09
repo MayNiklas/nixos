@@ -8,10 +8,16 @@ in {
     port = mkOption {
       type = types.str;
       default = "8080";
+      description = ''
+        Documentation placeholder
+      '';
     };
     title = mkOption {
       type = types.str;
       default = "LibreSpeed";
+      description = ''
+        Documentation placeholder
+      '';
     };
   };
 

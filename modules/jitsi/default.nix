@@ -8,6 +8,9 @@ in {
     hostname = mkOption {
       type = types.str;
       default = "meet.your-domain.com";
+      description = ''
+        Documentation placeholder
+      '';
     };
   };
 

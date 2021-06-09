@@ -10,6 +10,9 @@ in {
     homeConfig = mkOption {
       type = types.attrs;
       default = null;
+      description = ''
+        Documentation placeholder
+      '';
     };
   };
 

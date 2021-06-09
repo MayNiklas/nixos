@@ -88,7 +88,7 @@
           anki-bin = pkgs.anki-bin;
           darknet = pkgs.darknet;
           plex = pkgs.plex;
-          };
+        };
 
         apps = {
           # Allow custom packages to be run using `nix run`

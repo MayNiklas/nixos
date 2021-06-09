@@ -8,22 +8,37 @@ in {
     port = mkOption {
       type = types.str;
       default = "80";
+      description = ''
+        Documentation placeholder
+      '';
     };
     timezone = mkOption {
       type = types.str;
       default = "Europe/Berlin";
+      description = ''
+        Documentation placeholder
+      '';
     };
     path = mkOption {
       type = types.str;
       default = "/docker/pihole";
+      description = ''
+        Documentation placeholder
+      '';
     };
     DNS1 = mkOption {
       type = types.str;
       default = "1.1.1.1";
+      description = ''
+        Documentation placeholder
+      '';
     };
     DNS2 = mkOption {
       type = types.str;
       default = "8.8.8.8";
+      description = ''
+        Documentation placeholder
+      '';
     };
   };
 
