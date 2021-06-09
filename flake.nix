@@ -84,10 +84,14 @@
         };
       in rec {
 
-        packages = flake-utils.lib.flattenTree { darknet = pkgs.darknet; };
+        packages = flake-utils.lib.flattenTree {
+          anki-bin = pkgs.anki-bin;
+          darknet = pkgs.darknet;
+          };
 
         apps = {
           # Allow custom packages to be run using `nix run`
+          anki-bin = flake-utils.lib.mkApp { drv = packages.anki-bin; };
           darknet = flake-utils.lib.mkApp { drv = packages.darknet; };
         };
       });

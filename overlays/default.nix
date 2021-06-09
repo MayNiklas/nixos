@@ -1,5 +1,6 @@
 self: super: {
   # Custom packages. Will be made available on all machines and used where
   # needed.
+  anki-bin = super.pkgs.callPackage ../packages/anki-bin { };
   darknet = super.pkgs.callPackage ../packages/darknet { };
 }
