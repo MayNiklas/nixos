@@ -3,4 +3,5 @@ self: super: {
   # needed.
   anki-bin = super.pkgs.callPackage ../packages/anki-bin { };
   darknet = super.pkgs.callPackage ../packages/darknet { };
+  plex = super.pkgs.callPackage ../packages/plex { };
 }

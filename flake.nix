@@ -87,12 +87,14 @@
         packages = flake-utils.lib.flattenTree {
           anki-bin = pkgs.anki-bin;
           darknet = pkgs.darknet;
+          plex = pkgs.plex;
           };
 
         apps = {
           # Allow custom packages to be run using `nix run`
           anki-bin = flake-utils.lib.mkApp { drv = packages.anki-bin; };
           darknet = flake-utils.lib.mkApp { drv = packages.darknet; };
+          plex = flake-utils.lib.mkApp { drv = packages.plex; };
         };
       });
 }
