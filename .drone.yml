@@ -22,6 +22,10 @@ steps:
   commands:
   - nix --experimental-features "nix-command flakes" flake check --show-trace
 
+- name: Build aida
+  commands:
+  - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+
 - name: Build quinjet
   commands:
   - nix build -v '.#nixosConfigurations.quinjet.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
@@ -77,6 +81,10 @@ steps:
 - name: Run flake checks
   commands:
   - nix --experimental-features "nix-command flakes" flake check --show-trace
+
+- name: Build aida
+  commands:
+  - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
 - name: Build quinjet
   commands:

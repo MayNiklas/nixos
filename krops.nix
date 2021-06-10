@@ -42,6 +42,7 @@ in rec {
 
   # Individual machines
   water-on-fire = createHost "water-on-fire" "root@water-on-fire";
+  aida = createHost "aida" "root@aida";
   quinjet = createHost "quinjet" "root@quinjet";
   the-hub = createHost "the-hub" "root@the-hub";
   the-bus = createHost "the-bus" "root@the-bus";
