@@ -1,6 +1,7 @@
 { self, ... }: {
 
   mayniklas = {
+    plex = { enable = true; };
     server = {
       enable = true;
       homeConfig = { imports = [ ../../home-manager/home-server.nix ]; };
