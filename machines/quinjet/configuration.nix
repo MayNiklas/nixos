@@ -12,13 +12,7 @@
     docker = { enable = true; };
     grub = { enable = true; };
     hosts = { enable = true; };
-    in-stock-bot = { enable = true; };
     yubikey = { enable = true; };
-    pihole = {
-      enable = true;
-      port = "8080";
-    };
-    plex-version-bot = { enable = true; };
     server = {
       enable = true;
       homeConfig = {
@@ -28,13 +22,7 @@
         ];
       };
     };
-    scene-extractor = { enable = true; };
-    librespeedtest = {
-      enable = true;
-      port = "8000";
-    };
     virtualisation = { enable = true; };
-    youtube-dl = { enable = true; };
   };
 
   networking = {
