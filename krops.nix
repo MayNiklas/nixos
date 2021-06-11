@@ -50,8 +50,8 @@ in rec {
 
   # Groups
   all = pkgs.writeScript "deploy-all"
-    (lib.concatStringsSep "\n" [ water-on-fire quinjet the-hub the-bus ]);
+    (lib.concatStringsSep "\n" [ aida kora water-on-fire the-hub the-bus ]);
 
   servers = pkgs.writeScript "deploy-servers"
-    (lib.concatStringsSep "\n" [ quinjet the-hub the-bus ]);
+    (lib.concatStringsSep "\n" [ aida kora the-hub the-bus ]);
 }
