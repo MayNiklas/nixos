@@ -30,7 +30,7 @@ in {
       binaryCachePublicKeys =
         [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
       binaryCaches =
-        [ "https://cache.nixos.org" "https://cache.lounge.rocks?priority=50" ];
+        [ "https://cache.nixos.org" "https://cache.lounge.rocks?priority=10" ];
       trustedBinaryCaches =
         [ "https://cache.lounge.rocks" "https://cache.nixos.org" ];
 
