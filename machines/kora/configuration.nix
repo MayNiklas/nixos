@@ -15,7 +15,12 @@
     };
     server = {
       enable = true;
-      homeConfig = { imports = [ ../../home-manager/home-server.nix ]; };
+      homeConfig = {
+        imports = [
+          ../../home-manager/home-server.nix
+          { nixpkgs.overlays = [ self.overlay ]; }
+        ];
+      };
     };
     vmware-guest.enable = true;
     youtube-dl = { enable = true; };
