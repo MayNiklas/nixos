@@ -2,6 +2,7 @@
 
   mayniklas = {
     docker = { enable = true; };
+    hosts = { enable = true; };
     in-stock-bot = { enable = true; };
     pihole = {
       enable = true;

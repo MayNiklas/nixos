@@ -4,6 +4,7 @@
     plex = { enable = true; };
     server = {
       enable = true;
+      hosts = { enable = true; };
       homeConfig = {
         imports = [
           ../../home-manager/home-server.nix
