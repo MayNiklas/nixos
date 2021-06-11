@@ -19,6 +19,7 @@ in {
         192.168.5.14 the-bus
         192.168.5.15 vsphere
         192.168.5.20 aida
+        192.168.5.20 kora
         192.168.5.64 water-on-fire
 
         # local
@@ -30,6 +31,7 @@ in {
         192.168.5.14 the-bus.local
         192.168.5.15 vsphere.local
         192.168.5.20 aida.local
+        192.168.5.20 kora.local
         192.168.5.64 water-on-fire.local
 
         # external

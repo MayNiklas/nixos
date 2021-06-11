@@ -26,6 +26,10 @@ steps:
   commands:
   - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
+- name: Build kora
+  commands:
+  - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+
 - name: Build quinjet
   commands:
   - nix build -v '.#nixosConfigurations.quinjet.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
@@ -85,6 +89,10 @@ steps:
 - name: Build aida
   commands:
   - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+
+- name: Build kora
+  commands:
+  - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
 - name: Build quinjet
   commands:
