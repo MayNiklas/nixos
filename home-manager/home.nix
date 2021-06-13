@@ -25,6 +25,7 @@ in {
     gcc
     glances
     gnome3.dconf
+    gparted
     htop
     hugo
     iperf3
