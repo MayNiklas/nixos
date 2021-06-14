@@ -57,7 +57,7 @@ trigger:
 ---
 kind: pipeline
 type: exec
-name: build flake update
+name: build flake update & push into update-flake
 
 platform:
   os: linux
@@ -110,56 +110,24 @@ steps:
   commands:
   - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
-trigger:
-  branch:
-  - main
-  event:
-  - push
-  - pull_request
-  - cron
-
----
-kind: pipeline
-name: push flake update
-type: docker
-
-steps:
-- name: Update flake.lock
-  image: nixpkgs/nix-flakes
-  commands:
-  - nix flake update --inputs-from nixpkgs
-  - nix flake show
-  - nix flake metadata
-  - nix flake check
-  - nix flake check --show-trace
+- name: push updated flake
   environment:
-    NIX_PATH: nixpkgs=channel:nixos-unstable
-
-- name: Push updated flake.lock
-  image: appleboy/drone-git-push
-  settings:
-    branch: update-flake
-    remote: git@github.com:MayNiklas/nixos.git
-    force: true
-    commit: true
-    force: true
-    commit_message: "❄️ Update flake.lock"
-    ssh_key:
+    SSH_KEY:
       from_secret: deploy_key
-
-- name: notify on failure
-  image: drillster/drone-email
-  settings:
-    username: apikey
-    from:
-      from_secret: email_from
-    host:
-      from_secret: email_host
-    password:
-      from_secret: email_password
-  when:
-    status:
-    - failure
+  commands:
+  - mkdir ~/.ssh
+  - echo "$SSH_KEY" >> ~/.ssh/id_rsa
+  - chmod 400 ~/.ssh/id_rsa
+  - eval "$(ssh-agent -s)"
+  - ssh-add ~/.ssh/id_rsa
+  - ssh-keyscan github.com >> ~/.ssh/known_hosts
+  - git config --global user.name "MayNiklas"
+  - git config --global user.email info@niklas-steffen.de
+  - git remote set-url origin git@github.com:MayNiklas/nixos.git
+  - git checkout -B update-flake
+  - git add flake.lock
+  - git commit -m "❄️ Update flake.lock"
+  - git push --set-upstream origin update-flake --force
 
 trigger:
   branch:
