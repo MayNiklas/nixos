@@ -4,5 +4,5 @@ self: super: {
   anki-bin = super.pkgs.callPackage ../packages/anki-bin { };
   darknet = super.pkgs.callPackage ../packages/darknet { };
   plex = super.pkgs.callPackage ../packages/plex { };
-  plexRAW = super.pkgs.callPackage ../packages/plex/raw.nix { };
+  plexRaw = super.pkgs.callPackage ../packages/plex/raw.nix { };
 }
