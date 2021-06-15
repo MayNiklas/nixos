@@ -4,6 +4,10 @@
     docker = { enable = true; };
     hosts = { enable = true; };
     in-stock-bot = { enable = true; };
+    pihole = {
+      enable = true;
+      port = "8080";
+    };
     plex-version-bot = { enable = true; };
     scene-extractor = { enable = true; };
     librespeedtest = {
