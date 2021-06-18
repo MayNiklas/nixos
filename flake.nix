@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-21.05";
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     flake-utils.url = "github:numtide/flake-utils";
 
@@ -15,6 +15,10 @@
   outputs = { self, ... }@inputs:
     with inputs;
     let
+      overlay-unstable = final: prev: {
+        unstable =
+          nixpkgs-unstable.legacyPackages.x86_64-linux; # considering nixpkgs-unstable is an input registered before.
+      };
       # Function to create defult (common) system config options
       defFlakeSystem = baseCfg:
         nixpkgs.lib.nixosSystem {
@@ -31,7 +35,7 @@
                   # and root e.g. `nix-channel --remove nixos`. `nix-channel
                   # --list` should be empty for all users afterwards
                   nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-                  nixpkgs.overlays = [ self.overlay ];
+                  nixpkgs.overlays = [ self.overlay overlay-unstable ];
                 }
                 baseCfg
                 home-manager.nixosModules.home-manager
