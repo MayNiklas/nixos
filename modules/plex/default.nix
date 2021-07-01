@@ -15,7 +15,7 @@ in {
       };
       tautulli = {
         enable = true;
-        package = pkgs.unstable.tautulli;
+        package = pkgs.tautulli;
         port = 8181;
         dataDir = "/var/lib/plexpy";
       };
