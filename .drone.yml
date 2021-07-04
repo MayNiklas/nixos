@@ -178,7 +178,13 @@ steps:
   image: nixpkgs/nix-flakes
   commands:
   - nix-shell -p nixfmt --command "nixfmt *.nix"
-  - nix-shell -p nixfmt --command "nixfmt */*.nix"
+  - nix-shell -p nixfmt --command "nixfmt home-manager/*.nix"
+  - nix-shell -p nixfmt --command "nixfmt home-manager/*/*.nix"
+  - nix-shell -p nixfmt --command "nixfmt machines/*/*.nix"
+  - nix-shell -p nixfmt --command "nixfmt modules/*/*.nix"
+  - nix-shell -p nixfmt --command "nixfmt overlays/*.nix"
+  - nix-shell -p nixfmt --command "nixfmt templates/*/*.nix"
+  - nix-shell -p nixfmt --command "nixfmt users/*.nix"
   environment:
     NIX_PATH: nixpkgs=channel:nixos-unstable
 
