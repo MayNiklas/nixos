@@ -12,6 +12,9 @@
       vim-better-whitespace
       vim-nix
     ];
+    extraConfig = ''
+      set mouse=a
+    '';
 
   };
 
