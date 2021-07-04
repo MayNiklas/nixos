@@ -8,4 +8,7 @@ self: super: {
 
   # override with newer version from nixpkgs-unstable
   tautulli = self.unstable.tautulli;
+
+  # override with newer version from nixpkgs-unstable (home-manager related)
+  neovim-unwrapped = self.unstable.neovim-unwrapped;
 }
