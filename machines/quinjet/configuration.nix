@@ -18,7 +18,7 @@
       homeConfig = {
         imports = [
           ../../home-manager/home-server.nix
-          { nixpkgs.overlays = [ self.overlay ]; }
+          { nixpkgs.overlays = [ self.overlay self.overlay-unstable ]; }
         ];
       };
     };
