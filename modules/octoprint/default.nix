@@ -21,7 +21,7 @@ in {
           octoprint-dashboard
         ];
     };
-    
+
     services.mjpg-streamer.enable = true;
 
     networking.firewall.allowedTCPPorts = [ 5000 5050 ];
