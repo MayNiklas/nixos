@@ -182,6 +182,13 @@ steps:
   environment:
     NIX_PATH: nixpkgs=channel:nixos-unstable
 
+- name: git diff
+  image: nixpkgs/nix-flakes
+  commands:
+  - git diff
+  environment:
+    NIX_PATH: nixpkgs=channel:nixos-unstable
+
 - name: Push updated flake.lock
   image: appleboy/drone-git-push
   settings:
