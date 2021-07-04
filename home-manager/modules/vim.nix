@@ -12,7 +12,7 @@
       vim-better-whitespace
       vim-nix
     ];
-    
+
   };
 
 }
