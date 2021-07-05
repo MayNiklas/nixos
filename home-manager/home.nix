@@ -61,7 +61,7 @@ in {
     ./modules/rofi.nix
     ./modules/vim
     ./modules/vscode
-    ./modules/zsh.nix
+    ./modules/zsh
   ];
 
   services.gnome-keyring = { enable = true; };

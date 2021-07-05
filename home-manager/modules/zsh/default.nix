@@ -1,5 +1,5 @@
 { config, pkgs, lib, ... }:
-let vars = import ./vars.nix;
+let vars = import ../vars.nix;
 in {
   programs.zsh = {
     enable = true;
