@@ -1,30 +1,37 @@
-{ config, pkgs, lib, ... }: {
+{ lib, pkgs, config, ... }:
+with lib;
+let cfg = config.mayniklas.programs.vim;
+in {
+  options.mayniklas.programs.vim.enable = mkEnableOption "Setup neovim";
 
-  xdg = {
-    enable = true;
-    configFile = {
+  config = mkIf cfg.enable {
 
-      nvim_lua_config = {
-        target = "nvim/lua/config";
-        source = ./lua/config;
+    xdg = {
+      enable = true;
+      configFile = {
+
+        nvim_lua_config = {
+          target = "nvim/lua/config";
+          source = ./lua/config;
+        };
+
       };
+    };
+
+    programs.neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+      withPython3 = true;
+
+      plugins = with pkgs.vimPlugins; [
+        ansible-vim
+        i3config-vim
+        vim-better-whitespace
+        vim-nix
+      ];
 
     };
-  };
-
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    withPython3 = true;
-
-    plugins = with pkgs.vimPlugins; [
-      ansible-vim
-      i3config-vim
-      vim-better-whitespace
-      vim-nix
-    ];
 
   };
-
 }
