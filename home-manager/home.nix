@@ -58,7 +58,7 @@ in {
     ./modules/gtk
     ./modules/i3
     ./modules/alacritty
-    ./modules/rofi.nix
+    ./modules/rofi
     ./modules/vim
     ./modules/vscode
     ./modules/zsh
