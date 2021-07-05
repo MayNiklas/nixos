@@ -16,7 +16,7 @@
   home.packages = with pkgs; [ gcc htop iperf3 nmap unzip ];
 
   # Imports
-  imports = [ ./modules/git.nix ./modules/vim.nix ./modules/zsh.nix ];
+  imports = [ ./modules/git.nix ./modules/vim ./modules/zsh.nix ];
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
