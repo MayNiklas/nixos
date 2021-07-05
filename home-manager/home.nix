@@ -54,7 +54,7 @@ in {
   imports = [
     ./modules/chromium.nix
     ./modules/devolopment
-    ./modules/git.nix
+    ./modules/git
     ./modules/gtk.nix
     ./modules/i3.nix
     ./modules/alacritty.nix
