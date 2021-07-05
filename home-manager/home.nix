@@ -52,7 +52,7 @@ in {
 
   # Imports
   imports = [
-    ./modules/chromium.nix
+    ./modules/chromium
     ./modules/devolopment
     ./modules/git
     ./modules/gtk.nix
