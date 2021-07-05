@@ -60,7 +60,7 @@ in {
     ./modules/alacritty.nix
     ./modules/rofi.nix
     ./modules/vim
-    ./modules/vscode.nix
+    ./modules/vscode
     ./modules/zsh.nix
   ];
 
