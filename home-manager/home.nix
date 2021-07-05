@@ -6,7 +6,7 @@ in {
   programs.home-manager.enable = true;
 
   mayniklas = { programs.vim.enable = true; };
-  
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "nik";
@@ -53,7 +53,7 @@ in {
   # Imports
   imports = [
     ./modules/chromium.nix
-    ./modules/devolopment.nix
+    ./modules/devolopment
     ./modules/git.nix
     ./modules/gtk.nix
     ./modules/i3.nix
