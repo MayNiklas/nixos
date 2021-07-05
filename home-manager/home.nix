@@ -5,7 +5,10 @@ in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  mayniklas = { programs.vim.enable = true; };
+  mayniklas = {
+    programs.vim.enable = true;
+    programs.vscode.enable = true;
+  };
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
