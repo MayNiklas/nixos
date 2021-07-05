@@ -114,7 +114,6 @@ trigger:
   branch:
   - main
   event:
-  - push
   - pull_request
   - cron
 
@@ -165,7 +164,6 @@ trigger:
   branch:
   - main
   event:
-  - push
   - cron
 
 ---
