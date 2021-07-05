@@ -57,7 +57,7 @@ in {
     ./modules/git
     ./modules/gtk
     ./modules/i3.nix
-    ./modules/alacritty.nix
+    ./modules/alacritty
     ./modules/rofi.nix
     ./modules/vim
     ./modules/vscode
