@@ -55,7 +55,7 @@ in {
     ./modules/chromium
     ./modules/devolopment
     ./modules/git
-    ./modules/gtk.nix
+    ./modules/gtk
     ./modules/i3.nix
     ./modules/alacritty.nix
     ./modules/rofi.nix
