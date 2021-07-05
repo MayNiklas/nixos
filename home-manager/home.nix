@@ -56,7 +56,7 @@ in {
     ./modules/devolopment
     ./modules/git
     ./modules/gtk
-    ./modules/i3.nix
+    ./modules/i3
     ./modules/alacritty
     ./modules/rofi.nix
     ./modules/vim
