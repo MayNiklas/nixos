@@ -74,6 +74,11 @@ in {
         publicKey = "x6r6/fKy1Yq2jqf0MngnpEJ6dPa/elf3nYPmNJ+5Myc=";
         allowedIPs = [ "10.88.88.6/32" "192.168.22.0/24" ];
       }
+      # S2S A.
+      {
+        publicKey = "uYDIYQ1ZedQ4DZSESlAZogf3jynusk7g+UnI2ZfU01k=";
+        allowedIPs = [ "10.88.88.7/32" ];
+      }
       # iMac B.
       {
         publicKey = "fnuGuNVPco092ZV9zDNYY55tW/pzdRBltij9X/5DcUU=";
