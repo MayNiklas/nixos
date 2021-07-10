@@ -55,7 +55,10 @@
       overlay = final: prev: (import ./overlays) final prev;
 
       overlay-unstable = final: prev: {
-        unstable = nixpkgs-unstable.legacyPackages.x86_64-linux;
+        unstable = import nixpkgs-unstable {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
       };
 
       # Output all modules in ./modules to flake. Modules should be in
