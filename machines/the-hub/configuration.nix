@@ -77,7 +77,7 @@ in {
       # S2S A.
       {
         publicKey = "uYDIYQ1ZedQ4DZSESlAZogf3jynusk7g+UnI2ZfU01k=";
-        allowedIPs = [ "10.88.88.7/32" ];
+        allowedIPs = [ "10.88.88.7/32" "192.168.97.0/24" ];
       }
       # iMac B.
       {
