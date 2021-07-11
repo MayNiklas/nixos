@@ -10,6 +10,10 @@
         ];
       };
     };
+    matrix = {
+      enable = true;
+      hostname = "matrix.lounge.rocks";
+    };
     kvm-guest.enable = true;
   };
 
