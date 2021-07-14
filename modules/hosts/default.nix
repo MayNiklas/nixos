@@ -21,6 +21,8 @@ in {
         192.168.5.20 aida
         192.168.5.20 kora
         192.168.5.64 water-on-fire
+        192.168.20.5 bob
+        192.168.20.25 enoch
 
         # local
         192.168.5.1  unifi.local
