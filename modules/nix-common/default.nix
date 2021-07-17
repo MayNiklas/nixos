@@ -27,12 +27,12 @@ in {
       '';
 
       # binary cache -> build by DroneCI
-      binaryCachePublicKeys =
-        [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
-      binaryCaches =
-        [ "https://cache.nixos.org" "https://cache.lounge.rocks?priority=10" ];
-      trustedBinaryCaches =
-        [ "https://cache.lounge.rocks" "https://cache.nixos.org" ];
+      # binaryCachePublicKeys =
+      #   [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
+      # binaryCaches =
+      #   [ "https://cache.nixos.org" "https://cache.lounge.rocks?priority=10" ];
+      # trustedBinaryCaches =
+      #   [ "https://cache.lounge.rocks" "https://cache.nixos.org" ];
 
       # Save space by hardlinking store files
       autoOptimiseStore = true;
