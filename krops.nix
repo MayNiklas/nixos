@@ -19,8 +19,8 @@ let
 
   command = targetPath: ''
     nix-shell -p git --run '
-      nixos-rebuild switch -v --show-trace --flake ${targetPath}/machine-config || \
-        nixos-rebuild switch -v --show-trace --flake ${targetPath}/machine-config
+      nixos-rebuild switch -v --show-trace --flake ${targetPath}/machine-config --option binary-caches "https://cache.nixos.org" || \
+        nixos-rebuild switch -v --show-trace --flake ${targetPath}/machine-config --option binary-caches "https://cache.nixos.org"
     '
   '';
 
