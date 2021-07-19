@@ -66,7 +66,7 @@ in {
       }
       # S2S Lep.
       {
-        publicKey = "ffd7LTN66FX269qTyDxT2e4kfuo7b5cRQruUzneVOzs=";
+        publicKey = "qGTvKWwkrdbaUvnTmkwvypWwmslKYitZ3h50F6JLFFM=";
         allowedIPs = [ "10.88.88.5/32" "192.168.98.0/24" ];
       }
       # S2S K.
