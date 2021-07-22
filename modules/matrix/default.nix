@@ -37,7 +37,6 @@ in {
           enableACME = true;
           forceSSL = true;
 
-
           locations."= /.well-known/matrix/server".extraConfig = let
             # use 443 instead of the default 8448 port to unite
             # the client-server and server-server port for simplicity
@@ -46,7 +45,6 @@ in {
             add_header Content-Type application/json;
             return 200 '${builtins.toJSON server}';
           '';
-
 
           locations."= /.well-known/matrix/client".extraConfig = let
             client = {
@@ -60,14 +58,12 @@ in {
             return 200 '${builtins.toJSON client}';
           '';
 
-
           # Reverse proxy for Matrix client-server and server-server communication
           # Or do a redirect instead of the 404, or whatever is appropriate for you.
           # But do not put a Matrix Web client here! See the Element web section below.
           locations."/".extraConfig = ''
             return 404;
           '';
-
 
           # forward all Matrix API calls to the synapse Matrix homeserver
           locations."/_matrix" = {
