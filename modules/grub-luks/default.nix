@@ -23,9 +23,9 @@ in {
           version = 2;
           device = "nodev";
           efiSupport = true;
+          efiInstallAsRemovable = true;
           useOSProber = true;
         };
-        efi.canTouchEfiVariables = true;
       };
       cleanTmpDir = true;
       initrd.luks.devices = {
