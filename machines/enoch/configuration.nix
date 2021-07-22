@@ -1,10 +1,6 @@
 { self, ... }: {
 
-  imports = [
-    ../../users/marek.nix
-    ../../users/nik.nix
-    ../../users/root.nix
-  ];
+  imports = [ ../../users/marek.nix ../../users/nik.nix ../../users/root.nix ];
 
   mayniklas = {
     fonts.enable = true;
