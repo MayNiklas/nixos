@@ -28,8 +28,6 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ dpkg ];
 
-  phases = [ "unpackPhase" "installPhase" "fixupPhase" "distPhase" ];
-
   unpackPhase = ''
     dpkg-deb -R $src .
   '';
@@ -89,6 +87,8 @@ stdenv.mkDerivation rec {
       lnl7
       pjones
       thoughtpolice
+      maxeaubrey
+      MayNiklas
     ];
     description = "Media library streaming server";
     longDescription = ''
