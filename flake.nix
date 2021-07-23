@@ -99,6 +99,7 @@
           darknet = pkgs.darknet;
           plex = pkgs.plex;
           plexRaw = pkgs.plexRaw;
+          tautulli = pkgs.tautulli;
         };
 
         apps = {
@@ -107,6 +108,7 @@
           darknet = flake-utils.lib.mkApp { drv = packages.darknet; };
           plex = flake-utils.lib.mkApp { drv = packages.plex; };
           plexRaw = flake-utils.lib.mkApp { drv = packages.plexRaw; };
+          tautulli = flake-utils.lib.mkApp { drv = packages.tautulli; };
         };
       });
 }

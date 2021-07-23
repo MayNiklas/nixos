@@ -5,9 +5,10 @@ self: super: {
   darknet = super.pkgs.callPackage ../packages/darknet { };
   plex = super.pkgs.callPackage ../packages/plex { };
   plexRaw = super.pkgs.callPackage ../packages/plex/raw.nix { };
+  tautulli = super.pkgs.python3Packages.callPackage ../packages/tautulli { };
 
   # override with newer version from nixpkgs-unstable
-  tautulli = self.unstable.tautulli;
+  # tautulli = self.unstable.tautulli;
 
   # override with newer version from nixpkgs-unstable (home-manager related)
   chromium = self.unstable.chromium;
