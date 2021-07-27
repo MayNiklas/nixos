@@ -10,7 +10,11 @@ in {
       enable = true;
       package = pkgs.vscode;
       extensions = with pkgs.vscode-extensions; [
+        bbenoist.Nix
+        james-yu.latex-workshop
+        ms-azuretools.vscode-docker
         ms-python.python
+        ms-vscode-remote.remote-ssh
         ms-vscode.cpptools
       ];
     };
