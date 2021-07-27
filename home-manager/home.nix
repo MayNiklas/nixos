@@ -23,7 +23,6 @@ in {
     _1password-gui
     atom
     discord
-    darknet
     dolphin
     drone-cli
     firefox
