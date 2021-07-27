@@ -34,6 +34,8 @@
     xserver = { enable = true; };
   };
 
+  boot.loader.grub.default = "2";
+
   networking = {
     hostName = "water-on-fire";
     useDHCP = false;
