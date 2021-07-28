@@ -26,6 +26,10 @@ steps:
   commands:
   - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
+- name: Build deke
+  commands:
+  - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+
 - name: Build enoch
   commands:
   - nix build -v '.#nixosConfigurations.enoch.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
@@ -93,6 +97,10 @@ steps:
 - name: Build aida
   commands:
   - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+
+- name: Build deke
+  commands:
+  - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
 - name: Build enoch
   commands:

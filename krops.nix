@@ -43,6 +43,7 @@ in rec {
   # Individual machines
   water-on-fire = createHost "water-on-fire" "root@water-on-fire";
   aida = createHost "aida" "root@aida";
+  deke = createHost "deke" "root@deke";
   enoch = createHost "enoch" "root@enoch";
   kora = createHost "kora" "root@kora";
   quinjet = createHost "quinjet" "root@quinjet";
@@ -51,8 +52,8 @@ in rec {
 
   # Groups
   all = pkgs.writeScript "deploy-all"
-    (lib.concatStringsSep "\n" [ aida kora enoch water-on-fire the-hub the-bus ]);
+    (lib.concatStringsSep "\n" [ aida kora deke enoch water-on-fire the-hub the-bus ]);
 
   servers = pkgs.writeScript "deploy-servers"
-    (lib.concatStringsSep "\n" [ aida kora the-hub the-bus ]);
+    (lib.concatStringsSep "\n" [ aida kora deke the-hub the-bus ]);
 }
