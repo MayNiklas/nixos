@@ -11,6 +11,11 @@
         ];
       };
     };
+    transmission = {
+      enable = true;
+      port = 51413;
+      web-port = 9091;
+    };
     vmware-guest.enable = true;
   };
 
