@@ -11,6 +11,7 @@
         ];
       };
     };
+    nix-common.disable-cache = true;
     transmission = {
       enable = true;
       port = 60343;
