@@ -5,6 +5,7 @@ in {
 
   options.mayniklas.nix-common = {
     enable = mkEnableOption "activate nix-common";
+    disable-cache = mkEnableOption "not use binary-cache";
   };
 
   config = mkIf cfg.enable {
@@ -27,12 +28,16 @@ in {
       '';
 
       # binary cache -> build by DroneCI
-      binaryCachePublicKeys =
+      binaryCachePublicKeys = mkIf (cfg.disable-cache != true)
         [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
-      binaryCaches =
-        [ "https://cache.nixos.org" "https://cache.lounge.rocks?priority=10" ];
-      trustedBinaryCaches =
-        [ "https://cache.lounge.rocks" "https://cache.nixos.org" ];
+      binaryCaches = mkIf (cfg.disable-cache != true) [
+        "https://cache.nixos.org"
+        "https://cache.lounge.rocks?priority=10"
+      ];
+      trustedBinaryCaches = mkIf (cfg.disable-cache != true) [
+        "https://cache.lounge.rocks"
+        "https://cache.nixos.org"
+      ];
 
       # Save space by hardlinking store files
       autoOptimiseStore = true;
