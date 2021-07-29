@@ -25,6 +25,11 @@ in {
 
     networking.firewall.allowedTCPPorts = [ cfg.web-port ];
 
+    systemd.services.transmission.serviceConfig = {
+      Restart = "always";
+      RestartSec = 10;
+    };
+
     services.transmission = {
       enable = true;
       openFirewall = true;
