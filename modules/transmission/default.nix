@@ -35,6 +35,7 @@ in {
       openFirewall = true;
 
       settings = {
+        cache-size-mb = 32;
         download-dir = "/var/lib/transmission/Downloads";
         incomplete-dir = "/var/lib/transmission/.incomplete";
         incomplete-dir-enabled = true;
@@ -53,10 +54,10 @@ in {
         encryption = 1;
         idle-seeding-limit-enabled = false;
         lpd-enabled = false;
-        max-peers-global = 200;
+        max-peers-global = 100;
         utp-enabled = false;
-        peer-limit-global = 200;
-        peer-limit-per-torrent = 50;
+        peer-limit-global = 100;
+        peer-limit-per-torrent = 25;
         pex-enabled = false;
         port-forwarding-enabled = false;
         preallocation = 1;
@@ -69,17 +70,17 @@ in {
         rpc-whitelist-enabled = true;
         rpc-whitelist = "127.0.0.1,192.168.*.*";
 
-        speed-limit-down = 50000;
+        speed-limit-down = 20000;
         speed-limit-down-enabled = true;
         speed-limit-up = 3000;
         speed-limit-up-enabled = true;
 
-        alt-speed-down = 22500;
+        alt-speed-down = 12500;
         alt-speed-up = 1500;
         alt-speed-time-begin = 480;
         alt-speed-time-end = 120;
         alt-speed-time-day = 127;
-        alt-speed-time-enabled = true;
+        alt-speed-time-enabled = false;
       };
     };
   };
