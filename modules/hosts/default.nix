@@ -23,6 +23,7 @@ in {
         192.168.5.64 water-on-fire
         192.168.20.5 bob
         192.168.20.25 enoch
+        192.168.30.99 deke
 
         # local
         192.168.5.1  unifi.local
