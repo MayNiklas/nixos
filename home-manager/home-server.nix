@@ -4,6 +4,8 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  programs.command-not-found.enable = true;
+
   mayniklas = { programs.vim.enable = true; };
 
   # Home Manager needs a bit of information about you and the
