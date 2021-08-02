@@ -14,6 +14,7 @@
     nix-common.disable-cache = true;
     transmission = {
       enable = true;
+      smb = true;
       port = 60343;
       web-port = 9091;
     };
