@@ -5,6 +5,7 @@ in {
 
   options.mayniklas.transmission = {
     enable = mkEnableOption "activate transmission";
+    smb = mkEnableOption "activate smb";
     port = mkOption {
       type = types.port;
       default = 51413;
@@ -23,7 +24,40 @@ in {
 
   config = mkIf cfg.enable {
 
-    networking.firewall.allowedTCPPorts = [ cfg.web-port ];
+    services.samba = mkIf cfg.smb {
+      enable = true;
+      securityType = "user";
+      extraConfig = ''
+        workgroup = WORKGROUP
+        server string = smbnix
+        netbios name = smbnix
+        security = user
+        hosts allow = 192.168.5.0/24
+        hosts deny = 0.0.0.0/0
+        guest account = nobody
+        map to guest = bad user
+      '';
+      shares = {
+        public = {
+          path = "/var/lib/transmission/Downloads";
+          "read only" = true;
+          browseable = "yes";
+          "guest ok" = "yes";
+          "create mask" = "0644";
+          "directory mask" = "0755";
+          "force user" = "root";
+          "force group" = "root";
+          comment = "Public samba share.";
+        };
+      };
+    };
+
+    networking.firewall = (if cfg.smb then {
+      allowedTCPPorts = [ 139 445 cfg.web-port ];
+      allowedUDPPorts = [ 137 138 ];
+    } else {
+      allowedTCPPorts = [ cfg.web-port ];
+    });
 
     systemd.services.transmission.serviceConfig = {
       Restart = "always";
