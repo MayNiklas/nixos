@@ -24,6 +24,7 @@ in {
   home.packages = with pkgs; [
     _1password-gui
     atom
+    cura
     discord
     dolphin
     drone-cli
