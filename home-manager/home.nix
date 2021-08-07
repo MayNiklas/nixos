@@ -28,6 +28,7 @@ in {
     discord
     dolphin
     drone-cli
+    filezilla
     firefox
     gcc
     glances
