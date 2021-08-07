@@ -17,10 +17,11 @@
 
   fileSystems."/mnt/deke" = {
     device = "//deke/public";
-    options = [ "nolock" "soft" "ro" "nounix" "dir_mode=0777" "file_mode=0777" ];
+    options =
+      [ "nolock" "soft" "ro" "nounix" "dir_mode=0777" "file_mode=0777" ];
     fsType = "cifs";
   };
-    
+
   networking.hostName = "aida";
 
   system.stateVersion = "20.09";

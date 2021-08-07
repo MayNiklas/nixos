@@ -51,8 +51,15 @@ in rec {
   the-bus = createHost "the-bus" "root@the-bus";
 
   # Groups
-  all = pkgs.writeScript "deploy-all"
-    (lib.concatStringsSep "\n" [ aida kora deke enoch water-on-fire the-hub the-bus ]);
+  all = pkgs.writeScript "deploy-all" (lib.concatStringsSep "\n" [
+    aida
+    kora
+    deke
+    enoch
+    water-on-fire
+    the-hub
+    the-bus
+  ]);
 
   servers = pkgs.writeScript "deploy-servers"
     (lib.concatStringsSep "\n" [ aida kora deke the-hub the-bus ]);
