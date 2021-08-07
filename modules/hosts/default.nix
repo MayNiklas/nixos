@@ -13,7 +13,6 @@ in {
         #
         192.168.5.1  unifi
         192.168.5.10 ds1819
-        192.168.5.11 quinjet
         192.168.5.12 nuc8-i5-2
         192.168.5.13 nuc8-i5-3
         192.168.5.14 the-bus
@@ -23,12 +22,12 @@ in {
         192.168.5.64 water-on-fire
         192.168.20.5 bob
         192.168.20.25 enoch
+        192.168.30.95 snowflake
         192.168.30.99 deke
 
         # local
         192.168.5.1  unifi.local
         192.168.5.10 ds1819.local
-        192.168.5.11 quinjet.local
         192.168.5.12 nuc8-i5-2.local
         192.168.5.13 nuc8-i5-3.local
         192.168.5.14 the-bus.local

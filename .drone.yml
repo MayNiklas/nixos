@@ -38,9 +38,9 @@ steps:
   commands:
   - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
-- name: Build quinjet
+- name: Build snowflake
   commands:
-  - nix build -v '.#nixosConfigurations.quinjet.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
 - name: Build the-hub
   commands:
@@ -110,9 +110,9 @@ steps:
   commands:
   - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
-- name: Build quinjet
+- name: Build snowflake
   commands:
-  - nix build -v '.#nixosConfigurations.quinjet.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
 - name: Build the-hub
   commands:

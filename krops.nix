@@ -46,7 +46,7 @@ in rec {
   deke = createHost "deke" "root@deke";
   enoch = createHost "enoch" "root@enoch";
   kora = createHost "kora" "root@kora";
-  quinjet = createHost "quinjet" "root@quinjet";
+  snowflake = createHost "snowflake" "root@snowflake";
   the-hub = createHost "the-hub" "root@the-hub";
   the-bus = createHost "the-bus" "root@the-bus";
 
@@ -56,11 +56,12 @@ in rec {
     kora
     deke
     enoch
+    snowflake
     water-on-fire
     the-hub
     the-bus
   ]);
 
   servers = pkgs.writeScript "deploy-servers"
-    (lib.concatStringsSep "\n" [ aida kora deke the-hub the-bus ]);
+    (lib.concatStringsSep "\n" [ aida kora deke snowflake the-hub the-bus ]);
 }
