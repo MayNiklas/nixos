@@ -24,6 +24,7 @@
       enable = true;
       uuid = "ea8b02e5-d2ee-44f8-a056-c55fba0d5c93";
     };
+    networking = { enable = true; };
     nvidia = {
       enable = true;
       beta-driver = true;
@@ -41,9 +42,9 @@
 
   networking = {
     hostName = "water-on-fire";
-    useDHCP = false;
-    interfaces.br0.useDHCP = true;
-    bridges.br0.interfaces = [ "enp36s0" "enp43s0" ];
+    # useDHCP = false;
+    # interfaces.br0.useDHCP = true;
+    # bridges.br0.interfaces = [ "enp36s0" "enp43s0" ];
   };
 
   # This value determines the NixOS release from which the default
