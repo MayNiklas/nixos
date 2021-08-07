@@ -114,6 +114,11 @@ in {
         publicKey = "tY4kwJFserZZTHsfBzaQX05zFbPoPf90EYFQOmaE+zY=";
         allowedIPs = [ "10.88.88.150/32" ];
       }
+      # MacBook A.
+      {
+        publicKey = "+UaFc1DRQIRgCU38G9qi7k2BiCUbIZVMYdYT/ZUyuCU=";
+        allowedIPs = [ "10.88.88.200/32" ];
+      }
     ];
   };
 
