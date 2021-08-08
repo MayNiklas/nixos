@@ -34,6 +34,7 @@ in {
         session = [{
           name = "home-manager";
           start = ''
+            export `dbus-launch`
             ${pkgs.runtimeShell} $HOME/.hm-xsession &
              waitPID=$!
           '';
