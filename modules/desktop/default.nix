@@ -34,6 +34,17 @@ in {
       yubikey.enable = true;
       zsh.enable = true;
     };
+    
+    programs.dconf.enable = true;
+
+    # For user-space mounting things like smb:// and ssh:// in thunar etc. Dbus
+    # is required.
+    services.gvfs = {
+      enable = true;
+      # Default package does not support all protocols. Use the full-featured
+      # gnome version
+      package = lib.mkForce pkgs.gnome3.gvfs;
+    };
 
   };
 }
