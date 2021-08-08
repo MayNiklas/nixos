@@ -52,6 +52,7 @@ in {
     vim
     virt-manager
     vlc
+    xfce.thunar
     youtube-dl
     zoom-us
   ];
