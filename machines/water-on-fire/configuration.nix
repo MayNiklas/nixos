@@ -29,6 +29,10 @@
       enable = true;
       beta-driver = true;
     };
+    metrics = {
+      node.enable = true;
+      blackbox.enable = true;
+    };
     wg = {
       enable = true;
       ip = "10.88.88.24";
