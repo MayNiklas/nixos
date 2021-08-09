@@ -60,7 +60,6 @@ trigger:
   event:
   - push
   - pull_request
-  - cron
 
 ---
 kind: pipeline
