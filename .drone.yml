@@ -76,6 +76,25 @@ clone:
 
 steps:
 
+- name: create result-old files
+  commands:
+  - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result aida-old
+  - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result deke-old
+  - nix build -v '.#nixosConfigurations.enoch.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result enoch-old
+  - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result kora-old
+  - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result snowflake-old
+  - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result the-hub-old
+  - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result the-bus-old
+  - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result water-on-fire-old
+
 - name: flake update
   commands:
   - nix --experimental-features "nix-command flakes" flake update --inputs-from nixpkgs
@@ -97,34 +116,53 @@ steps:
 - name: Build aida
   commands:
   - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result aida-new
 
 - name: Build deke
   commands:
   - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result deke-new
 
 - name: Build enoch
   commands:
   - nix build -v '.#nixosConfigurations.enoch.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result enoch-new
 
 - name: Build kora
   commands:
   - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result kora-new
 
 - name: Build snowflake
   commands:
   - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result snowflake-new
 
 - name: Build the-hub
   commands:
   - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result the-hub-new
 
 - name: Build the-bus
   commands:
   - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result the-bus-new
 
 - name: Build water-on-fire
   commands:
   - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result water-on-fire-new
+
+- name: Print report
+  commands:
+  - echo "aida:" && nix store diff-closures $(readlink -f aida-old) $(readlink -f aida-new)
+  - echo "deke:" && nix store diff-closures $(readlink -f deke-old) $(readlink -f deke-new)
+  - echo "enoch:" && nix store diff-closures $(readlink -f enoch-old) $(readlink -f enoch-new)
+  - echo "kora:" && nix store diff-closures $(readlink -f kora-old) $(readlink -f kora-new)
+  - echo "snowflake:" && nix store diff-closures $(readlink -f snowflake-old) $(readlink -f snowflake-new)
+  - echo "the-hub:" && nix store diff-closures $(readlink -f the-hub-old) $(readlink -f the-hub-new)
+  - echo "the-bus:" && nix store diff-closures $(readlink -f the-bus-old) $(readlink -f the-bus-new)
+  - echo "water-on-fire:" && nix store diff-closures $(readlink -f water-on-fire-old) $(readlink -f water-on-fire-new)
 
 trigger:
   branch:
