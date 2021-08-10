@@ -27,7 +27,7 @@
     networking = { enable = true; };
     nvidia = {
       enable = true;
-      beta-driver = true;
+      beta-driver = false;
     };
     metrics = {
       node.enable = true;
