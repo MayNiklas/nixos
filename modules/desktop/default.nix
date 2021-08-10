@@ -29,7 +29,10 @@ in {
       sound.enable = true;
       locale.enable = true;
       hosts.enable = true;
-      nix-common.enable = true;
+      nix-common = {
+        enable = true;
+        disable-cache = true;
+      };
       openssh.enable = true;
       yubikey.enable = true;
       zsh.enable = true;
