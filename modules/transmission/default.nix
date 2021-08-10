@@ -104,10 +104,10 @@ in {
         rpc-whitelist-enabled = true;
         rpc-whitelist = "127.0.0.1,192.168.*.*";
 
-        speed-limit-down = 20000;
-        speed-limit-down-enabled = true;
-        speed-limit-up = 3000;
-        speed-limit-up-enabled = true;
+        speed-limit-down = 50000;
+        speed-limit-down-enabled = false;
+        speed-limit-up = 4000;
+        speed-limit-up-enabled = false;
 
         alt-speed-down = 12500;
         alt-speed-up = 1500;
