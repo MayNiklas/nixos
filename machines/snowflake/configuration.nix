@@ -12,6 +12,8 @@
       };
     };
     nix-common.disable-cache = true;
+    sonarr.enable = true;
+    jackett.enable = true;
     transmission = {
       enable = true;
       smb = true;
