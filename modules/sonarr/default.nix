@@ -11,7 +11,7 @@ in {
       user = "sonarr";
       group = "sonarr";
       dataDir = "/var/lib/sonarr/.config/NzbDrone";
-      openFirewall = true;
     };
+    networking.firewall = { allowedTCPPorts = [ 8989 ]; };
   };
 }
