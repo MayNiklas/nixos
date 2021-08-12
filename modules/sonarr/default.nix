@@ -8,8 +8,8 @@ in {
   config = mkIf cfg.enable {
     services.sonarr = {
       enable = true;
-      user = "sonarr";
-      group = "sonarr";
+      user = "transmission";
+      group = "transmission";
       dataDir = "/var/lib/sonarr/.config/NzbDrone";
     };
     networking.firewall = { allowedTCPPorts = [ 8989 ]; };
