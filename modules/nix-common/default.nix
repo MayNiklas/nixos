@@ -32,7 +32,7 @@ in {
         [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
       binaryCaches = mkIf (cfg.disable-cache != true) [
         "https://cache.nixos.org"
-        "https://cache.lounge.rocks?priority=10"
+        "https://cache.lounge.rocks?priority=50"
       ];
       trustedBinaryCaches = mkIf (cfg.disable-cache != true) [
         "https://cache.lounge.rocks"
