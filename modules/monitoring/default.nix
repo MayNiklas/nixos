@@ -1,5 +1,5 @@
 { pkgs, config, ... }:
 
 {
-  imports = [ ./metrics.nix ];
+  imports = [ ./metrics.nix ./grafana.nix ];
 }
