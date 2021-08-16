@@ -6,7 +6,10 @@
     fonts.enable = true;
     locale.enable = true;
     kde.enable = true;
-    nix-common.enable = true;
+    nix-common = {
+      enable = true;
+      disable-cache = true;
+    };
     metrics = {
       node.enable = true;
       blackbox.enable = true;
