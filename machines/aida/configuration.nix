@@ -33,7 +33,10 @@
     fsType = "cifs";
   };
 
-  networking.hostName = "aida";
+  networking = {
+    hostName = "aida";
+    firewall = { allowedTCPPorts = [ 9100 9115 ]; };
+  };
 
   system.stateVersion = "20.09";
 

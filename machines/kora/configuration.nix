@@ -31,7 +31,10 @@
     youtube-dl = { enable = true; };
   };
 
-  networking.hostName = "kora";
+  networking = {
+    hostName = "kora";
+    firewall = { allowedTCPPorts = [ 9100 9115 ]; };
+  };
 
   system.stateVersion = "20.09";
 
