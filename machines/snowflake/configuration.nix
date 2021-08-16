@@ -12,6 +12,10 @@
       };
     };
     nix-common.disable-cache = true;
+    metrics = {
+      node.enable = true;
+      blackbox.enable = true;
+    };
     sonarr.enable = true;
     jackett.enable = true;
     transmission = {
@@ -23,7 +27,10 @@
     vmware-guest.enable = true;
   };
 
-  networking.hostName = "snowflake";
+  networking = {
+    hostName = "snowflake";
+    firewall = { allowedTCPPorts = [ 9100 9115 ]; };
+  };
 
   system.stateVersion = "20.09";
 

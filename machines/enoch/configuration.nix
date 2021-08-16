@@ -7,6 +7,10 @@
     locale.enable = true;
     kde.enable = true;
     nix-common.enable = true;
+    metrics = {
+      node.enable = true;
+      blackbox.enable = true;
+    };
     openssh.enable = true;
     zsh.enable = true;
     vmware-guest.enable = true;
@@ -34,7 +38,10 @@
     ];
   };
 
-  networking.hostName = "enoch";
+  networking = {
+    hostName = "enoch";
+    firewall = { allowedTCPPorts = [ 9100 9115 ]; };
+  };
 
   system.stateVersion = "20.09";
 

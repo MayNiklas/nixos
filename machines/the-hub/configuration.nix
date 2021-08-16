@@ -31,8 +31,15 @@ in {
     services.monitoring-server = {
       enable = true;
       dashboard = { enable = true; };
-      nodeTargets =
-        [ "aida:9100" "kora:9100" "water-on-fire:9100" "the-hub:9100" ];
+      nodeTargets = [
+        "aida:9100"
+        "deke:9100"
+        "enoch:9100"
+        "kora:9100"
+        "snowflake:9100"
+        "water-on-fire:9100"
+        "the-hub:9100"
+      ];
       blackboxTargets = [
         "https://lounge.rocks"
         "https://drone.lounge.rocks"
