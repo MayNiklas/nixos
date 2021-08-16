@@ -17,6 +17,7 @@ in {
         ];
       };
     };
+    hosts = { enable = true; };
     kvm-guest.enable = true;
     nginx.enable = true;
     metrics = {
