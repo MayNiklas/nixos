@@ -24,12 +24,19 @@ in {
       port = 9005;
       addr = "127.0.0.1";
 
-      provision.datasources = [{
-        name = "Prometheus localhost";
-        url = "http://localhost:9090";
-        type = "prometheus";
-        isDefault = true;
-      }];
+      provision.datasources = [
+        {
+          name = "Prometheus localhost";
+          url = "http://localhost:9090";
+          type = "prometheus";
+          isDefault = true;
+        }
+        {
+          name = "loki";
+          url = "http://localhost:3100";
+          type = "loki";
+        }
+      ];
     };
 
     networking.firewall.allowedTCPPorts = mkIf cfg.openFirewall [ 9005 ];

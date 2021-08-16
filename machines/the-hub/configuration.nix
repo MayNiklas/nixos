@@ -30,6 +30,7 @@ in {
     };
     services.monitoring-server = {
       enable = true;
+      loki = { enable = true; };
       dashboard = { enable = true; };
       nodeTargets = [
         "aida:9100"
