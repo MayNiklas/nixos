@@ -38,7 +38,18 @@ in rec {
   # Define deployments
 
   # Run with (e.g.):
-  # nix-build ./krop.nix -A kartoffel && ./result
+  # nix-build ./krops.nix -A all && ./result
+  # nix-build ./krops.nix -A servers && ./result
+  #
+  # nix-build ./krops.nix -A aida && ./result
+  # nix-build ./krops.nix -A deke && ./result
+  # nix-build ./krops.nix -A enoch && ./result
+  # nix-build ./krops.nix -A kora && ./result
+  # nix-build ./krops.nix -A snowflake && ./result
+  # nix-build ./krops.nix -A the-hub && ./result
+  # nix-build ./krops.nix -A the-bus && ./result
+  # nix-build ./krops.nix -A aidwater-on-fire && ./result
+
 
   # Individual machines
   water-on-fire = createHost "water-on-fire" "root@water-on-fire";
