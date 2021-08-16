@@ -27,13 +27,6 @@
         ];
       };
     };
-    services.monitoring-server = {
-      enable = true;
-      dashboard = {
-        enable = true;
-        openFirewall = true;
-      };
-    };
     vmware-guest.enable = true;
     youtube-dl = { enable = true; };
   };

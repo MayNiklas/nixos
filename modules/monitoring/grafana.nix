@@ -14,7 +14,7 @@ in {
       enable = true;
       # Default is 3000
       port = 9005;
-      addr = "0.0.0.0";
+      addr = "127.0.0.1";
 
       provision.datasources = [{
         name = "Prometheus localhost";

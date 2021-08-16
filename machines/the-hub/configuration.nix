@@ -18,9 +18,39 @@ in {
       };
     };
     kvm-guest.enable = true;
+    nginx.enable = true;
     wg = {
       enable = true;
       server = true;
+    };
+    services.monitoring-server = {
+      enable = true;
+      dashboard = { enable = true; };
+    };
+  };
+
+  services.nginx = {
+    enable = true;
+    recommendedOptimisation = true;
+    recommendedTlsSettings = true;
+    clientMaxBodySize = "128m";
+    recommendedProxySettings = true;
+
+    # No need to support plain HTTP, forcing TLS for all vhosts. Certificates
+    # provided by Let's Encrypt via ACME. Generation and renewal is automatic
+    # if DNS is set up correctly for the (sub-)domains.
+    virtualHosts = {
+      # Graphana
+      "status.nik-ste.de" = {
+        forceSSL = true;
+        enableACME = true;
+        listen = [{
+          addr = "10.88.88.1";
+          port = 443;
+          ssl = true;
+        }];
+        locations."/" = { proxyPass = "http://127.0.0.1:9005"; };
+      };
     };
   };
 
@@ -37,6 +67,12 @@ in {
       ia_pd 1/${network} ${interface}
       static ip6_address=${own_ip}
     '';
+
+    firewall = {
+      # only to renew certificate!
+      # allowedTCPPorts = [ 80 443 ];
+      interfaces.wg0.allowedTCPPorts = [ 80 443 ];
+    };
 
     wireguard.interfaces.wg0.peers = [
       # S2S home
