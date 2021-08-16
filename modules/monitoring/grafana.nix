@@ -15,6 +15,13 @@ in {
       # Default is 3000
       port = 9005;
       addr = "0.0.0.0";
+
+      provision.datasources = [{
+        name = "Prometheus localhost";
+        url = "http://localhost:9090";
+        type = "prometheus";
+        isDefault = true;
+      }];
     };
 
     networking.firewall.allowedTCPPorts = mkIf cfg.openFirewall [ 9005 ];
