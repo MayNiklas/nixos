@@ -40,6 +40,7 @@ in {
         "snowflake:9100"
         "water-on-fire:9100"
         "the-hub:9100"
+        "10.88.88.2:9100"
       ];
       blackboxTargets = [
         "https://lounge.rocks"
