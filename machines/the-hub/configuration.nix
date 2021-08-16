@@ -19,6 +19,10 @@ in {
     };
     kvm-guest.enable = true;
     nginx.enable = true;
+    metrics = {
+      node.enable = true;
+      blackbox.enable = true;
+    };
     wg = {
       enable = true;
       server = true;
