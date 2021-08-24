@@ -35,6 +35,8 @@ in {
         192.168.5.20 aida.local
         192.168.5.21 kora.local
         192.168.5.64 water-on-fire.local
+        
+        192.168.88.70 chris
 
         # external
         5.181.49.14 the-hub
