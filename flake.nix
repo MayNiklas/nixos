@@ -55,6 +55,11 @@
       # Expose overlay to flake outputs, to allow using it from other flakes.
       overlay = final: prev: (import ./overlays) final prev;
 
+      # does not work with unfree packages yet      
+      # overlay-unstable = final: prev: {
+      #   unstable = nixpkgs-unstable.legacyPackages.${prev.system};
+      # };
+
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
           system = "x86_64-linux";
