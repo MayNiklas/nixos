@@ -31,7 +31,7 @@ in {
       hosts.enable = true;
       nix-common = {
         enable = true;
-        disable-cache = true;
+        # disable-cache = true;
       };
       openssh.enable = true;
       yubikey.enable = true;
