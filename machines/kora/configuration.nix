@@ -3,7 +3,7 @@
   mayniklas = {
     docker = { enable = true; };
     hosts = { enable = true; };
-    in-stock-bot = { enable = true; };
+    in-stock-bot = { enable = false; };
     metrics = {
       node.enable = true;
       blackbox.enable = true;
