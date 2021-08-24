@@ -34,6 +34,7 @@ in {
       dashboard = { enable = true; };
       nodeTargets = [
         "aida:9100"
+        "bob:9100"
         "deke:9100"
         "enoch:9100"
         "kora:9100"
