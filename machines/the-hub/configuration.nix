@@ -46,6 +46,7 @@ in {
       ];
       blackboxTargets = [
         "https://lounge.rocks"
+        "https://cache.lounge.rocks/nix-cache-info"
         "https://drone.lounge.rocks"
         "https://meet.lounge.rocks"
       ];
