@@ -3,7 +3,16 @@ with lib;
 let cfg = config.mayniklas.xserver;
 in {
 
-  options.mayniklas.xserver = { enable = mkEnableOption "activate xserver"; };
+  options.mayniklas.xserver = {
+    enable = mkEnableOption "activate xserver";
+    dpi = mkOption {
+      type = types.int;
+      default = 125;
+      description = ''
+        screen DPI
+      '';
+    };
+  };
 
   config = mkIf cfg.enable {
 
@@ -13,7 +22,7 @@ in {
       xkbOptions = "eurosign:e";
       enable = true;
       autorun = true;
-      dpi = 125;
+      dpi = cfg.dpi;
       libinput = {
         enable = true;
         touchpad.accelProfile = "flat";
