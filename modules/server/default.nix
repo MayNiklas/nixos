@@ -26,7 +26,7 @@ in {
       locale.enable = true;
       nix-common = {
         enable = true;
-        disable-cache = true;
+        # disable-cache = true;
       };
       openssh.enable = true;
       zsh.enable = true;
