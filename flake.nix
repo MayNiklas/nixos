@@ -17,8 +17,9 @@
     let
 
       # Function to create defult (common) system config options
-      defFlakeSystem = baseCfg:
+      defFlakeSystem = systemArch: baseCfg:
         nixpkgs.lib.nixosSystem {
+          system = "${systemArch}";
           modules = [
             # Add home-manager option to all configs
             ({ ... }: {
@@ -71,14 +72,67 @@
       # Each subdirectory in ./machins is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
-      nixosConfigurations = builtins.listToAttrs (map (x: {
-        name = x;
-        value = defFlakeSystem {
+      nixosConfigurations = {
+
+        aida = defFlakeSystem "x86_64-linux" {
           imports = [
-            (import (./machines + "/${x}/configuration.nix") { inherit self; })
+            # Machine specific config
+            (import (./machines/aida/configuration.nix) { inherit self; })
           ];
         };
-      }) (builtins.attrNames (builtins.readDir ./machines)));
+
+        deke = defFlakeSystem "x86_64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/deke/configuration.nix) { inherit self; })
+          ];
+        };
+
+        enoch = defFlakeSystem "x86_64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/enoch/configuration.nix) { inherit self; })
+          ];
+        };
+
+        kora = defFlakeSystem "x86_64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/kora/configuration.nix) { inherit self; })
+          ];
+        };
+
+        snowflake = defFlakeSystem "x86_64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/snowflake/configuration.nix) { inherit self; })
+          ];
+        };
+
+        the-bus = defFlakeSystem "x86_64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/the-bus/configuration.nix) { inherit self; })
+          ];
+        };
+
+        the-hub = defFlakeSystem "x86_64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/the-hub/configuration.nix) { inherit self; })
+          ];
+        };
+
+        water-on-fire = defFlakeSystem "x86_64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/water-on-fire/configuration.nix) {
+              inherit self;
+            })
+          ];
+        };
+
+      };
     } //
 
     # (flake-utils.lib.eachSystem [ "aarch64-linux" "i686-linux" "x86_64-linux" ])

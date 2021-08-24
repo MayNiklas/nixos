@@ -12,10 +12,10 @@ in {
 
     nixpkgs = { config.allowUnfree = true; };
 
-    nixpkgs.localSystem = {
-      system = "${config.mayniklas.system}";
-      config = "${config.mayniklas.system-config}";
-    };
+    # nixpkgs.localSystem = {
+    #   system = "${config.mayniklas.system}";
+    #   config = "${config.mayniklas.system-config}";
+    # };
 
     nix = {
 
