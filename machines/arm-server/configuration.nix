@@ -11,7 +11,7 @@
         ];
       };
     };
-    nix-common = { disable-cache = true; };
+    nix-common = { disable-cache = false; };
     hosts = { enable = true; };
   };
 
