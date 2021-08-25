@@ -16,5 +16,5 @@
   };
 
   boot.cleanTmpDir = true;
-  networking.hostName = "oracle";
+  networking.hostName = "arm-server";
 }
