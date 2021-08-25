@@ -86,6 +86,13 @@
           ];
         };
 
+        arm-server = defFlakeSystem "aarch64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/arm-server/configuration.nix) { inherit self; })
+          ];
+        };
+
         deke = defFlakeSystem "x86_64-linux" {
           imports = [
             # Machine specific config

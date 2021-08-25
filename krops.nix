@@ -50,7 +50,6 @@ in rec {
   # nix-build ./krops.nix -A the-bus && ./result
   # nix-build ./krops.nix -A aidwater-on-fire && ./result
 
-
   # Individual machines
   water-on-fire = createHost "water-on-fire" "root@water-on-fire";
   aida = createHost "aida" "root@aida";
@@ -60,6 +59,7 @@ in rec {
   snowflake = createHost "snowflake" "root@snowflake";
   the-hub = createHost "the-hub" "root@the-hub";
   the-bus = createHost "the-bus" "root@the-bus";
+  arm-server = createHost "arm-server" "root@158.101.217.241";
 
   # Groups
   all = pkgs.writeScript "deploy-all" (lib.concatStringsSep "\n" [
