@@ -26,6 +26,10 @@ steps:
   commands:
   - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
+- name: Build arm-server
+  commands:
+  - nix build -v '.#nixosConfigurations.arm-server.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+
 - name: Build deke
   commands:
   - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
@@ -79,6 +83,8 @@ steps:
   commands:
   - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
   - mv result aida-old
+  - nix build -v '.#nixosConfigurations.arm-server.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result arm-server-old
   - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
   - mv result deke-old
   - nix build -v '.#nixosConfigurations.enoch.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
@@ -116,6 +122,11 @@ steps:
   commands:
   - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
   - mv result aida-new
+
+- name: Build arm-server
+  commands:
+  - nix build -v '.#nixosConfigurations.arm-server.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result arm-server-new
 
 - name: Build deke
   commands:
@@ -155,6 +166,7 @@ steps:
 - name: Print report
   commands:
   - echo "aida:" && nix store diff-closures $(readlink -f aida-old) $(readlink -f aida-new)
+  - echo "arm-server:" && nix store diff-closures $(readlink -f arm-server-old) $(readlink -f arm-server-new)
   - echo "deke:" && nix store diff-closures $(readlink -f deke-old) $(readlink -f deke-new)
   - echo "enoch:" && nix store diff-closures $(readlink -f enoch-old) $(readlink -f enoch-new)
   - echo "kora:" && nix store diff-closures $(readlink -f kora-old) $(readlink -f kora-new)
