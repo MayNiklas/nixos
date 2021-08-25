@@ -18,7 +18,7 @@ self: super: {
   jetbrains.clion = self.unstable.jetbrains.clion;
   jetbrains.idea-ultimate = self.unstable.jetbrains.idea-ultimate;
   jetbrains.pycharm-professional = self.unstable.jetbrains.pycharm-professional;
-  neovim-unwrapped = self.unstable.neovim-unwrapped;
+  # neovim-unwrapped = self.unstable.neovim-unwrapped;
   obs-studio = self.unstable.obs-studio;
   signal-desktop = self.unstable.signal-desktop;
   spotify = self.unstable.spotify;
