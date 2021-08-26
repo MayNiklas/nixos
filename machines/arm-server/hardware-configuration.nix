@@ -15,17 +15,16 @@
     extraModulePackages = [ ];
   };
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/2938deff-c6ef-4624-b7ad-a65029dab11c";
-    fsType = "xfs";
-  };
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/270af732-13dc-461c-8145-e3cf41137ccb";
+      fsType = "ext4";
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/0E01-9111";
-    fsType = "vfat";
-  };
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/0A22-0E8B";
+      fsType = "vfat";
+    };
 
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/762787e0-cd52-4f42-85df-917544269439"; }];
+  swapDevices = [ ];
 
 }
