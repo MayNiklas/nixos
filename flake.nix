@@ -163,6 +163,7 @@
         packages = flake-utils.lib.flattenTree {
           anki-bin = pkgs.anki-bin;
           darknet = pkgs.darknet;
+          owncast = pkgs.owncast;
           plex = pkgs.plex;
           plexRaw = pkgs.plexRaw;
           tautulli = pkgs.tautulli;
@@ -172,6 +173,7 @@
           # Allow custom packages to be run using `nix run`
           anki-bin = flake-utils.lib.mkApp { drv = packages.anki-bin; };
           darknet = flake-utils.lib.mkApp { drv = packages.darknet; };
+          owncast = flake-utils.lib.mkApp { drv = packages.owncast; };
           plex = flake-utils.lib.mkApp { drv = packages.plex; };
           plexRaw = flake-utils.lib.mkApp { drv = packages.plexRaw; };
           tautulli = flake-utils.lib.mkApp { drv = packages.tautulli; };
