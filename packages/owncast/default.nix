@@ -3,16 +3,16 @@
 buildGoModule rec {
 
   pname = "owncast";
-  version = "0.0.6";
+  version = "0.0.8";
   
   src = fetchFromGitHub {
     owner = "owncast";
     repo = "owncast";
     rev = "v${version}";
-    sha256 = "0vkh4lb5qp20y476j3w0wrshg0bp8kn496bbhdygw8yv3yra45c6";
+    sha256 = "0md4iafa767yxkwh6z8zpcjv9zd79ql2wapx9vzyd973ksvrdaw2";
   };
   
-  vendorSha256 = "0m4xqqpxprbgipwg9ixbjl73zbmlwynmzb1hbgrcgnv02g9mzicf";
+  vendorSha256 = "sha256-bH2CWIgpOS974/P98n0R9ebGTJ0YoqPlH8UmxSYNHeM=";
   
   propagatedBuildInputs = [ ffmpeg ];
   
@@ -24,4 +24,3 @@ buildGoModule rec {
   };
   
 }
-
