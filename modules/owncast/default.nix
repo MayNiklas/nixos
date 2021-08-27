@@ -13,17 +13,25 @@ in {
       description = "The directory where owncast stores its data files.";
     };
 
+    openFirewall = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Open ports in the firewall for owncast.
+      '';
+    };
+
     user = mkOption {
       type = types.str;
       default = "owncast";
-      example = "owncast";
+      example = "my-own-user";
       description = "User to run owncast as";
     };
 
     group = mkOption {
       type = types.str;
       default = "owncast";
-      example = "owncast";
+      example = "my-own-group";
       description = "Group to run owncast as";
     };
 
@@ -32,6 +40,14 @@ in {
       default = 80;
       description = ''
         Port being used for owncast web-gui
+      '';
+    };
+
+    rtmp-port = mkOption {
+      type = types.port;
+      default = 1935;
+      description = ''
+        Port being used for owncast rtmp
       '';
     };
 
@@ -53,9 +69,11 @@ in {
         User = cfg.user;
         Group = cfg.group;
 
+        Restart = "always";
+        RestartSec = "10";
+
         WorkingDirectory = "${cfg.dataDir}";
-        ExecStart =
-          "${pkgs.owncast}/bin/owncast -webserverport ${toString cfg.port}";
+        ExecStart = "${pkgs.owncast}/bin/owncast -webserverport ${toString cfg.port} -rtmpport ${toString cfg.rtmp-port}";
       };
 
       environment = {
@@ -76,7 +94,8 @@ in {
       };
     };
 
-    networking.firewall.allowedTCPPorts = [ cfg.port ];
+    networking.firewall =
+      mkIf cfg.openFirewall { allowedTCPPorts = [ cfg.port cfg.rtmp-port ]; };
 
   };
 }
