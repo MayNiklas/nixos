@@ -40,6 +40,7 @@ in {
   config = mkIf cfg.enable {
 
     systemd.services.owncast = {
+      path = [ pkgs.ffmpeg pkgs.bash pkgs.which ];
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
 
