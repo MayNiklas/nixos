@@ -64,6 +64,43 @@ trigger:
   event:
   - push
   - pull_request
+  
+---
+kind: pipeline
+type: exec
+name: Build flake apps
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+
+- name: Build darknet
+  commands:
+  - nix build .#darknet
+  
+- name: Build owncast
+  commands:
+  - nix build .#owncast
+  
+- name: Build plexRaw
+  commands:
+  - nix build .#plexRaw
+  
+- name: Build tautulli
+  commands:
+  - nix build .#tautulli
+
+trigger:
+  branch:
+  - main
+  event:
+  - push
+
 
 ---
 kind: pipeline
@@ -162,6 +199,22 @@ steps:
   commands:
   - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
   - mv result water-on-fire-new
+
+- name: Build darknet
+  commands:
+  - nix build .#darknet
+  
+- name: Build owncast
+  commands:
+  - nix build .#owncast
+  
+- name: Build plexRaw
+  commands:
+  - nix build .#plexRaw
+  
+- name: Build tautulli
+  commands:
+  - nix build .#tautulli
 
 - name: Print report
   commands:
