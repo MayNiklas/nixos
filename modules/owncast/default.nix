@@ -35,6 +35,13 @@ in {
       description = "Group to run owncast as";
     };
 
+    webserver-ip = mkOption {
+      type = types.str;
+      default = "0.0.0.0";
+      example = "192.168.1.1";
+      description = "Force owncast web server to listen on this IP address";
+    };
+
     port = mkOption {
       type = types.port;
       default = 80;
@@ -73,7 +80,7 @@ in {
         RestartSec = "10";
 
         WorkingDirectory = "${cfg.dataDir}";
-        ExecStart = "${pkgs.owncast}/bin/owncast -webserverport ${toString cfg.port} -rtmpport ${toString cfg.rtmp-port}";
+        ExecStart = "${pkgs.owncast}/bin/owncast -webserverport ${toString cfg.port} -rtmpport ${toString cfg.rtmp-port} -webserverip ${cfg.webserver-ip}";
       };
 
       environment = {
