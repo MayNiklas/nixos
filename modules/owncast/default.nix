@@ -27,6 +27,14 @@ in {
       description = "Group to run owncast as";
     };
 
+    port = mkOption {
+      type = types.port;
+      default = 80;
+      description = ''
+        Port being used for owncast web-gui
+      '';
+    };
+
   };
 
   config = mkIf cfg.enable {
@@ -39,7 +47,8 @@ in {
         Group = cfg.group;
 
         WorkingDirectory = "${cfg.dataDir}";
-        ExecStart = "${pkgs.owncast}/bin/owncast";
+        ExecStart =
+          "${pkgs.owncast}/bin/owncast -webserverport ${toString cfg.port}";
       };
 
       environment = {
@@ -50,7 +59,7 @@ in {
     };
 
     users = mkIf (cfg.user == "owncast") {
-      groups."${cfg.group}" = {};
+      groups."${cfg.group}" = { };
       users.owncast = {
         isSystemUser = true;
         group = "${cfg.group}";
@@ -59,6 +68,8 @@ in {
         description = "owncast system user";
       };
     };
+
+    networking.firewall.allowedTCPPorts = [ cfg.port ];
 
   };
 }
