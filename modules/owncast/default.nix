@@ -41,7 +41,13 @@ in {
 
     systemd.services.owncast = {
       path = [ pkgs.ffmpeg pkgs.bash pkgs.which ];
-      wantedBy = [ "multi-user.target" ];
+      wantedBy = [ "default.target" ];
+
+      preStart = ''
+        cp --no-preserve=mode -r ${pkgs.owncast.src}/static ${cfg.dataDir}/
+        cp --no-preserve=mode -r ${pkgs.owncast.src}/webroot ${cfg.dataDir}/
+      '';
+
       serviceConfig = {
 
         User = cfg.user;
