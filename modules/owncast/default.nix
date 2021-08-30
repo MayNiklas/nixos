@@ -63,7 +63,6 @@ in {
   config = mkIf cfg.enable {
 
     systemd.services.owncast = {
-      path = [ pkgs.bash ];
       wantedBy = [ "default.target" ];
 
       preStart = ''

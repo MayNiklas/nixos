@@ -1,4 +1,4 @@
-{ lib, buildGoModule, fetchFromGitHub, ffmpeg, makeWrapper, which, ... }:
+{ lib, buildGoModule, fetchFromGitHub, bash, which, ffmpeg, makeWrapper, ... }:
 
 buildGoModule rec {
 
@@ -20,7 +20,7 @@ buildGoModule rec {
 
   postInstall = ''
     wrapProgram $out/bin/owncast --prefix PATH : ${
-      lib.makeBinPath [ which ffmpeg ]
+      lib.makeBinPath [ bash which ffmpeg ]
     }
   '';
 
