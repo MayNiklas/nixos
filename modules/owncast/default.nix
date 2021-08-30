@@ -1,11 +1,11 @@
 { lib, pkgs, config, ... }:
 with lib;
-let cfg = config.mayniklas.owncast;
+let cfg = config.services.owncast;
 in {
 
-  options.mayniklas.owncast = {
+  options.services.owncast = {
 
-    enable = mkEnableOption "activate owncast";
+    enable = mkEnableOption "Whether to enable owncast";
 
     dataDir = mkOption {
       type = types.str;
@@ -24,29 +24,27 @@ in {
     user = mkOption {
       type = types.str;
       default = "owncast";
-      example = "my-own-user";
-      description = "User to run owncast as";
+      description = "User account under which owncast runs.";
     };
 
     group = mkOption {
       type = types.str;
       default = "owncast";
-      example = "my-own-group";
-      description = "Group to run owncast as";
+      description = "Group under which owncast runs.";
     };
 
-    webserver-ip = mkOption {
+    listen = mkOption {
       type = types.str;
       default = "0.0.0.0";
-      example = "192.168.1.1";
-      description = "Force owncast web server to listen on this IP address";
+      example = "127.0.0.1";
+      description = "The IP address to bind owncast to.";
     };
 
     port = mkOption {
       type = types.port;
       default = 80;
       description = ''
-        Port being used for owncast web-gui
+        TCP port where owncast web-gui listens.
       '';
     };
 
@@ -54,7 +52,7 @@ in {
       type = types.port;
       default = 1935;
       description = ''
-        Port being used for owncast rtmp
+        TCP port where owncast rtmp service listens.
       '';
     };
 
@@ -63,30 +61,24 @@ in {
   config = mkIf cfg.enable {
 
     systemd.services.owncast = {
-      wantedBy = [ "default.target" ];
-
+      wantedBy = [ "network.target" ];
       preStart = ''
         cp --no-preserve=mode -r ${pkgs.owncast.src}/static ${cfg.dataDir}/
         cp --no-preserve=mode -r ${pkgs.owncast.src}/webroot ${cfg.dataDir}/
       '';
 
       serviceConfig = {
-
         User = cfg.user;
         Group = cfg.group;
-
-        Restart = "always";
-        RestartSec = "10";
-
         WorkingDirectory = "${cfg.dataDir}";
-        ExecStart = "${pkgs.owncast}/bin/owncast -webserverport ${toString cfg.port} -rtmpport ${toString cfg.rtmp-port} -webserverip ${cfg.webserver-ip}";
+        ExecStart = "${pkgs.owncast}/bin/owncast -webserverport ${toString cfg.port} -rtmpport ${toString cfg.rtmp-port} -webserverip ${cfg.listen}";
+        Restart = "on-failure";
       };
 
       environment = {
         LC_ALL = "en_US.UTF-8";
         LANG = "en_US.UTF-8";
       };
-
     };
 
     users = mkIf (cfg.user == "owncast") {
