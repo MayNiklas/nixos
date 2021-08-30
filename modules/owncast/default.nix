@@ -96,4 +96,5 @@ in {
       mkIf cfg.openFirewall { allowedTCPPorts = [ cfg.port cfg.rtmp-port ]; };
 
   };
+  meta = { maintainers = with lib.maintainers; [ mayniklas ]; };
 }
