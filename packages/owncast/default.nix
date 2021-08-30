@@ -23,6 +23,12 @@ buildGoModule rec {
       lib.makeBinPath [ bash which ffmpeg ]
     }
   '';
+  
+  installCheckPhase = ''
+    runHook preCheck
+    $out/bin/owncast --help
+    runHook postCheck
+  '';
 
   meta = with lib; {
     description = "self-hosted video live streaming solution";
