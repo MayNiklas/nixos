@@ -38,8 +38,9 @@
       ip = "10.88.88.24";
       allowedIPs = [ "10.88.88.0/24" ];
     };
+    kde.enable = true;
     virtualisation.enable = true;
-    xserver = { enable = true; };
+    xserver = { enable = false; };
   };
 
   boot.loader.grub.default = "2";

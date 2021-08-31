@@ -62,10 +62,10 @@ in {
     ./modules/chromium
     ./modules/devolopment
     ./modules/git
-    ./modules/gtk
-    ./modules/i3
+    # ./modules/gtk
+    # ./modules/i3
     ./modules/alacritty
-    ./modules/rofi
+    # ./modules/rofi
     ./modules/vim
     ./modules/vscode
     ./modules/zsh
