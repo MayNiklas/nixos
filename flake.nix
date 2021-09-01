@@ -167,6 +167,7 @@
           plex = pkgs.plex;
           plexRaw = pkgs.plexRaw;
           tautulli = pkgs.tautulli;
+          verification-listener = pkgs.verification-listener;
         };
 
         apps = {
@@ -177,6 +178,8 @@
           plex = flake-utils.lib.mkApp { drv = packages.plex; };
           plexRaw = flake-utils.lib.mkApp { drv = packages.plexRaw; };
           tautulli = flake-utils.lib.mkApp { drv = packages.tautulli; };
+          verification-listener =
+            flake-utils.lib.mkApp { drv = packages.verification-listener; };
         };
       });
 }
