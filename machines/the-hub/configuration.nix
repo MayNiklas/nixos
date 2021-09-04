@@ -123,7 +123,7 @@ in {
       # S2S M.
       {
         publicKey = "UxM4yRr6Vd5wYPtGcMcYd7pfyKZCGyz9VsG31FVbo38=";
-        allowedIPs = [ "10.88.88.4/32" "192.168.42.0/24" ];
+        allowedIPs = [ "10.88.88.4/32" "192.168.42.0/24" "192.168.0.1/32" ];
       }
       # S2S Lep.
       {
