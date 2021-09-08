@@ -31,6 +31,12 @@
     youtube-dl = { enable = true; };
   };
 
+  services.owncast = {
+    enable = true;
+    port = 8989;
+    openFirewall = true;
+  };
+
   networking = {
     hostName = "kora";
     firewall = { allowedTCPPorts = [ 9100 9115 ]; };
