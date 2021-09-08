@@ -5,7 +5,7 @@ in {
 
   options.services.owncast = {
 
-    enable = mkEnableOption "Whether to enable owncast";
+    enable = mkEnableOption "owncast";
 
     dataDir = mkOption {
       type = types.str;
@@ -61,7 +61,7 @@ in {
   config = mkIf cfg.enable {
 
     systemd.services.owncast = {
-      wantedBy = [ "network.target" ];
+      wantedBy = [ "default.target" ];
       preStart = ''
         cp --no-preserve=mode -r ${pkgs.owncast.src}/static ${cfg.dataDir}/
         cp --no-preserve=mode -r ${pkgs.owncast.src}/webroot ${cfg.dataDir}/
@@ -70,7 +70,7 @@ in {
       serviceConfig = {
         User = cfg.user;
         Group = cfg.group;
-        WorkingDirectory = "${cfg.dataDir}";
+        WorkingDirectory = cfg.dataDir;
         ExecStart = "${pkgs.owncast}/bin/owncast -webserverport ${toString cfg.port} -rtmpport ${toString cfg.rtmp-port} -webserverip ${cfg.listen}";
         Restart = "on-failure";
       };
@@ -81,16 +81,17 @@ in {
       };
     };
 
-    users = mkIf (cfg.user == "owncast") {
-      groups."${cfg.group}" = { };
-      users.owncast = {
+    users.users = mkIf (cfg.user == "owncast") {
+      owncast = {
         isSystemUser = true;
-        group = "${cfg.group}";
-        home = "${cfg.dataDir}";
+        group = cfg.group;
+        home = cfg.dataDir;
         createHome = true;
         description = "owncast system user";
       };
     };
+
+    users.groups = mkIf (cfg.group == "owncast") { ${cfg.group} = { }; };
 
     networking.firewall =
       mkIf cfg.openFirewall { allowedTCPPorts = [ cfg.port cfg.rtmp-port ]; };
