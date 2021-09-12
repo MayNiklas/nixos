@@ -19,8 +19,8 @@ let
 
   command = targetPath: ''
     nix-shell -p git --run '
-      nixos-rebuild switch -v --show-trace --flake ${targetPath}/machine-config || \
-        nixos-rebuild switch -v --show-trace --flake ${targetPath}/machine-config
+      nix build -v '${targetPath}/machine-config#nixosConfigurations.$(hostname).config.system.build.toplevel' && \
+      nixos-rebuild switch -v --show-trace --flake ${targetPath}/machine-config
     '
   '';
 
