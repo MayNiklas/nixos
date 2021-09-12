@@ -32,7 +32,7 @@
   };
 
   services.owncast = {
-    enable = true;
+    enable = false;
     port = 8989;
     openFirewall = true;
   };
