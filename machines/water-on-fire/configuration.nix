@@ -45,6 +45,8 @@
 
   boot.loader.grub.default = "2";
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   networking = {
     hostName = "water-on-fire";
     # useDHCP = false;
