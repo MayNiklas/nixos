@@ -11,6 +11,7 @@ in {
       package = pkgs.vscode;
       extensions = with pkgs.vscode-extensions; [
         bbenoist.Nix
+        brettm12345.nixfmt-vscode
         james-yu.latex-workshop
         ms-azuretools.vscode-docker
         ms-python.python
