@@ -48,24 +48,8 @@
   };
 
   boot = {
-    loader = {
-      raspberryPi = {
-        enable = true;
-        version = 4;
-      };
-      # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
-      grub.enable = false;
-      # Enables the generation of /boot/extlinux/extlinux.conf
-      generic-extlinux-compatible.enable = true;
-    };
-
-    kernelPackages = pkgs.linuxPackages_rpi4;
-    initrd.availableKernelModules = [ "usbhid" "usb_storage" ];
-    initrd.kernelModules = [ ];
-    kernelModules = [ ];
-    extraModulePackages = [ ];
     tmpOnTmpfs = true;
-
+    initrd.availableKernelModules = [ "usbhid" "usb_storage" ];
     # ttyAMA0 is the serial console broken out to the GPIO
     kernelParams = [
       "8250.nr_uarts=1"
