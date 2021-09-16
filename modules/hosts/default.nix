@@ -36,6 +36,9 @@ in {
         192.168.5.21 kora.local
         192.168.5.64 water-on-fire.local
         
+        # wg
+        10.88.88.24 desktop
+
         192.168.88.70 chris
 
         # external
