@@ -145,6 +145,11 @@
         };
 
       };
+
+      hydraJobs = (nixpkgs.lib.mapAttrs' (name: config:
+        nixpkgs.lib.nameValuePair "nixos-${name}"
+        config.config.system.build.toplevel) self.nixosConfigurations);
+
     } //
 
     # (flake-utils.lib.eachSystem [ "aarch64-linux" "i686-linux" "x86_64-linux" ])
