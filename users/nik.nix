@@ -6,7 +6,7 @@
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
     openssh.authorizedKeys.keyFiles = [
-      (builtins.fetchurl {
+      (pkgs.fetchurl {
         url = "https://github.com/mayniklas.keys";
         sha256 = "174dbx0kkrfdfdjswdny25nf7phgcb9k8i6z3rqqcy9l24f8xcp3";
       })

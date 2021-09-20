@@ -5,7 +5,7 @@
     home = "/home/chris";
     shell = pkgs.zsh;
     openssh.authorizedKeys.keyFiles = [
-      (builtins.fetchurl {
+      (pkgs.fetchurl {
         url = "https://github.com/nonchris.keys";
         sha256 = "sha256:0lhvhdrzp2vphqhkcgl34xzn0sill6w7mgq8xh1akm1z1rsvd9v4";
       })

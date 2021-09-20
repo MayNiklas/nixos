@@ -5,7 +5,7 @@
     home = "/home/marek";
     shell = pkgs.zsh;
     openssh.authorizedKeys.keyFiles = [
-      (builtins.fetchurl {
+      (pkgs.fetchurl {
         url = "https://github.com/User12323.keys";
         sha256 = "1mpra26kk2f9f3xwnqhmgb627wngsz9i0d95niyfriikxw6g5wwj";
       })
