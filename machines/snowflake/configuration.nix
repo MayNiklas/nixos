@@ -16,8 +16,8 @@
       node.enable = true;
       blackbox.enable = true;
     };
-    sonarr.enable = true;
-    jackett.enable = true;
+    # sonarr.enable = true;
+    # jackett.enable = true;
     transmission = {
       enable = true;
       smb = true;
