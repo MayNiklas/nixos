@@ -6,7 +6,10 @@
 
   programs.command-not-found.enable = true;
 
-  mayniklas = { programs.vim.enable = true; };
+  mayniklas = {
+    programs.vim.enable = true;
+    services = { nixos-vscode-ssh-fix.enable = true; };
+  };
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -20,7 +23,8 @@
   home.packages = with pkgs; [ gcc htop iperf3 nmap unzip ];
 
   # Imports
-  imports = [ ./modules/git ./modules/vim ./modules/zsh ];
+  imports =
+    [ ./modules/git ./modules/vim ./modules/zsh ./modules/vscode-server ];
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
