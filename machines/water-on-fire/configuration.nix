@@ -11,12 +11,7 @@
   mayniklas = {
     desktop = {
       enable = true;
-      homeConfig = {
-        imports = [
-          ../../home-manager/home.nix
-          { nixpkgs.overlays = [ self.overlay self.overlay-unstable ]; }
-        ];
-      };
+      home-manager = true;
     };
     eizo-alienware = { enable = true; };
     # Get UUID from blkid /dev/sda2

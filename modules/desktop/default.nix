@@ -1,4 +1,4 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, config, inputs, self-overlay, overlay-unstable, ... }:
 with lib;
 let cfg = config.mayniklas.desktop;
 in {
@@ -7,18 +7,28 @@ in {
 
   options.mayniklas.desktop = {
     enable = mkEnableOption "Enable the default desktop configuration";
-    homeConfig = mkOption {
-      type = types.attrs;
-      default = null;
+    home-manager = mkOption {
+      type = types.bool;
+      default = false;
       description = ''
-        Documentation placeholder
+        enable home-manager for this desktop
       '';
     };
   };
 
   config = mkIf cfg.enable {
 
-    home-manager.users.nik = cfg.homeConfig;
+    home-manager.users.nik = mkIf cfg.home-manager {
+
+      # Pass inputs to home-manager modules
+      _module.args.flake-inputs = inputs;
+
+      imports = [
+        ../../home-manager/home.nix
+        { nixpkgs.overlays = [ self-overlay overlay-unstable ]; }
+      ];
+
+    };
 
     environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
@@ -37,7 +47,7 @@ in {
       yubikey.enable = true;
       zsh.enable = true;
     };
-    
+
     programs.dconf.enable = true;
 
     # For user-space mounting things like smb:// and ssh:// in thunar etc. Dbus

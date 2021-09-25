@@ -19,9 +19,15 @@
       # Function to create defult (common) system config options
       defFlakeSystem = systemArch: baseCfg:
         nixpkgs.lib.nixosSystem {
+
           system = "${systemArch}";
           modules = [
-            # Add home-manager option to all configs
+
+            # Make inputs and overlay accessible as module parameters
+            { _module.args.inputs = inputs; }
+            { _module.args.self-overlay = self.overlay; }
+            { _module.args.overlay-unstable = self.overlay-unstable; }
+
             ({ ... }: {
               imports = builtins.attrValues self.nixosModules ++ [
                 {
