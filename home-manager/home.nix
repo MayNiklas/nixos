@@ -8,8 +8,11 @@ in {
   programs.command-not-found.enable = true;
 
   mayniklas = {
-    programs.vim.enable = true;
-    programs.vscode.enable = true;
+    programs = {
+      git.enable = true;
+      vim.enable = true;
+      vscode.enable = true;
+    };
   };
 
   # Home Manager needs a bit of information about you and the

@@ -7,7 +7,10 @@
   programs.command-not-found.enable = true;
 
   mayniklas = {
-    programs.vim.enable = true;
+    programs = {
+      git.enable = true;
+      vim.enable = true;
+    };
     services = { nixos-vscode-ssh-fix.enable = true; };
   };
 
