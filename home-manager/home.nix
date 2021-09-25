@@ -9,6 +9,7 @@ in {
 
   mayniklas = {
     programs = {
+      chromium.enable = true;
       git.enable = true;
       vim.enable = true;
       vscode.enable = true;
