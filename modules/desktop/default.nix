@@ -72,11 +72,11 @@ in {
           alacritty.enable = true;
           chromium.enable = true;
           devolopment.enable = true;
-          git.enable = mkIf cfg.git true;
-          gtk.enable = mkIf cfg.gtk true;
-          rofi.enable = mkIf cfg.rofi true;
-          i3.enable = mkIf cfg.i3 true;
-          vim.enable = mkIf cfg.vim true;
+          git.enable = cfg.git;
+          gtk.enable = cfg.gtk;
+          rofi.enable = cfg.rofi;
+          i3.enable = cfg.i3;
+          vim.enable = cfg.vim;
           vscode.enable = true;
           zsh.enable = true;
         };
