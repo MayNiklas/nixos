@@ -34,6 +34,7 @@ in {
 
       mayniklas = {
         programs = {
+          alacritty.enable = true;
           chromium.enable = true;
           devolopment.enable = true;
           git.enable = true;
