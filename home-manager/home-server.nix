@@ -1,31 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
-  programs.command-not-found.enable = true;
-
-  mayniklas = {
-    programs = {
-      git.enable = true;
-      vim.enable = true;
-    };
-    services = { nixos-vscode-ssh-fix.enable = true; };
-  };
-
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = "nik";
-  home.homeDirectory = "/home/nik";
-
-  # Allow "unfree" licenced packages
-  nixpkgs.config = { allowUnfree = true; };
-
-  # Install these packages for my user
-  home.packages = with pkgs; [ gcc htop iperf3 nmap unzip ];
-
-  # Imports
   imports =
     [ ./modules/git ./modules/vim ./modules/zsh ./modules/vscode-server ];
 

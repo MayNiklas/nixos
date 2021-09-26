@@ -14,6 +14,27 @@ in {
         enable home-manager for this server
       '';
     };
+    git = mkOption {
+      type = types.bool;
+      default = true;
+      description = ''
+        enable git for this server
+      '';
+    };
+    vim = mkOption {
+      type = types.bool;
+      default = true;
+      description = ''
+        enable vim for this server
+      '';
+    };
+    vscode-ssh = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        enable vscode-ssh fix for this server
+      '';
+    };
   };
 
   config = mkIf cfg.enable {
@@ -22,6 +43,25 @@ in {
 
       # Pass inputs to home-manager modules
       _module.args.flake-inputs = inputs;
+
+      # Let Home Manager install and manage itself.
+      programs.home-manager.enable = true;
+      programs.command-not-found.enable = true;
+      home.username = "nik";
+      home.homeDirectory = "/home/nik";
+      # Allow "unfree" licenced packages
+      nixpkgs.config = { allowUnfree = true; };
+
+      mayniklas = {
+        programs = {
+          git.enable = mkIf cfg.git true;
+          vim.enable = mkIf cfg.vim true;
+        };
+        services = { nixos-vscode-ssh-fix.enable = mkIf cfg.vscode-ssh true; };
+      };
+
+      # Install these packages for my user
+      home.packages = with pkgs; [ gcc htop iperf3 nmap unzip ];
 
       imports = [
         ../../home-manager/home-server.nix
