@@ -21,6 +21,13 @@ in {
         enable git for this desktop
       '';
     };
+    gtk = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        enable gtk for this desktop
+      '';
+    };
     vim = mkOption {
       type = types.bool;
       default = true;
@@ -59,6 +66,7 @@ in {
           chromium.enable = true;
           devolopment.enable = true;
           git.enable = mkIf cfg.git true;
+          gtk.enable = mkIf cfg.gtk true;
           i3.enable = mkIf cfg.i3 true;
           vim.enable = mkIf cfg.vim true;
           vscode.enable = true;
@@ -107,7 +115,7 @@ in {
         ../../home-manager/modules/chromium
         ../../home-manager/modules/devolopment
         ../../home-manager/modules/git
-        # ../../home-manager/modules/gtk
+        ../../home-manager/modules/gtk
         ../../home-manager/modules/i3
         ../../home-manager/modules/alacritty
         # ../../home-manager/modules/rofi
