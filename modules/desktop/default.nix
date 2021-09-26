@@ -14,6 +14,27 @@ in {
         enable home-manager for this desktop
       '';
     };
+    git = mkOption {
+      type = types.bool;
+      default = true;
+      description = ''
+        enable git for this desktop
+      '';
+    };
+    vim = mkOption {
+      type = types.bool;
+      default = true;
+      description = ''
+        enable vim for this desktop
+      '';
+    };
+    i3 = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        enable i3 for this desktop
+      '';
+    };
   };
 
   config = mkIf cfg.enable {
@@ -37,8 +58,9 @@ in {
           alacritty.enable = true;
           chromium.enable = true;
           devolopment.enable = true;
-          git.enable = true;
-          vim.enable = true;
+          git.enable = mkIf cfg.git true;
+          i3.enable = mkIf cfg.i3 true;
+          vim.enable = mkIf cfg.vim true;
           vscode.enable = true;
         };
       };
@@ -86,7 +108,7 @@ in {
         ../../home-manager/modules/devolopment
         ../../home-manager/modules/git
         # ../../home-manager/modules/gtk
-        # ../../home-manager/modules/i3
+        ../../home-manager/modules/i3
         ../../home-manager/modules/alacritty
         # ../../home-manager/modules/rofi
         ../../home-manager/modules/vim
