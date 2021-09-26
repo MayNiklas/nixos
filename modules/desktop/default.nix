@@ -78,6 +78,7 @@ in {
           i3.enable = mkIf cfg.i3 true;
           vim.enable = mkIf cfg.vim true;
           vscode.enable = true;
+          zsh.enable = true;
         };
       };
 

@@ -56,6 +56,7 @@ in {
         programs = {
           git.enable = mkIf cfg.git true;
           vim.enable = mkIf cfg.vim true;
+          zsh.enable = true;
         };
         services = { nixos-vscode-ssh-fix.enable = mkIf cfg.vscode-ssh true; };
       };
