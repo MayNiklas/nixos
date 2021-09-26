@@ -23,6 +23,62 @@ in {
       # Pass inputs to home-manager modules
       _module.args.flake-inputs = inputs;
 
+      # Let Home Manager install and manage itself.
+      programs.home-manager.enable = true;
+      programs.command-not-found.enable = true;
+      home.username = "nik";
+      home.homeDirectory = "/home/nik";
+      # Allow "unfree" licenced packages
+      nixpkgs.config = { allowUnfree = true; };
+      services.gnome-keyring = { enable = true; };
+
+      mayniklas = {
+        programs = {
+          chromium.enable = true;
+          devolopment.enable = true;
+          git.enable = true;
+          vim.enable = true;
+          vscode.enable = true;
+        };
+      };
+
+      # Install these packages for my user
+      home.packages = with pkgs; [
+        _1password-gui
+        atom
+        cura
+        discord
+        dolphin
+        drone-cli
+        filezilla
+        firefox
+        gcc
+        glances
+        gnome3.dconf
+        gparted
+        htop
+        hugo
+        iperf3
+        nmap
+        nvtop
+        obs-studio
+        signal-desktop
+        spotify
+        sublime-merge
+        sublime3
+        teamspeak_client
+        tdesktop
+        thunderbird-bin
+        unzip
+        vagrant
+        vim
+        virt-manager
+        vlc
+        xfce.thunar
+        youtube-dl
+        zoom-us
+      ];
+
       imports = [
         ../../home-manager/home.nix
         { nixpkgs.overlays = [ self-overlay overlay-unstable ]; }
