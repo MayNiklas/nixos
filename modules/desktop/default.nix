@@ -35,6 +35,13 @@ in {
         enable vim for this desktop
       '';
     };
+    rofi = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        enable rofi for this desktop
+      '';
+    };
     i3 = mkOption {
       type = types.bool;
       default = false;
@@ -67,6 +74,7 @@ in {
           devolopment.enable = true;
           git.enable = mkIf cfg.git true;
           gtk.enable = mkIf cfg.gtk true;
+          rofi.enable = mkIf cfg.rofi true;
           i3.enable = mkIf cfg.i3 true;
           vim.enable = mkIf cfg.vim true;
           vscode.enable = true;
@@ -118,7 +126,7 @@ in {
         ../../home-manager/modules/gtk
         ../../home-manager/modules/i3
         ../../home-manager/modules/alacritty
-        # ../../home-manager/modules/rofi
+        ../../home-manager/modules/rofi
         ../../home-manager/modules/vim
         ../../home-manager/modules/vscode
         ../../home-manager/modules/zsh
