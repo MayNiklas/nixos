@@ -167,8 +167,8 @@ in {
       }
       # MacBook M.
       {
-        publicKey = "tY4kwJFserZZTHsfBzaQX05zFbPoPf90EYFQOmaE+zY=";
-        allowedIPs = [ "10.88.88.150/32" ];
+        publicKey = "ylprZ5gCugAxo1lkdbSWWDicVHd+Ul+2rz9ItuMJxxs=";
+        allowedIPs = [ "10.10.10.7/32" ];
       }
       # MacBook A.
       {
