@@ -64,10 +64,12 @@ in {
       home.packages = with pkgs; [ gcc htop iperf3 nmap unzip ];
 
       imports = [
-        ../../home-manager/home-server.nix
-        { nixpkgs.overlays = [ self-overlay overlay-unstable ]; }
+        ../../home-manager/modules/git
+        ../../home-manager/modules/vim
+        ../../home-manager/modules/zsh
+        ../../home-manager/modules/vscode-server
       ];
-
+      home.stateVersion = "21.05";
     };
 
     environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];

@@ -34,12 +34,12 @@
     ];
   };
 
-  home-manager.users.nik = {
-    imports = [
-      ../../home-manager/home-server.nix
-      { nixpkgs.overlays = [ self.overlay self.overlay-unstable ]; }
-    ];
-  };
+  # home-manager.users.nik = {
+  #   imports = [
+  #     ../../home-manager/home-server.nix
+  #     { nixpkgs.overlays = [ self.overlay self.overlay-unstable ]; }
+  #   ];
+  # };
 
   networking = {
     hostName = "enoch";

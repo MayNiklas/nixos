@@ -47,6 +47,7 @@ in {
         _1password-gui
         atom
         cura
+        darknet
         discord
         dolphin
         drone-cli
@@ -80,9 +81,19 @@ in {
       ];
 
       imports = [
-        ../../home-manager/home.nix
-        { nixpkgs.overlays = [ self-overlay overlay-unstable ]; }
+        ../../home-manager/modules/chromium
+        ../../home-manager/modules/devolopment
+        ../../home-manager/modules/git
+        # ../../home-manager/modules/gtk
+        # ../../home-manager/modules/i3
+        ../../home-manager/modules/alacritty
+        # ../../home-manager/modules/rofi
+        ../../home-manager/modules/vim
+        ../../home-manager/modules/vscode
+        ../../home-manager/modules/zsh
       ];
+
+      home.stateVersion = "21.03";
 
     };
 
