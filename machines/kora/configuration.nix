@@ -26,7 +26,7 @@
     youtube-dl = { enable = true; };
   };
 
-  services.owncast = {
+  mayniklas.services.owncast = {
     enable = false;
     port = 8989;
     openFirewall = true;
