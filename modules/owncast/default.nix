@@ -1,9 +1,9 @@
 { lib, pkgs, config, ... }:
 with lib;
-let cfg = config.services.owncast;
+let cfg = config.mayniklas.services.owncast;
 in {
 
-  options.services.owncast = {
+  options.mayniklas.services.owncast = {
 
     enable = mkEnableOption "owncast";
 
