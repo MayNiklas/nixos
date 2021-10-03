@@ -13,9 +13,9 @@ in {
 
     virtualisation.libvirtd = {
       enable = true;
-      allowedBridges = [ "br0" ];
+      # allowedBridges = [ "br0" ];
       qemuOvmf = true;
-      qemuRunAsRoot = false;
+      qemuRunAsRoot = true;
       onBoot = "ignore";
       onShutdown = "shutdown";
     };
