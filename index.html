@@ -1846,6 +1846,242 @@ Check with blkid /dev/sda2.
 							</div>
 						</div>
 					</div>
+					<div class="nixoption block" id="mayniklas.services.owncast.dataDir">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.services.owncast.dataDir"># </a> mayniklas.services.owncast.dataDir  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">string</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> The directory where owncast stores its data files. If left as the default value this directory will automatically be created before the owncast server starts, otherwise the sysadmin is responsible for ensuring the directory exists with appropriate ownership and permissions.
+ </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>/var/lib/owncast</code> </p>
+							<p class="block"><strong>Example:</strong> <code></code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/owncast </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.services.owncast.enable">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.services.owncast.enable"># </a> mayniklas.services.owncast.enable  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">boolean</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> Whether to enable owncast. </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>false</code> </p>
+							<p class="block"><strong>Example:</strong> <code>true</code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/owncast </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.services.owncast.group">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.services.owncast.group"># </a> mayniklas.services.owncast.group  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">string</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> Group under which owncast runs. </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>owncast</code> </p>
+							<p class="block"><strong>Example:</strong> <code></code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/owncast </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.services.owncast.listen">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.services.owncast.listen"># </a> mayniklas.services.owncast.listen  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">string</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> The IP address to bind the owncast web server to. </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>127.0.0.1</code> </p>
+							<p class="block"><strong>Example:</strong> <code>0.0.0.0</code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/owncast </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.services.owncast.openFirewall">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.services.owncast.openFirewall"># </a> mayniklas.services.owncast.openFirewall  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">boolean</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> Open the appropriate ports in the firewall for owncast.
+ </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>false</code> </p>
+							<p class="block"><strong>Example:</strong> <code></code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/owncast </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.services.owncast.port">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.services.owncast.port"># </a> mayniklas.services.owncast.port  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">16 bit unsigned integer; between 0 and 65535 (both inclusive)</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> TCP port where owncast web-gui listens.
+ </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>8080</code> </p>
+							<p class="block"><strong>Example:</strong> <code></code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/owncast </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.services.owncast.rtmp-port">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.services.owncast.rtmp-port"># </a> mayniklas.services.owncast.rtmp-port  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">16 bit unsigned integer; between 0 and 65535 (both inclusive)</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> TCP port where owncast rtmp service listens.
+ </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>1935</code> </p>
+							<p class="block"><strong>Example:</strong> <code></code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/owncast </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.services.owncast.user">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.services.owncast.user"># </a> mayniklas.services.owncast.user  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">string</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> User account under which owncast runs. </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>owncast</code> </p>
+							<p class="block"><strong>Example:</strong> <code></code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/owncast </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
 					<div class="nixoption block" id="mayniklas.sonarr.enable">
 						<div class="level">
 							<div class="level-left">
