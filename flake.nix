@@ -175,6 +175,7 @@
           anki-bin = pkgs.anki-bin;
           darknet = pkgs.darknet;
           owncast = pkgs.owncast;
+          parsecgaming = pkgs.parsecgaming;
           plex = pkgs.plex;
           plexRaw = pkgs.plexRaw;
           tautulli = pkgs.tautulli;
@@ -186,6 +187,7 @@
           anki-bin = flake-utils.lib.mkApp { drv = packages.anki-bin; };
           darknet = flake-utils.lib.mkApp { drv = packages.darknet; };
           owncast = flake-utils.lib.mkApp { drv = packages.owncast; };
+          parsecgaming = flake-utils.lib.mkApp { drv = packages.parsecgaming; };
           plex = flake-utils.lib.mkApp { drv = packages.plex; };
           plexRaw = flake-utils.lib.mkApp { drv = packages.plexRaw; };
           tautulli = flake-utils.lib.mkApp { drv = packages.tautulli; };
