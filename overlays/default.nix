@@ -19,6 +19,7 @@ self: super: {
   chromium = self.unstable.chromium;
   discord = self.unstable.discord;
   firefox = self.unstable.firefox;
+  jackett = self.unstable.pkgs.jackett;
   jetbrains.jdk = self.unstable.jetbrains.jdk;
   jetbrains.clion = self.unstable.jetbrains.clion;
   jetbrains.idea-ultimate = self.unstable.jetbrains.idea-ultimate;
@@ -26,6 +27,7 @@ self: super: {
   # neovim-unwrapped = self.unstable.neovim-unwrapped;
   obs-studio = self.unstable.obs-studio;
   signal-desktop = self.unstable.signal-desktop;
+  sonarr = self.unstable.sonarr;
   spotify = self.unstable.spotify;
   sublime-merge = self.unstable.sublime-merge;
   sublime3 = self.unstable.sublime3;
