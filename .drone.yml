@@ -42,6 +42,10 @@ steps:
   commands:
   - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
+- name: Build simmons
+  commands:
+  - nix build -v '.#nixosConfigurations.simmons.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  
 - name: Build snowflake
   commands:
   - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
@@ -128,6 +132,8 @@ steps:
   - mv result enoch-old
   - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
   - mv result kora-old
+  - nix build -v '.#nixosConfigurations.simmons.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result simmons-old
   - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
   - mv result snowflake-old
   - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
@@ -180,6 +186,11 @@ steps:
   - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
   - mv result kora-new
 
+- name: Build simmons
+  commands:
+  - nix build -v '.#nixosConfigurations.simmons.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result simmons-new
+
 - name: Build snowflake
   commands:
   - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
@@ -223,6 +234,7 @@ steps:
   - echo "deke:" && nix store diff-closures $(readlink -f deke-old) $(readlink -f deke-new)
   - echo "enoch:" && nix store diff-closures $(readlink -f enoch-old) $(readlink -f enoch-new)
   - echo "kora:" && nix store diff-closures $(readlink -f kora-old) $(readlink -f kora-new)
+  - echo "simmons:" && nix store diff-closures $(readlink -f simmons-old) $(readlink -f simmons-new)
   - echo "snowflake:" && nix store diff-closures $(readlink -f snowflake-old) $(readlink -f snowflake-new)
   - echo "the-hub:" && nix store diff-closures $(readlink -f the-hub-old) $(readlink -f the-hub-new)
   - echo "the-bus:" && nix store diff-closures $(readlink -f the-bus-old) $(readlink -f the-bus-new)

@@ -120,6 +120,13 @@
           ];
         };
 
+        simmons = defFlakeSystem "x86_64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/simmons/configuration.nix) { inherit self; })
+          ];
+        };
+
         snowflake = defFlakeSystem "x86_64-linux" {
           imports = [
             # Machine specific config
