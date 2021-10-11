@@ -4,7 +4,6 @@ self: super: {
   anki-bin = super.pkgs.callPackage ../packages/anki-bin { };
   darknet = super.pkgs.callPackage ../packages/darknet { };
   owncast = super.pkgs.callPackage ../packages/owncast { };
-  parsecgaming = super.pkgs.callPackage ../packages/parsecgaming { };
   plex = super.pkgs.callPackage ../packages/plex { };
   plexRaw = super.pkgs.callPackage ../packages/plex/raw.nix { };
   tautulli = super.pkgs.python3Packages.callPackage ../packages/tautulli { };
