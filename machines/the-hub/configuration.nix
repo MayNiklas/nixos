@@ -94,6 +94,20 @@ in {
       interfaces.wg0.allowedTCPPorts = [ 80 443 ];
     };
 
+    networking.wireguard.interfaces.wg0 = {
+      postSetup = ''
+        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.88.88.0/24 -o ens3 -j MASQUERADE
+        # ${pkgs.iptables}/bin/iptables -t nat -A PREROUTING -d 5.181.49.14 -p tcp --dport 80 -j DNAT --to-destination 10.88.88.2
+        # ${pkgs.iptables}/bin/iptables -t nat -A PREROUTING -d 5.181.49.14 -p tcp --dport 443 -j DNAT --to-destination 10.88.88.2
+      '';
+
+      postShutdown = ''
+        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.88.88.0/24 -o ens3 -j MASQUERADE
+        # ${pkgs.iptables}/bin/iptables -t nat -D PREROUTING -d 5.181.49.14 -p tcp --dport 80 -j DNAT --to-destination 10.88.88.2
+        # ${pkgs.iptables}/bin/iptables -t nat -D PREROUTING -d 5.181.49.14 -p tcp --dport 443 -j DNAT --to-destination 10.88.88.2
+      '';
+    };
+
     wireguard.interfaces.wg0.peers = [
       # S2S home
       {
