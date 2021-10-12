@@ -13,6 +13,7 @@ in {
       home-manager = true;
     };
     hosts = { enable = true; };
+    iperf = { enable = true; };
     kvm-guest.enable = true;
     nginx.enable = true;
     metrics = {
