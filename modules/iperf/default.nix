@@ -13,7 +13,7 @@ in {
       port = 5201;
     };
     
-    firewall = { interfaces.wg0.allowedTCPPorts = [ 5201 ]; };
+    networking.firewall = { interfaces.wg0.allowedTCPPorts = [ 5201 ]; };
 
   };
 }
