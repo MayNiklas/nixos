@@ -49,6 +49,10 @@
         PULL = "300";
         GC = "60";
       };
+      "service.explore" = {
+        REQUIRE_SIGNIN_VIEW = true;
+        DISABLE_USERS_PAGE = true;
+      };
       other = {
         SHOW_FOOTER_BRANDING = false;
         SHOW_FOOTER_VERSION = true;
