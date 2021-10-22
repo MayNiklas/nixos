@@ -33,6 +33,10 @@
     httpPort = 3000;
     rootUrl = "https://git.lounge.rocks/";
     settings = {
+      "repository" = {
+        ENABLE_PUSH_CREATE_USER = true;
+        ENABLE_PUSH_CREATE_ORG = true;
+      };
       "repository.upload" = {
         FILE_MAX_SIZE = "50";
         MAX_FILES = "20";
