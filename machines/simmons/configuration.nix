@@ -6,6 +6,10 @@
       enable = true;
       home-manager = true;
     };
+    metrics = {
+      node.enable = true;
+      blackbox.enable = true;
+    };
     nginx.enable = true;
     vmware-guest.enable = true;
   };
@@ -80,7 +84,7 @@
 
   networking = {
     hostName = "simmons";
-    firewall = { allowedTCPPorts = [ 80 443 ]; };
+    firewall = { allowedTCPPorts = [ 80 443 9100 9115 ]; };
   };
 
   system.stateVersion = "20.09";
