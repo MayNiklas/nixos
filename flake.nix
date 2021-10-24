@@ -159,9 +159,9 @@
 
       };
 
-      hydraJobs = (nixpkgs.lib.mapAttrs' (name: config:
-        nixpkgs.lib.nameValuePair "nixos-${name}"
-        config.config.system.build.toplevel) self.nixosConfigurations);
+      # hydraJobs = (nixpkgs.lib.mapAttrs' (name: config:
+      #   nixpkgs.lib.nameValuePair "nixos-${name}"
+      #   config.config.system.build.toplevel) self.nixosConfigurations);
 
     } //
 
