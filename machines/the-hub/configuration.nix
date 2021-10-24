@@ -42,6 +42,7 @@ in {
         "10.88.88.2:9100"
       ];
       blackboxTargets = [
+        "https://status.nik-ste.de"
         "https://lounge.rocks"
         "https://cache.lounge.rocks/nix-cache-info"
         "https://drone.lounge.rocks"
