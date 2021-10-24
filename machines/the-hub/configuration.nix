@@ -35,6 +35,7 @@ in {
         "deke:9100"
         "enoch:9100"
         "kora:9100"
+        "simmons:9100"
         "snowflake:9100"
         "desktop:9100"
         "the-hub:9100"
@@ -45,6 +46,7 @@ in {
         "https://cache.lounge.rocks/nix-cache-info"
         "https://drone.lounge.rocks"
         "https://meet.lounge.rocks"
+        "https://git.lounge.rocks"
       ];
     };
   };
