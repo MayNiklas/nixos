@@ -32,7 +32,7 @@
     disableRegistration = true;
     domain = "git.lounge.rocks";
     dump.enable = true;
-    dump.interval = "04:00";
+    dump.interval = "weekly";
     httpAddress = "127.0.0.1";
     httpPort = 3000;
     rootUrl = "https://git.lounge.rocks/";
