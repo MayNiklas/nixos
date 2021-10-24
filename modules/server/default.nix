@@ -28,13 +28,6 @@ in {
         enable vim for this server
       '';
     };
-    vscode-ssh = mkOption {
-      type = types.bool;
-      default = false;
-      description = ''
-        enable vscode-ssh fix for this server
-      '';
-    };
   };
 
   config = mkIf cfg.enable {
@@ -58,7 +51,6 @@ in {
           vim.enable = mkIf cfg.vim true;
           zsh.enable = true;
         };
-        services = { nixos-vscode-ssh-fix.enable = mkIf cfg.vscode-ssh true; };
       };
 
       # Install these packages for my user
@@ -68,7 +60,6 @@ in {
         ../../home-manager/modules/git
         ../../home-manager/modules/vim
         ../../home-manager/modules/zsh
-        ../../home-manager/modules/vscode-server
       ];
       home.stateVersion = "21.05";
     };
