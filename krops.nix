@@ -45,10 +45,11 @@ in rec {
   # nix-build ./krops.nix -A deke && ./result
   # nix-build ./krops.nix -A enoch && ./result
   # nix-build ./krops.nix -A kora && ./result
+  # nix-build ./krops.nix -A simmons && ./result
   # nix-build ./krops.nix -A snowflake && ./result
   # nix-build ./krops.nix -A the-hub && ./result
   # nix-build ./krops.nix -A the-bus && ./result
-  # nix-build ./krops.nix -A aidwater-on-fire && ./result
+  # nix-build ./krops.nix -A water-on-fire && ./result
 
   # Individual machines
   water-on-fire = createHost "water-on-fire" "root@water-on-fire";
@@ -56,6 +57,7 @@ in rec {
   deke = createHost "deke" "root@deke";
   enoch = createHost "enoch" "root@enoch";
   kora = createHost "kora" "root@kora";
+  simmons = createHost "simmons" "root@simmons";
   snowflake = createHost "snowflake" "root@snowflake";
   the-hub = createHost "the-hub" "root@the-hub";
   the-bus = createHost "the-bus" "root@the-bus";
@@ -67,6 +69,7 @@ in rec {
     kora
     deke
     enoch
+    simmons
     snowflake
     water-on-fire
     the-hub
@@ -74,5 +77,5 @@ in rec {
   ]);
 
   servers = pkgs.writeScript "deploy-servers"
-    (lib.concatStringsSep "\n" [ aida kora deke snowflake the-hub the-bus ]);
+    (lib.concatStringsSep "\n" [ aida kora deke simmons snowflake the-hub the-bus ]);
 }
