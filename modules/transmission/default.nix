@@ -79,7 +79,7 @@ in {
         peer-port-random-low = 49152;
         peer-port-random-on-start = false;
         script-torrent-done-enabled = false;
-        script-torrent-done-filename = "";
+        script-torrent-done-filename = null;
         umask = 2;
         watch-dir = "/var/lib/transmission/watchdir";
         watch-dir-enabled = false;
