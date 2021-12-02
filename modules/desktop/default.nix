@@ -87,7 +87,6 @@ in {
         _1password-gui
         atom
         cura
-        darknet
         discord
         dolphin
         drone-cli
