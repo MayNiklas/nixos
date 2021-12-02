@@ -83,9 +83,9 @@ clone:
 
 steps:
 
-- name: Build darknet
-  commands:
-  - nix build .#darknet
+# - name: Build darknet
+#   commands:
+#   - nix build .#darknet
   
 - name: Build owncast
   commands:
@@ -211,9 +211,9 @@ steps:
   - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
   - mv result water-on-fire-new
 
-- name: Build darknet
-  commands:
-  - nix build .#darknet
+# - name: Build darknet
+#   commands:
+#   - nix build .#darknet
   
 - name: Build owncast
   commands:
