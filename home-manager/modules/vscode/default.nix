@@ -10,7 +10,7 @@ in {
       enable = true;
       package = pkgs.vscode;
       extensions = with pkgs.vscode-extensions; [
-        bbenoist.Nix
+        bbenoist.nix
         brettm12345.nixfmt-vscode
         james-yu.latex-workshop
         ms-azuretools.vscode-docker
