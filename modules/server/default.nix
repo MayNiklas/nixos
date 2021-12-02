@@ -32,6 +32,8 @@ in {
 
   config = mkIf cfg.enable {
 
+    services.postgresql.package = pkgs.postgresql_11;
+
     home-manager.users.nik = mkIf cfg.home-manager {
 
       # Pass inputs to home-manager modules
