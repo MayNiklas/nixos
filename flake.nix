@@ -113,6 +113,13 @@
           ];
         };
 
+        flint = defFlakeSystem "x86_64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/flint/configuration.nix) { inherit self; })
+          ];
+        };
+
         kora = defFlakeSystem "x86_64-linux" {
           imports = [
             # Machine specific config

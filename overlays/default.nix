@@ -2,8 +2,10 @@ self: super: {
   # Custom packages. Will be made available on all machines and used where
   # needed.
   anki-bin = super.pkgs.callPackage ../packages/anki-bin { };
+  bukkit-spigot = super.pkgs.callPackage ../packages/bukkit-spigot { };
   darknet = super.pkgs.callPackage ../packages/darknet { };
   owncast = super.pkgs.callPackage ../packages/owncast { };
+  minecraft-server = super.pkgs.callPackage ../packages/minecraft-server { };
   plex = super.pkgs.callPackage ../packages/plex { };
   plexRaw = super.pkgs.callPackage ../packages/plex/raw.nix { };
   tautulli = super.pkgs.python3Packages.callPackage ../packages/tautulli { };
