@@ -1671,6 +1671,347 @@ Check with blkid /dev/sda2.
 							</div>
 						</div>
 					</div>
+					<div class="nixoption block" id="mayniklas.services.minecraft-server.dataDir">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.services.minecraft-server.dataDir"># </a> mayniklas.services.minecraft-server.dataDir  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">path</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> Directory to store Minecraft database and other state/data files.
+ </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>/var/lib/minecraft</code> </p>
+							<p class="block"><strong>Example:</strong> <code></code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/minecraft </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.services.minecraft-server.declarative">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.services.minecraft-server.declarative"># </a> mayniklas.services.minecraft-server.declarative  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">boolean</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> Whether to use a declarative Minecraft server configuration.
+Only if set to &lt;literal&gt;true&lt;/literal&gt;, the options
+&lt;option&gt;services.minecraft-server.whitelist&lt;/option&gt; and
+&lt;option&gt;services.minecraft-server.serverProperties&lt;/option&gt; will be
+applied.
+ </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>false</code> </p>
+							<p class="block"><strong>Example:</strong> <code></code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/minecraft </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.services.minecraft-server.enable">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.services.minecraft-server.enable"># </a> mayniklas.services.minecraft-server.enable  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">boolean</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> If enabled, start a Minecraft Server. The server
+data will be loaded from and saved to
+&lt;option&gt;services.minecraft-server.dataDir&lt;/option&gt;.
+ </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>false</code> </p>
+							<p class="block"><strong>Example:</strong> <code></code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/minecraft </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.services.minecraft-server.eula">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.services.minecraft-server.eula"># </a> mayniklas.services.minecraft-server.eula  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">boolean</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> Whether you agree to
+&lt;link xlink:href=&#34;https://account.mojang.com/documents/minecraft_eula&#34;&gt;
+Mojangs EULA&lt;/link&gt;. This option must be set to
+&lt;literal&gt;true&lt;/literal&gt; to run Minecraft server.
+ </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>false</code> </p>
+							<p class="block"><strong>Example:</strong> <code></code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/minecraft </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.services.minecraft-server.jvmOpts">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.services.minecraft-server.jvmOpts"># </a> mayniklas.services.minecraft-server.jvmOpts  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">strings concatenated with &#34; &#34;</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> JVM options for the Minecraft server. </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>-Xmx2048M -Xms2048M</code> </p>
+							<p class="block"><strong>Example:</strong> <code>-Xmx2048M -Xms4092M -XX:+UseG1GC -XX:+CMSIncrementalPacing -XX:+CMSClassUnloadingEnabled -XX:ParallelGCThreads=2 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10</code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/minecraft </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.services.minecraft-server.openFirewall">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.services.minecraft-server.openFirewall"># </a> mayniklas.services.minecraft-server.openFirewall  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">boolean</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> Whether to open ports in the firewall for the server.
+ </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>false</code> </p>
+							<p class="block"><strong>Example:</strong> <code></code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/minecraft </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.services.minecraft-server.ops">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.services.minecraft-server.ops"># </a> mayniklas.services.minecraft-server.ops  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">attribute set of Minecraft UUIDs</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> players with ops, only has an effect when
+&lt;option&gt;services.minecraft-server.declarative&lt;/option&gt; is
+&lt;literal&gt;true&lt;/literal&gt;
+This is a mapping from Minecraft usernames to UUIDs.
+You can use &lt;link xlink:href=&#34;https://mcuuid.net/&#34;/&gt; to get a
+Minecraft UUID for a username.
+ </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>map[]</code> </p>
+							<p class="block"><strong>Example:</strong> <code>map[_type:literalExpression text:{
+  username1 = &#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&#34;;
+  username2 = &#34;yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy&#34;;
+};
+]</code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/minecraft </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.services.minecraft-server.package">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.services.minecraft-server.package"># </a> mayniklas.services.minecraft-server.package  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">package</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> Version of minecraft-server to run. </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>minecraft-server-1.18</code> </p>
+							<p class="block"><strong>Example:</strong> <code>map[_type:literalExpression text:pkgs.minecraft-server_1_12_2]</code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/minecraft </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.services.minecraft-server.serverProperties">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.services.minecraft-server.serverProperties"># </a> mayniklas.services.minecraft-server.serverProperties  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">attribute set of boolean or signed integer or strings</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> Minecraft server properties for the server.properties file. Only has
+an effect when &lt;option&gt;services.minecraft-server.declarative&lt;/option&gt;
+is set to &lt;literal&gt;true&lt;/literal&gt;. See
+&lt;link xlink:href=&#34;https://minecraft.gamepedia.com/Server.properties#Java_Edition_3&#34;/&gt;
+for documentation on these values.
+ </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>map[]</code> </p>
+							<p class="block"><strong>Example:</strong> <code>map[_type:literalExpression text:{
+  server-port = 43000;
+  difficulty = 3;
+  gamemode = 1;
+  max-players = 5;
+  motd = &#34;NixOS Minecraft server!&#34;;
+  white-list = true;
+  enable-rcon = true;
+  &#34;rcon.password&#34; = &#34;hunter2&#34;;
+}
+]</code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/minecraft </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.services.minecraft-server.whitelist">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.services.minecraft-server.whitelist"># </a> mayniklas.services.minecraft-server.whitelist  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">attribute set of Minecraft UUIDs</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> Whitelisted players, only has an effect when
+&lt;option&gt;services.minecraft-server.declarative&lt;/option&gt; is
+&lt;literal&gt;true&lt;/literal&gt; and the whitelist is enabled
+via &lt;option&gt;services.minecraft-server.serverProperties&lt;/option&gt; by
+setting &lt;literal&gt;white-list&lt;/literal&gt; to &lt;literal&gt;true&lt;/literal&gt;.
+This is a mapping from Minecraft usernames to UUIDs.
+You can use &lt;link xlink:href=&#34;https://mcuuid.net/&#34;/&gt; to get a
+Minecraft UUID for a username.
+ </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>map[]</code> </p>
+							<p class="block"><strong>Example:</strong> <code>map[_type:literalExpression text:{
+  username1 = &#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&#34;;
+  username2 = &#34;yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy&#34;;
+};
+]</code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/minecraft </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
 					<div class="nixoption block" id="mayniklas.services.monitoring-server.blackboxTargets">
 						<div class="level">
 							<div class="level-left">
