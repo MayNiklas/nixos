@@ -42,7 +42,7 @@
 
   networking = {
     hostName = "flint";
-    firewall = { allowedTCPPorts = [ 25565 ]; };
+    firewall = { allowedTCPPorts = [ 9100 9115 ]; };
   };
 
   system.stateVersion = "21.11";

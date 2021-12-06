@@ -34,6 +34,7 @@ in {
         "chris:9100"
         "deke:9100"
         "enoch:9100"
+        "flint:9100"
         "kora:9100"
         "simmons:9100"
         "snowflake:9100"
