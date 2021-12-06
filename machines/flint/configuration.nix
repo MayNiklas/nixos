@@ -17,13 +17,14 @@
         dataDir = "/var/lib/minecraft";
         declarative = true;
         eula = true;
-        jvmOpts = "-Xms2048m -Xmx7168m";
+        jvmOpts = "-Xms2048m -Xmx6656m";
         openFirewall = false;
         serverProperties = {
           difficulty = 2;
           gamemode = 0;
           max-players = 20;
-          view-distance = 16;
+          view-distance = 32;
+          simulation-distance = 8;
           motd = "github.com/mayniklas";
           white-list = true;
         };
