@@ -23,13 +23,16 @@
           difficulty = 2;
           gamemode = 0;
           max-players = 20;
-          motd =
-            "github.com/mayniklas";
+          view-distance = 16;
+          motd = "github.com/mayniklas";
           white-list = true;
         };
         whitelist = {
           JulianRooms = "a89ab984-6b22-4ba1-902a-8e44f65c6df7";
           BobderEhrenmann = "55df1dd6-8232-47f5-abbf-67c8f49ad26f";
+          bobybest4ever = "3d58f395-1c80-46f2-b204-9aecf9651b9f";
+          Fluxso587 = "f9e4dc1a-4eb8-4e6e-b583-86208294b50a";
+          MushroomGHG = "d15eb1d5-876f-4c55-8b73-01b9449acdc2";
         };
       };
     };
