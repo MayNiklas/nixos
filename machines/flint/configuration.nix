@@ -18,7 +18,7 @@
         declarative = true;
         eula = true;
         jvmOpts = "-Xms2048m -Xmx6656m";
-        openFirewall = false;
+        openFirewall = true;
         serverProperties = {
           difficulty = 2;
           gamemode = 0;
