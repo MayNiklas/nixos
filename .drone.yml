@@ -38,6 +38,10 @@ steps:
   commands:
   - nix build -v '.#nixosConfigurations.enoch.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
 
+- name: Build flint
+  commands:
+  - nix build -v '.#nixosConfigurations.flint.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+
 - name: Build kora
   commands:
   - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
@@ -128,6 +132,8 @@ steps:
 #   - mv result arm-server-old
   - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
   - mv result deke-old
+  - nix build -v '.#nixosConfigurations.flint.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result flint-old
   - nix build -v '.#nixosConfigurations.enoch.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
   - mv result enoch-old
   - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
@@ -181,6 +187,11 @@ steps:
   - nix build -v '.#nixosConfigurations.enoch.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
   - mv result enoch-new
 
+- name: Build flint
+  commands:
+  - nix build -v '.#nixosConfigurations.flint.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result flint-new
+
 - name: Build kora
   commands:
   - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
@@ -233,6 +244,7 @@ steps:
 #   - echo "arm-server:" && nix store diff-closures $(readlink -f arm-server-old) $(readlink -f arm-server-new)
   - echo "deke:" && nix store diff-closures $(readlink -f deke-old) $(readlink -f deke-new)
   - echo "enoch:" && nix store diff-closures $(readlink -f enoch-old) $(readlink -f enoch-new)
+  - echo "flint:" && nix store diff-closures $(readlink -f flint-old) $(readlink -f flint-new)
   - echo "kora:" && nix store diff-closures $(readlink -f kora-old) $(readlink -f kora-new)
   - echo "simmons:" && nix store diff-closures $(readlink -f simmons-old) $(readlink -f simmons-new)
   - echo "snowflake:" && nix store diff-closures $(readlink -f snowflake-old) $(readlink -f snowflake-new)
