@@ -17,10 +17,12 @@ let
       uuid = v;
     }) cfg.whitelist));
 
-  # won't work with 1.18
-  # opsFile = pkgs.writeText "ops.json"
-  #   (builtins.toJSON
-  #     (mapAttrsToList (n: v: { name = n; uuid = v; }) cfg.ops));
+  opsFile = pkgs.writeText "ops.json" (builtins.toJSON (mapAttrsToList (n: v: {
+    name = n;
+    uuid = v.uuid;
+    level = v.level;
+    bypassesPlayerLimit = v.bypassesPlayerLimit;
+  }) cfg.ops));
 
   cfgToString = v: if builtins.isBool v then boolToString v else toString v;
 
@@ -127,11 +129,25 @@ in {
 
       ops = mkOption {
         type = let
-          minecraftUUID = types.strMatching
-            "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}" // {
+          minecraftOperator = (types.submodule ({ name, ... }: {
+            options = {
+              uuid = mkOption {
+                type = types.strMatching
+                  "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}";
               description = "Minecraft UUID";
             };
-        in types.attrsOf minecraftUUID;
+              level = mkOption {
+                type = types.int;
+                description = "Operator Level";
+              };
+              bypassesPlayerLimit = mkOption {
+                type = types.bool;
+                default = false;
+                description = "Player can join even if playerlimit is reached";
+              };
+            };
+          }));
+        in types.attrsOf minecraftOperator;
         default = { };
         description = ''
           players with ops, only has an effect when
@@ -223,12 +239,14 @@ in {
 
           # Was declarative before, no need to back up anything
           ln -sf ${whitelistFile} whitelist.json
+          ln -sf ${opsFile} ops.json
           cp -f ${serverPropertiesFile} server.properties
 
         else
 
           # Declarative for the first time, backup stateful files
           ln -sb --suffix=.stateful ${whitelistFile} whitelist.json
+          ln -sb --suffix=.stateful ${opsFile} ops.json
           cp -b --suffix=.stateful ${serverPropertiesFile} server.properties
 
           # server.properties must have write permissions, because every time

@@ -34,7 +34,14 @@
           bobybest4ever = "3d58f395-1c80-46f2-b204-9aecf9651b9f";
           Fluxso587 = "f9e4dc1a-4eb8-4e6e-b583-86208294b50a";
           MushroomGHG = "d15eb1d5-876f-4c55-8b73-01b9449acdc2";
-          Ilusha = "ee3476c9-29a6-4c7a-8146-d66f6d6a78a2";
+          lluscha = "46c45139-ce0a-44de-ae09-60fc61f7769b";
+        };
+        ops = {
+          BobderEhrenmann = {
+            uuid = "55df1dd6-8232-47f5-abbf-67c8f49ad26f";
+            level = 4;
+            bypassesPlayerLimit = true;
+          };
         };
       };
     };
