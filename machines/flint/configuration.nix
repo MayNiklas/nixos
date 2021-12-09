@@ -35,10 +35,16 @@
           Fluxso587 = "f9e4dc1a-4eb8-4e6e-b583-86208294b50a";
           MushroomGHG = "d15eb1d5-876f-4c55-8b73-01b9449acdc2";
           lluscha = "46c45139-ce0a-44de-ae09-60fc61f7769b";
+          Bloodwood_17 = "3e7f87ab-7165-4cb7-8176-4c788c2064ce";
         };
         ops = {
           BobderEhrenmann = {
             uuid = "55df1dd6-8232-47f5-abbf-67c8f49ad26f";
+            level = 4;
+            bypassesPlayerLimit = true;
+          };
+          JulianRooms = {
+            uuid = "a89ab984-6b22-4ba1-902a-8e44f65c6df7";
             level = 4;
             bypassesPlayerLimit = true;
           };
