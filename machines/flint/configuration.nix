@@ -36,6 +36,7 @@
           MushroomGHG = "d15eb1d5-876f-4c55-8b73-01b9449acdc2";
           lluscha = "46c45139-ce0a-44de-ae09-60fc61f7769b";
           Bloodwood_17 = "3e7f87ab-7165-4cb7-8176-4c788c2064ce";
+          Magista18 = "aaac0fa1-2684-43d5-8b3a-55b9c1e3e11a";
         };
         ops = {
           BobderEhrenmann = {
