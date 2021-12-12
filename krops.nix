@@ -56,6 +56,7 @@ in rec {
   aida = createHost "aida" "root@aida";
   deke = createHost "deke" "root@deke";
   enoch = createHost "enoch" "root@enoch";
+  flint = createHost "flint" "root@flint";
   kora = createHost "kora" "root@kora";
   simmons = createHost "simmons" "root@simmons";
   snowflake = createHost "snowflake" "root@snowflake";
@@ -66,6 +67,7 @@ in rec {
   # Groups
   all = pkgs.writeScript "deploy-all" (lib.concatStringsSep "\n" [
     aida
+    flint
     kora
     deke
     enoch
@@ -77,5 +79,5 @@ in rec {
   ]);
 
   servers = pkgs.writeScript "deploy-servers"
-    (lib.concatStringsSep "\n" [ aida kora deke simmons snowflake the-hub the-bus ]);
+    (lib.concatStringsSep "\n" [ aida flint kora deke simmons snowflake the-hub the-bus ]);
 }
