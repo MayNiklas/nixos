@@ -49,6 +49,7 @@ in {
         "https://drone.lounge.rocks"
         "https://meet.lounge.rocks"
         "https://git.lounge.rocks"
+        "https://hydra.lounge.rocks"
       ];
     };
   };
