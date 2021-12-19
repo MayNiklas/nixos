@@ -25,7 +25,7 @@ in {
     boot.growPartition = true;
     boot.kernelParams = [ "console=ttyS0" ];
     boot.loader.grub.device = "/dev/sda";
-    boot.loader.timeout = 0;
+    boot.loader.timeout = 5;
 
   };
 
