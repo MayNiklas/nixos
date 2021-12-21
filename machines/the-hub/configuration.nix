@@ -211,6 +211,16 @@ in {
           publicKey = "ylprZ5gCugAxo1lkdbSWWDicVHd+Ul+2rz9ItuMJxxs=";
           allowedIPs = [ "10.10.10.7/32" ];
         }
+        # iPad M.
+        {
+          publicKey = "tY4kwJFserZZTHsfBzaQX05zFbPoPf90EYFQOmaE+zY=";
+          allowedIPs = [ "10.10.10.8/32" ];
+        }
+        # iPhone M.
+        {
+          publicKey = "VZr3sY7tBcv0ETaNI2a8gvwyH1OG3+Rq/pUKYz703XQ=";
+          allowedIPs = [ "10.10.10.9/32" ];
+        }
       ];
     };
 
