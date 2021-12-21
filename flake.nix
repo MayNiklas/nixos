@@ -185,6 +185,10 @@
         };
       in rec {
 
+        devShells = flake-utils.lib.flattenTree {
+          vs-fix = import ./shells/vs-fix.nix { inherit pkgs; };
+        };
+
         packages = flake-utils.lib.flattenTree {
           anki-bin = pkgs.anki-bin;
           darknet = pkgs.darknet;
