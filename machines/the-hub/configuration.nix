@@ -93,7 +93,7 @@ in {
       # only to renew certificate!
       # allowedTCPPorts = [ 80 443 ];
       interfaces.wg0.allowedTCPPorts = [ 80 443 ];
-      allowedUDPPorts = [ 58102 ];
+      allowedUDPPorts = [ 58102 58103 ];
     };
 
     wireguard.interfaces.wg0 = {
@@ -108,9 +108,6 @@ in {
         # ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iptables}/bin/iptables -t nat -D PREROUTING -d 5.181.49.14 -p tcp --dport 80 -j DNAT --to-destination 10.88.88.2
         # ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iptables}/bin/iptables -t nat -D PREROUTING -d 5.181.49.14 -p tcp --dport 443 -j DNAT --to-destination 10.88.88.2
       '';
-    };
-
-    wireguard.interfaces.wg0 = {
       ips = [ "10.88.88.1/24" ];
       listenPort = 58102;
       # Path to the private key file
@@ -188,11 +185,6 @@ in {
           publicKey = "dWMWrCKd/vTDhs+15YiFeSQziZACBiOK/f3vC5x73Qc=";
           allowedIPs = [ "10.88.88.24/32" ];
         }
-        # MacBook M.
-        {
-          publicKey = "ylprZ5gCugAxo1lkdbSWWDicVHd+Ul+2rz9ItuMJxxs=";
-          allowedIPs = [ "10.10.10.7/32" ];
-        }
         # MacBook A.
         {
           publicKey = "+UaFc1DRQIRgCU38G9qi7k2BiCUbIZVMYdYT/ZUyuCU=";
@@ -200,7 +192,31 @@ in {
         }
       ];
     };
+
+    wireguard.interfaces.wg1 = {
+      postSetup = ''
+        ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -o ens3 -j MASQUERADE
+      '';
+
+      postShutdown = ''
+        ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.10.10.0/24 -o ens3 -j MASQUERADE
+      '';
+      ips = [ "10.10.10.1/24" ];
+      listenPort = 58103;
+      # Path to the private key file
+      privateKeyFile = toString /var/src/secrets/wireguard/private;
+      peers = [
+        # MacBook M.
+        {
+          publicKey = "ylprZ5gCugAxo1lkdbSWWDicVHd+Ul+2rz9ItuMJxxs=";
+          allowedIPs = [ "10.10.10.7/32" ];
+        }
+      ];
+    };
+
   };
+
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 
   system.stateVersion = "20.09";
 
