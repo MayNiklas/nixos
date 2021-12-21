@@ -186,6 +186,7 @@
       in rec {
 
         devShells = flake-utils.lib.flattenTree {
+          # nix develop github:mayniklas/nixos#vs-fix
           vs-fix = import ./shells/vs-fix.nix { inherit pkgs; };
         };
 
