@@ -28,6 +28,13 @@ in {
         enable vim for this server
       '';
     };
+    vs-fix = mkOption {
+      type = types.bool;
+      default = true;
+      description = ''
+        enable vs-fix for this server
+      '';
+    };
   };
 
   config = mkIf cfg.enable {
@@ -51,6 +58,7 @@ in {
         programs = {
           git.enable = mkIf cfg.git true;
           vim.enable = mkIf cfg.vim true;
+          vs-fix.enable = mkIf cfg.vs-fix true;
           zsh.enable = true;
         };
       };
@@ -61,6 +69,7 @@ in {
       imports = [
         ../../home-manager/modules/git
         ../../home-manager/modules/vim
+        ../../home-manager/modules/vs-fix
         ../../home-manager/modules/zsh
       ];
       home.stateVersion = "21.05";

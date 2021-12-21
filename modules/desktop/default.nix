@@ -35,6 +35,13 @@ in {
         enable vim for this desktop
       '';
     };
+    vs-fix = mkOption {
+      type = types.bool;
+      default = true;
+      description = ''
+        enable vs-fix for this server
+      '';
+    };
     rofi = mkOption {
       type = types.bool;
       default = false;
@@ -78,6 +85,7 @@ in {
           i3.enable = cfg.i3;
           vim.enable = cfg.vim;
           vscode.enable = true;
+          vs-fix.enable = mkIf cfg.vs-fix true;
           zsh.enable = true;
         };
       };
@@ -129,6 +137,7 @@ in {
         ../../home-manager/modules/rofi
         ../../home-manager/modules/vim
         ../../home-manager/modules/vscode
+        ../../home-manager/modules/vs-fix
         ../../home-manager/modules/zsh
       ];
 
