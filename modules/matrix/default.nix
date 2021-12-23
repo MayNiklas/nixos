@@ -78,6 +78,7 @@ in {
     services.matrix-synapse = {
       enable = true;
       server_name = "${cfg.host}";
+      enable_registration = false;
       listeners = [{
         port = 8008;
         bind_address = "::1";
