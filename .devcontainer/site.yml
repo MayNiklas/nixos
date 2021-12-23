@@ -1,0 +1,86 @@
+---
+- name: tasks
+  hosts: localhost
+  vars:
+    - apt_packages:
+        - ansible
+        - aptitude
+        - ca-certificates
+        - curl
+        - git
+        - locales
+        - nano
+        - python3-apt
+        - sudo
+        - tzdata
+        - xz-utils
+        - zsh
+
+  tasks:
+  
+  - name: Upgrade all packages to the latest version
+    apt:
+      update_cache: yes
+      name: "*"
+      state: latest
+
+  - name: Remove useless packages from the cache
+    apt:
+      autoclean: yes
+
+  - name: Remove dependencies that are no longer required
+    apt:
+      autoremove: yes
+
+  - name: "Install packages defined in apt_packages"
+    apt:
+      name: "{{ item }}"
+      state: latest
+    loop: "{{ apt_packages }}"
+    when: apt_packages|default([])|count > 0
+
+  - name: Add the user nik
+    become: true
+    user:
+      name: nik
+      groups: sudo,users
+      append: yes
+      shell: /bin/zsh
+
+  - name: passwordless sudo
+    blockinfile:
+      path: "/etc/sudoers.d/010_nik-nopasswd"
+      marker: "# {mark} - enable passwordless sudo - ANSIBLE MANAGED BLOCK"
+      create: yes
+      owner: "root"
+      mode: 0600
+      block: |
+        nik ALL=(ALL) NOPASSWD: ALL
+
+  - name: create .zshrc config
+    blockinfile:
+      path: "/home/nik/.zshrc"
+      marker: "# {mark} - enable defaults - ANSIBLE MANAGED BLOCK"
+      create: yes
+      owner: "nik"
+      group: "nik"
+      mode: 0600
+      block: |
+        # Lines configured by zsh-newuser-install
+        HISTFILE=~/.histfile
+        HISTSIZE=1000
+        SAVEHIST=1000
+        # End of lines configured by zsh-newuser-install
+        # The following lines were added by compinstall
+        zstyle :compinstall filename '/home/nik/.zshrc'
+
+        autoload -Uz compinit
+        compinit
+        # End of lines added by compinstall
+
+  - name: install nix
+    shell: curl -L https://nixos.org/nix/install | sh
+    args:
+      executable: /bin/zsh
+    become: yes
+    become_user: nik
