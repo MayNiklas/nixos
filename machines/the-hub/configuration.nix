@@ -47,6 +47,14 @@ in {
         "https://git.lounge.rocks"
         "https://hydra.lounge.rocks"
       ];
+      blackboxPingTargets = [
+        "192.168.5.1"
+        "192.168.22.1"
+        "192.168.42.1"
+        "192.168.88.1"
+        "192.168.97.15"
+        "192.168.98.1"
+      ];
     };
   };
 

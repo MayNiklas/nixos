@@ -30,6 +30,10 @@ in {
           name = "blackbox-exporter-config";
           text = ''
             modules:
+              icmp:
+                prober: icmp
+                icmp:
+                  preferred_ip_protocol: ip4
               http_2xx:
                 prober: http
                 timeout: 5s
