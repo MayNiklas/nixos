@@ -7,8 +7,9 @@
       home-manager = true;
     };
     metrics = {
-      node.enable = true;
       blackbox.enable = true;
+      flake.enable = true;
+      node.enable = true;
     };
     nginx.enable = true;
     vmware-guest.enable = true;

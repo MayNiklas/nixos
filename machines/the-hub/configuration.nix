@@ -17,8 +17,9 @@ in {
     kvm-guest.enable = true;
     nginx.enable = true;
     metrics = {
-      node.enable = true;
       blackbox.enable = true;
+      flake.enable = true;
+      node.enable = true;
     };
     services.monitoring-server = {
       enable = true;

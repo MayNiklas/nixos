@@ -11,8 +11,9 @@
       disable-cache = true;
     };
     metrics = {
-      node.enable = true;
       blackbox.enable = true;
+      flake.enable = true;
+      node.enable = true;
     };
     openssh.enable = true;
     zsh.enable = true;

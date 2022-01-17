@@ -8,8 +8,9 @@
     };
     nix-common.disable-cache = true;
     metrics = {
-      node.enable = true;
       blackbox.enable = true;
+      flake.enable = true;
+      node.enable = true;
     };
     sonarr.enable = true;
     jackett.enable = true;

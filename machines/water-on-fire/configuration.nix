@@ -25,8 +25,9 @@
       beta-driver = false;
     };
     metrics = {
-      node.enable = true;
       blackbox.enable = true;
+      flake.enable = true;
+      node.enable = true;
     };
     wg = {
       enable = true;

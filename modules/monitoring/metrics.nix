@@ -1,4 +1,4 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, config, inputs, ... }:
 with lib;
 let cfg = config.mayniklas.metrics;
 in {
@@ -7,11 +7,31 @@ in {
     enable = mkEnableOption "prometheus node-exporter metrics collection";
   };
 
+  options.mayniklas.metrics.flake = {
+    enable = mkEnableOption "prometheus node-exporter metrics collection";
+  };
+
   options.mayniklas.metrics.blackbox = {
     enable = mkEnableOption "prometheus blackbox-exporter metrics collection";
   };
 
   config = {
+
+    environment.etc."nix/flake_inputs.prom" = mkIf cfg.flake.enable {
+      mode = "0555";
+      text = ''
+        # HELP flake_registry_last_modified Last modification date of flake input in unixtime
+        # TYPE flake_input_last_modified gauge
+        ${concatStringsSep "\n" (map (i:
+          ''
+            flake_input_last_modified{input="${i}",${
+              concatStringsSep "," (mapAttrsToList (n: v: ''${n}="${v}"'')
+                (filterAttrs (n: v: (builtins.typeOf v) == "string")
+                  inputs."${i}"))
+            }} ${toString inputs."${i}".lastModified}'') (attrNames inputs))}
+      '';
+    };
+
     services.prometheus.exporters = {
       node = mkIf cfg.node.enable {
         enable = true;
@@ -19,7 +39,8 @@ in {
         # Listen on 0.0.0.0, bet we only open the firewall for wg0
         openFirewall = false;
         enabledCollectors = [ "systemd" ];
-        extraFlags = [ "--collector.textfile.directory=/etc/nix" ];
+        extraFlags =
+          mkIf cfg.flake.enable [ "--collector.textfile.directory=/etc/nix" ];
       };
       blackbox = mkIf cfg.blackbox.enable {
         enable = true;
