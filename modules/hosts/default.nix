@@ -41,6 +41,7 @@ in {
         
         # wg
         10.88.88.1 status.nik-ste.de
+        10.88.88.19 the-bus-wg
         10.88.88.24 desktop
 
         192.168.88.70 chris
