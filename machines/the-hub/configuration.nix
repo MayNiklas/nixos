@@ -36,6 +36,7 @@ in {
         "simmons:9100"
         "snowflake:9100"
         "desktop:9100"
+        "the-bus:9100"
         "the-hub:9100"
         "lasse:9100"
         "10.88.88.2:9100"
