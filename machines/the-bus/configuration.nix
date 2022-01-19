@@ -25,6 +25,7 @@
   networking = {
     hostName = "the-bus";
     firewall.interfaces.wg0.allowedTCPPorts = [ 9100 ];
+    wg-quick.interfaces.wg0.postUp = "/run/wrappers/bin/ping -c 5 10.88.88.1";
   };
 
   system.stateVersion = "20.09";
