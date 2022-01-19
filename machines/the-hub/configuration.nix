@@ -170,6 +170,11 @@ in {
           publicKey = "fnuGuNVPco092ZV9zDNYY55tW/pzdRBltij9X/5DcUU=";
           allowedIPs = [ "10.88.88.9/32" ];
         }
+        # the-bus
+        {
+          publicKey = "QugvtwQs3pvGMiXgHL80A0HrBhLwqQ+IXA0iH/M9BDk=";
+          allowedIPs = [ "10.88.88.19/32" ];
+        }
         # 13 inch MacBook Pro
         {
           publicKey = "DiYQ6+0EvA6kG5w07I+y5GUp1Qxekj3txjgLmK9q3CI=";
