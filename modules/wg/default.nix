@@ -30,25 +30,34 @@ in {
 
   config = mkIf cfg.enable {
 
-    networking.wireguard.interfaces.wg0 = {
-      ips = [ "${cfg.ip}/24" ];
-      listenPort = mkIf cfg.server cfg.port;
+    networking = {
 
-      # Path to the private key file
-      privateKeyFile = toString /var/src/secrets/wireguard/private;
-      generatePrivateKeyFile = true;
+      ### used to generate private key
+      # wireguard.interfaces.wg0 = {
+      #   ips = [ "${cfg.ip}/24" ];
+      #   privateKeyFile = "/var/src/secrets/wireguard/private";
+      #   generatePrivateKeyFile = true;
+      # };
 
-      peers = mkIf (cfg.server != true) [{
+      wg-quick.interfaces.wg0 = {
+        address = [ "${cfg.ip}/24" ];
+        listenPort = mkIf cfg.server cfg.port;
 
-        publicKey = "vpXKrLE0M7eH3GVd1I/OrfMRYQrq+TapUYfGyV1D4SQ=";
+        # Path to the private key file
+        privateKeyFile = "/var/src/secrets/wireguard/private";
 
-        allowedIPs = cfg.allowedIPs;
+        peers = mkIf (cfg.server != true) [{
 
-        endpoint = "the-hub:58102";
+          publicKey = "vpXKrLE0M7eH3GVd1I/OrfMRYQrq+TapUYfGyV1D4SQ=";
 
-        persistentKeepalive = 15;
+          allowedIPs = cfg.allowedIPs;
 
-      }];
+          endpoint = "the-hub:58102";
+
+          persistentKeepalive = 15;
+
+        }];
+      };
     };
 
     # Enable ip forwarding, so wireguard peers can reach eachother
