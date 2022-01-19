@@ -22,7 +22,10 @@
     kvm-guest.enable = true;
   };
 
-  networking.hostName = "the-bus";
+  networking = {
+    hostName = "the-bus";
+    firewall.interfaces.wg0.allowedTCPPorts = [ 9100 ];
+  };
 
   system.stateVersion = "20.09";
 
