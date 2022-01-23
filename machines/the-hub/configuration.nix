@@ -12,7 +12,6 @@ in {
       enable = true;
       home-manager = true;
     };
-    hosts = { enable = true; };
     iperf = { enable = true; };
     kvm-guest.enable = true;
     nginx.enable = true;
@@ -35,8 +34,8 @@ in {
         "kora:9100"
         "simmons:9100"
         "snowflake:9100"
-        "desktop:9100"
-        "the-bus-wg:9100"
+        "water-on-fire:9100"
+        "the-bus:9100"
         "the-hub:9100"
         "lasse:9100"
         "10.88.88.2:9100"
@@ -89,6 +88,26 @@ in {
   networking = {
 
     hostName = "the-hub";
+
+    # Additional hosts to put in /etc/hosts
+    extraHosts = ''
+      #
+      192.168.5.20 aida
+      192.168.5.21 kora
+      192.168.20.5 bob
+      192.168.20.10 simmons
+      192.168.20.50 flint
+      192.168.20.111 lasse
+      192.168.20.25 enoch
+      192.168.30.95 snowflake
+      192.168.30.99 deke
+
+      # wg
+      10.88.88.1 status.nik-ste.de
+      10.88.88.19 the-bus
+      10.88.88.24 water-on-fire
+      192.168.88.70 chris
+    '';
 
     enableIPv6 = true;
     useDHCP = true;
