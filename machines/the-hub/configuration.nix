@@ -47,7 +47,6 @@ in {
         "https://drone.lounge.rocks"
         "https://meet.lounge.rocks"
         "https://git.lounge.rocks"
-        "https://hydra.lounge.rocks"
       ];
       blackboxPingTargets = [
         "192.168.5.1"
