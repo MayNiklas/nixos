@@ -23,6 +23,7 @@ in {
       # Default is 3000
       port = 9005;
       addr = "127.0.0.1";
+      auth.anonymous.enable = true;
 
       provision.datasources = [
         {
