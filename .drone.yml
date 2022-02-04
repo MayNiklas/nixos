@@ -71,6 +71,7 @@ trigger:
   - main
   event:
   - push
+  - cron
   - pull_request
   
 ---
@@ -256,7 +257,7 @@ trigger:
   branch:
   - main
   event:
-  - cron
+  - pull_request
 
 ---
 kind: pipeline
