@@ -34,6 +34,7 @@ in {
         "kora:9100"
         "simmons:9100"
         "snowflake:9100"
+        "quinjet:9100"
         "water-on-fire:9100"
         "the-bus:9100"
         "the-hub:9100"
@@ -93,6 +94,7 @@ in {
       #
       192.168.5.20 aida
       192.168.5.21 kora
+      192.168.5.60 quinjet
       192.168.20.5 bob
       192.168.20.10 simmons
       192.168.20.50 flint
