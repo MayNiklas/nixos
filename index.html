@@ -381,6 +381,128 @@
 							</div>
 						</div>
 					</div>
+					<div class="nixoption block" id="mayniklas.github-runner.enable">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.github-runner.enable"># </a> mayniklas.github-runner.enable  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">boolean</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> Whether to enable activate github-runner. </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>false</code> </p>
+							<p class="block"><strong>Example:</strong> <code>true</code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/github-runner </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.github-runner.name">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.github-runner.name"># </a> mayniklas.github-runner.name  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">string</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> Name of the runner to configure. Defaults to the hostname.
+Changing this option triggers a new runner registration.
+ </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>nixos-x64-1</code> </p>
+							<p class="block"><strong>Example:</strong> <code>nixos-aarch64-1</code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/github-runner </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.github-runner.path">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.github-runner.path"># </a> mayniklas.github-runner.path  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">path</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> The full path to a file which contains the runner registration token.
+The file should contain exactly one line with the token without any newline.
+The token can be used to re-register a runner of the same name but is time-limited.
+Changing this option or the file&#39;s content triggers a new runner registration.
+ </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>/run/secrets/github-runner/nixos.token</code> </p>
+							<p class="block"><strong>Example:</strong> <code></code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/github-runner </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="nixoption block" id="mayniklas.github-runner.url">
+						<div class="level">
+							<div class="level-left">
+								<div class="level-item">
+									<h3 class="title is-3"> <a href="#mayniklas.github-runner.url"># </a> mayniklas.github-runner.url  </h3>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<span class="tag is-medium is-info">string</span>
+								</div>
+							</div>
+						</div>
+
+						<p class="subtitle"> Repository to add the runner to. Changing this option triggers a new runner registration. </p>
+
+						<div class="block">
+							<p class="block"><strong>Default:</strong> <code>https://github.com/MayNiklas/nixos</code> </p>
+							<p class="block"><strong>Example:</strong> <code>https://github.com/MayNiklas/nixos</code> </p>
+
+							<h4 class="title is-4">Declarations</h4>
+
+							<div class="block">
+								<ul>
+									<li> <code> /home/runner/work/nixos/nixos/modules/github-runner </code> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
 					<div class="nixoption block" id="mayniklas.gnome.enable">
 						<div class="level">
 							<div class="level-left">
