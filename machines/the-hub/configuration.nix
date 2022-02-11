@@ -33,6 +33,7 @@ in {
         "flint:9100"
         "kora:9100"
         "simmons:9100"
+        "simone:9100"
         "snowflake:9100"
         "quinjet:9100"
         "water-on-fire:9100"
@@ -105,6 +106,7 @@ in {
 
       # wg
       10.88.88.1 status.nik-ste.de
+      10.88.88.8 simone
       10.88.88.19 the-bus
       10.88.88.24 water-on-fire
       192.168.88.70 chris
@@ -188,7 +190,7 @@ in {
         }
         # S2S S.
         {
-          publicKey = "b6J6xFklpIzMnzd4tEMvci8gL/IY/aZYfz597lX9Ik0=";
+          publicKey = "jvOx9hef7b9VWO0Lqv5BO7TtijxlxfIIQ9j0vwjZCn0=";
           allowedIPs = [ "10.88.88.8/32" ];
         }
         # iMac B.
