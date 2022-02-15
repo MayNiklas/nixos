@@ -47,6 +47,7 @@ in {
         "https://lounge.rocks"
         "https://cache.lounge.rocks/nix-cache-info"
         "https://drone.lounge.rocks"
+        "https://matrix.lounge.rocks"
         "https://meet.lounge.rocks"
         "https://git.lounge.rocks"
       ];
