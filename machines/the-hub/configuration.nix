@@ -234,6 +234,11 @@ in {
           publicKey = "+UaFc1DRQIRgCU38G9qi7k2BiCUbIZVMYdYT/ZUyuCU=";
           allowedIPs = [ "10.88.88.200/32" ];
         }
+        # Lukas Home
+        {
+          publicKey = "+Pw1XTLRbguc/HnAHMOl56ycQOozvSvLN6xaoAr2fQ8=";
+          allowedIPs = [ "10.88.88.201/32" ];
+        }
       ];
     };
 
