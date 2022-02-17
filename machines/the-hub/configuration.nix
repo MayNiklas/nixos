@@ -130,6 +130,11 @@ in {
       allowedUDPPorts = [ 58102 58103 ];
     };
 
+    interfaces = {
+      wg0.mtu = 1412;
+      wg1.mtu = 1412;
+    };
+
     wireguard.interfaces.wg0 = {
       postSetup = ''
         ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.88.88.0/24 -o ens3 -j MASQUERADE
