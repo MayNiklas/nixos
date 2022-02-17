@@ -33,7 +33,7 @@ in {
         "flint:9100"
         "kora:9100"
         "simmons:9100"
-        "simone:9100"
+        "simone-pi4b:9100"
         "snowflake:9100"
         "quinjet:9100"
         "water-on-fire:9100"
@@ -107,7 +107,7 @@ in {
 
       # wg
       10.88.88.1 status.nik-ste.de
-      10.88.88.8 simone
+      10.88.88.8 simone-pi4b
       10.88.88.19 the-bus
       10.88.88.24 water-on-fire
       192.168.88.70 chris
