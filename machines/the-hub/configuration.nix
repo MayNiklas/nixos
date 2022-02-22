@@ -127,12 +127,13 @@ in {
       # only to renew certificate!
       # allowedTCPPorts = [ 80 443 ];
       interfaces.wg0.allowedTCPPorts = [ 80 443 ];
-      allowedUDPPorts = [ 58102 58103 ];
+      allowedUDPPorts = [ 58102 58103 58104 ];
     };
 
     interfaces = {
       wg0.mtu = 1412;
       wg1.mtu = 1412;
+      wg2.mtu = 1412;
     };
 
     wireguard.interfaces.wg0 = {
@@ -177,7 +178,12 @@ in {
         # S2S M.
         {
           publicKey = "UxM4yRr6Vd5wYPtGcMcYd7pfyKZCGyz9VsG31FVbo38=";
-          allowedIPs = [ "10.88.88.4/32" "192.168.42.0/24" "192.168.52.0/24" "192.168.0.1/32" ];
+          allowedIPs = [
+            "10.88.88.4/32"
+            "192.168.42.0/24"
+            "192.168.52.0/24"
+            "192.168.0.1/32"
+          ];
         }
         # S2S Lep.
         {
@@ -248,6 +254,24 @@ in {
     };
 
     wireguard.interfaces.wg1 = {
+      postSetup = ''
+        ip neigh add proxy 188.68.45.37 dev ens3
+      '';
+
+      postShutdown = ''
+        ip neigh del proxy 188.68.45.37 dev ens3
+      '';
+      ips = [ "172.20.1.1/30" ];
+      listenPort = 58104;
+      # Path to the private key file
+      privateKeyFile = toString /var/src/secrets/wireguard/private;
+      peers = [{
+        publicKey = "65Yiz6y4sWgmUkmAsxGYkwdb8yrwKQmAT3L9Hgz7whA=";
+        allowedIPs = [ "172.20.1.2" "188.68.45.37/32" ];
+      }];
+    };
+
+    wireguard.interfaces.wg2 = {
       postSetup = ''
         ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -o ens3 -j MASQUERADE
       '';
