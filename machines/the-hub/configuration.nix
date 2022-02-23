@@ -1,11 +1,4 @@
-{ self, ... }:
-
-let
-  interface = "ens3";
-  subnet = "64";
-  network = "2a03:4000:3f:5d::/${subnet}";
-  own_ip = "2a03:4000:3f:5d:98d5:41ff:feca:d0e7/${subnet}";
-in {
+{ self, ... }: {
 
   mayniklas = {
     server = {
@@ -113,15 +106,12 @@ in {
       192.168.88.70 chris
     '';
 
-    enableIPv6 = true;
-    useDHCP = true;
-    dhcpcd.persistent = true;
-    dhcpcd.extraConfig = ''
-      noipv6rs
-      interface ${interface}
-      ia_pd 1/${network} ${interface}
-      static ip6_address=${own_ip}
-    '';
+    interfaces.ens3 = {
+      ipv6.addresses = [{
+        address = "2a03:4000:3f:5d:98d5:41ff:feca:d0e7";
+        prefixLength = 128;
+      }];
+    };
 
     firewall = {
       # only to renew certificate!
