@@ -304,6 +304,12 @@ in {
 
   };
 
+  # swapfile
+  swapDevices = [{
+    device = "/var/swapfile";
+    size = (1024 * 2);
+  }];
+
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 
   system.stateVersion = "20.09";
