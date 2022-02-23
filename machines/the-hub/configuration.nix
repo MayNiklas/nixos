@@ -245,34 +245,51 @@
 
     wireguard.interfaces.wg1 = {
       postSetup = ''
-        # ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iptables}/bin/iptables -t nat -A POSTROUTING -s 172.20.1.1/24 -o ens3 -j MASQUERADE
-
+        # expect packages with destination IP 188.68.45.37 on ens3
         ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iproute2}/bin/ip neigh add proxy 188.68.45.37 dev ens3
 
-        # ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iproute2}/bin/ip neigh add proxy 2a03:4000:003f:005d:8800::1 dev ens3
+        # expect packages with destination IP 2a03:4000:003f:005d:8800::1 on ens3
+        ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iproute2}/bin/ip neigh add proxy 2a03:4000:003f:005d:8800::1 dev ens3
+        # accept tcp packages with dport 5201 being forwarded to 2a03:4000:003f:005d:8800::1
+        ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iptables}/bin/ip6tables -A FORWARD --protocol tcp --destination-port 5201 --dst 2a03:4000:003f:005d:8800::1 --jump ACCEPT
+        
+        # drop all packages without active session being forwarded to 2a03:4000:003f:005d:8800::0/72
+        ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iptables}/bin/ip6tables -A FORWARD -m state --state NEW --dst 2a03:4000:003f:005d:8800::0/72 --jump DROP
+
+        # NAT out packages 172.20.1.1/24 -> ens3
+        ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iptables}/bin/iptables -t nat -A POSTROUTING -s 172.20.1.1/24 -o ens3 -j MASQUERADE
       '';
 
       postShutdown = ''
-        # ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iptables}/bin/iptables -t nat -D POSTROUTING -s 172.20.1.1/24 -o ens3 -j MASQUERADE
-
+        # expect packages with destination IP 188.68.45.37 on ens3
         ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iproute2}/bin/ip neigh del proxy 188.68.45.37 dev ens3
-
-        # ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iproute2}/bin/ip neigh del proxy 2a03:4000:003f:005d:8800::1 dev ens3
+I
+        # expect packages with destination IP 2a03:4000:003f:005d:8800::1 on ens3
+        ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iproute2}/bin/ip neigh del proxy 2a03:4000:003f:005d:8800::1 dev ens3
+        # accept tcp packages with dport 5201 being forwarded to 2a03:4000:003f:005d:8800::1
+        ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iptables}/bin/ip6tables -D FORWARD --protocol tcp --destination-port 5201 --dst 2a03:4000:003f:005d:8800::1 --jump ACCEPT
+        
+        # drop all packages without active session being forwarded to 2a03:4000:003f:005d:8800::0/72
+        ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iptables}/bin/ip6tables -D FORWARD -m state --state NEW --dst 2a03:4000:003f:005d:8800::0/72 --jump DROP
+        
+        # NAT out packages 172.20.1.1/24 -> ens3
+        ${self.inputs.nixpkgs.legacyPackages.x86_64-linux.iptables}/bin/iptables -t nat -D POSTROUTING -s 172.20.1.1/24 -o ens3 -j MASQUERADE
       '';
-      # ips = [ "172.20.1.1/24" "2a03:4000:003f:005d:8800::0/72" ];
-      ips = [ "172.20.1.1/24" ];
+      ips = [ "172.20.1.1/24" "2a03:4000:003f:005d:8800::0/72" ];
+      # ips = [ "172.20.1.1/24" ];
       listenPort = 58104;
       # Path to the private key file
       privateKeyFile = toString /var/src/secrets/wireguard/private;
-      peers = [{
-        publicKey = "65Yiz6y4sWgmUkmAsxGYkwdb8yrwKQmAT3L9Hgz7whA=";
-        allowedIPs = [ "172.20.1.2" "188.68.45.37/32" ];
-      }
-      # {
-      #   publicKey = "DWUsTmhpnFGWZH1gI4dX7rvfrw+kl5lMnRTpl0OzLxI=";
-      #   allowedIPs = [ "172.20.1.3" "2a03:4000:003f:005d:8800::1" ];
-      # }
-        ];
+      peers = [
+        {
+          publicKey = "65Yiz6y4sWgmUkmAsxGYkwdb8yrwKQmAT3L9Hgz7whA=";
+          allowedIPs = [ "172.20.1.2" "188.68.45.37/32" ];
+        }
+        {
+          publicKey = "DWUsTmhpnFGWZH1gI4dX7rvfrw+kl5lMnRTpl0OzLxI=";
+          allowedIPs = [ "172.20.1.3" "2a03:4000:003f:005d:8800::1" ];
+        }
+      ];
     };
 
     wireguard.interfaces.wg2 = {
@@ -316,8 +333,8 @@
 
   boot.kernel.sysctl = {
     "net.ipv4.ip_forward" = 1;
-    # "net.ipv6.conf.all.forwarding" = 1;
-    # "net.ipv6.conf.all.proxy_ndp" = 1;
+    "net.ipv6.conf.all.forwarding" = 1;
+    "net.ipv6.conf.all.proxy_ndp" = 1;
   };
 
   system.stateVersion = "20.09";
