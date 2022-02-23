@@ -23,47 +23,47 @@ steps:
 
 - name: Build aida
   commands:
-  - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 
 # - name: Build arm-server
 #   commands:
-#   - nix build -v '.#nixosConfigurations.arm-server.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+#   - nix build -v '.#nixosConfigurations.arm-server.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 
 - name: Build deke
   commands:
-  - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 
 - name: Build enoch
   commands:
-  - nix build -v '.#nixosConfigurations.enoch.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.enoch.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 
 - name: Build flint
   commands:
-  - nix build -v '.#nixosConfigurations.flint.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.flint.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 
 - name: Build kora
   commands:
-  - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 
 - name: Build simmons
   commands:
-  - nix build -v '.#nixosConfigurations.simmons.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.simmons.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   
 - name: Build snowflake
   commands:
-  - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 
 - name: Build the-hub
   commands:
-  - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 
 - name: Build the-bus
   commands:
-  - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 
 - name: Build water-on-fire
   commands:
-  - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 
 trigger:
   branch:
@@ -126,27 +126,27 @@ steps:
 
 - name: create result-old files
   commands:
-  - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result aida-old
-#   - nix build -v '.#nixosConfigurations.arm-server.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+#   - nix build -v '.#nixosConfigurations.arm-server.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 #   - mv result arm-server-old
-  - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result deke-old
-  - nix build -v '.#nixosConfigurations.flint.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.flint.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result flint-old
-  - nix build -v '.#nixosConfigurations.enoch.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.enoch.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result enoch-old
-  - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result kora-old
-  - nix build -v '.#nixosConfigurations.simmons.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.simmons.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result simmons-old
-  - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result snowflake-old
-  - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result the-hub-old
-  - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result the-bus-old
-  - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result water-on-fire-old
 
 - name: flake update
@@ -169,57 +169,57 @@ steps:
 
 - name: Build aida
   commands:
-  - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result aida-new
 
 # - name: Build arm-server
 #   commands:
-#   - nix build -v '.#nixosConfigurations.arm-server.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+#   - nix build -v '.#nixosConfigurations.arm-server.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 #   - mv result arm-server-new
 
 - name: Build deke
   commands:
-  - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result deke-new
 
 - name: Build enoch
   commands:
-  - nix build -v '.#nixosConfigurations.enoch.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.enoch.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result enoch-new
 
 - name: Build flint
   commands:
-  - nix build -v '.#nixosConfigurations.flint.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.flint.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result flint-new
 
 - name: Build kora
   commands:
-  - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result kora-new
 
 - name: Build simmons
   commands:
-  - nix build -v '.#nixosConfigurations.simmons.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.simmons.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result simmons-new
 
 - name: Build snowflake
   commands:
-  - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result snowflake-new
 
 - name: Build the-hub
   commands:
-  - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result the-hub-new
 
 - name: Build the-bus
   commands:
-  - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result the-bus-new
 
 - name: Build water-on-fire
   commands:
-  - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result water-on-fire-new
 
 # - name: Build darknet
