@@ -300,7 +300,11 @@
     size = (1024 * 2);
   }];
 
-  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_forward" = 1;
+    # "net.ipv6.conf.all.forwarding" = 1;
+    # "net.ipv6.conf.all.proxy_ndp" = 1;
+  };
 
   system.stateVersion = "20.09";
 
