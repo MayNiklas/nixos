@@ -41,17 +41,16 @@
         ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst 10.88.88.0/24 --jump DROP
         ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst 10.10.10.0/24 --jump DROP
         ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst 192.168.5.0/24 --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst "192.168.5.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst "192.168.15.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst "192.168.20.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst "192.168.30.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst "192.168.88.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst "192.168.99.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst "192.168.42.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst "192.168.52.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst "192.168.98.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst "192.168.22.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst "192.168.97.0/24" --jump DROP
+        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst 192.168.15.0/24 --jump DROP
+        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst 192.168.20.0/24 --jump DROP
+        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst 192.168.30.0/24 --jump DROP
+        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst 192.168.88.0/24 --jump DROP
+        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst 192.168.99.0/24 --jump DROP
+        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst 192.168.42.0/24 --jump DROP
+        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst 192.168.52.0/24 --jump DROP
+        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst 192.168.98.0/24 --jump DROP
+        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst 192.168.22.0/24 --jump DROP
+        ${pkgs.iptables}/bin/iptables -A FORWARD --src 172.20.1.0/24 --dst 192.168.97.0/24 --jump DROP
 
         # NAT out packages 172.20.1.1/24 -> ens3
         ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 172.20.1.1/24 -o ens3 -j MASQUERADE
@@ -74,17 +73,16 @@
         ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst 10.88.88.0/24 --jump DROP
         ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst 10.10.10.0/24 --jump DROP
         ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst 192.168.5.0/24 --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst "192.168.5.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst "192.168.15.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst "192.168.20.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst "192.168.30.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst "192.168.88.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst "192.168.99.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst "192.168.42.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst "192.168.52.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst "192.168.98.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst "192.168.22.0/24" --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst "192.168.97.0/24" --jump DROP
+        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst 192.168.15.0/24 --jump DROP
+        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst 192.168.20.0/24 --jump DROP
+        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst 192.168.30.0/24 --jump DROP
+        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst 192.168.88.0/24 --jump DROP
+        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst 192.168.99.0/24 --jump DROP
+        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst 192.168.42.0/24 --jump DROP
+        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst 192.168.52.0/24 --jump DROP
+        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst 192.168.98.0/24 --jump DROP
+        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst 192.168.22.0/24 --jump DROP
+        ${pkgs.iptables}/bin/iptables -D FORWARD --src 172.20.1.0/24 --dst 192.168.97.0/24 --jump DROP
 
         # NAT out packages 172.20.1.1/24 -> ens3
         ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 172.20.1.1/24 -o ens3 -j MASQUERADE
