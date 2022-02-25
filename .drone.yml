@@ -24,6 +24,7 @@ steps:
 - name: Build aida
   commands:
   - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix path-info --closure-size -h $(readlink -f result)
 
 # - name: Build arm-server
 #   commands:
@@ -32,38 +33,47 @@ steps:
 - name: Build deke
   commands:
   - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix path-info --closure-size -h $(readlink -f result)
 
 - name: Build enoch
   commands:
   - nix build -v '.#nixosConfigurations.enoch.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix path-info --closure-size -h $(readlink -f result)
 
 - name: Build flint
   commands:
   - nix build -v '.#nixosConfigurations.flint.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix path-info --closure-size -h $(readlink -f result)
 
 - name: Build kora
   commands:
   - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix path-info --closure-size -h $(readlink -f result)
 
 - name: Build simmons
   commands:
   - nix build -v '.#nixosConfigurations.simmons.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix path-info --closure-size -h $(readlink -f result)
   
 - name: Build snowflake
   commands:
   - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix path-info --closure-size -h $(readlink -f result)
 
 - name: Build the-hub
   commands:
   - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix path-info --closure-size -h $(readlink -f result)
 
 - name: Build the-bus
   commands:
   - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix path-info --closure-size -h $(readlink -f result)
 
 - name: Build water-on-fire
   commands:
   - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix path-info --closure-size -h $(readlink -f result)
 
 trigger:
   branch:
