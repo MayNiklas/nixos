@@ -1,5 +1,7 @@
 { self, ... }: {
 
+  imports = [ ./cron.nix ];
+
   mayniklas = {
     docker = { enable = true; };
     hosts = { enable = true; };
