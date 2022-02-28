@@ -32,38 +32,30 @@ in {
 
     networking = {
 
-      ### used to generate private key
-      # wireguard.interfaces.wg0 = {
-      #   ips = [ "${cfg.ip}/24" ];
-      #   privateKeyFile = "/var/src/secrets/wireguard/private";
-      #   generatePrivateKeyFile = true;
-      # };
+      wireguard.interfaces = {
+        wg0 = {
+          ips = [ "${cfg.ip}/24" ];
+          listenPort = mkIf cfg.server cfg.port;
 
-      wg-quick.interfaces.wg0 = {
-        address = [ "${cfg.ip}/24" ];
-        listenPort = mkIf cfg.server cfg.port;
+          # Path to the private key file
+          privateKeyFile = "/var/src/secrets/wireguard/private";
+          generatePrivateKeyFile = true;
 
-        # Path to the private key file
-        privateKeyFile = "/var/src/secrets/wireguard/private";
-
-        peers = mkIf (cfg.server != true) [{
-
-          publicKey = "vpXKrLE0M7eH3GVd1I/OrfMRYQrq+TapUYfGyV1D4SQ=";
-
-          allowedIPs = cfg.allowedIPs;
-
-          endpoint = "the-hub:58102";
-
-          persistentKeepalive = 15;
-
-        }];
+          peers = mkIf (cfg.server != true) [{
+            publicKey = "vpXKrLE0M7eH3GVd1I/OrfMRYQrq+TapUYfGyV1D4SQ=";
+            allowedIPs = cfg.allowedIPs;
+            endpoint = "the-hub:58102";
+            persistentKeepalive = 15;
+          }];
+        };
       };
+
+      firewall.allowedUDPPorts = mkIf cfg.server [ cfg.port ];
+
     };
 
     # Enable ip forwarding, so wireguard peers can reach eachother
     boot.kernel.sysctl."net.ipv4.ip_forward" = mkIf cfg.server 1;
-
-    networking.firewall.allowedUDPPorts = mkIf cfg.server [ cfg.port ];
 
   };
 }

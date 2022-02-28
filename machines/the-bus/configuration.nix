@@ -25,7 +25,6 @@
   networking = {
     hostName = "the-bus";
     firewall.interfaces.wg0.allowedTCPPorts = [ 9100 ];
-    wg-quick.interfaces.wg0.postUp = "/run/wrappers/bin/ping -c 5 10.88.88.1";
     interfaces.ens3 = {
       ipv6.addresses = [{
         address = "2a03:4000:6:8519::1";
