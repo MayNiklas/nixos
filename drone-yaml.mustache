@@ -2,7 +2,7 @@
 # nix flake show --json | jq '.nixosConfigurations | keys' | mustache drone-yaml.mustache
 kind: pipeline
 type: exec
-name: Flake info
+name: flake info
 
 platform:
   os: linux
@@ -57,7 +57,7 @@ trigger:
 ---
 kind: pipeline
 type: exec
-name: Build flake apps
+name: build flake apps
 
 platform:
   os: linux
