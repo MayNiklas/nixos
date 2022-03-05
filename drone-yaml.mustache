@@ -71,14 +71,17 @@ steps:
 - name: Build owncast
   commands:
   - nix build .#owncast
+  - nix path-info --closure-size -h $(readlink -f result)
   
 - name: Build plexRaw
   commands:
   - nix build .#plexRaw
+  - nix path-info --closure-size -h $(readlink -f result)
   
 - name: Build tautulli
   commands:
   - nix build .#tautulli
+  - nix path-info --closure-size -h $(readlink -f result)
 
 trigger:
   branch:
