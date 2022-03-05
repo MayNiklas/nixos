@@ -188,6 +188,8 @@
         devShells = flake-utils.lib.flattenTree {
           # nix develop github:mayniklas/nixos#vs-fix
           vs-fix = import ./shells/vs-fix.nix { inherit pkgs; };
+          # nix develop github:mayniklas/nixos#drone-gen
+          drone-gen = import ./shells/drone-gen.nix { inherit pkgs; };
         };
 
         packages = flake-utils.lib.flattenTree {

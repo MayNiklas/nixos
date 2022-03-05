@@ -1,0 +1,192 @@
+# nix flake show --json | jq '.nixosConfigurations | keys' | mustache drone-yaml.mustache
+---
+kind: pipeline
+type: exec
+name: Flake info
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+
+- name: show flake info
+  commands:
+  - nix --experimental-features "nix-command flakes" flake show
+  - nix --experimental-features "nix-command flakes" flake metadata
+
+- name: run flake checks
+  commands:
+  - nix --experimental-features "nix-command flakes" flake check --show-trace
+{{#.}}
+
+---
+kind: pipeline
+type: exec
+name: build {{.}}
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+
+- name: build {{.}}
+  commands:
+  - nix build -v '.#nixosConfigurations.{{.}}.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix path-info --closure-size -h $(readlink -f result)
+
+trigger:
+  branch:
+  - main
+  - update-flake
+  event:
+  - push
+  - pull_request
+{{/.}}
+
+---
+kind: pipeline
+type: exec
+name: Build flake apps
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+  
+- name: Build owncast
+  commands:
+  - nix build .#owncast
+  
+- name: Build plexRaw
+  commands:
+  - nix build .#plexRaw
+  
+- name: Build tautulli
+  commands:
+  - nix build .#tautulli
+
+trigger:
+  branch:
+  - main
+  event:
+  - push
+  - pull_request
+
+---
+kind: pipeline
+type: exec
+name: build flake update
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+
+- name: create result-old files
+  commands:
+  {{#.}}
+  - nix build -v '.#nixosConfigurations.{{.}}.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - mv result {{.}}-old
+  {{/.}}
+
+- name: flake update
+  commands:
+  - nix --experimental-features "nix-command flakes" flake update
+
+- name: Show git diff
+  commands:
+  - git diff
+
+- name: Show flake info
+  commands:
+  - nix --experimental-features "nix-command flakes" flake show
+  - nix --experimental-features "nix-command flakes" flake metadata
+  - nix --experimental-features "nix-command flakes" flake check
+
+- name: Run flake checks
+  commands:
+  - nix --experimental-features "nix-command flakes" flake check --show-trace
+{{#.}}
+
+- name: Build {{.}}
+  commands:
+  - nix build -v '.#nixosConfigurations.{{.}}.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - mv result {{.}}-new
+{{/.}}
+
+- name: Print report
+  commands:
+  {{#.}}
+  - echo "{{.}}:" && nix store diff-closures $(readlink -f {{.}}-old) $(readlink -f {{.}}-new)
+  {{/.}}
+
+trigger:
+  branch:
+  - main
+  event:
+  - cron
+  - pull_request
+
+---
+kind: pipeline
+name: push flake update
+type: docker
+
+steps:
+- name: Update flake.lock
+  image: nixpkgs/nix-flakes
+  commands:
+  - nix flake update --inputs-from nixpkgs
+  - nix flake show
+  - nix flake metadata
+  - nix flake check --show-trace
+  environment:
+    NIX_PATH: nixpkgs=channel:nixos-unstable
+
+- name: Push updated flake.lock
+  image: appleboy/drone-git-push
+  settings:
+    branch: update-flake
+    remote: git@github.com:MayNiklas/nixos.git
+    force: true
+    commit: true
+    force: true
+    commit_message: "❄️ Update flake.lock"
+    ssh_key:
+      from_secret: deploy_key
+
+- name: notify on failure
+  image: drillster/drone-email
+  settings:
+    username: apikey
+    from:
+      from_secret: email_from
+    host:
+      from_secret: email_host
+    password:
+      from_secret: email_password
+  when:
+    status:
+    - failure
+
+trigger:
+  branch:
+  - main
+  event:
+  - cron
