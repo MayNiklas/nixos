@@ -1,5 +1,5 @@
-# nix flake show --json | jq '.nixosConfigurations | keys' | mustache drone-yaml.mustache
 ---
+# nix flake show --json | jq '.nixosConfigurations | keys' | mustache drone-yaml.mustache
 kind: pipeline
 type: exec
 name: Flake info
@@ -40,6 +40,9 @@ steps:
 - name: build {{.}}
   commands:
   - nix build -v '.#nixosConfigurations.{{.}}.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+
+- name: show closure size
+  commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
 trigger:
