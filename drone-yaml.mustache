@@ -40,16 +40,19 @@ steps:
 - name: build {{.}}
   commands:
   - nix build -v '.#nixosConfigurations.{{.}}.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+
+- name: show closure size
+  commands:
+  - nix path-info --closure-size -h $(readlink -f result)
+
+- name: upload {{.}} to binary cache via s3
+  commands:
   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
-
-- name: show closure size
-  commands:
-  - nix path-info --closure-size -h $(readlink -f result)
 
 trigger:
   branch:
