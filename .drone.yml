@@ -442,50 +442,114 @@ steps:
 - name: Build aida
   commands:
   - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+
+- name: upload aida to binary cache via s3
+  commands:
   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - mv result aida-new
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 - name: Build deke
   commands:
   - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+
+- name: upload deke to binary cache via s3
+  commands:
   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - mv result deke-new
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 - name: Build kora
   commands:
   - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+
+- name: upload kora to binary cache via s3
+  commands:
   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - mv result kora-new
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 - name: Build simmons
   commands:
   - nix build -v '.#nixosConfigurations.simmons.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+
+- name: upload simmons to binary cache via s3
+  commands:
   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - mv result simmons-new
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 - name: Build snowflake
   commands:
   - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+
+- name: upload snowflake to binary cache via s3
+  commands:
   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - mv result snowflake-new
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 - name: Build the-bus
   commands:
   - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+
+- name: upload the-bus to binary cache via s3
+  commands:
   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - mv result the-bus-new
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 - name: Build the-hub
   commands:
   - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+
+- name: upload the-hub to binary cache via s3
+  commands:
   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - mv result the-hub-new
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 - name: Build water-on-fire
   commands:
   - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+
+- name: upload water-on-fire to binary cache via s3
+  commands:
   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - mv result water-on-fire-new
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 - name: Print report
   commands:
