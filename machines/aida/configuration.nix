@@ -29,6 +29,28 @@
     fsType = "cifs";
   };
 
+  fileSystems."/mnt/plex-media" = {
+    device = "ds1819.local:/volume1/plex-media";
+    options = [ "nolock" "soft" "ro" ];
+    fsType = "nfs";
+  };
+
+  fileSystems."/mnt/media" = {
+    device = "ds1819.local:/volume1/media";
+    options = [ "nolock" "soft" "ro" ];
+    fsType = "nfs";
+  };
+
+  systemd.services.plex = {
+    after = [
+      "remote-fs.target"
+      "mnt-media.mount"
+      "mnt-plexx2dmedia.mount"
+      "mnt-snowflake.mount"
+      "mnt-deke.mount"
+    ];
+  };
+
   networking = {
     hostName = "aida";
     firewall = { allowedTCPPorts = [ 9100 9115 ]; };

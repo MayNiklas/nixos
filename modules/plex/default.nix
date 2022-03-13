@@ -21,19 +21,6 @@ in {
       };
     };
     networking.firewall.allowedTCPPorts = [ 8181 ];
-    fileSystems."/mnt/plex-media" = {
-      device = "${config.mayniklas.var.nasIP}:/volume1/plex-media";
-      options = [ "nolock" "soft" "ro" ];
-      fsType = "nfs";
-    };
-    fileSystems."/mnt/media" = {
-      device = "${config.mayniklas.var.nasIP}:/volume1/media";
-      options = [ "nolock" "soft" "ro" ];
-      fsType = "nfs";
-    };
-    systemd.services.plex = {
-      after = [ "mnt-media.mount mnt-plexx2dmedia.mount" ];
-    };
     nixpkgs = {
       config.allowUnfreePredicate = pkg:
         builtins.elem (lib.getName pkg) [ "plexmediaserver" ];
