@@ -61,7 +61,7 @@
         # S2S A.
         {
           publicKey = "uYDIYQ1ZedQ4DZSESlAZogf3jynusk7g+UnI2ZfU01k=";
-          allowedIPs = [ "10.88.88.7/32" "192.168.97.0/24" ];
+          allowedIPs = [ "10.88.88.7/32" ];
         }
         # S2S S.
         {
@@ -73,14 +73,19 @@
           publicKey = "fnuGuNVPco092ZV9zDNYY55tW/pzdRBltij9X/5DcUU=";
           allowedIPs = [ "10.88.88.9/32" ];
         }
+        # S2S A. pfSense
+        {
+          publicKey = "UG0F7CwFzbVydl13q1qnLKwMIqLf2+dVK6jeDwtF4TQ=";
+          allowedIPs = [ "10.88.88.10/32" "192.168.97.0/24" ];
+        }
         # the-bus
         {
           publicKey = "QugvtwQs3pvGMiXgHL80A0HrBhLwqQ+IXA0iH/M9BDk=";
           allowedIPs = [ "10.88.88.19/32" ];
         }
-        # 13 inch MacBook Pro
+        # 14 inch MacBook Pro
         {
-          publicKey = "DiYQ6+0EvA6kG5w07I+y5GUp1Qxekj3txjgLmK9q3CI=";
+          publicKey = "Kt0KK/cBKoMn29IUoiMEMNTTHgAlrBhqVcVtq0J9x04=";
           allowedIPs = [ "10.88.88.20/32" ];
         }
         # 16 inch MacBook Pro
