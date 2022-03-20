@@ -39,26 +39,27 @@ steps:
 
 - name: build {{.}}
   commands:
-  - nix build -v '.#nixosConfigurations.{{.}}.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.{{.}}.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 
 - name: show closure size
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
-- name: upload {{.}} to binary cache via s3
-  commands:
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
+# - name: upload {{.}} to binary cache via s3
+#   commands:
+#   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+#   environment:
+#     AWS_ACCESS_KEY_ID:
+#       from_secret: aws_key
+#     AWS_SECRET_ACCESS_KEY:
+#       from_secret: aws_secret
 
 trigger:
   branch:
   - main
   - update-flake
   event:
+  - cron
   - push
   - pull_request
 {{/.}}
@@ -80,7 +81,7 @@ steps:
 - name: Build owncast
   commands:
   - nix build .#owncast
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  # - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - nix path-info --closure-size -h $(readlink -f result)
   environment:
     AWS_ACCESS_KEY_ID:
@@ -91,7 +92,7 @@ steps:
 - name: Build plexRaw
   commands:
   - nix build .#plexRaw
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  # - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - nix path-info --closure-size -h $(readlink -f result)
   environment:
     AWS_ACCESS_KEY_ID:
@@ -102,7 +103,7 @@ steps:
 - name: Build tautulli
   commands:
   - nix build .#tautulli
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  # - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - nix path-info --closure-size -h $(readlink -f result)
   environment:
     AWS_ACCESS_KEY_ID:
@@ -134,7 +135,7 @@ steps:
 - name: create result-old files
   commands:
   {{#.}}
-  - nix build -v '.#nixosConfigurations.{{.}}.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.{{.}}.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result {{.}}-old
   {{/.}}
 
@@ -159,17 +160,17 @@ steps:
 
 - name: Build {{.}}
   commands:
-  - nix build -v '.#nixosConfigurations.{{.}}.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.{{.}}.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 
 - name: upload {{.}} to binary cache via s3
   commands:
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  # - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - mv result {{.}}-new
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
+  # environment:
+  #   AWS_ACCESS_KEY_ID:
+  #     from_secret: aws_key
+  #   AWS_SECRET_ACCESS_KEY:
+  #     from_secret: aws_secret
 {{/.}}
 
 - name: Print report
@@ -207,7 +208,6 @@ steps:
     remote: git@github.com:MayNiklas/nixos.git
     force: true
     commit: true
-    force: true
     commit_message: "❄️ Update flake.lock"
     ssh_key:
       from_secret: deploy_key
