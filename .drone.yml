@@ -105,6 +105,46 @@ trigger:
 ---
 kind: pipeline
 type: exec
+name: build flint
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+
+- name: build flint
+  commands:
+  - nix build -v '.#nixosConfigurations.flint.config.system.build.toplevel'
+
+- name: show closure size
+  commands:
+  - nix path-info --closure-size -h $(readlink -f result)
+
+- name: upload flint to binary cache via s3
+  commands:
+  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
+
+trigger:
+  branch:
+  - main
+  - update-flake
+  event:
+  - cron
+  - push
+  - pull_request
+
+---
+kind: pipeline
+type: exec
 name: build kora
 
 platform:
@@ -416,6 +456,8 @@ steps:
   - mv result aida-old
   - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result deke-old
+  - nix build -v '.#nixosConfigurations.flint.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - mv result flint-old
   - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result kora-old
   - nix build -v '.#nixosConfigurations.simmons.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
@@ -469,6 +511,20 @@ steps:
   commands:
   # - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - mv result deke-new
+  # environment:
+  #   AWS_ACCESS_KEY_ID:
+  #     from_secret: aws_key
+  #   AWS_SECRET_ACCESS_KEY:
+  #     from_secret: aws_secret
+
+- name: Build flint
+  commands:
+  - nix build -v '.#nixosConfigurations.flint.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+
+- name: upload flint to binary cache via s3
+  commands:
+  # - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - mv result flint-new
   # environment:
   #   AWS_ACCESS_KEY_ID:
   #     from_secret: aws_key
@@ -563,6 +619,7 @@ steps:
   commands:
   - echo "aida:" && nix store diff-closures $(readlink -f aida-old) $(readlink -f aida-new)
   - echo "deke:" && nix store diff-closures $(readlink -f deke-old) $(readlink -f deke-new)
+  - echo "flint:" && nix store diff-closures $(readlink -f flint-old) $(readlink -f flint-new)
   - echo "kora:" && nix store diff-closures $(readlink -f kora-old) $(readlink -f kora-new)
   - echo "simmons:" && nix store diff-closures $(readlink -f simmons-old) $(readlink -f simmons-new)
   - echo "snowflake:" && nix store diff-closures $(readlink -f snowflake-old) $(readlink -f snowflake-new)
