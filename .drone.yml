@@ -38,7 +38,7 @@ steps:
 
 - name: build aida
   commands:
-  - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel'
 
 - name: show closure size
   commands:
@@ -78,7 +78,7 @@ steps:
 
 - name: build deke
   commands:
-  - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel'
 
 - name: show closure size
   commands:
@@ -118,7 +118,7 @@ steps:
 
 - name: build kora
   commands:
-  - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel'
 
 - name: show closure size
   commands:
@@ -158,7 +158,7 @@ steps:
 
 - name: build simmons
   commands:
-  - nix build -v '.#nixosConfigurations.simmons.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.simmons.config.system.build.toplevel'
 
 - name: show closure size
   commands:
@@ -198,7 +198,7 @@ steps:
 
 - name: build snowflake
   commands:
-  - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel'
 
 - name: show closure size
   commands:
@@ -238,7 +238,7 @@ steps:
 
 - name: build the-bus
   commands:
-  - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel'
 
 - name: show closure size
   commands:
@@ -278,7 +278,7 @@ steps:
 
 - name: build the-hub
   commands:
-  - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel'
 
 - name: show closure size
   commands:
@@ -318,7 +318,7 @@ steps:
 
 - name: build water-on-fire
   commands:
-  - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel'
 
 - name: show closure size
   commands:
@@ -359,7 +359,7 @@ steps:
 - name: Build owncast
   commands:
   - nix build .#owncast
-  # - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - nix path-info --closure-size -h $(readlink -f result)
   environment:
     AWS_ACCESS_KEY_ID:
@@ -370,7 +370,7 @@ steps:
 - name: Build plexRaw
   commands:
   - nix build .#plexRaw
-  # - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - nix path-info --closure-size -h $(readlink -f result)
   environment:
     AWS_ACCESS_KEY_ID:
@@ -381,7 +381,7 @@ steps:
 - name: Build tautulli
   commands:
   - nix build .#tautulli
-  # - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - nix path-info --closure-size -h $(readlink -f result)
   environment:
     AWS_ACCESS_KEY_ID:
