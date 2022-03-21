@@ -44,14 +44,14 @@ steps:
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
-# - name: upload aida to binary cache via s3
-#   commands:
-#   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
-#   environment:
-#     AWS_ACCESS_KEY_ID:
-#       from_secret: aws_key
-#     AWS_SECRET_ACCESS_KEY:
-#       from_secret: aws_secret
+- name: upload aida to binary cache via s3
+  commands:
+  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 trigger:
   branch:
@@ -84,14 +84,14 @@ steps:
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
-# - name: upload deke to binary cache via s3
-#   commands:
-#   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
-#   environment:
-#     AWS_ACCESS_KEY_ID:
-#       from_secret: aws_key
-#     AWS_SECRET_ACCESS_KEY:
-#       from_secret: aws_secret
+- name: upload deke to binary cache via s3
+  commands:
+  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 trigger:
   branch:
@@ -124,14 +124,14 @@ steps:
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
-# - name: upload kora to binary cache via s3
-#   commands:
-#   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
-#   environment:
-#     AWS_ACCESS_KEY_ID:
-#       from_secret: aws_key
-#     AWS_SECRET_ACCESS_KEY:
-#       from_secret: aws_secret
+- name: upload kora to binary cache via s3
+  commands:
+  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 trigger:
   branch:
@@ -164,14 +164,14 @@ steps:
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
-# - name: upload simmons to binary cache via s3
-#   commands:
-#   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
-#   environment:
-#     AWS_ACCESS_KEY_ID:
-#       from_secret: aws_key
-#     AWS_SECRET_ACCESS_KEY:
-#       from_secret: aws_secret
+- name: upload simmons to binary cache via s3
+  commands:
+  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 trigger:
   branch:
@@ -204,14 +204,14 @@ steps:
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
-# - name: upload snowflake to binary cache via s3
-#   commands:
-#   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
-#   environment:
-#     AWS_ACCESS_KEY_ID:
-#       from_secret: aws_key
-#     AWS_SECRET_ACCESS_KEY:
-#       from_secret: aws_secret
+- name: upload snowflake to binary cache via s3
+  commands:
+  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 trigger:
   branch:
@@ -244,14 +244,14 @@ steps:
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
-# - name: upload the-bus to binary cache via s3
-#   commands:
-#   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
-#   environment:
-#     AWS_ACCESS_KEY_ID:
-#       from_secret: aws_key
-#     AWS_SECRET_ACCESS_KEY:
-#       from_secret: aws_secret
+- name: upload the-bus to binary cache via s3
+  commands:
+  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 trigger:
   branch:
@@ -284,14 +284,14 @@ steps:
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
-# - name: upload the-hub to binary cache via s3
-#   commands:
-#   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
-#   environment:
-#     AWS_ACCESS_KEY_ID:
-#       from_secret: aws_key
-#     AWS_SECRET_ACCESS_KEY:
-#       from_secret: aws_secret
+- name: upload the-hub to binary cache via s3
+  commands:
+  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 trigger:
   branch:
@@ -324,14 +324,14 @@ steps:
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
-# - name: upload water-on-fire to binary cache via s3
-#   commands:
-#   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
-#   environment:
-#     AWS_ACCESS_KEY_ID:
-#       from_secret: aws_key
-#     AWS_SECRET_ACCESS_KEY:
-#       from_secret: aws_secret
+- name: upload water-on-fire to binary cache via s3
+  commands:
+  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 trigger:
   branch:
