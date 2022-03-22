@@ -42,6 +42,14 @@
                     "name": "tautulli"
                 }
             ]
+        },
+        {
+            "arch": "arm64",
+            "apps": [
+                {
+                    "name": "owncast"
+                }
+            ]
         }
     ]
 }

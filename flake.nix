@@ -173,7 +173,8 @@
     } //
 
     # (flake-utils.lib.eachSystem [ "aarch64-linux" "i686-linux" "x86_64-linux" ])
-    (flake-utils.lib.eachSystem [ "i686-linux" "x86_64-linux" ]) (system:
+    (flake-utils.lib.eachSystem [ "aarch64-linux" "i686-linux" "x86_64-linux" ])
+    (system:
       let
         pkgs = import nixpkgs {
           inherit system;
@@ -194,7 +195,7 @@
 
         packages = flake-utils.lib.flattenTree {
           anki-bin = pkgs.anki-bin;
-          darknet = pkgs.darknet;
+          # darknet = pkgs.darknet;
           owncast = pkgs.owncast;
           plex = pkgs.plex;
           plexRaw = pkgs.plexRaw;
@@ -205,7 +206,7 @@
         apps = {
           # Allow custom packages to be run using `nix run`
           anki-bin = flake-utils.lib.mkApp { drv = packages.anki-bin; };
-          darknet = flake-utils.lib.mkApp { drv = packages.darknet; };
+          # darknet = flake-utils.lib.mkApp { drv = packages.darknet; };
           owncast = flake-utils.lib.mkApp { drv = packages.owncast; };
           plex = flake-utils.lib.mkApp { drv = packages.plex; };
           plexRaw = flake-utils.lib.mkApp { drv = packages.plexRaw; };

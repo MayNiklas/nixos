@@ -439,6 +439,38 @@ trigger:
 ---
 kind: pipeline
 type: exec
+name: build arm64 flake apps
+
+platform:
+  os: linux
+  arch: arm64
+
+clone:
+  depth: 1
+
+steps:
+
+- name: Build owncast
+  commands:
+  - nix build .#owncast
+  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix path-info --closure-size -h $(readlink -f result)
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
+
+trigger:
+  branch:
+  - main
+  event:
+  - push
+  - pull_request
+
+---
+kind: pipeline
+type: exec
 name: build flake update
 
 platform:
