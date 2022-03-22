@@ -64,14 +64,15 @@ trigger:
   - pull_request
 {{/hosts}}
 
+{{#packages}}
 ---
 kind: pipeline
 type: exec
-name: build flake apps
+name: build {{arch}} flake apps
 
 platform:
   os: linux
-  arch: amd64
+  arch: {{arch}}
 
 clone:
   depth: 1
@@ -98,6 +99,7 @@ trigger:
   - push
   - pull_request
 
+{{/packages}}
 ---
 kind: pipeline
 type: exec

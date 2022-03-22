@@ -385,7 +385,7 @@ trigger:
 ---
 kind: pipeline
 type: exec
-name: build flake apps
+name: build amd64 flake apps
 
 platform:
   os: linux

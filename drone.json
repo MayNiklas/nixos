@@ -28,15 +28,20 @@
             "name": "water-on-fire"
         }
     ],
-    "apps": [
+    "packages": [
         {
-            "name": "owncast"
-        },
-        {
-            "name": "plexRaw"
-        },
-        {
-            "name": "tautulli"
+            "arch": "amd64",
+            "apps": [
+                {
+                    "name": "owncast"
+                },
+                {
+                    "name": "plexRaw"
+                },
+                {
+                    "name": "tautulli"
+                }
+            ]
         }
     ]
 }
