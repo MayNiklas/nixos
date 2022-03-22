@@ -21,12 +21,12 @@ steps:
 - name: run flake checks
   commands:
   - nix --experimental-features "nix-command flakes" flake check --show-trace
-{{#.}}
+{{#hosts}}
 
 ---
 kind: pipeline
 type: exec
-name: build {{.}}
+name: build {{name}}
 
 platform:
   os: linux
@@ -37,15 +37,15 @@ clone:
 
 steps:
 
-- name: build {{.}}
+- name: build {{name}}
   commands:
-  - nix build -v '.#nixosConfigurations.{{.}}.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.{{name}}.config.system.build.toplevel'
 
 - name: show closure size
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
-- name: upload {{.}} to binary cache via s3
+- name: upload {{name}} to binary cache via s3
   commands:
   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   environment:
@@ -62,7 +62,7 @@ trigger:
   - cron
   - push
   - pull_request
-{{/.}}
+{{/hosts}}
 
 ---
 kind: pipeline
@@ -77,32 +77,11 @@ clone:
   depth: 1
 
 steps:
-  
-- name: Build owncast
+
+{{#apps}}
+- name: Build {{name}}
   commands:
-  - nix build .#owncast
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
-  - nix path-info --closure-size -h $(readlink -f result)
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
-  
-- name: Build plexRaw
-  commands:
-  - nix build .#plexRaw
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
-  - nix path-info --closure-size -h $(readlink -f result)
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
-  
-- name: Build tautulli
-  commands:
-  - nix build .#tautulli
+  - nix build .#{{name}}
   - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - nix path-info --closure-size -h $(readlink -f result)
   environment:
@@ -111,6 +90,7 @@ steps:
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
 
+{{/apps}}
 trigger:
   branch:
   - main
@@ -134,10 +114,10 @@ steps:
 
 - name: create result-old files
   commands:
-  {{#.}}
-  - nix build -v '.#nixosConfigurations.{{.}}.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-  - mv result {{.}}-old
-  {{/.}}
+  {{#hosts}}
+  - nix build -v '.#nixosConfigurations.{{name}}.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - mv result {{name}}-old
+  {{/hosts}}
 
 - name: flake update
   commands:
@@ -156,28 +136,28 @@ steps:
 - name: Run flake checks
   commands:
   - nix --experimental-features "nix-command flakes" flake check --show-trace
-{{#.}}
+{{#hosts}}
 
-- name: Build {{.}}
+- name: Build {{name}}
   commands:
-  - nix build -v '.#nixosConfigurations.{{.}}.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.{{name}}.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 
-- name: upload {{.}} to binary cache via s3
+- name: upload {{name}} to binary cache via s3
   commands:
   # - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
-  - mv result {{.}}-new
+  - mv result {{name}}-new
   # environment:
   #   AWS_ACCESS_KEY_ID:
   #     from_secret: aws_key
   #   AWS_SECRET_ACCESS_KEY:
   #     from_secret: aws_secret
-{{/.}}
+{{/hosts}}
 
 - name: Print report
   commands:
-  {{#.}}
-  - echo "{{.}}:" && nix store diff-closures $(readlink -f {{.}}-old) $(readlink -f {{.}}-new)
-  {{/.}}
+  {{#hosts}}
+  - echo "{{name}}:" && nix store diff-closures $(readlink -f {{name}}-old) $(readlink -f {{name}}-new)
+  {{/hosts}}
 
 trigger:
   branch:

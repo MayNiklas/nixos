@@ -1,0 +1,42 @@
+{
+    "hosts": [
+        {
+            "name": "aida"
+        },
+        {
+            "name": "deke"
+        },
+        {
+            "name": "flint"
+        },
+        {
+            "name": "kora"
+        },
+        {
+            "name": "simmons"
+        },
+        {
+            "name": "snowflake"
+        },
+        {
+            "name": "the-bus"
+        },
+        {
+            "name": "the-hub"
+        },
+        {
+            "name": "water-on-fire"
+        }
+    ],
+    "apps": [
+        {
+            "name": "owncast"
+        },
+        {
+            "name": "plexRaw"
+        },
+        {
+            "name": "tautulli"
+        }
+    ]
+}

@@ -395,7 +395,7 @@ clone:
   depth: 1
 
 steps:
-  
+
 - name: Build owncast
   commands:
   - nix build .#owncast
@@ -406,7 +406,7 @@ steps:
       from_secret: aws_key
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
-  
+
 - name: Build plexRaw
   commands:
   - nix build .#plexRaw
@@ -417,7 +417,7 @@ steps:
       from_secret: aws_key
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
-  
+
 - name: Build tautulli
   commands:
   - nix build .#tautulli
