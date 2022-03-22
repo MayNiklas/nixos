@@ -129,7 +129,7 @@
   # swapfile
   swapDevices = [{
     device = "/var/swapfile";
-    size = (1024 * 2);
+    size = (1024 * 1);
   }];
 
   system.stateVersion = "20.09";
