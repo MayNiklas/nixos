@@ -358,7 +358,7 @@ steps:
 - name: Build owncast
   commands:
   - nix build .#owncast
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - nix path-info --closure-size -h $(readlink -f result)
   environment:
     AWS_ACCESS_KEY_ID:
@@ -369,7 +369,7 @@ steps:
 - name: Build plexRaw
   commands:
   - nix build .#plexRaw
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - nix path-info --closure-size -h $(readlink -f result)
   environment:
     AWS_ACCESS_KEY_ID:
@@ -380,7 +380,7 @@ steps:
 - name: Build tautulli
   commands:
   - nix build .#tautulli
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - nix path-info --closure-size -h $(readlink -f result)
   environment:
     AWS_ACCESS_KEY_ID:
@@ -413,7 +413,7 @@ steps:
 - name: Build owncast
   commands:
   - nix build .#owncast
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   - nix path-info --closure-size -h $(readlink -f result)
   environment:
     AWS_ACCESS_KEY_ID:
