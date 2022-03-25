@@ -3,8 +3,6 @@ with lib;
 let cfg = config.mayniklas.desktop;
 in {
 
-  imports = [ ../../users/nik.nix ../../users/root.nix ];
-
   options.mayniklas.desktop = {
     enable = mkEnableOption "Enable the default desktop configuration";
     home-manager = mkOption {
@@ -148,6 +146,10 @@ in {
     environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
     mayniklas = {
+      user = {
+        nik.enable = true;
+        root.enable = true;
+      };
       bluetooth.enable = true;
       docker.enable = true;
       fonts.enable = true;

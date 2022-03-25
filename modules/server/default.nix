@@ -3,8 +3,6 @@ with lib;
 let cfg = config.mayniklas.server;
 in {
 
-  imports = [ ../../users/nik.nix ../../users/root.nix ];
-
   options.mayniklas.server = {
     enable = mkEnableOption "Enable the default server configuration";
     home-manager = mkOption {
@@ -78,6 +76,10 @@ in {
     environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
     mayniklas = {
+      user = {
+        nik.enable = true;
+        root.enable = true;
+      };
       locale.enable = true;
       nix-common = {
         enable = true;

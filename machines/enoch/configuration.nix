@@ -1,8 +1,7 @@
 { self, ... }: {
 
-  imports = [ ../../users/marek.nix ../../users/nik.nix ../../users/root.nix ];
-
   mayniklas = {
+    user.marek.enable=true;
     fonts.enable = true;
     locale.enable = true;
     kde.enable = true;
