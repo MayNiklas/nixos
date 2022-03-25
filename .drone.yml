@@ -1,5 +1,4 @@
 ---
-# nix flake show --json | jq '.nixosConfigurations | keys' | mustache drone-yaml.mustache
 kind: pipeline
 type: exec
 name: flake info
@@ -46,7 +45,7 @@ steps:
 
 - name: upload aida to binary cache via s3
   commands:
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -86,7 +85,7 @@ steps:
 
 - name: upload deke to binary cache via s3
   commands:
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -126,7 +125,7 @@ steps:
 
 - name: upload flint to binary cache via s3
   commands:
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -166,7 +165,7 @@ steps:
 
 - name: upload kora to binary cache via s3
   commands:
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -206,7 +205,7 @@ steps:
 
 - name: upload simmons to binary cache via s3
   commands:
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -246,7 +245,7 @@ steps:
 
 - name: upload snowflake to binary cache via s3
   commands:
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -286,7 +285,7 @@ steps:
 
 - name: upload the-bus to binary cache via s3
   commands:
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -326,7 +325,7 @@ steps:
 
 - name: upload the-hub to binary cache via s3
   commands:
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -366,7 +365,7 @@ steps:
 
 - name: upload water-on-fire to binary cache via s3
   commands:
-  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -434,6 +433,7 @@ trigger:
   - main
   event:
   - push
+  - cron
   - pull_request
 
 ---
@@ -466,194 +466,6 @@ trigger:
   - main
   event:
   - push
+  - cron
   - pull_request
 
----
-kind: pipeline
-type: exec
-name: build flake update
-
-platform:
-  os: linux
-  arch: amd64
-
-clone:
-  depth: 1
-
-steps:
-
-- name: create result-old files
-  commands:
-  - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-  - mv result aida-old
-  - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-  - mv result deke-old
-  - nix build -v '.#nixosConfigurations.flint.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-  - mv result flint-old
-  - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-  - mv result kora-old
-  - nix build -v '.#nixosConfigurations.simmons.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-  - mv result simmons-old
-  - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-  - mv result snowflake-old
-  - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-  - mv result the-bus-old
-  - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-  - mv result the-hub-old
-  - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-  - mv result water-on-fire-old
-
-- name: flake update
-  commands:
-  - nix --experimental-features "nix-command flakes" flake update
-
-- name: Show git diff
-  commands:
-  - git diff
-
-- name: Show flake info
-  commands:
-  - nix --experimental-features "nix-command flakes" flake show
-  - nix --experimental-features "nix-command flakes" flake metadata
-  - nix --experimental-features "nix-command flakes" flake check
-
-- name: Run flake checks
-  commands:
-  - nix --experimental-features "nix-command flakes" flake check --show-trace
-
-- name: Build aida
-  commands:
-  - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-
-- name: prepare aida for report
-  commands:
-  - mv result aida-new
-
-- name: Build deke
-  commands:
-  - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-
-- name: prepare deke for report
-  commands:
-  - mv result deke-new
-
-- name: Build flint
-  commands:
-  - nix build -v '.#nixosConfigurations.flint.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-
-- name: prepare flint for report
-  commands:
-  - mv result flint-new
-
-- name: Build kora
-  commands:
-  - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-
-- name: prepare kora for report
-  commands:
-  - mv result kora-new
-
-- name: Build simmons
-  commands:
-  - nix build -v '.#nixosConfigurations.simmons.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-
-- name: prepare simmons for report
-  commands:
-  - mv result simmons-new
-
-- name: Build snowflake
-  commands:
-  - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-
-- name: prepare snowflake for report
-  commands:
-  - mv result snowflake-new
-
-- name: Build the-bus
-  commands:
-  - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-
-- name: prepare the-bus for report
-  commands:
-  - mv result the-bus-new
-
-- name: Build the-hub
-  commands:
-  - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-
-- name: prepare the-hub for report
-  commands:
-  - mv result the-hub-new
-
-- name: Build water-on-fire
-  commands:
-  - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' # --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-
-- name: prepare water-on-fire for report
-  commands:
-  - mv result water-on-fire-new
-
-- name: Print report
-  commands:
-  - echo "aida:" && nix store diff-closures $(readlink -f aida-old) $(readlink -f aida-new)
-  - echo "deke:" && nix store diff-closures $(readlink -f deke-old) $(readlink -f deke-new)
-  - echo "flint:" && nix store diff-closures $(readlink -f flint-old) $(readlink -f flint-new)
-  - echo "kora:" && nix store diff-closures $(readlink -f kora-old) $(readlink -f kora-new)
-  - echo "simmons:" && nix store diff-closures $(readlink -f simmons-old) $(readlink -f simmons-new)
-  - echo "snowflake:" && nix store diff-closures $(readlink -f snowflake-old) $(readlink -f snowflake-new)
-  - echo "the-bus:" && nix store diff-closures $(readlink -f the-bus-old) $(readlink -f the-bus-new)
-  - echo "the-hub:" && nix store diff-closures $(readlink -f the-hub-old) $(readlink -f the-hub-new)
-  - echo "water-on-fire:" && nix store diff-closures $(readlink -f water-on-fire-old) $(readlink -f water-on-fire-new)
-
-trigger:
-  branch:
-  - main
-  event:
-  - cron
-
----
-kind: pipeline
-name: push flake update
-type: docker
-
-steps:
-- name: Update flake.lock
-  image: nixpkgs/nix-flakes
-  commands:
-  - nix flake update --inputs-from nixpkgs
-  - nix flake show
-  - nix flake metadata
-  - nix flake check --show-trace
-  environment:
-    NIX_PATH: nixpkgs=channel:nixos-unstable
-
-- name: Push updated flake.lock
-  image: appleboy/drone-git-push
-  settings:
-    branch: update-flake
-    remote: git@github.com:MayNiklas/nixos.git
-    force: true
-    commit: true
-    commit_message: "❄️ Update flake.lock"
-    ssh_key:
-      from_secret: deploy_key
-
-- name: notify on failure
-  image: drillster/drone-email
-  settings:
-    username: apikey
-    from:
-      from_secret: email_from
-    host:
-      from_secret: email_host
-    password:
-      from_secret: email_password
-  when:
-    status:
-    - failure
-
-trigger:
-  branch:
-  - main
-  event:
-  - cron
