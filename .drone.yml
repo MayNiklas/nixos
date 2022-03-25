@@ -344,46 +344,6 @@ trigger:
 ---
 kind: pipeline
 type: exec
-name: build water-on-fire
-
-platform:
-  os: linux
-  arch: amd64
-
-clone:
-  depth: 1
-
-steps:
-
-- name: build water-on-fire
-  commands:
-  - nix build -v '.#nixosConfigurations.water-on-fire.config.system.build.toplevel'
-
-- name: show closure size
-  commands:
-  - nix path-info --closure-size -h $(readlink -f result)
-
-- name: upload water-on-fire to binary cache via s3
-  commands:
-  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
-
-trigger:
-  branch:
-  - main
-  - update-flake
-  event:
-  - cron
-  - push
-  - pull_request
-
----
-kind: pipeline
-type: exec
 name: build amd64 flake apps
 
 platform:
