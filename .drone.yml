@@ -37,7 +37,7 @@ steps:
 
 - name: build aida
   commands:
-  - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel'
+  - nix build '.#nixosConfigurations.aida.config.system.build.toplevel'
 
 - name: show closure aida
   commands:
@@ -54,7 +54,7 @@ steps:
 
 - name: build deke
   commands:
-  - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel'
+  - nix build '.#nixosConfigurations.deke.config.system.build.toplevel'
 
 - name: show closure deke
   commands:
@@ -71,7 +71,7 @@ steps:
 
 - name: build flint
   commands:
-  - nix build -v '.#nixosConfigurations.flint.config.system.build.toplevel'
+  - nix build '.#nixosConfigurations.flint.config.system.build.toplevel'
 
 - name: show closure flint
   commands:
@@ -88,7 +88,7 @@ steps:
 
 - name: build kora
   commands:
-  - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel'
+  - nix build '.#nixosConfigurations.kora.config.system.build.toplevel'
 
 - name: show closure kora
   commands:
@@ -105,7 +105,7 @@ steps:
 
 - name: build simmons
   commands:
-  - nix build -v '.#nixosConfigurations.simmons.config.system.build.toplevel'
+  - nix build '.#nixosConfigurations.simmons.config.system.build.toplevel'
 
 - name: show closure simmons
   commands:
@@ -122,7 +122,7 @@ steps:
 
 - name: build snowflake
   commands:
-  - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel'
+  - nix build '.#nixosConfigurations.snowflake.config.system.build.toplevel'
 
 - name: show closure snowflake
   commands:
@@ -139,7 +139,7 @@ steps:
 
 - name: build the-bus
   commands:
-  - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel'
+  - nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel'
 
 - name: show closure the-bus
   commands:
@@ -156,7 +156,7 @@ steps:
 
 - name: build the-hub
   commands:
-  - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel'
+  - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel'
 
 - name: show closure the-hub
   commands:

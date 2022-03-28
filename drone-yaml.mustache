@@ -39,7 +39,7 @@ steps:
 {{#machines}}
 - name: build {{name}}
   commands:
-  - nix build -v '.#nixosConfigurations.{{name}}.config.system.build.toplevel'
+  - nix build '.#nixosConfigurations.{{name}}.config.system.build.toplevel'
 
 - name: show closure {{name}}
   commands:
