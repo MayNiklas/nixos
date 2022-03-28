@@ -24,7 +24,7 @@ steps:
 ---
 kind: pipeline
 type: exec
-name: build aida
+name: build amd64 hosts
 
 platform:
   os: linux
@@ -39,7 +39,7 @@ steps:
   commands:
   - nix build -v '.#nixosConfigurations.aida.config.system.build.toplevel'
 
-- name: show closure size
+- name: show closure aida
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
@@ -52,34 +52,11 @@ steps:
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
 
-trigger:
-  branch:
-  - main
-  - update-flake
-  event:
-  - cron
-  - push
-  - pull_request
-
----
-kind: pipeline
-type: exec
-name: build deke
-
-platform:
-  os: linux
-  arch: amd64
-
-clone:
-  depth: 1
-
-steps:
-
 - name: build deke
   commands:
   - nix build -v '.#nixosConfigurations.deke.config.system.build.toplevel'
 
-- name: show closure size
+- name: show closure deke
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
@@ -92,34 +69,11 @@ steps:
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
 
-trigger:
-  branch:
-  - main
-  - update-flake
-  event:
-  - cron
-  - push
-  - pull_request
-
----
-kind: pipeline
-type: exec
-name: build flint
-
-platform:
-  os: linux
-  arch: amd64
-
-clone:
-  depth: 1
-
-steps:
-
 - name: build flint
   commands:
   - nix build -v '.#nixosConfigurations.flint.config.system.build.toplevel'
 
-- name: show closure size
+- name: show closure flint
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
@@ -132,34 +86,11 @@ steps:
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
 
-trigger:
-  branch:
-  - main
-  - update-flake
-  event:
-  - cron
-  - push
-  - pull_request
-
----
-kind: pipeline
-type: exec
-name: build kora
-
-platform:
-  os: linux
-  arch: amd64
-
-clone:
-  depth: 1
-
-steps:
-
 - name: build kora
   commands:
   - nix build -v '.#nixosConfigurations.kora.config.system.build.toplevel'
 
-- name: show closure size
+- name: show closure kora
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
@@ -172,34 +103,11 @@ steps:
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
 
-trigger:
-  branch:
-  - main
-  - update-flake
-  event:
-  - cron
-  - push
-  - pull_request
-
----
-kind: pipeline
-type: exec
-name: build simmons
-
-platform:
-  os: linux
-  arch: amd64
-
-clone:
-  depth: 1
-
-steps:
-
 - name: build simmons
   commands:
   - nix build -v '.#nixosConfigurations.simmons.config.system.build.toplevel'
 
-- name: show closure size
+- name: show closure simmons
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
@@ -212,34 +120,11 @@ steps:
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
 
-trigger:
-  branch:
-  - main
-  - update-flake
-  event:
-  - cron
-  - push
-  - pull_request
-
----
-kind: pipeline
-type: exec
-name: build snowflake
-
-platform:
-  os: linux
-  arch: amd64
-
-clone:
-  depth: 1
-
-steps:
-
 - name: build snowflake
   commands:
   - nix build -v '.#nixosConfigurations.snowflake.config.system.build.toplevel'
 
-- name: show closure size
+- name: show closure snowflake
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
@@ -252,34 +137,11 @@ steps:
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
 
-trigger:
-  branch:
-  - main
-  - update-flake
-  event:
-  - cron
-  - push
-  - pull_request
-
----
-kind: pipeline
-type: exec
-name: build the-bus
-
-platform:
-  os: linux
-  arch: amd64
-
-clone:
-  depth: 1
-
-steps:
-
 - name: build the-bus
   commands:
   - nix build -v '.#nixosConfigurations.the-bus.config.system.build.toplevel'
 
-- name: show closure size
+- name: show closure the-bus
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
@@ -292,34 +154,11 @@ steps:
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
 
-trigger:
-  branch:
-  - main
-  - update-flake
-  event:
-  - cron
-  - push
-  - pull_request
-
----
-kind: pipeline
-type: exec
-name: build the-hub
-
-platform:
-  os: linux
-  arch: amd64
-
-clone:
-  depth: 1
-
-steps:
-
 - name: build the-hub
   commands:
   - nix build -v '.#nixosConfigurations.the-hub.config.system.build.toplevel'
 
-- name: show closure size
+- name: show closure the-hub
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
@@ -335,7 +174,6 @@ steps:
 trigger:
   branch:
   - main
-  - update-flake
   event:
   - cron
   - push

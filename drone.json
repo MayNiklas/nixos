@@ -1,28 +1,33 @@
 {
     "hosts": [
         {
-            "name": "aida"
-        },
-        {
-            "name": "deke"
-        },
-        {
-            "name": "flint"
-        },
-        {
-            "name": "kora"
-        },
-        {
-            "name": "simmons"
-        },
-        {
-            "name": "snowflake"
-        },
-        {
-            "name": "the-bus"
-        },
-        {
-            "name": "the-hub"
+            "arch": "amd64",
+            "machines": [
+                {
+                    "name": "aida"
+                },
+                {
+                    "name": "deke"
+                },
+                {
+                    "name": "flint"
+                },
+                {
+                    "name": "kora"
+                },
+                {
+                    "name": "simmons"
+                },
+                {
+                    "name": "snowflake"
+                },
+                {
+                    "name": "the-bus"
+                },
+                {
+                    "name": "the-hub"
+                }
+            ]
         }
     ],
     "packages": [

@@ -25,22 +25,23 @@ steps:
 ---
 kind: pipeline
 type: exec
-name: build {{name}}
+name: build {{arch}} hosts
 
 platform:
   os: linux
-  arch: amd64
+  arch: {{arch}}
 
 clone:
   depth: 1
 
 steps:
 
+{{#machines}}
 - name: build {{name}}
   commands:
   - nix build -v '.#nixosConfigurations.{{name}}.config.system.build.toplevel'
 
-- name: show closure size
+- name: show closure {{name}}
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
 
@@ -53,10 +54,10 @@ steps:
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
 
+{{/machines}}
 trigger:
   branch:
   - main
-  - update-flake
   event:
   - cron
   - push
