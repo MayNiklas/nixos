@@ -38,42 +38,42 @@ steps:
 - name: build aida
   commands:
   - nix build '.#nixosConfigurations.aida.config.system.build.toplevel' --out-link result-aida
-  - nix path-info --closure-size -h $(readlink -f result)
+  - nix path-info --closure-size -h $(readlink -f result-aida)
 
 - name: build deke
   commands:
   - nix build '.#nixosConfigurations.deke.config.system.build.toplevel' --out-link result-deke
-  - nix path-info --closure-size -h $(readlink -f result)
+  - nix path-info --closure-size -h $(readlink -f result-deke)
 
 - name: build flint
   commands:
   - nix build '.#nixosConfigurations.flint.config.system.build.toplevel' --out-link result-flint
-  - nix path-info --closure-size -h $(readlink -f result)
+  - nix path-info --closure-size -h $(readlink -f result-flint)
 
 - name: build kora
   commands:
   - nix build '.#nixosConfigurations.kora.config.system.build.toplevel' --out-link result-kora
-  - nix path-info --closure-size -h $(readlink -f result)
+  - nix path-info --closure-size -h $(readlink -f result-kora)
 
 - name: build simmons
   commands:
   - nix build '.#nixosConfigurations.simmons.config.system.build.toplevel' --out-link result-simmons
-  - nix path-info --closure-size -h $(readlink -f result)
+  - nix path-info --closure-size -h $(readlink -f result-simmons)
 
 - name: build snowflake
   commands:
   - nix build '.#nixosConfigurations.snowflake.config.system.build.toplevel' --out-link result-snowflake
-  - nix path-info --closure-size -h $(readlink -f result)
+  - nix path-info --closure-size -h $(readlink -f result-snowflake)
 
 - name: build the-bus
   commands:
   - nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel' --out-link result-the-bus
-  - nix path-info --closure-size -h $(readlink -f result)
+  - nix path-info --closure-size -h $(readlink -f result-the-bus)
 
 - name: build the-hub
   commands:
   - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' --out-link result-the-hub
-  - nix path-info --closure-size -h $(readlink -f result)
+  - nix path-info --closure-size -h $(readlink -f result-the-hub)
 
 - name: upload aida to binary cache via s3
   commands:

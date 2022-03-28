@@ -40,7 +40,7 @@ steps:
 - name: build {{name}}
   commands:
   - nix build '.#nixosConfigurations.{{name}}.config.system.build.toplevel' --out-link result-{{name}}
-  - nix path-info --closure-size -h $(readlink -f result)
+  - nix path-info --closure-size -h $(readlink -f result-{{name}})
 
 {{/machines}}
 {{#machines}}
