@@ -37,134 +37,110 @@ steps:
 
 - name: build aida
   commands:
-  - nix build '.#nixosConfigurations.aida.config.system.build.toplevel'
+  - nix build '.#nixosConfigurations.aida.config.system.build.toplevel' --out-link result-aida
+  - nix path-info --closure-size -h $(readlink -f result)
 
-- name: show closure aida
+- name: build deke
   commands:
+  - nix build '.#nixosConfigurations.deke.config.system.build.toplevel' --out-link result-deke
+  - nix path-info --closure-size -h $(readlink -f result)
+
+- name: build flint
+  commands:
+  - nix build '.#nixosConfigurations.flint.config.system.build.toplevel' --out-link result-flint
+  - nix path-info --closure-size -h $(readlink -f result)
+
+- name: build kora
+  commands:
+  - nix build '.#nixosConfigurations.kora.config.system.build.toplevel' --out-link result-kora
+  - nix path-info --closure-size -h $(readlink -f result)
+
+- name: build simmons
+  commands:
+  - nix build '.#nixosConfigurations.simmons.config.system.build.toplevel' --out-link result-simmons
+  - nix path-info --closure-size -h $(readlink -f result)
+
+- name: build snowflake
+  commands:
+  - nix build '.#nixosConfigurations.snowflake.config.system.build.toplevel' --out-link result-snowflake
+  - nix path-info --closure-size -h $(readlink -f result)
+
+- name: build the-bus
+  commands:
+  - nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel' --out-link result-the-bus
+  - nix path-info --closure-size -h $(readlink -f result)
+
+- name: build the-hub
+  commands:
+  - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' --out-link result-the-hub
   - nix path-info --closure-size -h $(readlink -f result)
 
 - name: upload aida to binary cache via s3
   commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result 
+  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result-aida 
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
-
-- name: build deke
-  commands:
-  - nix build '.#nixosConfigurations.deke.config.system.build.toplevel'
-
-- name: show closure deke
-  commands:
-  - nix path-info --closure-size -h $(readlink -f result)
 
 - name: upload deke to binary cache via s3
   commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result 
+  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result-deke 
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
-
-- name: build flint
-  commands:
-  - nix build '.#nixosConfigurations.flint.config.system.build.toplevel'
-
-- name: show closure flint
-  commands:
-  - nix path-info --closure-size -h $(readlink -f result)
 
 - name: upload flint to binary cache via s3
   commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result 
+  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result-flint 
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
-
-- name: build kora
-  commands:
-  - nix build '.#nixosConfigurations.kora.config.system.build.toplevel'
-
-- name: show closure kora
-  commands:
-  - nix path-info --closure-size -h $(readlink -f result)
 
 - name: upload kora to binary cache via s3
   commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result 
+  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result-kora 
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
-
-- name: build simmons
-  commands:
-  - nix build '.#nixosConfigurations.simmons.config.system.build.toplevel'
-
-- name: show closure simmons
-  commands:
-  - nix path-info --closure-size -h $(readlink -f result)
 
 - name: upload simmons to binary cache via s3
   commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result 
+  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result-simmons 
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
-
-- name: build snowflake
-  commands:
-  - nix build '.#nixosConfigurations.snowflake.config.system.build.toplevel'
-
-- name: show closure snowflake
-  commands:
-  - nix path-info --closure-size -h $(readlink -f result)
 
 - name: upload snowflake to binary cache via s3
   commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result 
+  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result-snowflake 
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
-
-- name: build the-bus
-  commands:
-  - nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel'
-
-- name: show closure the-bus
-  commands:
-  - nix path-info --closure-size -h $(readlink -f result)
 
 - name: upload the-bus to binary cache via s3
   commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result 
+  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result-the-bus 
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
 
-- name: build the-hub
-  commands:
-  - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel'
-
-- name: show closure the-hub
-  commands:
-  - nix path-info --closure-size -h $(readlink -f result)
-
 - name: upload the-hub to binary cache via s3
   commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result 
+  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result-the-hub 
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
