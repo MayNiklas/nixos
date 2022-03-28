@@ -46,7 +46,7 @@ steps:
 
 - name: upload {{name}} to binary cache via s3
   commands:
-  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result 
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -82,7 +82,7 @@ steps:
 - name: Build {{name}}
   commands:
   - nix build .#{{name}}
-  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result 
   - nix path-info --closure-size -h $(readlink -f result)
   environment:
     AWS_ACCESS_KEY_ID:
