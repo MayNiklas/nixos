@@ -75,72 +75,9 @@ steps:
   - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' --out-link result-the-hub
   - nix path-info --closure-size -h $(readlink -f result-the-hub)
 
-- name: upload aida to binary cache via s3
+- name: upload to binary cache via s3
   commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result-aida 
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
-
-- name: upload deke to binary cache via s3
-  commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result-deke 
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
-
-- name: upload flint to binary cache via s3
-  commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result-flint 
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
-
-- name: upload kora to binary cache via s3
-  commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result-kora 
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
-
-- name: upload simmons to binary cache via s3
-  commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result-simmons 
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
-
-- name: upload snowflake to binary cache via s3
-  commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result-snowflake 
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
-
-- name: upload the-bus to binary cache via s3
-  commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result-the-bus 
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
-
-- name: upload the-hub to binary cache via s3
-  commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result-the-hub 
+  - nix run 'github:lounge-rocks/the-lounge#s3uploader'
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -171,9 +108,8 @@ steps:
 
 - name: Build owncast
   commands:
-  - nix build .#owncast
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result 
-  - nix path-info --closure-size -h $(readlink -f result)
+  - nix build .#owncast --out-link result-owncast
+  - nix path-info --closure-size -h $(readlink -f result-owncast)
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -182,9 +118,8 @@ steps:
 
 - name: Build plexRaw
   commands:
-  - nix build .#plexRaw
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result 
-  - nix path-info --closure-size -h $(readlink -f result)
+  - nix build .#plexRaw --out-link result-plexRaw
+  - nix path-info --closure-size -h $(readlink -f result-plexRaw)
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -193,9 +128,17 @@ steps:
 
 - name: Build tautulli
   commands:
-  - nix build .#tautulli
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result 
-  - nix path-info --closure-size -h $(readlink -f result)
+  - nix build .#tautulli --out-link result-tautulli
+  - nix path-info --closure-size -h $(readlink -f result-tautulli)
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
+
+- name: upload to binary cache via s3
+  commands:
+  - nix run 'github:lounge-rocks/the-lounge#s3uploader'
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -226,9 +169,17 @@ steps:
 
 - name: Build owncast
   commands:
-  - nix build .#owncast
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result 
-  - nix path-info --closure-size -h $(readlink -f result)
+  - nix build .#owncast --out-link result-owncast
+  - nix path-info --closure-size -h $(readlink -f result-owncast)
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
+
+- name: upload to binary cache via s3
+  commands:
+  - nix run 'github:lounge-rocks/the-lounge#s3uploader'
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key

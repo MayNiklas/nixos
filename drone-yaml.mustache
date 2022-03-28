@@ -43,17 +43,15 @@ steps:
   - nix path-info --closure-size -h $(readlink -f result-{{name}})
 
 {{/machines}}
-{{#machines}}
-- name: upload {{name}} to binary cache via s3
+- name: upload to binary cache via s3
   commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result-{{name}} 
+  - nix run 'github:lounge-rocks/the-lounge#s3uploader'
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
 
-{{/machines}}
 trigger:
   branch:
   - main
@@ -81,9 +79,8 @@ steps:
 {{#apps}}
 - name: Build {{name}}
   commands:
-  - nix build .#{{name}}
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader' result 
-  - nix path-info --closure-size -h $(readlink -f result)
+  - nix build .#{{name}} --out-link result-{{name}}
+  - nix path-info --closure-size -h $(readlink -f result-{{name}})
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -91,6 +88,15 @@ steps:
       from_secret: aws_secret
 
 {{/apps}}
+- name: upload to binary cache via s3
+  commands:
+  - nix run 'github:lounge-rocks/the-lounge#s3uploader'
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
+
 trigger:
   branch:
   - main
