@@ -201,6 +201,20 @@
           plexRaw = pkgs.plexRaw;
           tautulli = pkgs.tautulli;
           verification-listener = pkgs.verification-listener;
+          s3uploader = pkgs.writeShellScriptBin "s3uploader" ''
+            # go through all result files
+            # use --out-link result-*NAME* during build
+            for f in result*; do
+              for path in $(nix-store -qR $f); do
+                    signatures=$(nix path-info --sigs --json $path | ${pkgs.jq}/bin/jq 'try .[].signatures[]')
+                if [[ $signatures == *"cache.lounge.rocks"* ]]; then
+                  echo "add $path to upload.list"
+                  echo $path >> upload.list
+                fi
+              done
+            done
+            nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(cat upload.list | uniq)
+          '';
         };
 
         apps = {
@@ -213,6 +227,7 @@
           tautulli = flake-utils.lib.mkApp { drv = packages.tautulli; };
           verification-listener =
             flake-utils.lib.mkApp { drv = packages.verification-listener; };
+          s3uploader = flake-utils.lib.mkApp { drv = packages.s3uploader; };
         };
       });
 }

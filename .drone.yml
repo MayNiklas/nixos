@@ -77,7 +77,7 @@ steps:
 
 - name: upload to binary cache via s3
   commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader'
+  - nix run .#s3uploader
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -138,7 +138,7 @@ steps:
 
 - name: upload to binary cache via s3
   commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader'
+  - nix run .#s3uploader
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -179,7 +179,7 @@ steps:
 
 - name: upload to binary cache via s3
   commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader'
+  - nix run .#s3uploader
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
