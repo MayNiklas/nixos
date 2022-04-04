@@ -81,11 +81,6 @@ steps:
   commands:
   - nix build .#{{name}} --out-link result-{{name}}
   - nix path-info --closure-size -h $(readlink -f result-{{name}})
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
 
 {{/apps}}
 - name: upload to binary cache via s3

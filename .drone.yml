@@ -110,31 +110,21 @@ steps:
   commands:
   - nix build .#owncast --out-link result-owncast
   - nix path-info --closure-size -h $(readlink -f result-owncast)
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
 
 - name: Build plexRaw
   commands:
   - nix build .#plexRaw --out-link result-plexRaw
   - nix path-info --closure-size -h $(readlink -f result-plexRaw)
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
 
 - name: Build tautulli
   commands:
   - nix build .#tautulli --out-link result-tautulli
   - nix path-info --closure-size -h $(readlink -f result-tautulli)
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
+
+- name: Build vs-fix
+  commands:
+  - nix build .#vs-fix --out-link result-vs-fix
+  - nix path-info --closure-size -h $(readlink -f result-vs-fix)
 
 - name: upload to binary cache via s3
   commands:
@@ -171,11 +161,11 @@ steps:
   commands:
   - nix build .#owncast --out-link result-owncast
   - nix path-info --closure-size -h $(readlink -f result-owncast)
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
+
+- name: Build vs-fix
+  commands:
+  - nix build .#vs-fix --out-link result-vs-fix
+  - nix path-info --closure-size -h $(readlink -f result-vs-fix)
 
 - name: upload to binary cache via s3
   commands:
