@@ -186,16 +186,19 @@
         };
       in rec {
 
-        devShells = flake-utils.lib.flattenTree {
-          # nix develop github:mayniklas/nixos#vs-fix
-          vs-fix = import ./shells/vs-fix.nix { inherit pkgs; };
-          # nix develop github:mayniklas/nixos#drone-gen
-          drone-gen = import ./shells/drone-gen.nix { inherit pkgs; };
-        };
+        # devShells = flake-utils.lib.flattenTree {
+        #   # nix develop github:mayniklas/nixos#vs-fix
+        #   vs-fix = import ./shells/vs-fix.nix { inherit pkgs; };
+        #   # nix develop github:mayniklas/nixos#drone-gen
+        #   drone-gen = import ./shells/drone-gen.nix { inherit pkgs; };
+        # };
 
         packages = flake-utils.lib.flattenTree {
           anki-bin = pkgs.anki-bin;
           # darknet = pkgs.darknet;
+          drone-gen = pkgs.writeShellScriptBin "drone-gen" ''
+            ${pkgs.mustache-go}/bin/mustache drone.json drone-yaml.mustache > .drone.yml
+          '';
           owncast = pkgs.owncast;
           plex = pkgs.plex;
           plexRaw = pkgs.plexRaw;
@@ -222,11 +225,11 @@
             done
           '';
         };
-
         apps = {
           # Allow custom packages to be run using `nix run`
           anki-bin = flake-utils.lib.mkApp { drv = packages.anki-bin; };
           # darknet = flake-utils.lib.mkApp { drv = packages.darknet; };
+          drone-gen = flake-utils.lib.mkApp { drv = packages.drone-gen; };
           owncast = flake-utils.lib.mkApp { drv = packages.owncast; };
           plex = flake-utils.lib.mkApp { drv = packages.plex; };
           plexRaw = flake-utils.lib.mkApp { drv = packages.plexRaw; };
