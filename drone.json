@@ -35,6 +35,9 @@
             "arch": "amd64",
             "apps": [
                 {
+                    "name": "drone-gen"
+                },
+                {
                     "name": "owncast"
                 },
                 {
@@ -51,6 +54,9 @@
         {
             "arch": "arm64",
             "apps": [
+                {
+                    "name": "drone-gen"
+                },
                 {
                     "name": "owncast"
                 },
