@@ -1,6 +1,6 @@
 with (import <nixpkgs> { });
 pkgs.mkShell {
-  buildInputs = [ nodejs-14_x ];
+  buildInputs = [ nodejs-16_x ];
   shellHook = ''
     cd ~/.vscode-server/bin/
     for f in *; do
