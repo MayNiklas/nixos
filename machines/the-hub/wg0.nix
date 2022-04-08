@@ -68,9 +68,9 @@
           publicKey = "jvOx9hef7b9VWO0Lqv5BO7TtijxlxfIIQ9j0vwjZCn0=";
           allowedIPs = [ "10.88.88.8/32" "192.168.72.0/24" ];
         }
-        # iMac B.
+        # S2S B.
         {
-          publicKey = "fnuGuNVPco092ZV9zDNYY55tW/pzdRBltij9X/5DcUU=";
+          publicKey = "yxr6ZTmho6hbM7zNwWhxloZxmfv7ETthNYWsn6eNSC0=";
           allowedIPs = [ "10.88.88.9/32" ];
         }
         # S2S A. pfSense
