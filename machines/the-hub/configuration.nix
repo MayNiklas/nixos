@@ -29,6 +29,7 @@
         "kora:9100"
         "simmons:9100"
         "simone-pi4b:9100"
+        "bella-pi4b:9100"
         "snowflake:9100"
         "water-on-fire:9100"
         "the-bus:9100"
@@ -102,6 +103,7 @@
       # wg
       10.88.88.1 status.nik-ste.de
       10.88.88.8 simone-pi4b
+      10.88.88.9 bella-pi4b
       10.88.88.19 the-bus
       10.88.88.24 water-on-fire
       192.168.88.70 chris
