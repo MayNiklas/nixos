@@ -216,7 +216,8 @@
                 fi
               done
             done
-            nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(cat upload.list | uniq)
+            cat upload.list | uniq > upload
+            nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(cat upload)
           '';
           vs-fix = pkgs.writeShellScriptBin "vs-fix" ''
             for f in ~/.vscode-server/bin/*; do
