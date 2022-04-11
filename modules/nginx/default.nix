@@ -16,7 +16,7 @@ in {
 
   config = mkIf cfg.enable {
 
-    security.acme.email = "${cfg.email}";
+    security.acme.defaults.email = "${cfg.email}";
     security.acme.acceptTerms = true;
 
     services.nginx = {

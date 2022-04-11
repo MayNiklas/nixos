@@ -12,7 +12,7 @@ in {
       enable = true;
       passwordAuthentication = false;
       startWhenNeeded = true;
-      challengeResponseAuthentication = false;
+      kbdInteractiveAuthentication = false;
 
     };
 
