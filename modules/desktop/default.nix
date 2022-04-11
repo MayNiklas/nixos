@@ -100,7 +100,7 @@ in {
         firefox
         gcc
         glances
-        gnome3.dconf
+        dconf
         gparted
         htop
         hugo
