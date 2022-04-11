@@ -2,12 +2,11 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11-small";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
 
     flake-utils.url = "github:numtide/flake-utils";
 
-    home-manager.url = "github:nix-community/home-manager/release-21.11";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
   };
@@ -26,7 +25,6 @@
             # Make inputs and overlay accessible as module parameters
             { _module.args.inputs = inputs; }
             { _module.args.self-overlay = self.overlay; }
-            { _module.args.overlay-unstable = self.overlay-unstable; }
 
             ({ ... }: {
               imports = builtins.attrValues self.nixosModules ++ [
@@ -39,7 +37,7 @@
                   # and root e.g. `nix-channel --remove nixos`. `nix-channel
                   # --list` should be empty for all users afterwards
                   nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-                  nixpkgs.overlays = [ self.overlay self.overlay-unstable ];
+                  nixpkgs.overlays = [ self.overlay ];
                 }
                 baseCfg
                 home-manager.nixosModules.home-manager
@@ -60,18 +58,6 @@
 
       # Expose overlay to flake outputs, to allow using it from other flakes.
       overlay = final: prev: (import ./overlays) final prev;
-
-      # does not work with unfree packages yet      
-      # overlay-unstable = final: prev: {
-      #   unstable = nixpkgs-unstable.legacyPackages.${prev.system};
-      # };
-
-      overlay-unstable = final: prev: {
-        unstable = import nixpkgs-unstable {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-      };
 
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
@@ -106,12 +92,12 @@
           ];
         };
 
-        enoch = defFlakeSystem "x86_64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/enoch/configuration.nix) { inherit self; })
-          ];
-        };
+        # enoch = defFlakeSystem "x86_64-linux" {
+        #   imports = [
+        #     # Machine specific config
+        #     (import (./machines/enoch/configuration.nix) { inherit self; })
+        #   ];
+        # };
 
         flint = defFlakeSystem "x86_64-linux" {
           imports = [
