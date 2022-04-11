@@ -77,19 +77,21 @@ in {
 
     services.matrix-synapse = {
       enable = true;
-      server_name = "${cfg.host}";
-      enable_registration = false;
-      listeners = [{
-        port = 8008;
-        bind_address = "::1";
-        type = "http";
-        tls = false;
-        x_forwarded = true;
-        resources = [{
-          names = [ "client" "federation" ];
-          compress = false;
+      settings = {
+        server_name = "${cfg.host}";
+        enable_registration = false;
+        listeners = [{
+          port = 8008;
+          bind_addresses = [ "::1" ];
+          type = "http";
+          tls = false;
+          x_forwarded = true;
+          resources = [{
+            names = [ "client" "federation" ];
+            compress = false;
+          }];
         }];
-      }];
+      };
     };
 
     mayniklas.nginx.enable = true;
