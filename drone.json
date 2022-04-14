@@ -47,6 +47,9 @@
                     "name": "tautulli"
                 },
                 {
+                    "name": "s3uploader"
+                },
+                {
                     "name": "vs-fix"
                 }
             ]
@@ -59,6 +62,9 @@
                 },
                 {
                     "name": "owncast"
+                },
+                {
+                    "name": "s3uploader"
                 },
                 {
                     "name": "vs-fix"

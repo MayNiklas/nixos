@@ -126,6 +126,11 @@ steps:
   - nix build .#tautulli --out-link result-tautulli
   - nix path-info --closure-size -h $(readlink -f result-tautulli)
 
+- name: Build s3uploader
+  commands:
+  - nix build .#s3uploader --out-link result-s3uploader
+  - nix path-info --closure-size -h $(readlink -f result-s3uploader)
+
 - name: Build vs-fix
   commands:
   - nix build .#vs-fix --out-link result-vs-fix
@@ -171,6 +176,11 @@ steps:
   commands:
   - nix build .#owncast --out-link result-owncast
   - nix path-info --closure-size -h $(readlink -f result-owncast)
+
+- name: Build s3uploader
+  commands:
+  - nix build .#s3uploader --out-link result-s3uploader
+  - nix path-info --closure-size -h $(readlink -f result-s3uploader)
 
 - name: Build vs-fix
   commands:
