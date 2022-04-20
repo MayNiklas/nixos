@@ -17,15 +17,13 @@
 
   fileSystems."/mnt/deke" = {
     device = "//deke/public";
-    options =
-      [ "soft" "ro" "nounix" "dir_mode=0777" "file_mode=0777" ];
+    options = [ "soft" "ro" "nounix" "dir_mode=0777" "file_mode=0777" ];
     fsType = "cifs";
   };
 
   fileSystems."/mnt/snowflake" = {
     device = "//snowflake/public";
-    options =
-      [ "soft" "ro" "nounix" "dir_mode=0777" "file_mode=0777" ];
+    options = [ "soft" "ro" "nounix" "dir_mode=0777" "file_mode=0777" ];
     fsType = "cifs";
   };
 
@@ -53,6 +51,13 @@
 
   networking = {
     hostName = "aida";
+    dhcpcd.enable = false;
+    interfaces.ens192.ipv4.addresses = [{
+      address = "192.168.5.20";
+      prefixLength = 24;
+    }];
+    defaultGateway = "192.168.5.1";
+    nameservers = [ "192.168.5.1" "1.1.1.1" ];
     firewall = { allowedTCPPorts = [ 9100 9115 ]; };
   };
 
