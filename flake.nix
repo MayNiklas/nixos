@@ -150,6 +150,15 @@
           ];
         };
 
+        hetzner-x86 = defFlakeSystem "x86_64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./templates/hetzner-x86/configuration.nix) {
+              inherit self;
+            })
+          ];
+        };
+
       };
 
       # hydraJobs = (nixpkgs.lib.mapAttrs' (name: config:

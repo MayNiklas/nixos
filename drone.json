@@ -26,6 +26,9 @@
                 },
                 {
                     "name": "the-hub"
+                },
+                {
+                    "name": "hetzner-x86"
                 }
             ]
         }

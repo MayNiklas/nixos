@@ -75,6 +75,11 @@ steps:
   - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' --out-link result-the-hub
   - nix path-info --closure-size -h $(readlink -f result-the-hub)
 
+- name: build hetzner-x86
+  commands:
+  - nix build '.#nixosConfigurations.hetzner-x86.config.system.build.toplevel' --out-link result-hetzner-x86
+  - nix path-info --closure-size -h $(readlink -f result-hetzner-x86)
+
 - name: upload to binary cache via s3
   commands:
   - nix run .#s3uploader
