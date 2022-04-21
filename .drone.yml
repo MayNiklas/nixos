@@ -55,6 +55,11 @@ steps:
   - nix build '.#nixosConfigurations.kora.config.system.build.toplevel' --out-link result-kora
   - nix path-info --closure-size -h $(readlink -f result-kora)
 
+- name: build robin
+  commands:
+  - nix build '.#nixosConfigurations.robin.config.system.build.toplevel' --out-link result-robin
+  - nix path-info --closure-size -h $(readlink -f result-robin)
+
 - name: build simmons
   commands:
   - nix build '.#nixosConfigurations.simmons.config.system.build.toplevel' --out-link result-simmons
