@@ -141,6 +141,13 @@
           ];
         };
 
+        robin = defFlakeSystem "x86_64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/robin/configuration.nix) { inherit self; })
+          ];
+        };
+
         water-on-fire = defFlakeSystem "x86_64-linux" {
           imports = [
             # Machine specific config
