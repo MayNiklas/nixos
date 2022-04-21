@@ -8,6 +8,14 @@
     };
   };
 
+  # services.netbox = {
+  #   enable = true;
+  #   dataDir = "/var/lib/netbox";
+  #   listenAddress = "[::1]";
+  #   port = 8001;
+  #   secretKeyFile = "/var/src/secrets/netbox/key";
+  # };
+
   networking = {
     hostName = "robin";
     interfaces.enp1s0 = {
@@ -16,6 +24,7 @@
         prefixLength = 64;
       }];
     };
+    # firewall = { allowedTCPPorts = [ 8001 ]; };
   };
 
   system.stateVersion = "22.05";
