@@ -38,6 +38,13 @@
 
   networking = {
     hostName = "kora";
+    dhcpcd.enable = false;
+    interfaces.ens192.ipv4.addresses = [{
+      address = "192.168.5.21";
+      prefixLength = 24;
+    }];
+    defaultGateway = "192.168.5.1";
+    nameservers = [ "192.168.5.1" "1.1.1.1" ];
     firewall = { allowedTCPPorts = [ 9100 9115 ]; };
   };
 
