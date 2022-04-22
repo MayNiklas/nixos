@@ -70,6 +70,9 @@
                     "name": "owncast"
                 },
                 {
+                    "name": "plexRaw"
+                },
+                {
                     "name": "s3uploader"
                 },
                 {

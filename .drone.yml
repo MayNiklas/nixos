@@ -187,6 +187,11 @@ steps:
   - nix build .#owncast --out-link result-owncast
   - nix path-info --closure-size -h $(readlink -f result-owncast)
 
+- name: Build plexRaw
+  commands:
+  - nix build .#plexRaw --out-link result-plexRaw
+  - nix path-info --closure-size -h $(readlink -f result-plexRaw)
+
 - name: Build s3uploader
   commands:
   - nix build .#s3uploader --out-link result-s3uploader
