@@ -57,6 +57,10 @@
         prefixLength = 64;
       }];
     };
+    defaultGateway6 = {
+      address = "fe80::1";
+      interface = "enp1s0";
+    };
   };
 
   system.stateVersion = "22.05";
