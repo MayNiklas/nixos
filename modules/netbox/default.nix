@@ -26,8 +26,8 @@ in {
 
     services.nginx.virtualHosts = {
       "${cfg.hostname}" = {
-        onlySSL = true;
         enableACME = true;
+        forceSSL = true;
         locations = {
           "/static/" = { alias = "/var/lib/netbox/static/"; };
           "/" = {
@@ -41,6 +41,8 @@ in {
         };
       };
     };
+
+    users.groups.netbox.members = [ config.services.nginx.user ];
 
     networking.firewall = { allowedTCPPorts = [ 80 443 ]; };
 
