@@ -33,7 +33,7 @@
       extraGroups = [ "wheel" ];
       shell = self.inputs.nixpkgs.legacyPackages.x86_64-linux.zsh;
       openssh.authorizedKeys.keys = [
-        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDXZFusz81OwV8tiQjhvUMaXu3D8YfB8c375k5pIbwLWBi6Ouzp9MvNO1dNldrI6r2cmeeJH5pbnwsnzlUrYyoP/mb1cYfC9KqejrPySor9407RFQyYd738fs9wS2Mpak8VcoGH1LX0RD+JrVrVvUd6VVnKdmXeuZsv3IXD>"
+        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDXZFusz81OwV8tiQjhvUMaXu3D8YfB8c375k5pIbwLWBi6Ouzp9MvNO1dNldrI6r2cmeeJH5pbnwsnzlUrYyoP/mb1cYfC9KqejrPySor9407RFQyYd738fs9wS2Mpak8VcoGH1LX0RD+JrVrVvUd6VVnKdmXeuZsv3IXDiGMH7HN6WOVuE5Y7fgBUNWmKROInR28aWTJc1sLN5ad85Z1suKIFqVR2FIjce1HsOyq7AIuJqgp5GOz5R7z2d30iziCo+r8vonABqdmsFUUR4tXoWD6S0VR6bfK12KnJfg4hSGYkNb85VQwS1BFaVnk+Nx1rRmSwFLQiJfFxRmGF6paMmCNoZ5m5AloVgpgcmDbgWoYSiLebN+sE8wEk7hVoht3SowSKBjBT8BJwg+hqBEhAfL1IgRJZwivzBdb7OQ5K8l3JiZjoM4Xg2HAcEsWNpmpNK+l6tRvlv2L/dQPtoky712Yh7lpX5dI5sSNAdIVgvtker4+D1LWmcVkDCg9bvYKckPLL+zJpeqbgSp0UoUqPBrmDxFmcmMKC0mOEKrMMpwEsgZZAnzDznJvqEFOFHsXy4U2WPBywXN7geoeABbUDbmw8sgDTEzPnemqrHng8UbhuQ7HcWHUqZTqlg99U5XnDQrxw5UkORZ3d3m9fiAvsOfDaar6/qWS+6If69x3CmQ== macbook"
       ];
     };
   };
