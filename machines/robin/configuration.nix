@@ -6,15 +6,11 @@
       enable = true;
       home-manager = true;
     };
+    netbox = {
+      enable = true;
+      hostname = "netbox.lounge.rocks";
+    };
   };
-
-  # services.netbox = {
-  #   enable = true;
-  #   dataDir = "/var/lib/netbox";
-  #   listenAddress = "[::1]";
-  #   port = 8001;
-  #   secretKeyFile = "/var/src/secrets/netbox/key";
-  # };
 
   networking = {
     hostName = "robin";
