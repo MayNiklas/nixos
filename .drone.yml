@@ -85,6 +85,11 @@ steps:
   - nix build '.#nixosConfigurations.hetzner-x86.config.system.build.toplevel' --out-link result-hetzner-x86
   - nix path-info --closure-size -h $(readlink -f result-hetzner-x86)
 
+- name: build vmware-x86
+  commands:
+  - nix build '.#nixosConfigurations.vmware-x86.config.system.build.toplevel' --out-link result-vmware-x86
+  - nix path-info --closure-size -h $(readlink -f result-vmware-x86)
+
 - name: upload to binary cache via s3
   commands:
   - nix run .#s3uploader

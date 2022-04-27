@@ -32,6 +32,9 @@
                 },
                 {
                     "name": "hetzner-x86"
+                },
+                {
+                    "name": "vmware-x86"
                 }
             ]
         }

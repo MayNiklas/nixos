@@ -157,10 +157,21 @@
           ];
         };
 
+        # templates
+
         hetzner-x86 = defFlakeSystem "x86_64-linux" {
           imports = [
             # Machine specific config
             (import (./templates/hetzner-x86/configuration.nix) {
+              inherit self;
+            })
+          ];
+        };
+
+        vmware-x86 = defFlakeSystem "x86_64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./templates/vmware-x86/configuration.nix) {
               inherit self;
             })
           ];
