@@ -1,7 +1,6 @@
+# to build disk image:
+# nix build .#nixosConfigurations.vmware-template.config.system.build.vmwareImage
 { self, ... }: {
-
-  # to build disk image:
-  # nix build .#nixosConfigurations.vmware-template.config.system.build.vmwareImage
 
   imports = [ ./hardware-configuration.nix ];
 
@@ -13,8 +12,8 @@
     vmware-guest.enable = true;
   };
 
-  networking.hostName = "vmware-template";
+  networking.hostName = "vmware-x86";
 
-  system.stateVersion = "20.09";
+  system.stateVersion = "22.05";
 
 }
