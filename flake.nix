@@ -53,7 +53,13 @@
             })
           ];
         };
-
+      ### BEGIN: tmp fix netcup-qcow2-image
+      lib = nixpkgs.lib;
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        config = { allowUnfree = true; };
+      };
+      ### END: tmp fix netcup-qcow2-image
     in {
 
       # Expose overlay to flake outputs, to allow using it from other flakes.
@@ -168,6 +174,15 @@
           ];
         };
 
+        netcup-x86 = defFlakeSystem "x86_64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./templates/netcup-x86/configuration.nix) {
+              inherit self;
+            })
+          ];
+        };
+
         vmware-x86 = defFlakeSystem "x86_64-linux" {
           imports = [
             # Machine specific config
@@ -177,6 +192,17 @@
           ];
         };
 
+      };
+
+      # nix build .#netcup-qcow2-image
+      netcup-qcow2-image = import "${nixpkgs}/nixos/lib/make-disk-image.nix" {
+        # See for further options:
+        # https://github.com/NixOS/nixpkgs/blob/master/nixos/lib/make-disk-image.nix
+        config = (self.nixosConfigurations.netcup-x86).config;
+        inherit pkgs lib;
+        format = "qcow2";
+        name = "netcup-image";
+        configFile = ./templates/netcup-x86/configuration.nix;
       };
 
       # hydraJobs = (nixpkgs.lib.mapAttrs' (name: config:

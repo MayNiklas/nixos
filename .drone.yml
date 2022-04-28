@@ -85,6 +85,11 @@ steps:
   - nix build '.#nixosConfigurations.hetzner-x86.config.system.build.toplevel' --out-link result-hetzner-x86
   - nix path-info --closure-size -h $(readlink -f result-hetzner-x86)
 
+- name: build netcup-x86
+  commands:
+  - nix build '.#nixosConfigurations.netcup-x86.config.system.build.toplevel' --out-link result-netcup-x86
+  - nix path-info --closure-size -h $(readlink -f result-netcup-x86)
+
 - name: build vmware-x86
   commands:
   - nix build '.#nixosConfigurations.vmware-x86.config.system.build.toplevel' --out-link result-vmware-x86
