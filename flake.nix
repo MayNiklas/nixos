@@ -163,6 +163,13 @@
           ];
         };
 
+        nftables = defFlakeSystem "x86_64-linux" {
+          imports = [
+            # Machine specific config
+            (import (./machines/nftables/configuration.nix) { inherit self; })
+          ];
+        };
+
         # templates
 
         hetzner-x86 = defFlakeSystem "x86_64-linux" {
