@@ -3,7 +3,7 @@
 
 define WAN_IFC      = enp1s0
 define VPN_IFC      = wg0
-define VPN_NET      = 10.88.88.0/24
+define VPN_NET = { 10.88.88.0/24 }
 
 table inet filter {
     # Block all incomming connections traffic except SSH and "ping".
@@ -62,6 +62,6 @@ table ip nat {
 
     chain POSTROUTING {
         type nat hook postrouting priority srcnat; policy accept;
-        oifname "enp1s0" ip saddr 10.88.88.0/24 counter packets 8 bytes 448 masquerade
+        oifname $WAN_IFC ip saddr $VPN_NET counter packets 8 bytes 448 masquerade
     }
 }
