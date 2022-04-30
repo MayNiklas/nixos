@@ -46,3 +46,22 @@ table inet filter {
         accept
     }
 }
+
+table ip nat {
+    chain PREROUTING {
+        type nat hook prerouting priority dstnat; policy accept;
+    }
+
+    chain INPUT {
+        type nat hook input priority 100; policy accept;
+    }
+
+    chain OUTPUT {
+        type nat hook output priority -100; policy accept;
+    }
+
+    chain POSTROUTING {
+        type nat hook postrouting priority srcnat; policy accept;
+        oifname "enp1s0" ip saddr 10.88.88.0/24 counter packets 8 bytes 448 masquerade
+    }
+}
