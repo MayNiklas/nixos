@@ -1,9 +1,13 @@
 { lib, pkgs, config, ... }:
 with lib;
-let cfg = config.mayniklas.vmware-guest;
+let cfg = config.mayniklas.cloud.vmware-x86;
 in {
 
-  options.mayniklas.vmware-guest = {
+  imports = [
+    (mkRenamedOptionModule [ "mayniklas" "vmware-guest" ] [ "mayniklas" "cloud" "vmware-x86" ])
+  ];
+
+  options.mayniklas.cloud.vmware-x86 = {
     enable = mkEnableOption "activate vmware-guest";
   };
 
