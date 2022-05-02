@@ -1,14 +1,17 @@
 { config, pkgs, lib, modulesPath, ... }:
 
 with lib;
-let cfg = config.mayniklas.kvm-guest;
+let cfg = config.mayniklas.cloud.netcup-x86;
 
 in {
 
-  imports = [ "${modulesPath}/profiles/qemu-guest.nix" ];
+  imports = [
+    "${modulesPath}/profiles/qemu-guest.nix"
+    (mkRenamedOptionModule [ "mayniklas" "kvm-guest" ] [ "mayniklas" "cloud" "netcup-x86" ] )
+  ];
 
-  options.mayniklas.kvm-guest = {
-    enable = mkEnableOption "activate kvm-guest";
+  options.mayniklas.cloud.netcup-x86 = {
+    enable = mkEnableOption "profile for netcup servers";
   };
 
   config = mkIf cfg.enable {
@@ -30,4 +33,3 @@ in {
   };
 
 }
-
