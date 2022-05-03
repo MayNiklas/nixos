@@ -62,6 +62,9 @@
                     "name": "tautulli"
                 },
                 {
+                    "name": "unifi"
+                },
+                {
                     "name": "s3uploader"
                 },
                 {

@@ -151,6 +151,11 @@ steps:
   - nix build .#tautulli --out-link result-tautulli
   - nix path-info --closure-size -h $(readlink -f result-tautulli)
 
+- name: Build unifi
+  commands:
+  - nix build .#unifi --out-link result-unifi
+  - nix path-info --closure-size -h $(readlink -f result-unifi)
+
 - name: Build s3uploader
   commands:
   - nix build .#s3uploader --out-link result-s3uploader
