@@ -9,6 +9,11 @@ self: super: {
   plex = super.pkgs.callPackage ../packages/plex { };
   plexRaw = super.pkgs.callPackage ../packages/plex/raw.nix { };
   tautulli = super.pkgs.python3Packages.callPackage ../packages/tautulli { };
+
+  inherit (super.pkgs.callPackages ../packages/unifi { })
+    unifiLTS unifi5 unifi6 unifi7;
+  unifi = super.pkgs.unifi7;
+
   verification-listener =
     super.pkgs.python3Packages.callPackage ../packages/verification-listener
     { };

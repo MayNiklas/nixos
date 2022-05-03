@@ -242,6 +242,13 @@
           plex = pkgs.plex;
           plexRaw = pkgs.plexRaw;
           tautulli = pkgs.tautulli;
+
+          unifiLTS = pkgs.unifiLTS;
+          unifi5 = pkgs.unifi5;
+          unifi6 = pkgs.unifi6;
+          unifi7 = pkgs.unifi7;
+          unifi = pkgs.unifi;
+
           verification-listener = pkgs.verification-listener;
           s3uploader = pkgs.writeShellScriptBin "s3uploader" ''
             # go through all result files
@@ -276,6 +283,13 @@
           tautulli = flake-utils.lib.mkApp { drv = packages.tautulli; };
           verification-listener =
             flake-utils.lib.mkApp { drv = packages.verification-listener; };
+
+          unifiLTS = flake-utils.lib.mkApp { drv = packages.unifiLTS; };
+          unifi5 = flake-utils.lib.mkApp { drv = packages.unifi5; };
+          unifi6 = flake-utils.lib.mkApp { drv = packages.unifi6; };
+          unifi7 = flake-utils.lib.mkApp { drv = packages.unifi7; };
+          unifi = flake-utils.lib.mkApp { drv = packages.unifi; };
+
           s3uploader = flake-utils.lib.mkApp { drv = packages.s3uploader; };
           vs-fix = flake-utils.lib.mkApp { drv = packages.vs-fix; };
         };

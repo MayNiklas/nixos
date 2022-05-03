@@ -85,6 +85,9 @@
                     "name": "s3uploader"
                 },
                 {
+                    "name": "unifi"
+                },
+                {
                     "name": "vs-fix"
                 }
             ]

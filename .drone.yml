@@ -212,6 +212,11 @@ steps:
   - nix build .#s3uploader --out-link result-s3uploader
   - nix path-info --closure-size -h $(readlink -f result-s3uploader)
 
+- name: Build unifi
+  commands:
+  - nix build .#unifi --out-link result-unifi
+  - nix path-info --closure-size -h $(readlink -f result-unifi)
+
 - name: Build vs-fix
   commands:
   - nix build .#vs-fix --out-link result-vs-fix
