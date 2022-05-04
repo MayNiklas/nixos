@@ -7,12 +7,12 @@ self: super: {
   # s3uploader = super.pkgs.callPackage ../packages/s3uploader { };
   vs-fix = super.pkgs.callPackage ../packages/vs-fix { };
 
-  s3uploader = pkgs.writeShellScriptBin "s3uploader" ''
+  s3uploader = super.pkgs.writeShellScriptBin "s3uploader" ''
     # go through all result files
     # use --out-link result-*NAME* during build
     for f in result*; do
       for path in $(nix-store -qR $f); do
-            signatures=$(nix path-info --sigs --json $path | ${pkgs.jq}/bin/jq 'try .[].signatures[]')
+            signatures=$(nix path-info --sigs --json $path | ${super.pkgs.jq}/bin/jq 'try .[].signatures[]')
         if [[ $signatures == *"cache.lounge.rocks"* ]]; then
           echo "add $path to upload.list"
           echo $path >> upload.list
