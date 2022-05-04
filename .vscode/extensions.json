@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "brettm12345.nixfmt-vscode"
+        "brettm12345.nixfmt-vscode",
+        "bbenoist.Nix"
     ]
 }
