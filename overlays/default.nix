@@ -4,8 +4,24 @@ self: super: {
 
   drone-gen = super.pkgs.callPackage ../packages/drone-gen { };
   hello-world = super.pkgs.callPackage ../packages/hello-world { };
-  s3uploader = super.pkgs.callPackage ../packages/s3uploader { };
+  # s3uploader = super.pkgs.callPackage ../packages/s3uploader { };
   vs-fix = super.pkgs.callPackage ../packages/vs-fix { };
+
+  s3uploader = pkgs.writeShellScriptBin "s3uploader" ''
+    # go through all result files
+    # use --out-link result-*NAME* during build
+    for f in result*; do
+      for path in $(nix-store -qR $f); do
+            signatures=$(nix path-info --sigs --json $path | ${pkgs.jq}/bin/jq 'try .[].signatures[]')
+        if [[ $signatures == *"cache.lounge.rocks"* ]]; then
+          echo "add $path to upload.list"
+          echo $path >> upload.list
+        fi
+      done
+    done
+    cat upload.list | uniq > upload
+    nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(cat upload)
+  '';
 
   anki-bin = super.pkgs.callPackage ../packages/anki-bin { };
   bukkit-spigot = super.pkgs.callPackage ../packages/bukkit-spigot { };
