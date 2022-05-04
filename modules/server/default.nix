@@ -75,10 +75,11 @@ in {
 
     environment.systemPackages = with pkgs; [
       bash-completion
+      drone-gen
       git
       nixfmt
-      wget
       vs-fix
+      wget
     ];
 
     mayniklas = {
