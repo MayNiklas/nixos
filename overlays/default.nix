@@ -2,6 +2,8 @@ self: super: {
   # Custom packages. Will be made available on all machines and used where
   # needed.
 
+  hello-world = super.pkgs.callPackage ../packages/hello-world { };
+  
   drone-gen = super.pkgs.writeShellScriptBin "drone-gen" ''
     ${super.pkgs.mustache-go}/bin/mustache drone.json drone-yaml.mustache > .drone.yml
   '';

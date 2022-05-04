@@ -236,6 +236,7 @@
           anki-bin = pkgs.anki-bin;
           # darknet = pkgs.darknet;
           drone-gen = pkgs.drone-gen;
+          hello-world = pkgs.hello-world;
           owncast = pkgs.owncast;
           plex = pkgs.plex;
           plexRaw = pkgs.plexRaw;
@@ -254,6 +255,7 @@
           anki-bin = flake-utils.lib.mkApp { drv = packages.anki-bin; };
           # darknet = flake-utils.lib.mkApp { drv = packages.darknet; };
           drone-gen = flake-utils.lib.mkApp { drv = packages.drone-gen; };
+          hello-world = flake-utils.lib.mkApp { drv = packages.hello-world; };
           owncast = flake-utils.lib.mkApp { drv = packages.owncast; };
           plex = flake-utils.lib.mkApp { drv = packages.plex; };
           plexRaw = flake-utils.lib.mkApp { drv = packages.plexRaw; };
