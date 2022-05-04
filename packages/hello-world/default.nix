@@ -1,4 +1,4 @@
-{ stdenv, ... }:
+{ stdenv, pkgs, ... }:
 
 stdenv.mkDerivation rec {
 
@@ -10,8 +10,10 @@ stdenv.mkDerivation rec {
   installPhase = let
 
     script = ''
-      #!/bin/bash
-      echo Hello world!
+      #! /usr/bin/env nix-shell
+      #! nix-shell -i bash -p bash
+
+      echo hello-world!
     '';
 
   in ''
