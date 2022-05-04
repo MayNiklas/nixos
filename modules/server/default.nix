@@ -73,7 +73,13 @@ in {
       home.stateVersion = "21.05";
     };
 
-    environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
+    environment.systemPackages = with pkgs; [
+      bash-completion
+      git
+      nixfmt
+      wget
+      vs-fix
+    ];
 
     mayniklas = {
       user = {

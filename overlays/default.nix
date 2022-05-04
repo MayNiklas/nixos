@@ -1,6 +1,14 @@
 self: super: {
   # Custom packages. Will be made available on all machines and used where
   # needed.
+
+  vs-fix = super.pkgs.writeShellScriptBin "vs-fix" ''
+    for f in ~/.vscode-server/bin/*; do
+      rm $f/node            
+      ln -s $(which ${super.pkgs.nodejs-16_x}/bin/node) $f/node 
+    done
+  '';
+
   anki-bin = super.pkgs.callPackage ../packages/anki-bin { };
   bukkit-spigot = super.pkgs.callPackage ../packages/bukkit-spigot { };
   darknet = super.pkgs.callPackage ../packages/darknet { };
