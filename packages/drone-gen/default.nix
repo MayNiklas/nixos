@@ -1,24 +1,18 @@
-{ stdenv, pkgs, ... }:
-
-stdenv.mkDerivation rec {
+{ pkgs, stdenv, ... }:
+let
+  drone-gen-skript = pkgs.writeShellScriptBin "drone-gen" ''
+    ${pkgs.mustache-go}/bin/mustache drone.json drone-yaml.mustache > .drone.yml
+  '';
+in stdenv.mkDerivation {
 
   pname = "drone-gen";
   version = "0.1.0";
 
-  src = builtins.filterSource (path: type: false) ./.;
+  # Needed if no src is used. Alternatively place script in
+  # separate file and include it as src
+  dontUnpack = true;
 
-  installPhase = let
-
-    script = ''
-      #! /usr/bin/env nix-shell
-      #! nix-shell -i bash -p bash
-
-      ${pkgs.mustache-go}/bin/mustache drone.json drone-yaml.mustache > .drone.yml
-    '';
-
-  in ''
-    mkdir -p $out/bin
-    echo '${script}' > $out/bin/drone-gen
-    chmod +x $out/bin/drone-gen
+  installPhase = ''
+    cp -r ${drone-gen-skript} $out
   '';
 }
