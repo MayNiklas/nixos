@@ -235,36 +235,18 @@
         packages = flake-utils.lib.flattenTree {
           anki-bin = pkgs.anki-bin;
           # darknet = pkgs.darknet;
-          drone-gen = pkgs.writeShellScriptBin "drone-gen" ''
-            ${pkgs.mustache-go}/bin/mustache drone.json drone-yaml.mustache > .drone.yml
-          '';
+          drone-gen = pkgs.drone-gen;
           owncast = pkgs.owncast;
           plex = pkgs.plex;
           plexRaw = pkgs.plexRaw;
+          s3uploader = pkgs.s3uploader;
           tautulli = pkgs.tautulli;
-
-          unifiLTS = pkgs.unifiLTS;
+          unifi = pkgs.unifi;
           unifi5 = pkgs.unifi5;
           unifi6 = pkgs.unifi6;
           unifi7 = pkgs.unifi7;
-          unifi = pkgs.unifi;
-
+          unifiLTS = pkgs.unifiLTS;
           verification-listener = pkgs.verification-listener;
-          s3uploader = pkgs.writeShellScriptBin "s3uploader" ''
-            # go through all result files
-            # use --out-link result-*NAME* during build
-            for f in result*; do
-              for path in $(nix-store -qR $f); do
-                    signatures=$(nix path-info --sigs --json $path | ${pkgs.jq}/bin/jq 'try .[].signatures[]')
-                if [[ $signatures == *"cache.lounge.rocks"* ]]; then
-                  echo "add $path to upload.list"
-                  echo $path >> upload.list
-                fi
-              done
-            done
-            cat upload.list | uniq > upload
-            nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(cat upload)
-          '';
           vs-fix = pkgs.vs-fix;
         };
         apps = {
@@ -275,17 +257,15 @@
           owncast = flake-utils.lib.mkApp { drv = packages.owncast; };
           plex = flake-utils.lib.mkApp { drv = packages.plex; };
           plexRaw = flake-utils.lib.mkApp { drv = packages.plexRaw; };
+          s3uploader = flake-utils.lib.mkApp { drv = packages.s3uploader; };
           tautulli = flake-utils.lib.mkApp { drv = packages.tautulli; };
-          verification-listener =
-            flake-utils.lib.mkApp { drv = packages.verification-listener; };
-
-          unifiLTS = flake-utils.lib.mkApp { drv = packages.unifiLTS; };
+          unifi = flake-utils.lib.mkApp { drv = packages.unifi; };
           unifi5 = flake-utils.lib.mkApp { drv = packages.unifi5; };
           unifi6 = flake-utils.lib.mkApp { drv = packages.unifi6; };
           unifi7 = flake-utils.lib.mkApp { drv = packages.unifi7; };
-          unifi = flake-utils.lib.mkApp { drv = packages.unifi; };
-
-          s3uploader = flake-utils.lib.mkApp { drv = packages.s3uploader; };
+          unifiLTS = flake-utils.lib.mkApp { drv = packages.unifiLTS; };
+          verification-listener =
+            flake-utils.lib.mkApp { drv = packages.verification-listener; };
           vs-fix = flake-utils.lib.mkApp { drv = packages.vs-fix; };
         };
       });
