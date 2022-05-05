@@ -136,11 +136,6 @@ steps:
   - nix build .#drone-gen --out-link result-drone-gen
   - nix path-info --closure-size -h $(readlink -f result-drone-gen)
 
-- name: Build hello-world
-  commands:
-  - nix build .#hello-world --out-link result-hello-world
-  - nix path-info --closure-size -h $(readlink -f result-hello-world)
-
 - name: Build owncast
   commands:
   - nix build .#owncast --out-link result-owncast
