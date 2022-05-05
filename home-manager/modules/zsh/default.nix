@@ -40,6 +40,19 @@ in {
           src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
         }
       ];
+
+      shellAliases = rec {
+
+        # git
+        gs = "${pkgs.git}/bin/git status";
+
+        # nix
+        nixos-rebuild = "${pkgs.nixos-rebuild}/bin/nixos-rebuild --use-remote-sudo";
+
+        # Other
+        lsblk = "lsblk -o name,mountpoint,label,size,type,uuid";
+
+      };
     };
 
     programs.fzf = {
