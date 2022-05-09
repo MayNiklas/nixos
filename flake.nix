@@ -72,6 +72,18 @@
         value = import (./modules + "/${x}");
       }) (builtins.attrNames (builtins.readDir ./modules)));
 
+      # // {
+
+      #   dotfiles = ({ pkgs, ... }: { imports = [ ./modules/home-manager ]; });
+
+      # };
+
+      hmModules = {
+        git = ({ pkgs, ... }: { imports = [ ./home-manager/modules/git ]; });
+        vim = ({ pkgs, ... }: { imports = [ ./home-manager/modules/vim ]; });
+        zsh = ({ pkgs, ... }: { imports = [ ./home-manager/modules/zsh ]; });
+      };
+
       # Each subdirectory in ./machins is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
