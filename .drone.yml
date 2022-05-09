@@ -85,6 +85,11 @@ steps:
   - nix build '.#nixosConfigurations.nftables.config.system.build.toplevel' --out-link result-nftables
   - nix path-info --closure-size -h $(readlink -f result-nftables)
 
+- name: build hetzner-x86
+  commands:
+  - nix build '.#nixosConfigurations.hetzner-x86.config.system.build.toplevel' --out-link result-hetzner-x86
+  - nix path-info --closure-size -h $(readlink -f result-hetzner-x86)
+
 - name: build water-on-fire
   commands:
   - nix build '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --out-link result-water-on-fire

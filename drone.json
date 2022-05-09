@@ -34,6 +34,9 @@
                     "name": "nftables"
                 },
                 {
+                    "name": "hetzner-x86"
+                },
+                {
                     "name": "water-on-fire"
                 }
             ]

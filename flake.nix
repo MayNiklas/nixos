@@ -46,7 +46,20 @@
             { imports = builtins.attrValues self.nixosModules; }
           ];
         };
-      }) (builtins.attrNames (builtins.readDir ./machines)));
+      }) (builtins.attrNames (builtins.readDir ./machines)))
+
+        // {
+
+          hetzner-x86 = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = { flake-self = self; } // inputs;
+            modules = [
+              ./images/hetzner-x86/configuration.nix
+              { imports = builtins.attrValues self.nixosModules; }
+            ];
+          };
+
+        };
 
       # nix build '.#netcup-x86-image'
       netcup-x86-image = let system = "x86_64-linux";
