@@ -55,11 +55,6 @@ steps:
   - nix build '.#nixosConfigurations.kora.config.system.build.toplevel' --out-link result-kora
   - nix path-info --closure-size -h $(readlink -f result-kora)
 
-- name: build robin
-  commands:
-  - nix build '.#nixosConfigurations.robin.config.system.build.toplevel' --out-link result-robin
-  - nix path-info --closure-size -h $(readlink -f result-robin)
-
 - name: build simmons
   commands:
   - nix build '.#nixosConfigurations.simmons.config.system.build.toplevel' --out-link result-simmons
@@ -79,11 +74,6 @@ steps:
   commands:
   - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' --out-link result-the-hub
   - nix path-info --closure-size -h $(readlink -f result-the-hub)
-
-- name: build nftables
-  commands:
-  - nix build '.#nixosConfigurations.nftables.config.system.build.toplevel' --out-link result-nftables
-  - nix path-info --closure-size -h $(readlink -f result-nftables)
 
 - name: build hetzner-x86
   commands:
