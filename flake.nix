@@ -74,6 +74,18 @@
         name = "base-image";
       };
 
+      # nix build .#vmware-x86-image.config.system.build.vmwareImage
+      vmware-x86-image = let system = "x86_64-linux";
+      in nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = { flake-self = self; } // inputs;
+        lib = nixpkgs.lib;
+        modules = [
+          ./images/vmware-x86/configuration.nix
+          { imports = builtins.attrValues self.nixosModules; }
+        ];
+      };
+
     } //
 
     # All packages in the ./packages subfolder are also added to the flake.
