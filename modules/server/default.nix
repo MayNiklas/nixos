@@ -46,6 +46,8 @@ in {
     # nixpkgs.config`
     home-manager.useUserPackages = true;
 
+    # nixpkgs.overlays = [ flake-self.overlays.default ];
+
     home-manager.users.nik = mkIf cfg.home-manager {
 
       # Let Home Manager install and manage itself.
@@ -66,7 +68,15 @@ in {
       };
 
       # Install these packages for my user
-      home.packages = with pkgs; [ gcc htop iperf3 nmap unzip ];
+      home.packages = with pkgs; [
+        gcc
+        htop
+        iperf3
+        nmap
+        unzip
+        drone-gen
+        vs-fix
+      ];
 
       imports = [
         ../../home-manager/modules/git
@@ -77,14 +87,7 @@ in {
       home.stateVersion = "21.05";
     };
 
-    environment.systemPackages = with pkgs; [
-      bash-completion
-      drone-gen
-      git
-      nixfmt
-      vs-fix
-      wget
-    ];
+    environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
     mayniklas = {
       user = {

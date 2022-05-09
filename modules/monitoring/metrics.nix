@@ -1,4 +1,4 @@
-{ lib, pkgs, config, inputs, ... }:
+{ lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.metrics;
 in {
@@ -16,21 +16,6 @@ in {
   };
 
   config = {
-
-    environment.etc."nix/flake_inputs.prom" = mkIf cfg.flake.enable {
-      mode = "0555";
-      text = ''
-        # HELP flake_registry_last_modified Last modification date of flake input in unixtime
-        # TYPE flake_input_last_modified gauge
-        ${concatStringsSep "\n" (map (i:
-          ''
-            flake_input_last_modified{input="${i}",${
-              concatStringsSep "," (mapAttrsToList (n: v: ''${n}="${v}"'')
-                (filterAttrs (n: v: (builtins.typeOf v) == "string")
-                  inputs."${i}"))
-            }} ${toString inputs."${i}".lastModified}'') (attrNames inputs))}
-      '';
-    };
 
     services.prometheus.exporters = {
       node = mkIf cfg.node.enable {

@@ -60,9 +60,6 @@ in {
 
     home-manager.users.nik = mkIf cfg.home-manager {
 
-      # Pass inputs to home-manager modules
-      _module.args.flake-inputs = inputs;
-
       # Let Home Manager install and manage itself.
       programs.home-manager.enable = true;
       programs.command-not-found.enable = true;
