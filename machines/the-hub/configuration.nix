@@ -3,12 +3,12 @@
   imports = [ ./wg0.nix ./wg1.nix ./wg2.nix ];
 
   mayniklas = {
+    cloud.netcup-x86.enable = true;
     server = {
       enable = true;
       home-manager = true;
     };
     iperf = { enable = true; };
-    kvm-guest.enable = true;
     nginx.enable = true;
     metrics = {
       blackbox.enable = true;

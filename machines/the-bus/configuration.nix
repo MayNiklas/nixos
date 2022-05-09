@@ -1,6 +1,7 @@
 { self, ... }: {
 
   mayniklas = {
+    cloud.netcup-x86.enable = true;
     server = {
       enable = true;
       home-manager = true;
@@ -19,7 +20,6 @@
       allowedIPs = [ "10.88.88.1/32" ];
     };
     hosts = { enable = true; };
-    kvm-guest.enable = true;
   };
 
   networking = {
