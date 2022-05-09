@@ -10,22 +10,6 @@ in {
 
   config = mkIf cfg.enable {
 
-    environment.etc."nix/flake_inputs.prom" = {
-      mode = "0555";
-      text = ''
-        # HELP flake_registry_last_modified Last modification date of flake input in unixtime
-        # TYPE flake_input_last_modified gauge
-        ${concatStringsSep "\n" (map (i:
-          ''
-            flake_input_last_modified{input="${i}",${
-              concatStringsSep "," (mapAttrsToList (n: v: ''${n}="${v}"'')
-                (filterAttrs (n: v: (builtins.typeOf v) == "string")
-                  flake-self.inputs."${i}"))
-            }} ${toString flake-self.inputs."${i}".lastModified}'')
-          (attrNames flake-self.inputs))}
-      '';
-    };
-
     # Set the $NIX_PATH entry for nixpkgs. This is necessary in
     # this setup with flakes, otherwise commands like `nix-shell
     # -p pkgs.htop` will keep using an old version of nixpkgs.
@@ -35,12 +19,6 @@ in {
     # --list` should be empty for all users afterwards
     nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
     nixpkgs.overlays = [ flake-self.overlays.default ];
-
-    # Let 'nixos-version --json' know the Git revision of this flake.
-    system.configurationRevision =
-      nixpkgs.lib.mkIf (flake-self ? rev) flake-self.rev;
-    nix.registry.nixpkgs.flake = nixpkgs;
-    nix.registry.pinpox.flake = flake-self;
 
     # Allow unfree licenced packages
     nixpkgs.config.allowUnfree = true;
@@ -82,6 +60,28 @@ in {
       # Users allowed to run nix
       allowedUsers = [ "root" ];
 
+    };
+
+    # Let 'nixos-version --json' know the Git revision of this flake.
+    system.configurationRevision =
+      nixpkgs.lib.mkIf (flake-self ? rev) flake-self.rev;
+    nix.registry.nixpkgs.flake = nixpkgs;
+    nix.registry.mayniklas.flake = flake-self;
+
+    environment.etc."nix/flake_inputs.prom" = {
+      mode = "0555";
+      text = ''
+        # HELP flake_registry_last_modified Last modification date of flake input in unixtime
+        # TYPE flake_input_last_modified gauge
+        ${concatStringsSep "\n" (map (i:
+          ''
+            flake_input_last_modified{input="${i}",${
+              concatStringsSep "," (mapAttrsToList (n: v: ''${n}="${v}"'')
+                (filterAttrs (n: v: (builtins.typeOf v) == "string")
+                  flake-self.inputs."${i}"))
+            }} ${toString flake-self.inputs."${i}".lastModified}'')
+          (attrNames flake-self.inputs))}
+      '';
     };
 
   };
