@@ -5,6 +5,8 @@ define WAN_IFC      = ens3
 define VPN_IFC      = { wg0, wg1, wg2 }
 define VPN_NET = { 10.88.88.0/24, 10.10.10.0/24, 172.20.1.0/24 }
 
+define Nik_NET = { 10.88.88.21, 192.168.5.0/24 }
+
 table inet filter {
     # Block all incomming connections traffic except SSH and "ping".
     chain input {
@@ -46,6 +48,19 @@ table inet filter {
 
     chain forward {
         type filter hook forward priority 0;
+
+        # Allow Nik to connect to 10.88.88.0/24
+        iifname "wg0" ip saddr $Nik_NET ip daddr 10.88.88.0/24 accept
+
+        # allow packages staying on the same Wireguard Interface
+        iifname "wg0" oifname "wg0" counter accept
+        iifname "wg2" oifname "wg2" counter accept
+
+        # drop new packages between Wireguard peers
+        iifname { "wg0" } oifname { "wg0", "wg1", "wg2" } ct state new counter drop
+        iifname { "wg1" } oifname { "wg0", "wg1", "wg2" } ct state new counter drop
+        iifname { "wg2" } oifname { "wg0", "wg1", "wg2" } ct state new counter drop
+
         accept
     }
 }
