@@ -1,6 +1,7 @@
 { self, ... }: {
 
   mayniklas = {
+    cloud.vmware-x86 = true;
     hosts = { enable = true; };
     server = {
       enable = true;
@@ -20,7 +21,6 @@
       port = 57267;
       web-port = 9091;
     };
-    vmware-guest.enable = true;
   };
 
   networking = {

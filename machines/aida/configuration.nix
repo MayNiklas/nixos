@@ -1,6 +1,7 @@
 { self, ... }: {
 
   mayniklas = {
+    cloud.vmware-x86 = true;
     plex = { enable = true; };
     hosts = { enable = true; };
     server = {
@@ -12,7 +13,6 @@
       flake.enable = true;
       node.enable = true;
     };
-    vmware-guest.enable = true;
   };
 
   fileSystems."/mnt/deke" = {

@@ -1,6 +1,7 @@
 { self, ... }: {
 
   mayniklas = {
+    cloud.vmware-x86 = true;
     hosts = { enable = true; };
     server = {
       enable = true;
@@ -12,7 +13,6 @@
       node.enable = true;
     };
     nginx.enable = true;
-    vmware-guest.enable = true;
   };
 
   services.nginx = {

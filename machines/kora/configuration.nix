@@ -3,6 +3,7 @@
   imports = [ ./cron.nix ];
 
   mayniklas = {
+    cloud.vmware-x86 = true;
     docker = { enable = true; };
     hosts = { enable = true; };
     in-stock-bot = { enable = false; };
@@ -26,7 +27,6 @@
       enable = true;
       home-manager = true;
     };
-    vmware-guest.enable = true;
     youtube-dl = { enable = true; };
   };
 

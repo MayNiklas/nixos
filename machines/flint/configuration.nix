@@ -1,6 +1,7 @@
 { self, ... }: {
 
   mayniklas = {
+    cloud.vmware-x86 = true;
     hosts = { enable = true; };
     server = {
       enable = true;
@@ -11,7 +12,6 @@
       flake.enable = true;
       node.enable = true;
     };
-    vmware-guest.enable = true;
     services = {
       minecraft-server = {
         enable = true;
