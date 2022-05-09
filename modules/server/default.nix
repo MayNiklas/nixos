@@ -1,7 +1,9 @@
-{ lib, pkgs, config, inputs, self-overlay, overlay-unstable, ... }:
+{ lib, pkgs, config, flake-self, home-manager, ... }:
 with lib;
 let cfg = config.mayniklas.server;
 in {
+
+  imports = [ home-manager.nixosModules.home-manager ];
 
   options.mayniklas.server = {
     enable = mkEnableOption "Enable the default server configuration";
@@ -39,10 +41,12 @@ in {
 
     services.postgresql.package = pkgs.postgresql_11;
 
-    home-manager.users.nik = mkIf cfg.home-manager {
+    # DON'T set useGlobalPackages! It's not necessary in newer
+    # home-manager versions and does not work with configs using
+    # nixpkgs.config`
+    home-manager.useUserPackages = true;
 
-      # Pass inputs to home-manager modules
-      _module.args.flake-inputs = inputs;
+    home-manager.users.nik = mkIf cfg.home-manager {
 
       # Let Home Manager install and manage itself.
       programs.home-manager.enable = true;

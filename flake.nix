@@ -10,60 +10,14 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
   };
-
   outputs = { self, ... }@inputs:
     with inputs;
-    let
-
-      # Function to create defult (common) system config options
-      defFlakeSystem = systemArch: baseCfg:
-        nixpkgs.lib.nixosSystem {
-
-          system = "${systemArch}";
-          modules = [
-
-            # Make inputs and overlay accessible as module parameters
-            { _module.args.inputs = inputs; }
-            { _module.args.self-overlay = self.overlay; }
-
-            ({ ... }: {
-              imports = builtins.attrValues self.nixosModules ++ [
-                {
-                  # Set the $NIX_PATH entry for nixpkgs. This is necessary in
-                  # this setup with flakes, otherwise commands like `nix-shell
-                  # -p pkgs.htop` will keep using an old version of nixpkgs.
-                  # With this entry in $NIX_PATH it is possible (and
-                  # recommended) to remove the `nixos` channel for both users
-                  # and root e.g. `nix-channel --remove nixos`. `nix-channel
-                  # --list` should be empty for all users afterwards
-                  nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-                  nixpkgs.overlays = [ self.overlay ];
-                }
-                baseCfg
-                home-manager.nixosModules.home-manager
-                # DONT set useGlobalPackages! It's not necessary in newer
-                # home-manager versions and does not work with configs using
-                # `nixpkgs.config`
-                { home-manager.useUserPackages = true; }
-              ];
-              # Let 'nixos-version --json' know the Git revision of this flake.
-              system.configurationRevision =
-                nixpkgs.lib.mkIf (self ? rev) self.rev;
-              nix.registry.nixpkgs.flake = nixpkgs;
-            })
-          ];
-        };
-      ### BEGIN: tmp fix netcup-qcow2-image
-      lib = nixpkgs.lib;
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-        config = { allowUnfree = true; };
-      };
-      ### END: tmp fix netcup-qcow2-image
-    in {
+    {
 
       # Expose overlay to flake outputs, to allow using it from other flakes.
-      overlay = final: prev: (import ./overlays) final prev;
+      # Flake inputs are passed to the overlay so that the packages defined in
+      # it can use the sources pinned in flake.lock
+      overlays.default = final: prev: (import ./overlays inputs) final prev;
 
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
@@ -72,177 +26,60 @@
         value = import (./modules + "/${x}");
       }) (builtins.attrNames (builtins.readDir ./modules)));
 
-      # // {
-
-      #   dotfiles = ({ pkgs, ... }: { imports = [ ./modules/home-manager ]; });
-
-      # };
-
-      hmModules = {
-        git = ({ pkgs, ... }: { imports = [ ./home-manager/modules/git ]; });
-        vim = ({ pkgs, ... }: { imports = [ ./home-manager/modules/vim ]; });
-        zsh = ({ pkgs, ... }: { imports = [ ./home-manager/modules/zsh ]; });
-      };
-
-      # Each subdirectory in ./machins is a host. Add them all to
+      # Each subdirectory in ./machines is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
-      nixosConfigurations = {
+      nixosConfigurations = builtins.listToAttrs (map (x: {
+        name = x;
+        value = nixpkgs.lib.nixosSystem {
 
-        aida = defFlakeSystem "x86_64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/aida/configuration.nix) { inherit self; })
+          # Make inputs and the flake itself accessible as module parameters.
+          # Technically, adding the inputs is redundant as they can be also
+          # accessed with flake-self.inputs.X, but adding them individually
+          # allows to only pass what is needed to each module.
+          specialArgs = { flake-self = self; } // inputs;
+
+          system = "x86_64-linux";
+
+          modules = [
+            (./machines + "/${x}/configuration.nix")
+            { imports = builtins.attrValues self.nixosModules; }
           ];
         };
+      }) (builtins.attrNames (builtins.readDir ./machines)));
 
-        arm-server = defFlakeSystem "aarch64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/arm-server/configuration.nix) { inherit self; })
-          ];
-        };
-
-        deke = defFlakeSystem "x86_64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/deke/configuration.nix) { inherit self; })
-          ];
-        };
-
-        # enoch = defFlakeSystem "x86_64-linux" {
-        #   imports = [
-        #     # Machine specific config
-        #     (import (./machines/enoch/configuration.nix) { inherit self; })
-        #   ];
-        # };
-
-        flint = defFlakeSystem "x86_64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/flint/configuration.nix) { inherit self; })
-          ];
-        };
-
-        kora = defFlakeSystem "x86_64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/kora/configuration.nix) { inherit self; })
-          ];
-        };
-
-        simmons = defFlakeSystem "x86_64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/simmons/configuration.nix) { inherit self; })
-          ];
-        };
-
-        snowflake = defFlakeSystem "x86_64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/snowflake/configuration.nix) { inherit self; })
-          ];
-        };
-
-        the-bus = defFlakeSystem "x86_64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/the-bus/configuration.nix) { inherit self; })
-          ];
-        };
-
-        the-hub = defFlakeSystem "x86_64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/the-hub/configuration.nix) { inherit self; })
-          ];
-        };
-
-        robin = defFlakeSystem "x86_64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/robin/configuration.nix) { inherit self; })
-          ];
-        };
-
-        water-on-fire = defFlakeSystem "x86_64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/water-on-fire/configuration.nix) {
-              inherit self;
-            })
-          ];
-        };
-
-        nftables = defFlakeSystem "x86_64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./machines/nftables/configuration.nix) { inherit self; })
-          ];
-        };
-
-        # templates
-
-        hetzner-x86 = defFlakeSystem "x86_64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./templates/hetzner-x86/configuration.nix) {
-              inherit self;
-            })
-          ];
-        };
-
-        netcup-x86 = defFlakeSystem "x86_64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./templates/netcup-x86/configuration.nix) {
-              inherit self;
-            })
-          ];
-        };
-
-        vmware-x86 = defFlakeSystem "x86_64-linux" {
-          imports = [
-            # Machine specific config
-            (import (./templates/vmware-x86/configuration.nix) {
-              inherit self;
-            })
-          ];
-        };
-
-      };
-
-      # nix build .#netcup-qcow2-image
-      netcup-qcow2-image = import "${nixpkgs}/nixos/lib/make-disk-image.nix" {
-        # See for further options:
-        # https://github.com/NixOS/nixpkgs/blob/master/nixos/lib/make-disk-image.nix
-        config = (self.nixosConfigurations.netcup-x86).config;
-        inherit pkgs lib;
+      # nix build '.#netcup-x86-image'
+      netcup-x86-image = let system = "x86_64-linux";
+      in import "${nixpkgs}/nixos/lib/make-disk-image.nix" {
+        pkgs = nixpkgs.legacyPackages."${system}";
+        lib = nixpkgs.lib;
+        config = (nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [ ./images/netcup-x86/configuration.nix ];
+        }).config;
         format = "qcow2";
-        name = "netcup-image";
-        configFile = ./templates/netcup-x86/configuration.nix;
+        name = "base-image";
       };
-
-      # hydraJobs = (nixpkgs.lib.mapAttrs' (name: config:
-      #   nixpkgs.lib.nameValuePair "nixos-${name}"
-      #   config.config.system.build.toplevel) self.nixosConfigurations);
 
     } //
 
-    # (flake-utils.lib.eachSystem [ "aarch64-linux" "i686-linux" "x86_64-linux" ])
+    # All packages in the ./packages subfolder are also added to the flake.
+    # flake-utils is used for this part to make each package available for each
+    # system. This works as all packages are compatible with all architectures
     (flake-utils.lib.eachSystem [ "aarch64-linux" "i686-linux" "x86_64-linux" ])
     (system:
       let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ self.overlay ];
+          overlays = [ self.overlays.default ];
           config = {
             allowUnsupportedSystem = true;
             allowUnfree = true;
           };
         };
       in rec {
+        # Custom packages added via the overlay are selectively exposed here, to
+        # allow using them from other flakes that import this one.
 
         packages = flake-utils.lib.flattenTree {
           anki-bin = pkgs.anki-bin;
