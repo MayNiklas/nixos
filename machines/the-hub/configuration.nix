@@ -115,10 +115,12 @@
       }];
     };
 
-    # firewall = {
-    # only to renew certificate!
-    # allowedTCPPorts = [ 80 443 ];
-    # };
+    firewall = { enable = false; };
+    nftables = {
+      enable = true;
+      rulesetFile = ./ruleset.nft;
+    };
+
   };
 
   boot.kernel.sysctl = {

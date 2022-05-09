@@ -1,9 +1,9 @@
 # Check out https://wiki.nftables.org/ for better documentation.
 # Table for both IPv4 and IPv6.
 
-define WAN_IFC      = enp1s0
-define VPN_IFC      = wg0
-define VPN_NET = { 10.88.88.0/24 }
+define WAN_IFC      = ens3
+define VPN_IFC      = { wg0, wg1, wg2 }
+define VPN_NET = { 10.88.88.0/24, 10.10.10.0/24, 172.20.1.0/24 }
 
 table inet filter {
     # Block all incomming connections traffic except SSH and "ping".
@@ -25,11 +25,14 @@ table inet filter {
         ip6 nexthdr icmpv6 icmpv6 type echo-request accept
         ip protocol icmp icmp type echo-request accept
 
-        # accept SSH connections (required for a server)
+        # allow SSH
         tcp dport 22 accept
 
-        # accept Wireguard connections
-        udp dport 58102 accept
+        # allow Wireguard connections
+        udp dport {58102, 58103,58104} accept
+
+        iifname { "wg0"} tcp dport {80,443} accept
+        iifname { "wg0"} tcp dport {3100,5201,9100,9115 } accept
 
         # count and drop any other traffic
         counter drop

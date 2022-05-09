@@ -31,36 +31,6 @@
         }
       ];
 
-      postSetup = ''
-        # drop packages into other wireguard networks
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 10.10.10.0/24 --dst 172.20.1.0/24 --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 10.10.10.0/24 --dst 192.168.15.0/24 --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 10.10.10.0/24 --dst 192.168.20.0/24 --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 10.10.10.0/24 --dst 192.168.30.0/24 --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 10.10.10.0/24 --dst 192.168.88.0/24 --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 10.10.10.0/24 --dst 192.168.99.0/24 --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 10.10.10.0/24 --dst 192.168.98.0/24 --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 10.10.10.0/24 --dst 192.168.22.0/24 --jump DROP
-        ${pkgs.iptables}/bin/iptables -A FORWARD --src 10.10.10.0/24 --dst 192.168.97.0/24 --jump DROP
-
-        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -o ens3 -j MASQUERADE
-      '';
-
-      postShutdown = ''
-        # drop packages into other wireguard networks
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 10.10.10.0/24 --dst 172.20.1.0/24 --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 10.10.10.0/24 --dst 192.168.15.0/24 --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 10.10.10.0/24 --dst 192.168.20.0/24 --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 10.10.10.0/24 --dst 192.168.30.0/24 --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 10.10.10.0/24 --dst 192.168.88.0/24 --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 10.10.10.0/24 --dst 192.168.99.0/24 --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 10.10.10.0/24 --dst 192.168.98.0/24 --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 10.10.10.0/24 --dst 192.168.22.0/24 --jump DROP
-        ${pkgs.iptables}/bin/iptables -D FORWARD --src 10.10.10.0/24 --dst 192.168.97.0/24 --jump DROP
-
-        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.10.10.0/24 -o ens3 -j MASQUERADE
-      '';
-
     };
   };
 }
