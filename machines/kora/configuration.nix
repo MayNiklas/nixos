@@ -3,7 +3,7 @@
   imports = [ ./cron.nix ];
 
   mayniklas = {
-    cloud.vmware-x86 = true;
+    cloud.vmware-x86.enable = true;
     docker = { enable = true; };
     hosts = { enable = true; };
     in-stock-bot = { enable = false; };

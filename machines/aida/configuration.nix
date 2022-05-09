@@ -1,7 +1,7 @@
 { self, ... }: {
 
   mayniklas = {
-    cloud.vmware-x86 = true;
+    cloud.vmware-x86.enable = true;
     plex = { enable = true; };
     hosts = { enable = true; };
     server = {
