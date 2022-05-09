@@ -12,7 +12,6 @@ in {
   config = mkIf cfg.enable {
 
     networking.firewall = {
-      enable = true;
       interfaces.wg0.allowedTCPPorts = [ port-loki ];
     };
 
