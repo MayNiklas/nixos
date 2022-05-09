@@ -1,18 +1,20 @@
 { pkgs, stdenv, ... }:
-let
-  drone-gen-skript = pkgs.writeShellScriptBin "drone-gen" ''
-    ${pkgs.mustache-go}/bin/mustache drone.json drone-yaml.mustache > .drone.yml
-  '';
-in stdenv.mkDerivation {
+stdenv.mkDerivation {
 
   pname = "drone-gen";
   version = "0.1.0";
 
-  # Needed if no src is used. Alternatively place script in
-  # separate file and include it as src
-  dontUnpack = true;
+  src = ./.;
 
   installPhase = ''
-    cp -r ${drone-gen-skript} $out
+    mkdir -p $out/bin $out/lib/
+    ${pkgs.coreutils}/bin/cp $src/drone-yaml.mustache $out/lib/drone-yaml.mustache
+
+    cat > $out/bin/drone-gen << EOF
+    #!/bin/sh
+    ${pkgs.mustache-go}/bin/mustache drone.json ${placeholder "out"}/lib/drone-yaml.mustache > .drone.yml
+    EOF
+
+    chmod +x $out/bin/drone-gen
   '';
 }
