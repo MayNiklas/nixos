@@ -40,9 +40,9 @@ in {
       ];
 
       imports = [
-        ../../home-manager/modules/git
-        ../../home-manager/modules/vim
-        ../../home-manager/modules/zsh
+        ../../home-manager/git
+        ../../home-manager/vim
+        ../../home-manager/zsh
       ];
 
       home.stateVersion = "22.05";

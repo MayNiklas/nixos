@@ -79,10 +79,10 @@ in {
       ];
 
       imports = [
-        ../../home-manager/modules/git
-        ../../home-manager/modules/vim
-        ../../home-manager/modules/vs-fix
-        ../../home-manager/modules/zsh
+        ../../home-manager/git
+        ../../home-manager/vim
+        ../../home-manager/vs-fix
+        ../../home-manager/zsh
       ];
       home.stateVersion = "21.05";
     };

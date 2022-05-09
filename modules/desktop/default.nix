@@ -123,17 +123,17 @@ in {
       ];
 
       imports = [
-        ../../home-manager/modules/chromium
-        ../../home-manager/modules/devolopment
-        ../../home-manager/modules/git
-        ../../home-manager/modules/gtk
-        ../../home-manager/modules/i3
-        ../../home-manager/modules/alacritty
-        ../../home-manager/modules/rofi
-        ../../home-manager/modules/vim
-        ../../home-manager/modules/vscode
-        ../../home-manager/modules/vs-fix
-        ../../home-manager/modules/zsh
+        ../../home-manager/chromium
+        ../../home-manager/devolopment
+        ../../home-manager/git
+        ../../home-manager/gtk
+        ../../home-manager/i3
+        ../../home-manager/alacritty
+        ../../home-manager/rofi
+        ../../home-manager/vim
+        ../../home-manager/vscode
+        ../../home-manager/vs-fix
+        ../../home-manager/zsh
       ];
 
       home.stateVersion = "21.03";
