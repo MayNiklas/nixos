@@ -85,6 +85,11 @@ steps:
   - nix build '.#nixosConfigurations.nftables.config.system.build.toplevel' --out-link result-nftables
   - nix path-info --closure-size -h $(readlink -f result-nftables)
 
+- name: build water-on-fire
+  commands:
+  - nix build '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --out-link result-water-on-fire
+  - nix path-info --closure-size -h $(readlink -f result-water-on-fire)
+
 - name: upload to binary cache via s3
   commands:
   - nix run .#s3uploader
