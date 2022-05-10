@@ -33,7 +33,9 @@ table inet filter {
         # allow Wireguard connections
         udp dport {58102, 58103,58104} accept
 
+        # allow HTTP / HTTPS via wg0 -> used for Graphana
         iifname { "wg0"} tcp dport {80,443} accept
+        # allow monitoring via wg0
         iifname { "wg0"} tcp dport {3100,5201,9100,9115 } accept
 
         # count and drop any other traffic
@@ -80,6 +82,8 @@ table ip nat {
 
     chain POSTROUTING {
         type nat hook postrouting priority srcnat; policy accept;
-        oifname $WAN_IFC ip saddr $VPN_NET counter packets 8 bytes 448 masquerade
+
+        # NAT between Wireguard peers & ens3
+        oifname $WAN_IFC ip saddr $VPN_NET counter masquerade
     }
 }
