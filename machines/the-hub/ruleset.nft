@@ -29,6 +29,9 @@ table inet filter {
 
         # allow SSH
         tcp dport 22 accept
+        
+        # allow HTTP / HTTPS -> needed for ACME
+        tcp dport {http,https} accept
 
         # allow Wireguard connections
         udp dport {58102, 58103,58104} accept
