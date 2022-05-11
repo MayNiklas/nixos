@@ -83,7 +83,7 @@
       };
 
       # personal site
-      "shop.the-framework.de" = {
+      "store.the-framework.de" = {
         forceSSL = true;
         enableACME = true;
         extraConfig = ''
