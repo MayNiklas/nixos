@@ -8,8 +8,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "MayNiklas";
     repo = "niki-store";
-    rev = "e141011c20a66d461575134afcbede70222c7b5c";
-    hash = "sha256-EMwJPWNNou+RDa19bWbmO+gkWpy1X31XVHBejx7p+eY=";
+    rev = "b6af81aee90b21d7588cbb4a383f630805282113";
+    hash = "sha256-EEsXXmOIeSm/8fDAoKIoQ1vC2ocOuMTksleR0EdmFcI=";
   };
 
   installPhase = let
