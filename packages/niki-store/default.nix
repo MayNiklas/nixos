@@ -20,9 +20,10 @@ stdenv.mkDerivation rec {
       hash = "sha256-4nNr2B5pZhYxFikKooNPGHmuQy+V/TEz0Z1k/OHEGBY=";
     };
   in ''
+    ${coreutils}/bin/rm -rf themes/hugo-creative-portfolio-theme
     ${coreutils}/bin/ln -s ${hugo-theme}/ themes/hugo-creative-portfolio-theme
     ${coreutils}/bin/mkdir -p $out/www
-    ${hugo}/bin/hugo
+    ${hugo}/bin/hugo --minify # --baseURL https://niki-store.de
     ${coreutils}/bin/cp -ra public/. $out/www
   '';
 
