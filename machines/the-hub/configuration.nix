@@ -1,4 +1,4 @@
-{ self, ... }: {
+{ self, pkgs, ... }: {
 
   imports = [ ./wg0.nix ./wg1.nix ./wg2.nix ];
 
@@ -69,18 +69,31 @@
     # provided by Let's Encrypt via ACME. Generation and renewal is automatic
     # if DNS is set up correctly for the (sub-)domains.
     virtualHosts = {
+
       # Graphana
       "status.nik-ste.de" = {
         forceSSL = true;
         enableACME = true;
-        listen = [{
-          addr = "10.88.88.1";
-          port = 443;
-          ssl = true;
-        }];
+        extraConfig = ''
+          allow 10.88.88.0/24;
+          allow 192.168.5.0/24;
+          deny all; # deny all remaining ips
+        '';
         locations."/" = { proxyPass = "http://127.0.0.1:9005"; };
-        # root = "${pkgs.niki-store}/www/";
       };
+
+      # personal site
+      "shop.the-framework.de" = {
+        forceSSL = true;
+        enableACME = true;
+        extraConfig = ''
+          allow 10.88.88.0/24;
+          allow 192.168.5.0/24;
+          deny all; # deny all remaining ips
+        '';
+        root = "${pkgs.niki-store}/www/";
+      };
+
     };
   };
 
