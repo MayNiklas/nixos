@@ -8,8 +8,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "MayNiklas";
     repo = "niki-store";
-    rev = "b6af81aee90b21d7588cbb4a383f630805282113";
-    hash = "sha256-EEsXXmOIeSm/8fDAoKIoQ1vC2ocOuMTksleR0EdmFcI=";
+    rev = "fe8bd3e1a51ce795a05d306dad08439b4e23c532";
+    hash = "sha256-lk7SRge6nbAZsF1ylHc2/eMH5XcGhGU4yw65g9ia+Oc=";
   };
 
   installPhase = let
@@ -23,7 +23,7 @@ stdenv.mkDerivation rec {
     ${coreutils}/bin/rm -rf themes/hugo-creative-portfolio-theme
     ${coreutils}/bin/ln -s ${hugo-theme}/ themes/hugo-creative-portfolio-theme
     ${coreutils}/bin/mkdir -p $out/www
-    ${hugo}/bin/hugo --minify --baseURL https://shop.the-framework.de
+    ${hugo}/bin/hugo --minify
     ${coreutils}/bin/cp -ra public/. $out/www
   '';
 
