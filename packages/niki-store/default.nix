@@ -23,7 +23,7 @@ stdenv.mkDerivation rec {
     ${coreutils}/bin/rm -rf themes/hugo-creative-portfolio-theme
     ${coreutils}/bin/ln -s ${hugo-theme}/ themes/hugo-creative-portfolio-theme
     ${coreutils}/bin/mkdir -p $out/www
-    ${hugo}/bin/hugo --minify
+    ${hugo}/bin/hugo --minify --baseURL https://shop.the-framework.de
     ${coreutils}/bin/cp -ra public/. $out/www
   '';
 
