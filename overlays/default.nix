@@ -7,22 +7,21 @@ in self: super: {
   # Custom packages. Will be made available on all machines and used where
   # needed.
 
-  drone-gen = super.pkgs.callPackage ../packages/drone-gen { };
-  s3uploader = super.pkgs.callPackage ../packages/s3uploader { };
-  vs-fix = super.pkgs.callPackage ../packages/vs-fix { };
-
   anki-bin = super.pkgs.callPackage ../packages/anki-bin { };
   bukkit-spigot = super.pkgs.callPackage ../packages/bukkit-spigot { };
   darknet = super.pkgs.callPackage ../packages/darknet { };
+  drone-gen = super.pkgs.callPackage ../packages/drone-gen { };
   minecraft-server = super.pkgs.callPackage ../packages/minecraft-server { };
+  niki-store = super.pkgs.callPackage ../packages/niki-store { };
   owncast = super.pkgs.callPackage ../packages/owncast { };
   plex = super.pkgs.callPackage ../packages/plex { };
   plexRaw = super.pkgs.callPackage ../packages/plex/raw.nix { };
+  s3uploader = super.pkgs.callPackage ../packages/s3uploader { };
   tautulli = super.pkgs.python3Packages.callPackage ../packages/tautulli { };
   verification-listener =
     super.pkgs.python3Packages.callPackage ../packages/verification-listener
     { };
-
+  vs-fix = super.pkgs.callPackage ../packages/vs-fix { };
   inherit (super.pkgs.callPackages ../packages/unifi { })
     unifiLTS unifi5 unifi6 unifi7;
   unifi = super.pkgs.unifi7;

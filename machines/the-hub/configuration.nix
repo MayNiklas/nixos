@@ -79,6 +79,7 @@
           ssl = true;
         }];
         locations."/" = { proxyPass = "http://127.0.0.1:9005"; };
+        # root = "${pkgs.niki-store}/www/";
       };
     };
   };
