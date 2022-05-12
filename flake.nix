@@ -24,6 +24,13 @@
       nixosModules = builtins.listToAttrs (map (x: {
         name = x;
         value = import (./modules + "/${x}");
+
+        # Make inputs and the flake itself accessible as module parameters.
+        # Technically, adding the inputs is redundant as they can be also
+        # accessed with flake-self.inputs.X, but adding them individually
+        # allows to only pass what is needed to each module.
+        specialArgs = { flake-self = self; } // inputs;
+
       }) (builtins.attrNames (builtins.readDir ./modules)));
 
       # Each subdirectory in ./machines is a host. Add them all to

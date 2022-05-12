@@ -1,10 +1,10 @@
-{ lib, pkgs, config, self, ... }:
+{ lib, pkgs, config, home-manager, ... }:
 with lib;
 let cfg = config.mayniklas.user.nik.home-manager;
 
 in {
 
-  imports = [ self.inputs.home-manager.nixosModules.home-manager ];
+  imports = [ home-manager.nixosModules.home-manager ];
 
   options.mayniklas.user.nik.home-manager = {
     headless = mkEnableOption "activate headless home-manager profile for nik";
