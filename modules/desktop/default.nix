@@ -12,139 +12,18 @@ in {
         enable home-manager for this desktop
       '';
     };
-    git = mkOption {
-      type = types.bool;
-      default = true;
-      description = ''
-        enable git for this desktop
-      '';
-    };
-    gtk = mkOption {
-      type = types.bool;
-      default = false;
-      description = ''
-        enable gtk for this desktop
-      '';
-    };
-    vim = mkOption {
-      type = types.bool;
-      default = true;
-      description = ''
-        enable vim for this desktop
-      '';
-    };
-    vs-fix = mkOption {
-      type = types.bool;
-      default = true;
-      description = ''
-        enable vs-fix for this server
-      '';
-    };
-    rofi = mkOption {
-      type = types.bool;
-      default = false;
-      description = ''
-        enable rofi for this desktop
-      '';
-    };
-    i3 = mkOption {
-      type = types.bool;
-      default = false;
-      description = ''
-        enable i3 for this desktop
-      '';
-    };
   };
 
   config = mkIf cfg.enable {
-
-    home-manager.users.nik = mkIf cfg.home-manager {
-
-      # Let Home Manager install and manage itself.
-      programs.home-manager.enable = true;
-      programs.command-not-found.enable = true;
-      home.username = "nik";
-      home.homeDirectory = "/home/nik";
-      # Allow "unfree" licenced packages
-      nixpkgs.config = { allowUnfree = true; };
-      services.gnome-keyring = { enable = true; };
-
-      mayniklas = {
-        programs = {
-          alacritty.enable = true;
-          chromium.enable = true;
-          devolopment.enable = true;
-          git.enable = cfg.git;
-          gtk.enable = cfg.gtk;
-          rofi.enable = cfg.rofi;
-          i3.enable = cfg.i3;
-          vim.enable = cfg.vim;
-          vscode.enable = true;
-          vs-fix.enable = mkIf cfg.vs-fix true;
-          zsh.enable = true;
-        };
-      };
-
-      # Install these packages for my user
-      home.packages = with pkgs; [
-        _1password-gui
-        atom
-        cura
-        discord
-        dolphin
-        drone-cli
-        filezilla
-        firefox
-        gcc
-        glances
-        dconf
-        gparted
-        htop
-        hugo
-        iperf3
-        nmap
-        nvtop
-        obs-studio
-        signal-desktop
-        spotify
-        sublime-merge
-        sublime3
-        teamspeak_client
-        tdesktop
-        thunderbird-bin
-        unzip
-        vagrant
-        vim
-        virt-manager
-        vlc
-        xfce.thunar
-        youtube-dl
-        zoom-us
-      ];
-
-      imports = [
-        ../../home-manager/chromium
-        ../../home-manager/devolopment
-        ../../home-manager/git
-        ../../home-manager/gtk
-        ../../home-manager/i3
-        ../../home-manager/alacritty
-        ../../home-manager/rofi
-        ../../home-manager/vim
-        ../../home-manager/vscode
-        ../../home-manager/vs-fix
-        ../../home-manager/zsh
-      ];
-
-      home.stateVersion = "21.03";
-
-    };
 
     environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
     mayniklas = {
       user = {
-        nik.enable = true;
+        nik = {
+          enable = true;
+          home-manager.desktop = mkIf cfg.home-manager true;
+        };
         root.enable = true;
       };
       bluetooth.enable = true;

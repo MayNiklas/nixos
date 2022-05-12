@@ -4,11 +4,21 @@ let cfg = config.mayniklas.user.nik.home-manager;
 
 in {
 
+  imports = [
+    (mkRenamedOptionModule [
+      "mayniklas"
+      "user"
+      "nik"
+      "home-manager"
+      "headless"
+    ] [ "mayniklas" "user" "nik" "home-manager" "enable" ])
+  ];
+
   options.mayniklas.user.nik.home-manager = {
-    headless = mkEnableOption "activate headless home-manager profile for nik";
+    enable = mkEnableOption "activate headless home-manager profile for nik";
   };
 
-  config = mkIf cfg.headless {
+  config = mkIf cfg.enable {
 
     # DON'T set useGlobalPackages! It's not necessary in newer
     # home-manager versions and does not work with configs using
@@ -43,9 +53,10 @@ in {
         (pkgs.callPackage ../packages/vs-fix { })
       ];
 
-      imports = [ ./git ./vim ./zsh ];
+      imports = [ ./modules/git ./modules/vim ./modules/zsh ];
 
-      home.stateVersion = "22.05";
+      home.stateVersion = "21.03";
+
     };
 
   };

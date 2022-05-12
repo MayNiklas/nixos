@@ -23,7 +23,7 @@ in {
     mayniklas = {
       user = {
         nik.enable = true;
-        nik.home-manager.headless = true;
+        nik.home-manager.enable = true;
         root.enable = true;
       };
       locale.enable = true;

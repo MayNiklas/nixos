@@ -33,7 +33,8 @@
           home-manager = { config, pkgs, lib, ... }: {
             imports = [
               home-manager.nixosModules.home-manager
-              ./home-manager/home-headless.nix
+              ./home-manager/home.nix
+              ./home-manager/home-desktop.nix
             ];
           };
 
