@@ -3,8 +3,6 @@ with lib;
 let cfg = config.mayniklas.server;
 in {
 
-  imports = [ home-manager.nixosModules.home-manager ];
-
   options.mayniklas.server = {
     enable = mkEnableOption "Enable the default server configuration";
     home-manager = mkOption {
@@ -20,13 +18,12 @@ in {
 
     services.postgresql.package = pkgs.postgresql_11;
 
-    mayniklas.user.nik.home-manager.headless = true;
-
     environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
     mayniklas = {
       user = {
         nik.enable = true;
+        nik.home-manager.headless = true;
         root.enable = true;
       };
       locale.enable = true;
