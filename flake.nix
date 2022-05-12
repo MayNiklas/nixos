@@ -31,7 +31,20 @@
         # allows to only pass what is needed to each module.
         specialArgs = { flake-self = self; } // inputs;
 
-      }) (builtins.attrNames (builtins.readDir ./modules)));
+      }) (builtins.attrNames (builtins.readDir ./modules)))
+
+        //
+
+        {
+
+          home-manager = { config, pkgs, lib, ... }: {
+            imports = [
+              home-manager.nixosModules.home-manager
+              ./home-manager/home-headless.nix
+            ];
+          };
+
+        };
 
       # Each subdirectory in ./machines is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called

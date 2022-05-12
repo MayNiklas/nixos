@@ -1,10 +1,8 @@
-{ lib, pkgs, config, home-manager, ... }:
+{ lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.user.nik.home-manager;
 
 in {
-
-  imports = [ home-manager.nixosModules.home-manager ];
 
   options.mayniklas.user.nik.home-manager = {
     headless = mkEnableOption "activate headless home-manager profile for nik";
@@ -41,15 +39,11 @@ in {
         htop
         iperf3
         unzip
-        (pkgs.callPackage ../../packages/drone-gen { })
-        (pkgs.callPackage ../../packages/vs-fix { })
+        (pkgs.callPackage ../packages/drone-gen { })
+        (pkgs.callPackage ../packages/vs-fix { })
       ];
 
-      imports = [
-        ../../home-manager/git
-        ../../home-manager/vim
-        ../../home-manager/zsh
-      ];
+      imports = [ ./git ./vim ./zsh ];
 
       home.stateVersion = "22.05";
     };
