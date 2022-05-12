@@ -1,4 +1,4 @@
-{ lib, pkgs, config, flake-self, home-manager, ... }:
+{ lib, pkgs, config, home-manager, ... }:
 with lib;
 let cfg = config.mayniklas.user.nik.home-manager;
 
