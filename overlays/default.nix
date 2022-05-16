@@ -10,6 +10,7 @@ in self: super: {
   anki-bin = super.pkgs.callPackage ../packages/anki-bin { };
   bukkit-spigot = super.pkgs.callPackage ../packages/bukkit-spigot { };
   darknet = super.pkgs.callPackage ../packages/darknet { };
+  drone = super.pkgs.callPackage ../packages/drone { };
   drone-gen = super.pkgs.callPackage ../packages/drone-gen { };
   minecraft-server = super.pkgs.callPackage ../packages/minecraft-server { };
   niki-store = super.pkgs.callPackage ../packages/niki-store { };

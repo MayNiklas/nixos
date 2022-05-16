@@ -123,6 +123,7 @@
         packages = flake-utils.lib.flattenTree {
           anki-bin = pkgs.anki-bin;
           # darknet = pkgs.darknet;
+          drone = pkgs.drone;
           drone-gen = pkgs.drone-gen;
           niki-store = pkgs.niki-store;
           owncast = pkgs.owncast;
@@ -142,6 +143,7 @@
           # Allow custom packages to be run using `nix run`
           anki-bin = flake-utils.lib.mkApp { drv = packages.anki-bin; };
           # darknet = flake-utils.lib.mkApp { drv = packages.darknet; };
+          drone = flake-utils.lib.mkApp { drv = packages.drone; };
           drone-gen = flake-utils.lib.mkApp { drv = packages.drone-gen; };
           niki-store = flake-utils.lib.mkApp { drv = packages.niki-store; };
           owncast = flake-utils.lib.mkApp { drv = packages.owncast; };

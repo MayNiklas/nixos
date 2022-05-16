@@ -116,6 +116,11 @@ clone:
 
 steps:
 
+- name: Build drone
+  commands:
+  - nix build .#drone --out-link result-drone
+  - nix path-info --closure-size -h $(readlink -f result-drone)
+
 - name: Build drone-gen
   commands:
   - nix build .#drone-gen --out-link result-drone-gen
@@ -181,6 +186,11 @@ clone:
   depth: 1
 
 steps:
+
+- name: Build drone
+  commands:
+  - nix build .#drone --out-link result-drone
+  - nix path-info --closure-size -h $(readlink -f result-drone)
 
 - name: Build drone-gen
   commands:
