@@ -48,6 +48,7 @@ in {
       home.packages = with pkgs; [
         htop
         iperf3
+        nixfmt
         unzip
         (pkgs.callPackage ../packages/drone-gen { })
         (pkgs.callPackage ../packages/vs-fix { })
