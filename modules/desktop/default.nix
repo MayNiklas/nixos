@@ -20,11 +20,12 @@ in {
 
     mayniklas = {
       user = {
-        nik = {
-          enable = true;
-          home-manager.desktop = mkIf cfg.home-manager true;
-        };
+        nik = { enable = true; };
         root.enable = true;
+      };
+      home-manager = mkIf cfg.home-manager {
+        enable = true;
+        profile = "desktop";
       };
       bluetooth.enable = true;
       docker.enable = true;

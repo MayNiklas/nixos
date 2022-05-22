@@ -21,9 +21,12 @@ in {
     environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
     mayniklas = {
+      home-manager = {
+        enable = true;
+        profile = "server";
+      };
       user = {
         nik.enable = true;
-        nik.home-manager.enable = true;
         root.enable = true;
       };
       locale.enable = true;
