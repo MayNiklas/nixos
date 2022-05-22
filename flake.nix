@@ -30,13 +30,23 @@
 
         {
 
-          home-manager = { config, pkgs, lib, ... }: {
-            imports = [
-              home-manager.nixosModules.home-manager
-              ./home-manager/home.nix
-              ./home-manager/home-desktop.nix
-            ];
-          };
+          home-manager = { config, pkgs, lib, ... }:
+            with lib;
+            let cfg = config.mayniklas.user.nik.home-manager;
+            in {
+              imports = [
+                home-manager.nixosModules.home-manager
+                ./home-manager/home.nix
+                ./home-manager/home-desktop.nix
+              ];
+              config = mkIf cfg.enable {
+                # won't work when being imported into another flake repo
+                home-manager.users.nik = {
+                  imports =
+                    [{ nixpkgs.overlays = [ (import ./overlays inputs) ]; }];
+                };
+              };
+            };
 
         };
 
