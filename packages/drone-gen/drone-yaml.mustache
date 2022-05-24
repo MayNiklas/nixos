@@ -45,7 +45,7 @@ steps:
 {{/machines}}
 - name: upload to binary cache via s3
   commands:
-  - nix run .#s3uploader
+  - nix run 'github:mayniklas/nixos'#s3uploader
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -85,7 +85,7 @@ steps:
 {{/apps}}
 - name: upload to binary cache via s3
   commands:
-  - nix run .#s3uploader
+  - nix run 'github:mayniklas/nixos'#s3uploader
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
