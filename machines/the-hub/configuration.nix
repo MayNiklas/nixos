@@ -82,18 +82,6 @@
         locations."/" = { proxyPass = "http://127.0.0.1:9005"; };
       };
 
-      # personal site
-      "store.the-framework.de" = {
-        forceSSL = true;
-        enableACME = true;
-        extraConfig = ''
-          allow 10.88.88.0/24;
-          allow 192.168.5.0/24;
-          deny all; # deny all remaining ips
-        '';
-        root = "${pkgs.niki-store}/www/";
-      };
-
     };
   };
 
