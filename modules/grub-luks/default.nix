@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.grub-luks;
-in {
+in
+{
 
   options.mayniklas.grub-luks = {
     enable = mkEnableOption "grub lvm";

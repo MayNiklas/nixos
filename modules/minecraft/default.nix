@@ -12,17 +12,21 @@ let
   '';
 
   whitelistFile = pkgs.writeText "whitelist.json" (builtins.toJSON
-    (mapAttrsToList (n: v: {
-      name = n;
-      uuid = v;
-    }) cfg.whitelist));
+    (mapAttrsToList
+      (n: v: {
+        name = n;
+        uuid = v;
+      })
+      cfg.whitelist));
 
-  opsFile = pkgs.writeText "ops.json" (builtins.toJSON (mapAttrsToList (n: v: {
-    name = n;
-    uuid = v.uuid;
-    level = v.level;
-    bypassesPlayerLimit = v.bypassesPlayerLimit;
-  }) cfg.ops));
+  opsFile = pkgs.writeText "ops.json" (builtins.toJSON (mapAttrsToList
+    (n: v: {
+      name = n;
+      uuid = v.uuid;
+      level = v.level;
+      bypassesPlayerLimit = v.bypassesPlayerLimit;
+    })
+    cfg.ops));
 
   cfgToString = v: if builtins.isBool v then boolToString v else toString v;
 
@@ -38,17 +42,20 @@ let
 
   serverPort = cfg.serverProperties.server-port or defaultServerPort;
 
-  rconPort = if cfg.serverProperties.enable-rcon or false then
-    cfg.serverProperties."rcon.port" or 25575
-  else
-    null;
+  rconPort =
+    if cfg.serverProperties.enable-rcon or false then
+      cfg.serverProperties."rcon.port" or 25575
+    else
+      null;
 
-  queryPort = if cfg.serverProperties.enable-query or false then
-    cfg.serverProperties."query.port" or 25565
-  else
-    null;
+  queryPort =
+    if cfg.serverProperties.enable-query or false then
+      cfg.serverProperties."query.port" or 25565
+    else
+      null;
 
-in {
+in
+{
   options = {
     mayniklas.services.minecraft-server = {
 
@@ -102,12 +109,14 @@ in {
       };
 
       whitelist = mkOption {
-        type = let
-          minecraftUUID = types.strMatching
-            "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}" // {
+        type =
+          let
+            minecraftUUID = types.strMatching
+              "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}" // {
               description = "Minecraft UUID";
             };
-        in types.attrsOf minecraftUUID;
+          in
+          types.attrsOf minecraftUUID;
         default = { };
         description = ''
           Whitelisted players, only has an effect when
@@ -128,26 +137,28 @@ in {
       };
 
       ops = mkOption {
-        type = let
-          minecraftOperator = (types.submodule ({ name, ... }: {
-            options = {
-              uuid = mkOption {
-                type = types.strMatching
-                  "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}";
-              description = "Minecraft UUID";
-            };
-              level = mkOption {
-                type = types.int;
-                description = "Operator Level";
+        type =
+          let
+            minecraftOperator = (types.submodule ({ name, ... }: {
+              options = {
+                uuid = mkOption {
+                  type = types.strMatching
+                    "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}";
+                  description = "Minecraft UUID";
+                };
+                level = mkOption {
+                  type = types.int;
+                  description = "Operator Level";
+                };
+                bypassesPlayerLimit = mkOption {
+                  type = types.bool;
+                  default = false;
+                  description = "Player can join even if playerlimit is reached";
+                };
               };
-              bypassesPlayerLimit = mkOption {
-                type = types.bool;
-                default = false;
-                description = "Player can join even if playerlimit is reached";
-              };
-            };
-          }));
-        in types.attrsOf minecraftOperator;
+            }));
+          in
+          types.attrsOf minecraftOperator;
         default = { };
         description = ''
           players with ops, only has an effect when

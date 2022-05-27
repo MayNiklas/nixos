@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.services.monitoring-server.dashboard;
-in {
+in
+{
 
   options.mayniklas.services.monitoring-server.dashboard = {
     enable = mkEnableOption "Grafana dashboard";

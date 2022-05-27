@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.hosts;
-in {
+in
+{
 
   options.mayniklas.hosts = { enable = mkEnableOption "activate hosts"; };
 

@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.shelly-plug-s;
-in {
+in
+{
 
   options.mayniklas.shelly-plug-s = {
     enable = mkEnableOption "activate shelly-plug-s";

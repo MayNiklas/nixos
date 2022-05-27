@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.wg;
-in {
+in
+{
 
   options.mayniklas.wg = {
     enable = mkEnableOption "activate wireguard";

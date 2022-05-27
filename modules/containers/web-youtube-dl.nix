@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.youtube-dl;
-in {
+in
+{
 
   options.mayniklas.youtube-dl = {
     enable = mkEnableOption "activate youtube-dl";

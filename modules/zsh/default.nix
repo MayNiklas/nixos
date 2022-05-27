@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.zsh;
-in {
+in
+{
 
   options.mayniklas.zsh = { enable = mkEnableOption "activate zsh"; };
 

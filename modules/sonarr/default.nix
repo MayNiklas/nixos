@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.sonarr;
-in {
+in
+{
 
   options.mayniklas.sonarr = { enable = mkEnableOption "activate sonarr"; };
 

@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.librespeedtest;
-in {
+in
+{
 
   options.mayniklas.librespeedtest = {
     enable = mkEnableOption "activate librespeedtest";

@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.sound;
-in {
+in
+{
 
   options.mayniklas.sound = { enable = mkEnableOption "activate sound"; };
 

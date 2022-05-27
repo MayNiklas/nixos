@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.jackett;
-in {
+in
+{
 
   options.mayniklas.jackett = { enable = mkEnableOption "activate jackett"; };
 

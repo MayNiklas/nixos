@@ -1,7 +1,8 @@
 { lib, pkgs, config, modulesPath, ... }:
 with lib;
 let cfg = config.mayniklas.pi4b;
-in {
+in
+{
 
   imports = [ "${modulesPath}/installer/scan/not-detected.nix" ];
 

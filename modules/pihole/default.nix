@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.pihole;
-in {
+in
+{
 
   options.mayniklas.pihole = {
     enable = mkEnableOption "activate pihole";

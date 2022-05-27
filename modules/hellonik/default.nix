@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.services.hellonik;
-in {
+in
+{
   options.mayniklas.services.hellonik = {
     enable = mkEnableOption "hellonik service";
     greeter = mkOption {

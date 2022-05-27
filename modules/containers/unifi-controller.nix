@@ -1,7 +1,8 @@
 { config, pkgs, lib, ... }:
 with lib;
 let cfg = config.mayniklas.container.unifi;
-in {
+in
+{
 
   options.mayniklas.container.unifi = {
 
@@ -54,68 +55,70 @@ in {
 
   };
 
-  config = let
-    Image = "linuxserver/unifi-controller:version-${cfg.version}";
-    adminPort = "${cfg.adminPort}";
-  in mkIf cfg.enable {
+  config =
+    let
+      Image = "linuxserver/unifi-controller:version-${cfg.version}";
+      adminPort = "${cfg.adminPort}";
+    in
+    mkIf cfg.enable {
 
-    # Open firewall ports
-    networking.firewall = { allowedTCPPorts = [ 80 443 ]; };
+      # Open firewall ports
+      networking.firewall = { allowedTCPPorts = [ 80 443 ]; };
 
-    security.acme = {
-      acceptTerms = true;
-      certs = { ${cfg.domain}.email = "${cfg.acmeMail}"; };
-    };
+      security.acme = {
+        acceptTerms = true;
+        certs = { ${cfg.domain}.email = "${cfg.acmeMail}"; };
+      };
 
-    services.nginx = {
-      enable = true;
-      recommendedProxySettings = true;
-      virtualHosts = {
-        # UniFi Controller
-        "${cfg.domain}" = {
-          enableACME = true;
-          forceSSL = true;
-          extraConfig = ''
-            client_max_body_size 0;
-          '';
-          locations."/" = {
-            proxyPass = "https://127.0.0.1:${toString adminPort}";
+      services.nginx = {
+        enable = true;
+        recommendedProxySettings = true;
+        virtualHosts = {
+          # UniFi Controller
+          "${cfg.domain}" = {
+            enableACME = true;
+            forceSSL = true;
+            extraConfig = ''
+              client_max_body_size 0;
+            '';
+            locations."/" = {
+              proxyPass = "https://127.0.0.1:${toString adminPort}";
+            };
           };
         };
       };
-    };
 
-    virtualisation.oci-containers = {
-      backend = "docker";
-      containers = {
-        unifi-controller = {
-          autoStart = true;
-          image = Image;
-          environment = {
-            # Possible settings:
-            # https://github.com/linuxserver/docker-unifi-controller#parameters
-            PUID = "${cfg.PUID}";
-            PGID = "${cfg.PGID}";
-            MEM_LIMIT = "1024";
-            MEM_STARTUP = "512";
+      virtualisation.oci-containers = {
+        backend = "docker";
+        containers = {
+          unifi-controller = {
+            autoStart = true;
+            image = Image;
+            environment = {
+              # Possible settings:
+              # https://github.com/linuxserver/docker-unifi-controller#parameters
+              PUID = "${cfg.PUID}";
+              PGID = "${cfg.PGID}";
+              MEM_LIMIT = "1024";
+              MEM_STARTUP = "512";
+            };
+            ports = [
+              "127.0.0.1:${toString adminPort}:8443" # web admin port
+              "3478:3478/udp" # Unifi STUN port
+              "8080:8080" # Required for device communication
+            ];
+            volumes = [ "/docker/unifi-controller/data:/config:rw" ];
           };
-          ports = [
-            "127.0.0.1:${toString adminPort}:8443" # web admin port
-            "3478:3478/udp" # Unifi STUN port
-            "8080:8080" # Required for device communication
-          ];
-          volumes = [ "/docker/unifi-controller/data:/config:rw" ];
         };
       };
-    };
 
-    # Redirect logs for all docker units to syslog
-    systemd.services = {
-      docker-unifi-controller.serviceConfig = {
-        StandardOutput = lib.mkForce "journal";
-        StandardError = lib.mkForce "journal";
+      # Redirect logs for all docker units to syslog
+      systemd.services = {
+        docker-unifi-controller.serviceConfig = {
+          StandardOutput = lib.mkForce "journal";
+          StandardError = lib.mkForce "journal";
+        };
       };
-    };
 
-  };
+    };
 }

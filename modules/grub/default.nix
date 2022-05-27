@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.grub;
-in {
+in
+{
 
   options.mayniklas.grub = { enable = mkEnableOption "activate grub"; };
 

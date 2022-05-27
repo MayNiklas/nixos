@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.octoprint;
-in {
+in
+{
 
   options.mayniklas.octoprint = {
     enable = mkEnableOption "activate octoprint";

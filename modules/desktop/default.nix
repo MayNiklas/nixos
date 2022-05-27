@@ -1,7 +1,8 @@
 { lib, pkgs, config, inputs, self-overlay, overlay-unstable, ... }:
 with lib;
 let cfg = config.mayniklas.desktop;
-in {
+in
+{
 
   options.mayniklas.desktop = {
     enable = mkEnableOption "Enable the default desktop configuration";

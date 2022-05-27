@@ -3,7 +3,8 @@ with lib;
 let
   cfg = config.mayniklas.services.monitoring-server.loki;
   port-loki = 3100;
-in {
+in
+{
 
   options.mayniklas.services.monitoring-server.loki = {
     enable = mkEnableOption "Loki log collector";

@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.var;
-in {
+in
+{
 
   options.mayniklas.var.mainUser = lib.mkOption {
     type = lib.types.str;

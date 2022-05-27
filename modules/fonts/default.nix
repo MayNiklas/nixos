@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.fonts;
-in {
+in
+{
 
   options.mayniklas.fonts = { enable = mkEnableOption "activate fonts"; };
 

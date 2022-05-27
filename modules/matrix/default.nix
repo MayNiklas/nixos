@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.matrix;
-in {
+in
+{
 
   options.mayniklas.matrix = {
     enable = mkEnableOption "activate matrix";
@@ -37,26 +38,30 @@ in {
           enableACME = true;
           forceSSL = true;
 
-          locations."= /.well-known/matrix/server".extraConfig = let
-            # use 443 instead of the default 8448 port to unite
-            # the client-server and server-server port for simplicity
-            server = { "m.server" = "${cfg.host}:443"; };
-          in ''
-            add_header Content-Type application/json;
-            return 200 '${builtins.toJSON server}';
-          '';
+          locations."= /.well-known/matrix/server".extraConfig =
+            let
+              # use 443 instead of the default 8448 port to unite
+              # the client-server and server-server port for simplicity
+              server = { "m.server" = "${cfg.host}:443"; };
+            in
+            ''
+              add_header Content-Type application/json;
+              return 200 '${builtins.toJSON server}';
+            '';
 
-          locations."= /.well-known/matrix/client".extraConfig = let
-            client = {
-              "m.homeserver" = { "base_url" = "https://${cfg.host}"; };
-              "m.identity_server" = { "base_url" = "https://vector.im"; };
-            };
-            # ACAO required to allow element-web on any URL to request this json file
-          in ''
-            add_header Content-Type application/json;
-            add_header Access-Control-Allow-Origin *;
-            return 200 '${builtins.toJSON client}';
-          '';
+          locations."= /.well-known/matrix/client".extraConfig =
+            let
+              client = {
+                "m.homeserver" = { "base_url" = "https://${cfg.host}"; };
+                "m.identity_server" = { "base_url" = "https://vector.im"; };
+              };
+              # ACAO required to allow element-web on any URL to request this json file
+            in
+            ''
+              add_header Content-Type application/json;
+              add_header Access-Control-Allow-Origin *;
+              return 200 '${builtins.toJSON client}';
+            '';
 
           # Reverse proxy for Matrix client-server and server-server communication
           # Or do a redirect instead of the 404, or whatever is appropriate for you.

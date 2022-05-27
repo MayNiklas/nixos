@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.locale;
-in {
+in
+{
 
   options.mayniklas.locale = { enable = mkEnableOption "activate locale"; };
 

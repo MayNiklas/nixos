@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.services.owncast;
-in {
+in
+{
 
   options.mayniklas.services.owncast = {
 

@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.in-stock-bot;
-in {
+in
+{
 
   options.mayniklas.in-stock-bot = {
     enable = mkEnableOption "activate in-stock-bot";

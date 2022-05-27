@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.github-runner;
-in {
+in
+{
 
   options.mayniklas.github-runner = {
     enable = mkEnableOption "activate github-runner";

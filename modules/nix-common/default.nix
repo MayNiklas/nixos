@@ -1,7 +1,8 @@
 { config, pkgs, lib, flake-self, nixpkgs, ... }:
 with lib;
 let cfg = config.mayniklas.nix-common;
-in {
+in
+{
 
   options.mayniklas.nix-common = {
     enable = mkEnableOption "activate nix-common";

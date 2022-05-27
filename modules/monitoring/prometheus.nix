@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.services.monitoring-server;
-in {
+in
+{
 
   options.mayniklas.services.monitoring-server = {
     enable = mkEnableOption "monitoring-server setup";

@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.plex;
-in {
+in
+{
 
   options.mayniklas.plex = { enable = mkEnableOption "activate plex"; };
 

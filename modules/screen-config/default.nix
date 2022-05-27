@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.eizo-alienware;
-in {
+in
+{
 
   options.mayniklas.eizo-alienware = {
     enable = mkEnableOption "eizo-alienware";

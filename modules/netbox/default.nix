@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.netbox;
-in {
+in
+{
 
   options.mayniklas.netbox = {
     enable = mkEnableOption "activate netbox";

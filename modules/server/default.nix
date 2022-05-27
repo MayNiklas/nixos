@@ -1,7 +1,8 @@
 { lib, pkgs, config, flake-self, home-manager, ... }:
 with lib;
 let cfg = config.mayniklas.server;
-in {
+in
+{
 
   options.mayniklas.server = {
     enable = mkEnableOption "Enable the default server configuration";

@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.bluetooth;
-in {
+in
+{
 
   options.mayniklas.bluetooth = {
     enable = mkEnableOption "activate bluetooth";

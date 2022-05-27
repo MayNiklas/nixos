@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.xserver;
-in {
+in
+{
 
   options.mayniklas.xserver = {
     enable = mkEnableOption "activate xserver";

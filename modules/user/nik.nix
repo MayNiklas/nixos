@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.user.nik;
-in {
+in
+{
 
   options.mayniklas.user.nik = { enable = mkEnableOption "activate user nik"; };
 

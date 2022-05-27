@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.kde;
-in {
+in
+{
 
   options.mayniklas.kde = { enable = mkEnableOption "activate kde"; };
 

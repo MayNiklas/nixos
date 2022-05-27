@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.scene-extractor;
-in {
+in
+{
 
   options.mayniklas.scene-extractor = {
     enable = mkEnableOption "activate scene-extractor";

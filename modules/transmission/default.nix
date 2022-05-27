@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.transmission;
-in {
+in
+{
 
   options.mayniklas.transmission = {
     enable = mkEnableOption "activate transmission";

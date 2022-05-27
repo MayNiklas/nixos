@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.plex-version-bot;
-in {
+in
+{
 
   options.mayniklas.plex-version-bot = {
     enable = mkEnableOption "activate plex-version-bot";

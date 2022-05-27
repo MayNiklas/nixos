@@ -3,7 +3,8 @@
 with lib;
 let cfg = config.mayniklas.cloud.hetzner-x86;
 
-in {
+in
+{
 
   imports = [ "${modulesPath}/profiles/qemu-guest.nix" ];
 

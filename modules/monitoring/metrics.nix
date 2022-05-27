@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.metrics;
-in {
+in
+{
 
   options.mayniklas.metrics.node = {
     enable = mkEnableOption "prometheus node-exporter metrics collection";

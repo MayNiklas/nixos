@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.jitsi;
-in {
+in
+{
 
   options.mayniklas.jitsi = {
     enable = mkEnableOption "activate jitsi";

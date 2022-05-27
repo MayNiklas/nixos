@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.yubikey;
-in {
+in
+{
 
   options.mayniklas.yubikey = { enable = mkEnableOption "activate yubikey"; };
 

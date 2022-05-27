@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.networking;
-in {
+in
+{
 
   options.mayniklas.networking = {
     enable = mkEnableOption "activate networking";

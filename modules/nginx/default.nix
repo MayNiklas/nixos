@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.nginx;
-in {
+in
+{
 
   options.mayniklas.nginx = {
     enable = mkEnableOption "activate nginx";

@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.gnome;
-in {
+in
+{
 
   options.mayniklas.gnome = { enable = mkEnableOption "activate gnome"; };
 

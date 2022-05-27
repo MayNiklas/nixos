@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.openssh;
-in {
+in
+{
 
   options.mayniklas.openssh = { enable = mkEnableOption "activate openssh"; };
 

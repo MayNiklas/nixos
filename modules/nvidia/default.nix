@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.nvidia;
-in {
+in
+{
 
   options.mayniklas.nvidia = {
     enable = mkEnableOption "activate nvidia";

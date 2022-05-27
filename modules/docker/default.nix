@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.docker;
-in {
+in
+{
 
   options.mayniklas.docker = { enable = mkEnableOption "activate docker"; };
 

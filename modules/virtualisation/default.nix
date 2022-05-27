@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.virtualisation;
-in {
+in
+{
 
   options.mayniklas.virtualisation = {
     enable = mkEnableOption "activate virtualisation";

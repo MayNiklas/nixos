@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.cloud.vmware-x86;
-in {
+in
+{
 
   imports = [
     (mkRenamedOptionModule [ "mayniklas" "vmware-guest" ] [ "mayniklas" "cloud" "vmware-x86" ])

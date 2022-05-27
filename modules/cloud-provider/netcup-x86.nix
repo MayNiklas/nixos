@@ -3,11 +3,12 @@
 with lib;
 let cfg = config.mayniklas.cloud.netcup-x86;
 
-in {
+in
+{
 
   imports = [
     "${modulesPath}/profiles/qemu-guest.nix"
-    (mkRenamedOptionModule [ "mayniklas" "kvm-guest" ] [ "mayniklas" "cloud" "netcup-x86" ] )
+    (mkRenamedOptionModule [ "mayniklas" "kvm-guest" ] [ "mayniklas" "cloud" "netcup-x86" ])
   ];
 
   options.mayniklas.cloud.netcup-x86 = {

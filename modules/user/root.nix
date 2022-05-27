@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.user.root;
-in {
+in
+{
 
   options.mayniklas.user.root = {
     enable = mkEnableOption "activate user root";

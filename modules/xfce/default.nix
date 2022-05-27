@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.xfce;
-in {
+in
+{
 
   options.mayniklas.xfce = { enable = mkEnableOption "activate xfce"; };
 
