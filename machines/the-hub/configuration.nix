@@ -20,8 +20,13 @@
       enable = true;
       loki = { enable = true; };
       dashboard = { enable = true; };
-      shellyTargets =
-        [ "http://192.168.15.2/status" "http://192.168.15.3/status" ];
+      shellyTargets = [
+        "http://192.168.15.2/status"
+        "http://192.168.15.3/status"
+        "http://192.168.52.20/status"
+        "http://192.168.52.21/status"
+        "http://192.168.52.22/status"
+      ];
       nodeTargets = [
         "aida:9100"
         "bob:9100"
