@@ -20,8 +20,11 @@
       overlays.default = final: prev: (import ./overlays inputs) final prev;
 
       # Use nixpkgs-fmt for `nix fmt'
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
-      formatter.aarch64-linux = nixpkgs.legacyPackages.aarch64-linux.nixpkgs-fmt;
+      formatter = {
+        aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixpkgs-fmt;
+        aarch64-linux = nixpkgs.legacyPackages.aarch64-linux.nixpkgs-fmt;
+        x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+      };
 
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
