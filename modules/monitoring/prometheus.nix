@@ -45,6 +45,27 @@ in {
           static_configs = [{ targets = [ "kora:9924" ]; }];
         }
         {
+          job_name = "json";
+          scrape_interval = "10s";
+          metrics_path = "/probe";
+          static_configs = [{ targets = [ "http://192.168.15.2/status" ]; }];
+          relabel_configs = [
+            {
+              source_labels = [ "__address__" ];
+              target_label = "__param_target";
+            }
+            {
+              source_labels = [ "__param_target" ];
+              target_label = "instance";
+            }
+            {
+              target_label = "__address__";
+              replacement =
+                "127.0.0.1:7979"; # The blackbox exporter's real hostname:port.
+            }
+          ];
+        }
+        {
           job_name = "blackbox";
           metrics_path = "/probe";
           params = { module = [ "http_2xx" ]; };

@@ -12,6 +12,7 @@
     nginx.enable = true;
     metrics = {
       blackbox.enable = true;
+      json.enable = true;
       flake.enable = true;
       node.enable = true;
     };

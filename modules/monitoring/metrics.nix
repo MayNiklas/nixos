@@ -7,6 +7,10 @@ in {
     enable = mkEnableOption "prometheus node-exporter metrics collection";
   };
 
+  options.mayniklas.metrics.json = {
+    enable = mkEnableOption "prometheus json-exporter metrics collection";
+  };
+
   options.mayniklas.metrics.flake = {
     enable = mkEnableOption "prometheus node-exporter metrics collection";
   };
@@ -18,6 +22,7 @@ in {
   config = {
 
     services.prometheus.exporters = {
+
       node = mkIf cfg.node.enable {
         enable = true;
         # Default port is 9100
@@ -27,6 +32,39 @@ in {
         extraFlags =
           mkIf cfg.flake.enable [ "--collector.textfile.directory=/etc/nix" ];
       };
+
+      json = mkIf cfg.json.enable {
+        enable = true;
+        listenAddress = "127.0.0.1";
+        configFile = pkgs.writeTextFile {
+          name = "json-exporter-config";
+          text = ''
+            ---
+            metrics:
+
+            - name: shelly_update_available
+              help: "OTA update available"
+              path: "{.update.has_update}"
+
+            - name: shelly_uptime
+              help: "current shelly uptime"
+              path: "{.uptime}"
+
+            - name: shelly_temperature
+              help: "temperature of shelly"
+              path: "{.temperature}"
+
+            - name: shelly_power
+              help: "current power consumption"
+              path: "{.meters[0].power}"
+
+            - name: shelly_power_total
+              help: "total power consumption since last firmware update"
+              path: "{.meters[0].total}"
+          '';
+        };
+      };
+
       blackbox = mkIf cfg.blackbox.enable {
         enable = true;
         # Default port is 9115
