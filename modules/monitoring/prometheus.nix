@@ -38,13 +38,6 @@ in {
 
       scrapeConfigs = [
         {
-          job_name = "shelly";
-          scrape_interval = "10s";
-          metrics_path = "/metrics";
-          scheme = "http";
-          static_configs = [{ targets = [ "kora:9924" ]; }];
-        }
-        {
           job_name = "json";
           scrape_interval = "10s";
           metrics_path = "/probe";
