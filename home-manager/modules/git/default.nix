@@ -14,6 +14,6 @@ in {
         userName = "MayNiklas";
       };
     };
-
+    home.packages = [ pkgs.pre-commit ];
   };
 }
