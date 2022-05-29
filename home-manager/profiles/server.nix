@@ -4,19 +4,21 @@
   nixpkgs.config = { allowUnfree = true; };
 
   # Install these packages for my user
-  home.packages = let
-    drone-gen = pkgs.callPackage ../../packages/drone-gen { };
-    vs-fix = pkgs.callPackage ../../packages/vs-fix { };
-  in with pkgs; [
-    htop
-    iperf3
-    nixfmt
-    nixpkgs-fmt
-    unzip
+  home.packages =
+    let
+      drone-gen = pkgs.callPackage ../../packages/drone-gen { };
+      vs-fix = pkgs.callPackage ../../packages/vs-fix { };
+    in
+    with pkgs; [
+      htop
+      iperf3
+      nixfmt
+      nixpkgs-fmt
+      unzip
 
-    drone-gen
-    vs-fix
-  ];
+      drone-gen
+      vs-fix
+    ];
 
   mayniklas = {
     programs = {

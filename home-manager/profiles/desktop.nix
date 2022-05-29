@@ -4,53 +4,55 @@
   nixpkgs.config = { allowUnfree = true; };
 
   # Install these packages for my user
-  home.packages = let
-    drone-gen = pkgs.callPackage ../../packages/drone-gen { };
-    vs-fix = pkgs.callPackage ../../packages/vs-fix { };
-  in with pkgs; [
-    _1password-gui
-    atom
-    cura
-    dconf
-    discord
-    dolphin
-    drone-cli
-    filezilla
-    firefox
-    gcc
-    glances
-    gparted
-    htop
-    htop
-    hugo
-    iperf3
-    iperf3
-    nixfmt
-    nixfmt
-    nixpkgs-fmt
-    nmap
-    nvtop
-    obs-studio
-    signal-desktop
-    spotify
-    sublime-merge
-    sublime3
-    tdesktop
-    teamspeak_client
-    thunderbird-bin
-    unzip
-    unzip
-    vagrant
-    vim
-    virt-manager
-    vlc
-    xfce.thunar
-    youtube-dl
-    zoom-us
+  home.packages =
+    let
+      drone-gen = pkgs.callPackage ../../packages/drone-gen { };
+      vs-fix = pkgs.callPackage ../../packages/vs-fix { };
+    in
+    with pkgs; [
+      _1password-gui
+      atom
+      cura
+      dconf
+      discord
+      dolphin
+      drone-cli
+      filezilla
+      firefox
+      gcc
+      glances
+      gparted
+      htop
+      htop
+      hugo
+      iperf3
+      iperf3
+      nixfmt
+      nixfmt
+      nixpkgs-fmt
+      nmap
+      nvtop
+      obs-studio
+      signal-desktop
+      spotify
+      sublime-merge
+      sublime3
+      tdesktop
+      teamspeak_client
+      thunderbird-bin
+      unzip
+      unzip
+      vagrant
+      vim
+      virt-manager
+      vlc
+      xfce.thunar
+      youtube-dl
+      zoom-us
 
-    drone-gen
-    vs-fix
-  ];
+      drone-gen
+      vs-fix
+    ];
 
   mayniklas = {
     programs = {
