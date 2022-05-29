@@ -9,6 +9,14 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    shelly-prometheus-exporter = {
+      url = "github:MayNiklas/shelly-plug-s-prometheus-exporter";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
   };
   outputs = { self, ... }@inputs:
     with inputs;
@@ -18,13 +26,6 @@
       # Flake inputs are passed to the overlay so that the packages defined in
       # it can use the sources pinned in flake.lock
       overlays.default = final: prev: (import ./overlays inputs) final prev;
-
-      # Use nixpkgs-fmt for `nix fmt'
-      formatter = {
-        aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixpkgs-fmt;
-        aarch64-linux = nixpkgs.legacyPackages.aarch64-linux.nixpkgs-fmt;
-        x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
-      };
 
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
@@ -129,6 +130,10 @@
           };
         in
         rec {
+
+          # Use nixpkgs-fmt for `nix fmt'
+          formatter = pkgs.nixpkgs-fmt;
+
           # Custom packages added via the overlay are selectively exposed here, to
           # allow using them from other flakes that import this one.
 

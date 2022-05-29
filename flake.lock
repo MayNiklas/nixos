@@ -55,7 +55,31 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "shelly-prometheus-exporter": "shelly-prometheus-exporter"
+      }
+    },
+    "shelly-prometheus-exporter": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1653827116,
+        "narHash": "sha256-RRt5qJUJQMiXlvOqR+VVINaDsrzmwHrOaoyPTwBZMjU=",
+        "owner": "MayNiklas",
+        "repo": "shelly-plug-s-prometheus-exporter",
+        "rev": "a055451fd93834254b21a6d7e377c3aa6842798f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MayNiklas",
+        "repo": "shelly-plug-s-prometheus-exporter",
+        "type": "github"
       }
     }
   },
