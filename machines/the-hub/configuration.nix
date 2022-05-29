@@ -7,7 +7,7 @@
     shelly-prometheus-exporter.nixosModules.default
   ];
 
-  services.shelly-exporter.enable = true;
+  services.shelly-exporter.enable = false;
 
   mayniklas = {
     cloud.netcup-x86.enable = true;
