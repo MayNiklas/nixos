@@ -1,6 +1,13 @@
-{ self, pkgs, ... }: {
+{ self, pkgs, shelly-prometheus-exporter, ... }: {
 
-  imports = [ ./wg0.nix ./wg1.nix ./wg2.nix ];
+  imports = [
+    ./wg0.nix
+    ./wg1.nix
+    ./wg2.nix
+    shelly-prometheus-exporter.nixosModules.default
+  ];
+
+  services.shelly-exporter.enable = true;
 
   mayniklas = {
     cloud.netcup-x86.enable = true;
