@@ -11,6 +11,7 @@
     htop
     iperf3
     nixfmt
+    nixpkgs-fmt
     unzip
 
     drone-gen

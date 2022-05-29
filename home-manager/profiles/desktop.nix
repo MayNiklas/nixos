@@ -8,6 +8,7 @@
     drone-gen = pkgs.callPackage ../../packages/drone-gen { };
     vs-fix = pkgs.callPackage ../../packages/vs-fix { };
   in with pkgs; [
+    _1password-gui
     atom
     cura
     dconf
@@ -20,8 +21,13 @@
     glances
     gparted
     htop
+    htop
     hugo
     iperf3
+    iperf3
+    nixfmt
+    nixfmt
+    nixpkgs-fmt
     nmap
     nvtop
     obs-studio
@@ -33,6 +39,7 @@
     teamspeak_client
     thunderbird-bin
     unzip
+    unzip
     vagrant
     vim
     virt-manager
@@ -40,11 +47,6 @@
     xfce.thunar
     youtube-dl
     zoom-us
-    _1password-gui
-    htop
-    iperf3
-    nixfmt
-    unzip
 
     drone-gen
     vs-fix
