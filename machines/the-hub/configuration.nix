@@ -7,7 +7,11 @@
     shelly-prometheus-exporter.nixosModules.default
   ];
 
-  services.shelly-exporter.enable = true;
+  services.shelly-exporter = {
+    enable = true;
+    port = "8080";
+    listen = "localhost";
+  };
 
   mayniklas = {
     cloud.netcup-x86.enable = true;
