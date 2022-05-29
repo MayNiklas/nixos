@@ -46,7 +46,7 @@ in
 
       scrapeConfigs = [
         {
-          job_name = "json";
+          job_name = "shelly";
           scrape_interval = "10s";
           metrics_path = "/probe";
           static_configs = [{ targets = cfg.shellyTargets; }];
@@ -62,7 +62,7 @@ in
             {
               target_label = "__address__";
               replacement =
-                "127.0.0.1:7979"; # The blackbox exporter's real hostname:port.
+                "127.0.0.1:8080"; # The blackbox exporter's real hostname:port.
             }
           ];
         }
