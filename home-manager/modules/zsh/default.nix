@@ -59,6 +59,12 @@ in {
 
       };
     };
+    
+    programs.zsh.oh-my-zsh = {
+      enable = true;
+      theme = "agnoster";
+    };
+
 
     programs.fzf = {
       enable = true;
