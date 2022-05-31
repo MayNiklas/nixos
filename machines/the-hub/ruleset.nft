@@ -1,6 +1,24 @@
 # Check out https://wiki.nftables.org/ for better documentation.
 # Table for both IPv4 and IPv6.
 
+# Matching by interface (https://wiki.nftables.org/wiki-nftables/index.php/Matching_packet_metainformation)
+# iifname -> input interface name
+# oifname -> output interface name
+
+# ip (https://wiki.nftables.org/wiki-nftables/index.php/Quick_reference-nftables_in_10_minutes#Ip)
+# ip saddr -> Source address
+# ip daddr -> Destination address
+# ip protocol { icmp, esp, ah, comp, udp, udplite, tcp, dccp, sctp } -> Upper layer protocol
+
+# tcp (https://wiki.nftables.org/wiki-nftables/index.php/Quick_reference-nftables_in_10_minutes#Tcp)
+# tcp dport -> Destination port
+
+# udp (https://wiki.nftables.org/wiki-nftables/index.php/Quick_reference-nftables_in_10_minutes#Udp)
+# udp dport -> Destination port
+
+# ct (https://wiki.nftables.org/wiki-nftables/index.php/Quick_reference-nftables_in_10_minutes#Ct)
+# ct state { new, established, related, untracked } -> State of the connection
+
 define WAN_IFC      = ens3
 define VPN_IFC      = { wg0, wg1, wg2 }
 define VPN_NET = { 10.88.88.0/24, 10.10.10.0/24, 172.20.1.0/24 }
