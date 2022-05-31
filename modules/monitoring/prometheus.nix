@@ -50,21 +50,11 @@ in
           scrape_interval = "10s";
           metrics_path = "/probe";
           static_configs = [{ targets = cfg.shellyTargets; }];
-          relabel_configs = [
-            {
-              source_labels = [ "__address__" ];
-              target_label = "__param_target";
-            }
-            {
-              source_labels = [ "__param_target" ];
-              target_label = "instance";
-            }
-            {
-              target_label = "__address__";
-              replacement =
-                "127.0.0.1:8080"; # The blackbox exporter's real hostname:port.
-            }
-          ];
+          relabel_configs = [{
+            target_label = "__address__";
+            replacement =
+              "127.0.0.1:8080"; # The blackbox exporter's real hostname:port.
+          }];
         }
         {
           job_name = "blackbox";
