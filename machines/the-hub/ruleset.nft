@@ -47,7 +47,7 @@ table inet filter {
 
         # allow SSH
         tcp dport 22 accept
-        
+
         # allow HTTP / HTTPS -> needed for ACME
         tcp dport {http,https} accept
 
@@ -72,8 +72,8 @@ table inet filter {
     chain forward {
         type filter hook forward priority 0;
 
-        # Allow Nik to connect to 10.88.88.0/24
-        iifname "wg0" ip saddr $Nik_NET ip daddr 10.88.88.0/24 accept
+        # Allow M. to connect to 192.168.42.0/24 & 192.168.52.0/24
+        iifname "wg2" oifname "wg0" ip daddr { 192.168.42.0/24, 192.168.52.0/24 } accept
 
         # allow packages staying on the same Wireguard Interface
         iifname "wg0" oifname "wg0" counter accept
