@@ -69,11 +69,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1653908098,
-        "narHash": "sha256-3gRJif6k9z+4br1Dl7K0wYpXIwj/zoFftVDT/ATrgFk=",
+        "lastModified": 1654012284,
+        "narHash": "sha256-f2eFvUE9YzCQKvsf/bWxI4TSga39jstTaZs3qKYFW8s=",
         "owner": "MayNiklas",
         "repo": "shelly-plug-s-prometheus-exporter",
-        "rev": "4941dd8665d85b4f11056af43d856e3841974e9c",
+        "rev": "5777b0eabaa0d4baf7f52c8883a5862e47539a7d",
         "type": "github"
       },
       "original": {
