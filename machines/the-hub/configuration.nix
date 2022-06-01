@@ -30,7 +30,7 @@
     services.monitoring-server = {
       enable = true;
       loki = { enable = true; };
-      dashboard = { enable = true; };
+      grafana = { enable = true; nginx = true; };
       shellyTargets = [
         "http://192.168.15.2"
         "http://192.168.15.3"

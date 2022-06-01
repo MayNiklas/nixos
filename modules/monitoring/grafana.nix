@@ -12,6 +12,8 @@ in
 
     openFirewall = mkEnableOption "Open firewall for Grafana";
 
+    nginx = mkEnableOption "enable nginx for grafana";
+
     domain = mkOption {
       type = types.str;
       default = "status.nik-ste.de";
@@ -26,7 +28,7 @@ in
     # No need to support plain HTTP, forcing TLS for all vhosts. Certificates
     # provided by Let's Encrypt via ACME. Generation and renewal is automatic
     # if DNS is set up correctly for the (sub-)domains.
-    services.nginx.virtualHosts = {
+    services.nginx.virtualHosts = mkIf cfg.nginx {
 
       # Graphana
       "${cfg.domain}" = {
