@@ -1,10 +1,12 @@
 { lib, pkgs, config, ... }:
 with lib;
-let cfg = config.mayniklas.services.monitoring-server.dashboard;
+let cfg = config.mayniklas.services.monitoring-server.grafana;
 in
 {
 
-  options.mayniklas.services.monitoring-server.dashboard = {
+  imports = [ (mkRenamedOptionModule [ "mayniklas" "services" "monitoring-server" "dashboard" ] [ "mayniklas" "services" "monitoring-server" "grafana" ]) ];
+
+  options.mayniklas.services.monitoring-server.grafana = {
 
     enable = mkEnableOption "Grafana dashboard";
 
