@@ -44,15 +44,16 @@ in
 
     };
 
-    # Grafana image renderer (using Chromium)
-    services.grafana-image-renderer = {
-      enable = true;
-      provisionGrafana = true;
-      settings.rendering = {
-        height = 1080;
-        width = 1920;
-      };
-    };
+    # # Grafana image renderer (using Chromium)
+    # # changing render size does not work!!
+    # services.grafana-image-renderer = {
+    #   enable = true;
+    #   settings.rendering = {
+    #     height = 1080;
+    #     width = 1920;
+    #   };
+    #   settings.rendering.args = [ "--no-sandbox" "--window-size=1920x1080" ];
+    # };
 
     # Graphana fronend
     services.grafana = {
