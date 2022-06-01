@@ -3,7 +3,8 @@ with lib;
 let
   cfg = config.mayniklas.programs.zsh;
   vars = import ../vars.nix;
-in {
+in
+{
   options.mayniklas.programs.zsh.enable = mkEnableOption "enable zsh";
 
   config = mkIf cfg.enable {
@@ -53,13 +54,14 @@ in {
 
         # nix
         nixos-rebuild = "${pkgs.nixos-rebuild}/bin/nixos-rebuild --use-remote-sudo";
+        frb = "${pkgs.nixos-rebuild}/bin/nixos-rebuild --use-remote-sudo switch --flake";
 
         # Other
         lsblk = "lsblk -o name,mountpoint,label,size,type,uuid";
 
       };
     };
-    
+
     programs.zsh.oh-my-zsh = {
       enable = true;
       theme = "agnoster";
