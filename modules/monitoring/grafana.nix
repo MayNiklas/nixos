@@ -25,10 +25,10 @@ in
     # No need to support plain HTTP, forcing TLS for all vhosts. Certificates
     # provided by Let's Encrypt via ACME. Generation and renewal is automatic
     # if DNS is set up correctly for the (sub-)domains.
-    nginx.virtualHosts = {
+    services.nginx.virtualHosts = {
 
       # Graphana
-      cfg.domain = {
+      "${cfg.domain}" = {
         forceSSL = true;
         enableACME = true;
         extraConfig = ''
