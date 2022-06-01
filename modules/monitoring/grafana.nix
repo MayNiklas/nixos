@@ -44,6 +44,16 @@ in
 
     };
 
+    # Grafana image renderer (using Chromium)
+    services.grafana-image-renderer = {
+      enable = true;
+      provisionGrafana = true;
+      settings.rendering = {
+        height = 1080;
+        width = 1920;
+      };
+    };
+
     # Graphana fronend
     services.grafana = {
       enable = true;
