@@ -77,33 +77,6 @@
     };
   };
 
-  services.nginx = {
-    enable = true;
-    recommendedOptimisation = true;
-    recommendedTlsSettings = true;
-    clientMaxBodySize = "128m";
-    recommendedProxySettings = true;
-
-    # No need to support plain HTTP, forcing TLS for all vhosts. Certificates
-    # provided by Let's Encrypt via ACME. Generation and renewal is automatic
-    # if DNS is set up correctly for the (sub-)domains.
-    virtualHosts = {
-
-      # Graphana
-      "status.nik-ste.de" = {
-        forceSSL = true;
-        enableACME = true;
-        extraConfig = ''
-          allow 10.88.88.0/24;
-          allow 192.168.5.0/24;
-          deny all; # deny all remaining ips
-        '';
-        locations."/" = { proxyPass = "http://127.0.0.1:9005"; };
-      };
-
-    };
-  };
-
   networking = {
 
     hostName = "the-hub";

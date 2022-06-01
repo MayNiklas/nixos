@@ -25,6 +25,7 @@ in
       recommendedOptimisation = true;
       recommendedTlsSettings = true;
       clientMaxBodySize = "128m";
+      recommendedProxySettings = true;
 
       commonHttpConfig = ''
         server_names_hash_bucket_size 128;

@@ -5,8 +5,11 @@ in
 {
 
   options.mayniklas.services.monitoring-server.dashboard = {
+
     enable = mkEnableOption "Grafana dashboard";
+
     openFirewall = mkEnableOption "Open firewall for Grafana";
+
 
     domain = mkOption {
       type = types.str;
@@ -14,9 +17,30 @@ in
       example = "dashboards.myhost.com";
       description = "Domain for grafana";
     };
+
   };
 
   config = mkIf cfg.enable {
+
+    # No need to support plain HTTP, forcing TLS for all vhosts. Certificates
+    # provided by Let's Encrypt via ACME. Generation and renewal is automatic
+    # if DNS is set up correctly for the (sub-)domains.
+    nginx.virtualHosts = {
+
+      # Graphana
+      cfg.domain = {
+        forceSSL = true;
+        enableACME = true;
+        extraConfig = ''
+          allow 10.88.88.0/24;
+          allow 192.168.5.0/24;
+          deny all; # deny all remaining ips
+        '';
+        locations."/" = { proxyPass = "http://127.0.0.1:9005"; };
+      };
+
+    };
+
     # Graphana fronend
     services.grafana = {
       enable = true;
