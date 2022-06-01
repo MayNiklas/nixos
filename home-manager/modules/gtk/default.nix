@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.programs.gtk;
-in {
+in
+{
   options.mayniklas.programs.gtk.enable = mkEnableOption "enable gtk";
 
   config = mkIf cfg.enable {

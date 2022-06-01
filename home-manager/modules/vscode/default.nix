@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.programs.vscode;
-in {
+in
+{
   options.mayniklas.programs.vscode.enable = mkEnableOption "enable vscode";
 
   config = mkIf cfg.enable {

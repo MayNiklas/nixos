@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.programs.git;
-in {
+in
+{
   options.mayniklas.programs.git.enable = mkEnableOption "enable git";
 
   config = mkIf cfg.enable {

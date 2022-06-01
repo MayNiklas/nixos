@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.programs.devolopment;
-in {
+in
+{
   options.mayniklas.programs.firefox.enable = mkEnableOption "enable firefox";
 
   config = mkIf cfg.enable {

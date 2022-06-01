@@ -10,7 +10,6 @@ in
 
     openFirewall = mkEnableOption "Open firewall for Grafana";
 
-
     domain = mkOption {
       type = types.str;
       default = "status.nik-ste.de";

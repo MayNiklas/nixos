@@ -7,7 +7,8 @@ let
     done
     echo "Done patching vs-code server!"
   '';
-in stdenv.mkDerivation {
+in
+stdenv.mkDerivation {
 
   pname = "vs-fix";
   version = "0.1.0";

@@ -3,7 +3,8 @@ with lib;
 let
   cfg = config.mayniklas.programs.rofi;
   vars = import ../vars.nix;
-in {
+in
+{
   options.mayniklas.programs.rofi.enable = mkEnableOption "enable rofi";
 
   config = mkIf cfg.enable {

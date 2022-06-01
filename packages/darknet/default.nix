@@ -1,4 +1,4 @@
-{ lib, stdenv, pkgs, enableUnfree ? true,... }:
+{ lib, stdenv, pkgs, enableUnfree ? true, ... }:
 stdenv.mkDerivation rec {
   pname = "darknet";
   version = "a3714d0a2bf92c3dea84c4bea65b2b0c64dbc6b1";

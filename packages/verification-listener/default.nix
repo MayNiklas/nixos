@@ -1,5 +1,11 @@
-{ lib, fetchFromGitHub, buildPythonApplication, python38Packages, pkgs
-, setuptools, ... }:
+{ lib
+, fetchFromGitHub
+, buildPythonApplication
+, python38Packages
+, pkgs
+, setuptools
+, ...
+}:
 with python38Packages;
 buildPythonApplication rec {
 

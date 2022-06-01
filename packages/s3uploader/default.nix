@@ -15,7 +15,8 @@ let
     cat upload.list | uniq > upload
     nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(cat upload)
   '';
-in stdenv.mkDerivation {
+in
+stdenv.mkDerivation {
 
   pname = "s3uploader";
   version = "0.1.0";

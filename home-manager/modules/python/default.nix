@@ -8,7 +8,8 @@ let
     ];
   python-with-packages = pkgs.python3.withPackages my-python-packages;
 
-in {
+in
+{
 
   options.mayniklas.programs.python.enable = mkEnableOption "enable python3 with libs";
 

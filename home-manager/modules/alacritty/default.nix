@@ -3,7 +3,8 @@ with lib;
 let
   cfg = config.mayniklas.programs.alacritty;
   vars = import ../vars.nix;
-in {
+in
+{
   options.mayniklas.programs.alacritty.enable =
     mkEnableOption "enable alacritty";
 

@@ -1,7 +1,8 @@
 { config, pkgs, lib, flake-self, home-manager, ... }:
 with lib;
 let cfg = config.mayniklas.home-manager;
-in {
+in
+{
 
   options.mayniklas.home-manager = {
 

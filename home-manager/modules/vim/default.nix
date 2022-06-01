@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.programs.vim;
-in {
+in
+{
   options.mayniklas.programs.vim.enable = mkEnableOption "Setup neovim";
 
   config = mkIf cfg.enable {

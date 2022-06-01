@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.programs.chromium;
-in {
+in
+{
   options.mayniklas.programs.chromium.enable = mkEnableOption "enable chromium";
 
   config = mkIf cfg.enable {

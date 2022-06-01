@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.programs.devolopment;
-in {
+in
+{
   options.mayniklas.programs.devolopment.enable =
     mkEnableOption "enable devolopment applications";
 

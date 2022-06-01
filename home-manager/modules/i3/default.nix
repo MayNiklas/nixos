@@ -3,7 +3,8 @@ with lib;
 let
   cfg = config.mayniklas.programs.i3;
   vars = import ../vars.nix;
-in {
+in
+{
   options.mayniklas.programs.i3.enable = mkEnableOption "enable i3";
 
   config = mkIf cfg.enable {
@@ -105,7 +106,8 @@ in {
 
         keybindings =
           let modifier = config.xsession.windowManager.i3.config.modifier;
-          in lib.mkOptionDefault {
+          in
+          lib.mkOptionDefault {
 
             "${modifier}+d" = "exec dmenu_run";
 
