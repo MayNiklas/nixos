@@ -31,6 +31,8 @@
       # it can use the sources pinned in flake.lock
       overlays.default = final: prev: (import ./overlays inputs) final prev;
 
+      overlays.mayniklas = final: prev: (import ./overlays/mayniklas.nix inputs) final prev;
+
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
       nixosModules = builtins.listToAttrs
