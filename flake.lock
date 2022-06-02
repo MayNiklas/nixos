@@ -73,10 +73,10 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "shelly-prometheus-exporter": "shelly-prometheus-exporter"
+        "shelly-exporter": "shelly-exporter"
       }
     },
-    "shelly-prometheus-exporter": {
+    "shelly-exporter": {
       "inputs": {
         "flake-utils": [
           "flake-utils"
@@ -86,16 +86,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1654084349,
-        "narHash": "sha256-aUvYrTAIRZFyxR8wBZoxIPSJzxTi5TjyDbSYRjBJZww=",
+        "lastModified": 1654159587,
+        "narHash": "sha256-2wSENFKA0fpypO+VjP/Yfj629qYT9dLl8iRX/khp98I=",
         "owner": "MayNiklas",
-        "repo": "shelly-plug-s-prometheus-exporter",
-        "rev": "a7cac4b818e700623ce956359beee9645b3cd9ec",
+        "repo": "shelly-exporter",
+        "rev": "e491d89afca8e08858adf7c6f4b2b1a58c7f99da",
         "type": "github"
       },
       "original": {
         "owner": "MayNiklas",
-        "repo": "shelly-plug-s-prometheus-exporter",
+        "repo": "shelly-exporter",
         "type": "github"
       }
     }

@@ -13,8 +13,8 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    shelly-prometheus-exporter = {
-      url = "github:MayNiklas/shelly-plug-s-prometheus-exporter";
+    shelly-exporter = {
+      url = "github:MayNiklas/shelly-exporter";
       inputs = {
         flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";

@@ -1,10 +1,10 @@
-{ self, pkgs, shelly-prometheus-exporter, ... }: {
+{ self, pkgs, shelly-exporter, ... }: {
 
   imports = [
     ./wg0.nix
     ./wg1.nix
     ./wg2.nix
-    shelly-prometheus-exporter.nixosModules.default
+    shelly-exporter.nixosModules.default
   ];
 
   services.shelly-exporter = {
