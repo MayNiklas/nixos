@@ -47,7 +47,7 @@ in
       scrapeConfigs = [
         {
           job_name = "shelly";
-          scrape_interval = "10s";
+          scrape_interval = "15s";
           metrics_path = "/probe";
           static_configs = [{ targets = cfg.shellyTargets; }];
           relabel_configs = [
@@ -68,6 +68,7 @@ in
         }
         {
           job_name = "blackbox";
+          scrape_interval = "15s";
           metrics_path = "/probe";
           params = { module = [ "http_2xx" ]; };
           static_configs = [{ targets = cfg.blackboxTargets; }];
@@ -90,6 +91,7 @@ in
         }
         {
           job_name = "icmp";
+          scrape_interval = "15s";
           metrics_path = "/probe";
           params = { module = [ "icmp" ]; };
           static_configs = [{ targets = cfg.blackboxPingTargets; }];
@@ -112,6 +114,7 @@ in
         }
         {
           job_name = "node-stats";
+          scrape_interval = "15s";
           static_configs = [{ targets = cfg.nodeTargets; }];
         }
       ];
