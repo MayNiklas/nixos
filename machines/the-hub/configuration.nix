@@ -9,8 +9,14 @@
 
   services.shelly-exporter = {
     enable = true;
-    port = "8080";
-    listen = "localhost";
+    configure-prometheus = true;
+    targets = [
+      "http://192.168.15.2"
+      "http://192.168.15.3"
+      # "http://192.168.52.20"
+      # "http://192.168.52.21"
+      # "http://192.168.52.22"
+    ];
   };
 
   mayniklas = {
@@ -30,13 +36,6 @@
       enable = true;
       loki = { enable = true; };
       grafana = { enable = true; nginx = true; };
-      shellyTargets = [
-        "http://192.168.15.2"
-        "http://192.168.15.3"
-        # "http://192.168.52.20"
-        # "http://192.168.52.21"
-        # "http://192.168.52.22"
-      ];
       nodeTargets = [
         "aida:9100"
         "bob:9100"

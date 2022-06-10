@@ -27,13 +27,6 @@ in
       example = [ "hostname.wireguard:9100" ];
       description = "Targets to monitor with the node-exporter";
     };
-
-    shellyTargets = mkOption {
-      type = types.listOf types.str;
-      default = [ "http://192.168.15.2/status" ];
-      example = [ "http://192.168.15.2/status" ];
-      description = "Shelly's to monitor with the json-exporter";
-    };
   };
 
   config = mkIf cfg.enable {
@@ -45,30 +38,6 @@ in
       # environmentFile = /var/src/secrets/prometheus/envfile;
 
       scrapeConfigs = [
-
-        # https://github.com/MayNiklas/shelly-exporter
-        (mkIf config.services.shelly-exporter.enable
-          {
-            job_name = "shelly";
-            scrape_interval = "15s";
-            metrics_path = "/probe";
-            static_configs = [{ targets = cfg.shellyTargets; }];
-            relabel_configs = [
-              {
-                source_labels = [ "__address__" ];
-                target_label = "__param_target";
-              }
-              {
-                source_labels = [ "__param_target" ];
-                target_label = "instance";
-              }
-              {
-                target_label = "__address__";
-                replacement =
-                  "127.0.0.1:8080"; # The blackbox exporter's real hostname:port.
-              }
-            ];
-          })
 
         {
           job_name = "blackbox";
