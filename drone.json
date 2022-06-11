@@ -13,6 +13,9 @@
                     "name": "flint"
                 },
                 {
+                    "name": "keycloak-hetzner"
+                },
+                {
                     "name": "kora"
                 },
                 {

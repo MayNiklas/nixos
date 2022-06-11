@@ -50,6 +50,11 @@ steps:
   - nix build '.#nixosConfigurations.flint.config.system.build.toplevel' --out-link result-flint
   - nix path-info --closure-size -h $(readlink -f result-flint)
 
+- name: build keycloak-hetzner
+  commands:
+  - nix build '.#nixosConfigurations.keycloak-hetzner.config.system.build.toplevel' --out-link result-keycloak-hetzner
+  - nix path-info --closure-size -h $(readlink -f result-keycloak-hetzner)
+
 - name: build kora
   commands:
   - nix build '.#nixosConfigurations.kora.config.system.build.toplevel' --out-link result-kora
@@ -87,7 +92,7 @@ steps:
 
 - name: upload to binary cache via s3
   commands:
-  - nix run .#s3uploader
+  - nix run 'github:mayniklas/nixos'#s3uploader
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -158,7 +163,7 @@ steps:
 
 - name: upload to binary cache via s3
   commands:
-  - nix run .#s3uploader
+  - nix run 'github:mayniklas/nixos'#s3uploader
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -224,7 +229,7 @@ steps:
 
 - name: upload to binary cache via s3
   commands:
-  - nix run .#s3uploader
+  - nix run 'github:mayniklas/nixos'#s3uploader
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
