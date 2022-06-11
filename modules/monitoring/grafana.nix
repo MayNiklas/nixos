@@ -10,8 +10,6 @@ in
 
     enable = mkEnableOption "Grafana dashboard";
 
-    openFirewall = mkEnableOption "Open firewall for Grafana";
-
     nginx = mkEnableOption "enable nginx for grafana";
 
     domain = mkOption {
@@ -44,17 +42,6 @@ in
 
     };
 
-    # # Grafana image renderer (using Chromium)
-    # # changing render size does not work!!
-    # services.grafana-image-renderer = {
-    #   enable = true;
-    #   settings.rendering = {
-    #     height = 1080;
-    #     width = 1920;
-    #   };
-    #   settings.rendering.args = [ "--no-sandbox" "--window-size=1920x1080" ];
-    # };
-
     # Graphana fronend
     services.grafana = {
       enable = true;
@@ -78,8 +65,6 @@ in
         }
       ];
     };
-
-    networking.firewall.allowedTCPPorts = mkIf cfg.openFirewall [ 9005 ];
 
   };
 }

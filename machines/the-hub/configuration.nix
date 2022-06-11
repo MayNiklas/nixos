@@ -27,51 +27,62 @@
     };
     iperf = { enable = true; };
     nginx.enable = true;
-    metrics = {
-      blackbox.enable = true;
-      flake.enable = true;
-      node.enable = true;
-    };
+
     services.monitoring-server = {
       enable = true;
       loki = { enable = true; };
       grafana = { enable = true; nginx = true; };
-      nodeTargets = [
-        "aida:9100"
-        "bob:9100"
-        "chris:9100"
-        "deke:9100"
-        "flint:9100"
-        "kora:9100"
-        "simmons:9100"
-        "simone-pi4b:9100"
-        "bella-pi4b:9100"
-        "snowflake:9100"
-        "water-on-fire:9100"
-        "the-bus:9100"
-        "the-hub:9100"
-        "lasse:9100"
-        "10.88.88.2:9100"
-      ];
-      blackboxTargets = [
-        "https://status.nik-ste.de"
-        "https://lounge.rocks"
-        "https://cache.lounge.rocks/nix-cache-info"
-        "https://drone.lounge.rocks"
-        "https://matrix.lounge.rocks/.well-known/matrix/client"
-        "https://meet.lounge.rocks"
-        "https://git.lounge.rocks"
-      ];
-      blackboxPingTargets = [
-        "192.168.5.1"
-        "192.168.21.15"
-        "192.168.22.1"
-        "192.168.42.1"
-        "192.168.72.1"
-        "192.168.88.1"
-        "192.168.97.1"
-        "192.168.98.1"
-      ];
+    };
+
+    metrics = {
+
+      blackbox = {
+        enable = true;
+        configure-prometheus = true;
+        blackboxPingTargets = [
+          "192.168.5.1"
+          "192.168.21.15"
+          "192.168.22.1"
+          "192.168.42.1"
+          "192.168.72.1"
+          "192.168.88.1"
+          "192.168.97.1"
+          "192.168.98.1"
+        ];
+        targets = [
+          "https://status.nik-ste.de"
+          "https://lounge.rocks"
+          "https://cache.lounge.rocks/nix-cache-info"
+          "https://drone.lounge.rocks"
+          "https://matrix.lounge.rocks/.well-known/matrix/client"
+          "https://meet.lounge.rocks"
+          "https://git.lounge.rocks"
+        ];
+      };
+
+      node = {
+        enable = true;
+        flake = true;
+        configure-prometheus = true;
+        targets = [
+          "aida:9100"
+          "bob:9100"
+          "chris:9100"
+          "deke:9100"
+          "flint:9100"
+          "kora:9100"
+          "simmons:9100"
+          "simone-pi4b:9100"
+          "bella-pi4b:9100"
+          "snowflake:9100"
+          "water-on-fire:9100"
+          "the-bus:9100"
+          "the-hub:9100"
+          "lasse:9100"
+          "10.88.88.2:9100"
+        ];
+      };
+
     };
   };
 

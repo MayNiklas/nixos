@@ -8,9 +8,10 @@
     hosts = { enable = true; };
     in-stock-bot = { enable = false; };
     metrics = {
-      blackbox.enable = true;
-      flake.enable = true;
-      node.enable = true;
+      node = {
+        enable = true;
+        flake = true;
+      };
     };
     pihole = {
       enable = true;

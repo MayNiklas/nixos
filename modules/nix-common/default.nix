@@ -69,21 +69,5 @@ in
     nix.registry.nixpkgs.flake = nixpkgs;
     nix.registry.mayniklas.flake = flake-self;
 
-    environment.etc."nix/flake_inputs.prom" = {
-      mode = "0555";
-      text = ''
-        # HELP flake_registry_last_modified Last modification date of flake input in unixtime
-        # TYPE flake_input_last_modified gauge
-        ${concatStringsSep "\n" (map (i:
-          ''
-            flake_input_last_modified{input="${i}",${
-              concatStringsSep "," (mapAttrsToList (n: v: ''${n}="${v}"'')
-                (filterAttrs (n: v: (builtins.typeOf v) == "string")
-                  flake-self.inputs."${i}"))
-            }} ${toString flake-self.inputs."${i}".lastModified}'')
-          (attrNames flake-self.inputs))}
-      '';
-    };
-
   };
 }

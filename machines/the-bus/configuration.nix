@@ -11,8 +11,10 @@
       host = "matrix.lounge.rocks";
     };
     metrics = {
-      flake.enable = true;
-      node.enable = true;
+      node = {
+        enable = true;
+        flake = true;
+      };
     };
     wg = {
       enable = true;

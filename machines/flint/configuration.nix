@@ -8,9 +8,10 @@
       home-manager = true;
     };
     metrics = {
-      blackbox.enable = true;
-      flake.enable = true;
-      node.enable = true;
+      node = {
+        enable = true;
+        flake = true;
+      };
     };
     services = {
       minecraft-server = {
