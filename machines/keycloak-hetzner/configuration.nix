@@ -6,10 +6,13 @@
       enable = true;
       home-manager = true;
     };
+    nginx.enable = true;
+    keycloak.enable = true;
   };
 
   networking = {
     hostName = "keycloak-hetzner";
+    firewall.allowedTCPPorts = [ 80 443 ];
     interfaces.ens3 = {
       ipv6.addresses = [{
         address = "2a01:4f8:c012:f5ef::";
