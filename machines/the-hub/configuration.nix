@@ -4,6 +4,7 @@
     ./wg0.nix
     ./wg1.nix
     ./wg2.nix
+    # ./unbound.nix
     shelly-exporter.nixosModules.default
   ];
 
@@ -31,7 +32,10 @@
     services.monitoring-server = {
       enable = true;
       loki = { enable = true; };
-      grafana = { enable = true; nginx = true; };
+      grafana = {
+        enable = true;
+        nginx = true;
+      };
     };
 
     metrics = {

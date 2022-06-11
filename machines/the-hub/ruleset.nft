@@ -54,6 +54,10 @@ table inet filter {
         # allow Wireguard connections
         udp dport {58102, 58103,58104} accept
 
+        # allow DNS via wg0
+        iifname { "wg0"} tcp dport {53} accept
+        iifname { "wg0"} udp dport {53} accept
+
         # allow HTTP / HTTPS via wg0 -> used for Graphana
         iifname { "wg0"} tcp dport {80,443} accept
         # allow monitoring via wg0
