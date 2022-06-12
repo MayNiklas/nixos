@@ -4,16 +4,12 @@
     enable = true;
     settings =
       let
-        unbound_config = ''
-          ### DNS overwrites:
-          local-data: "status.nik-ste.de A 10.88.88.1"
-          local-data: "nas.mh0.eu A 192.168.42.10"
-        '';
+        dns-overwrites = [
+          "\"status.nik-ste.de A 10.88.88.1\""
+          "\"nas.mh0.eu A 192.168.42.10\""
+        ];
       in
       {
-        # need to find a better solution!
-        # doing it like that seems very stupid!
-        "#" = "${unbound_config}";
 
         server = {
           interface = [ "127.0.0.1" "10.88.88.1" ];
@@ -22,6 +18,7 @@
             "192.168.0.0/16 allow"
             "10.88.88.0/24 allow"
           ];
+          local-data = dns-overwrites;
         };
 
         # forward local DNS requests via Wireguard
