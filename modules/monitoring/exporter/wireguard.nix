@@ -44,7 +44,7 @@ in
 
       scrapeConfigs = mkIf cfg.configure-prometheus [{
         job_name = "WireGuard";
-        scrape_interval = "15s";
+        scrape_interval = "60s";
         static_configs = [{
           targets = [ "${cfg.listenAddress}:${toString cfg.port}" ];
         }];
