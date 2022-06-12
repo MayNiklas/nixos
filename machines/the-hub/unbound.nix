@@ -11,6 +11,7 @@
           "10.88.88.0/24 allow"
         ];
       };
+      domain-insecure = [ "local" ];
       forward-zone = [
         {
           name = ".";
@@ -20,6 +21,10 @@
               "1.0.0.1@853#cloudflare-dns.com"
             ];
           forward-tls-upstream = "yes";
+        }
+        {
+          name = "local.";
+          forward-addr = [ "10.88.88.2@53" ];
         }
       ];
     };
