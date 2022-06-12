@@ -2,41 +2,52 @@
 
   services.unbound = {
     enable = true;
-    settings = {
-      server = {
-        interface = [ "127.0.0.1" "10.88.88.1" ];
-        access-control = [
-          "127.0.0.0/8 allow"
-          "192.168.0.0/16 allow"
-          "10.88.88.0/24 allow"
-        ];
-      };
+    settings =
+      let
+        unbound_config = ''
+          ### DNS overwrites:
+          local-data: "status.nik-ste.de A 10.88.88.1"
+        '';
+      in
+      {
+        # need to find a better solution!
+        # doing it like that seems very stupid!
+        "#" = "${unbound_config}";
 
-      # forward local DNS requests via Wireguard
-      domain-insecure = [ "local" "haus" ];
-      stub-zone = [
-        {
-          name = "local";
-          stub-addr = "10.88.88.2";
-        }
-        {
-          name = "haus";
-          stub-addr = "10.88.88.4";
-        }
-      ];
-
-      forward-zone = [
-        {
-          name = ".";
-          forward-addr = [
-            "1.1.1.1@853#cloudflare-dns.com"
-            "1.0.0.1@853#cloudflare-dns.com"
+        server = {
+          interface = [ "127.0.0.1" "10.88.88.1" ];
+          access-control = [
+            "127.0.0.0/8 allow"
+            "192.168.0.0/16 allow"
+            "10.88.88.0/24 allow"
           ];
-          forward-tls-upstream = "yes";
-        }
-      ];
+        };
 
-    };
+        # forward local DNS requests via Wireguard
+        domain-insecure = [ "local" "haus" ];
+        stub-zone = [
+          {
+            name = "local";
+            stub-addr = "10.88.88.2";
+          }
+          {
+            name = "haus";
+            stub-addr = "10.88.88.4";
+          }
+        ];
+
+        forward-zone = [
+          {
+            name = ".";
+            forward-addr = [
+              "1.1.1.1@853#cloudflare-dns.com"
+              "1.0.0.1@853#cloudflare-dns.com"
+            ];
+            forward-tls-upstream = "yes";
+          }
+        ];
+
+      };
   };
 
 }
