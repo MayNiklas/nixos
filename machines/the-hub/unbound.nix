@@ -11,22 +11,31 @@
           "10.88.88.0/24 allow"
         ];
       };
-      domain-insecure = [ "local" ];
+
+      # forward local DNS requests via Wireguard
+      domain-insecure = [ "local" "haus" ];
+      stub-zone = [
+        {
+          name = "local";
+          stub-addr = "10.88.88.2";
+        }
+        {
+          name = "haus";
+          stub-addr = "10.88.88.4";
+        }
+      ];
+
       forward-zone = [
         {
           name = ".";
-          forward-addr =
-            [
-              "1.1.1.1@853#cloudflare-dns.com"
-              "1.0.0.1@853#cloudflare-dns.com"
-            ];
+          forward-addr = [
+            "1.1.1.1@853#cloudflare-dns.com"
+            "1.0.0.1@853#cloudflare-dns.com"
+          ];
           forward-tls-upstream = "yes";
         }
-        {
-          name = "local.";
-          forward-addr = [ "10.88.88.2@53" ];
-        }
       ];
+
     };
   };
 
