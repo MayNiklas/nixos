@@ -7,6 +7,7 @@
         unbound_config = ''
           ### DNS overwrites:
           local-data: "status.nik-ste.de A 10.88.88.1"
+          local-data: "nas.mh0.eu A 192.168.42.10"
         '';
       in
       {
