@@ -4,7 +4,7 @@
     ./wg0.nix
     ./wg1.nix
     ./wg2.nix
-    # ./unbound.nix
+    ./unbound.nix
     shelly-exporter.nixosModules.default
   ];
 
