@@ -87,6 +87,8 @@
         ];
       };
 
+      wireguard = { enable = true; configure-prometheus = true; };
+
     };
   };
 
