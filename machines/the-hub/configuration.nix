@@ -87,7 +87,11 @@
         ];
       };
 
-      wireguard = { enable = true; configure-prometheus = true; };
+      wireguard = {
+        enable = true;
+        configure-prometheus = true;
+        listenAddress = "10.88.88.1";
+      };
 
     };
   };
