@@ -1,22 +1,15 @@
-{ config, lib, pkgs, adblock-StevenBlack, ... }:
+{ config, lib, pkgs, adblock-unbound, ... }:
 with lib;
 let
 
   cfg = config.mayniklas.unbound;
 
+  adlist = adblock-unbound.packages.${pkgs.system};
+
   dns-overwrites-config = builtins.toFile "dns-overwrites.conf" (''
     # DNS overwrites
   '' + concatStringsSep "\n"
     (mapAttrsToList (n: v: "local-data: \"${n} A ${toString v}\"") cfg.A-records));
-
-  adblockStevenBlack = pkgs.stdenv.mkDerivation {
-    name = "unbound-zones-adblock-StevenBlack";
-    src = (adblock-StevenBlack + "/hosts");
-    phases = [ "installPhase" ];
-    installPhase = ''
-      ${pkgs.gawk}/bin/awk '{sub(/\r$/,"")} {sub(/^127\.0\.0\.1/,"0.0.0.0")} BEGIN { OFS = "" } NF == 2 && $1 == "0.0.0.0" { print "local-zone: \"", $2, "\" static"}' $src | tr '[:upper:]' '[:lower:]' | sort -u >  $out
-    '';
-  };
 
 in
 {
@@ -46,7 +39,7 @@ in
         server = {
           include = [
             "\"${dns-overwrites-config}\""
-            "\"${adblockStevenBlack}\""
+            "\"${adlist.unbound-adblockStevenBlack}\""
           ];
           interface = [
             "127.0.0.1"

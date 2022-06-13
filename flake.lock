@@ -1,6 +1,30 @@
 {
   "nodes": {
-    "adblock-StevenBlack": {
+    "adblock-unbound": {
+      "inputs": {
+        "adblockStevenBlack": "adblockStevenBlack",
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1655129153,
+        "narHash": "sha256-Y0jCgZGqB/zcFSLhgh6Ibel/v5a2NT2ANhbiGVnar30=",
+        "owner": "MayNiklas",
+        "repo": "nixos-adblock-unbound",
+        "rev": "589ce2c5e165cb2b3462cb5fe890c06b5a2fc7b6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MayNiklas",
+        "repo": "nixos-adblock-unbound",
+        "type": "github"
+      }
+    },
+    "adblockStevenBlack": {
       "flake": false,
       "locked": {
         "lastModified": 1654831104,
@@ -85,7 +109,7 @@
     },
     "root": {
       "inputs": {
-        "adblock-StevenBlack": "adblock-StevenBlack",
+        "adblock-unbound": "adblock-unbound",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",

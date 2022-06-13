@@ -13,17 +13,20 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    shelly-exporter = {
-      url = "github:MayNiklas/shelly-exporter";
+    adblock-unbound = {
+      url = "github:MayNiklas/nixos-adblock-unbound";
       inputs = {
         flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
       };
     };
 
-    adblock-StevenBlack = {
-      url = "github:StevenBlack/hosts";
-      flake = false;
+    shelly-exporter = {
+      url = "github:MayNiklas/shelly-exporter";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
 
   };
