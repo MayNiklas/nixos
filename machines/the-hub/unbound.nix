@@ -1,15 +1,24 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }: with lib; let
 
-  services.unbound = {
-    enable = true;
-    settings =
-      let
-        dns-overwrites = [
-          "\"status.nik-ste.de A 10.88.88.1\""
-          "\"nas.mh0.eu A 192.168.42.10\""
-        ];
-      in
-      {
+  dns-overwrites = {
+    "status.nik-ste.de" = "10.88.88.1";
+    "nas.mh0.eu" = "192.168.42.10";
+  };
+
+  customConfig = ''
+    DNS overwrites
+  '' + concatStringsSep "\n"
+    (mapAttrsToList (n: v: "local-data: \"${n} A ${toString v}\"") dns-overwrites);
+
+in
+{
+
+  config = {
+    services.unbound = {
+      enable = true;
+      settings = {
+
+        "# customConfig" = "${customConfig}";
 
         server = {
           interface = [
@@ -23,7 +32,6 @@
             "10.10.10.0/24 allow"
             "10.88.88.0/24 allow"
           ];
-          local-data = dns-overwrites;
         };
 
         # forward local DNS requests via Wireguard
@@ -51,6 +59,7 @@
         ];
 
       };
+    };
   };
 
 }
