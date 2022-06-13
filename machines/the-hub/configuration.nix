@@ -8,6 +8,8 @@
     shelly-exporter.nixosModules.default
   ];
 
+  mayniklas.unbound = { enable = true; };
+
   services.shelly-exporter = {
     enable = true;
     configure-prometheus = true;

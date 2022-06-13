@@ -1,4 +1,8 @@
-{ config, lib, pkgs, adblock-StevenBlack, ... }: with lib; let
+{ config, lib, pkgs, adblock-StevenBlack, ... }:
+with lib;
+let
+
+  cfg = config.mayniklas.unbound;
 
   dns-overwrites = {
     "status.nik-ste.de" = "10.88.88.1";
@@ -22,7 +26,11 @@
 in
 {
 
-  config = {
+  options.mayniklas.unbound = {
+    enable = mkEnableOption "unbound";
+  };
+
+  config = mkIf cfg.enable {
     services.unbound = {
       enable = true;
       settings = {
