@@ -4,15 +4,10 @@ let
 
   cfg = config.mayniklas.unbound;
 
-  dns-overwrites = {
-    "status.nik-ste.de" = "10.88.88.1";
-    "nas.mh0.eu" = "192.168.42.10";
-  };
-
   dns-overwrites-config = builtins.toFile "dns-overwrites.conf" (''
     # DNS overwrites
   '' + concatStringsSep "\n"
-    (mapAttrsToList (n: v: "local-data: \"${n} A ${toString v}\"") dns-overwrites));
+    (mapAttrsToList (n: v: "local-data: \"${n} A ${toString v}\"") cfg.A-records));
 
   adblockStevenBlack = pkgs.stdenv.mkDerivation {
     name = "unbound-zones-adblock-StevenBlack";
@@ -27,7 +22,20 @@ in
 {
 
   options.mayniklas.unbound = {
+
     enable = mkEnableOption "unbound";
+
+    A-records = mkOption {
+      type = types.attrs;
+      default = {
+        "status.nik-ste.de" = "10.88.88.1";
+        "nas.mh0.eu" = "192.168.42.10";
+      };
+      description = ''
+        Custom DNS A records
+      '';
+    };
+
   };
 
   config = mkIf cfg.enable {
