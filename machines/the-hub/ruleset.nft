@@ -55,8 +55,8 @@ table inet filter {
         udp dport {58102, 58103,58104} accept
 
         # allow DNS via wg0
-        iifname { "wg0"} tcp dport {53} accept
-        iifname { "wg0"} udp dport {53} accept
+        iifname  { "wg0", "wg1", "wg2" } tcp dport {53} accept
+        iifname  { "wg0", "wg1", "wg2" } udp dport {53} accept
 
         # allow HTTP / HTTPS via wg0 -> used for Graphana
         iifname { "wg0"} tcp dport {80,443} accept

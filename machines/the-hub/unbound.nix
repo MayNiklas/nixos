@@ -12,10 +12,15 @@
       {
 
         server = {
-          interface = [ "127.0.0.1" "10.88.88.1" ];
+          interface = [
+            "127.0.0.1"
+            "10.10.10.1"
+            "10.88.88.1"
+          ];
           access-control = [
             "127.0.0.0/8 allow"
             "192.168.0.0/16 allow"
+            "10.10.10.0/24 allow"
             "10.88.88.0/24 allow"
           ];
           local-data = dns-overwrites;
