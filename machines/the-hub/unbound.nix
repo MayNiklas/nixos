@@ -5,10 +5,10 @@
     "nas.mh0.eu" = "192.168.42.10";
   };
 
-  customConfig = ''
-    DNS overwrites
+  dns-overwrites-config = builtins.toFile "dns-overwrites.conf" (''
+    # DNS overwrites
   '' + concatStringsSep "\n"
-    (mapAttrsToList (n: v: "local-data: \"${n} A ${toString v}\"") dns-overwrites);
+    (mapAttrsToList (n: v: "local-data: \"${n} A ${toString v}\"") dns-overwrites));
 
 in
 {
@@ -18,9 +18,8 @@ in
       enable = true;
       settings = {
 
-        "# customConfig" = "${customConfig}";
-
         server = {
+          include = "\"${dns-overwrites-config}\"";
           interface = [
             "127.0.0.1"
             "10.10.10.1"
