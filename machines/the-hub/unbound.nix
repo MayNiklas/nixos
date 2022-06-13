@@ -10,6 +10,21 @@
   '' + concatStringsSep "\n"
     (mapAttrsToList (n: v: "local-data: \"${n} A ${toString v}\"") dns-overwrites));
 
+  adblockStevenBlack = pkgs.stdenv.mkDerivation {
+    name = "unbound-zones-adblock-StevenBlack";
+    src = (pkgs.fetchFromGitHub
+      {
+        owner = "StevenBlack";
+        repo = "hosts";
+        rev = "3.10.8";
+        hash = "sha256-qybp7aELcGKZjcPBR3ouXEoUgMKlfcxGecvCalMvT2w=";
+      } + "/hosts");
+    phases = [ "installPhase" ];
+    installPhase = ''
+      ${pkgs.gawk}/bin/awk '{sub(/\r$/,"")} {sub(/^127\.0\.0\.1/,"0.0.0.0")} BEGIN { OFS = "" } NF == 2 && $1 == "0.0.0.0" { print "local-zone: \"", $2, "\" static"}' $src | tr '[:upper:]' '[:lower:]' | sort -u >  $out
+    '';
+  };
+
 in
 {
 
@@ -19,7 +34,10 @@ in
       settings = {
 
         server = {
-          include = "\"${dns-overwrites-config}\"";
+          include = [
+            "\"${dns-overwrites-config}\""
+            "\"${adblockStevenBlack}\""
+          ];
           interface = [
             "127.0.0.1"
             "10.10.10.1"
