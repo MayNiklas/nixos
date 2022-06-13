@@ -62,12 +62,8 @@ in
         };
 
         # forward local DNS requests via Wireguard
-        domain-insecure = [ "local" "haus" ];
+        domain-insecure = [ "haus" ];
         stub-zone = [
-          {
-            name = "local";
-            stub-addr = "10.88.88.2";
-          }
           {
             name = "haus";
             stub-addr = "10.88.88.4";
