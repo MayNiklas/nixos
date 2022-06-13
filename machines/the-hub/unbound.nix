@@ -66,6 +66,14 @@ in
 
         forward-zone = [
           {
+            name = "google.*.";
+            forward-addr = [
+              "8.8.8.8@853#dns.google"
+              "8.8.8.4@853#dns.google"
+            ];
+            forward-tls-upstream = "yes";
+          }
+          {
             name = ".";
             forward-addr = [
               "1.1.1.1@853#cloudflare-dns.com"
