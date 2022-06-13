@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: with lib; let
+{ config, lib, pkgs, adblock-StevenBlack, ... }: with lib; let
 
   dns-overwrites = {
     "status.nik-ste.de" = "10.88.88.1";
@@ -12,13 +12,7 @@
 
   adblockStevenBlack = pkgs.stdenv.mkDerivation {
     name = "unbound-zones-adblock-StevenBlack";
-    src = (pkgs.fetchFromGitHub
-      {
-        owner = "StevenBlack";
-        repo = "hosts";
-        rev = "3.10.8";
-        hash = "sha256-qybp7aELcGKZjcPBR3ouXEoUgMKlfcxGecvCalMvT2w=";
-      } + "/hosts");
+    src = (adblock-StevenBlack + "/hosts");
     phases = [ "installPhase" ];
     installPhase = ''
       ${pkgs.gawk}/bin/awk '{sub(/\r$/,"")} {sub(/^127\.0\.0\.1/,"0.0.0.0")} BEGIN { OFS = "" } NF == 2 && $1 == "0.0.0.0" { print "local-zone: \"", $2, "\" static"}' $src | tr '[:upper:]' '[:lower:]' | sort -u >  $out

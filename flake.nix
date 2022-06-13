@@ -21,6 +21,11 @@
       };
     };
 
+    adblock-StevenBlack = {
+      url = "github:StevenBlack/hosts";
+      flake = false;
+    };
+
   };
   outputs = { self, ... }@inputs:
     with inputs;

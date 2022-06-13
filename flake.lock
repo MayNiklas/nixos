@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "adblock-StevenBlack": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1654831104,
+        "narHash": "sha256-qybp7aELcGKZjcPBR3ouXEoUgMKlfcxGecvCalMvT2w=",
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "rev": "11b8c3d9ac5b154ff4a5f5ff203b822e9fc27d11",
+        "type": "github"
+      },
+      "original": {
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1653893745,
@@ -69,6 +85,7 @@
     },
     "root": {
       "inputs": {
+        "adblock-StevenBlack": "adblock-StevenBlack",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
