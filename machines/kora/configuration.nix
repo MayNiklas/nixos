@@ -1,6 +1,11 @@
-{ self, ... }: {
+{ pkgs, config, ... }: {
 
   imports = [ ./cron.nix ];
+
+  home-manager.users."${config.mayniklas.home-manager.username}" = {
+    home.packages =
+      with pkgs; [ go gotools ];
+  };
 
   mayniklas = {
     cloud.vmware-x86.enable = true;
