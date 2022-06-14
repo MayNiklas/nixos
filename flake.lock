@@ -11,11 +11,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1655134585,
-        "narHash": "sha256-6xs7n7y2A/mrN8Y6Z/xYKbbzsmkW8P3bXdPo31MdjWk=",
+        "lastModified": 1655220242,
+        "narHash": "sha256-rWPK2ya7PyB4n+Kbf6sfv1RUzeAl20F6Z+bH13SHNBw=",
         "owner": "MayNiklas",
         "repo": "nixos-adblock-unbound",
-        "rev": "adeeab00bc2b99c7ffb45b754650bbfcd2bc4f9e",
+        "rev": "a05f34f74e315d539fe40882f65978ad5279aebd",
         "type": "github"
       },
       "original": {
