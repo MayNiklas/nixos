@@ -37,8 +37,6 @@ in
           enable = true;
           port = cfg.port;
           listenAddress = cfg.listenAddress;
-          withRemoteIp = false;
-          singleSubnetPerField = false;
         };
       };
 
