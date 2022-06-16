@@ -23,7 +23,12 @@ in
 
         # revert last n commits
         grv() {
-          git reset --soft HEAD~$1
+          ${pkgs.git}/bin/git reset --soft HEAD~$1
+        }
+
+        # get github url of current repository
+        gh() {
+          echo $(${pkgs.git}/bin/git config --get remote.origin.url | sed -e 's/\(.*\)git@\(.*\):[0-9\/]*/https:\/\/\2\//g')
         }
       '';
 
