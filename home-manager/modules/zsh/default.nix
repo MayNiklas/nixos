@@ -62,7 +62,7 @@ in
         frb = "${pkgs.nixos-rebuild}/bin/nixos-rebuild --use-remote-sudo switch --flake";
 
         # Other
-        lsblk = "lsblk -o name,mountpoint,label,size,type,uuid";
+        lsblk = "${pkgs.util-linux}/bin/lsblk -o name,mountpoint,label,size,type,uuid";
 
       };
     };
