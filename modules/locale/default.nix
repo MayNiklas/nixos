@@ -11,7 +11,7 @@ in
     # Set your time zone.
     time = {
       timeZone = "Europe/Berlin";
-      hardwareClockInLocalTime = true;
+      # hardwareClockInLocalTime = true;
     };
 
     # Select internationalisation properties.
