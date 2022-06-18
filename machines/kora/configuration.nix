@@ -32,7 +32,6 @@
       enable = true;
       home-manager = true;
     };
-    youtube-dl = { enable = true; };
   };
 
   mayniklas.services.owncast = {
