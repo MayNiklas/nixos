@@ -1,6 +1,7 @@
 {
     "recommendations": [
-        "brettm12345.nixfmt-vscode",
-        "bbenoist.Nix"
+        "bbenoist.nix",
+        "ombratteng.nftables",
+        "B4dM4n.nixpkgs-fmt"
     ]
 }
