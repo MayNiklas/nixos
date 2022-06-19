@@ -1,4 +1,4 @@
-{ self, pkgs, shelly-exporter, ... }: {
+{ self, pkgs, dyson-exporter, shelly-exporter, ... }: {
 
   imports = [
     ./wg0.nix
@@ -6,20 +6,31 @@
     ./wg2.nix
     ./unbound.nix
     shelly-exporter.nixosModules.default
+    dyson-exporter.nixosModules.default
   ];
 
   mayniklas.unbound = { enable = true; };
 
-  services.shelly-exporter = {
-    enable = true;
-    configure-prometheus = true;
-    targets = [
-      "http://192.168.15.2"
-      "http://192.168.15.3"
-      # "http://192.168.52.20"
-      # "http://192.168.52.21"
-      # "http://192.168.52.22"
-    ];
+  services = {
+
+    dyson-exporter = {
+      enable = true;
+      configure-prometheus = true;
+      envfile = "/var/src/secrets/dyson-exporter/envfile";
+    };
+
+    shelly-exporter = {
+      enable = true;
+      configure-prometheus = true;
+      targets = [
+        "http://192.168.15.2"
+        "http://192.168.15.3"
+        # "http://192.168.52.20"
+        # "http://192.168.52.21"
+        # "http://192.168.52.22"
+      ];
+    };
+
   };
 
   mayniklas = {

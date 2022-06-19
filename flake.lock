@@ -40,6 +40,29 @@
         "type": "github"
       }
     },
+    "dyson-exporter": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1655642785,
+        "narHash": "sha256-vCp+ewrVuZUc+O/bcmwaik1tqJIt5nck+xOrXPqAoGc=",
+        "owner": "MayNiklas",
+        "repo": "dyson-exporter",
+        "rev": "7696fda49e204304af947e39a68c8ab24519fced",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MayNiklas",
+        "repo": "dyson-exporter",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1653893745,
@@ -110,6 +133,7 @@
     "root": {
       "inputs": {
         "adblock-unbound": "adblock-unbound",
+        "dyson-exporter": "dyson-exporter",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",

@@ -29,6 +29,14 @@
       };
     };
 
+    dyson-exporter = {
+      url = "github:MayNiklas/dyson-exporter";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
   };
   outputs = { self, ... }@inputs:
     with inputs;
