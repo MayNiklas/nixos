@@ -58,8 +58,15 @@ in
         gs = "${pkgs.git}/bin/git status";
 
         # nix
-        nixos-rebuild = "${pkgs.nixos-rebuild}/bin/nixos-rebuild --use-remote-sudo";
+
+        # switching within a flake repository
         frb = "${pkgs.nixos-rebuild}/bin/nixos-rebuild --use-remote-sudo switch --flake";
+
+        # always execute nixos-rebuild with sudo for switching
+        nixos-rebuild = "${pkgs.nixos-rebuild}/bin/nixos-rebuild --use-remote-sudo";
+
+        # list syslinks into nix-store
+        nix-list = "${pkgs.nix}/bin/nix-store --gc --print-roots";
 
         # Other
         lsblk = "${pkgs.util-linux}/bin/lsblk -o name,mountpoint,label,size,type,uuid";
