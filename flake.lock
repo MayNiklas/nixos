@@ -50,11 +50,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1655642785,
-        "narHash": "sha256-vCp+ewrVuZUc+O/bcmwaik1tqJIt5nck+xOrXPqAoGc=",
+        "lastModified": 1655643732,
+        "narHash": "sha256-eHxAuLbzytsAOWk8y3XrlWqb/3SiJBoJ9JBp3s0hQlI=",
         "owner": "MayNiklas",
         "repo": "dyson-exporter",
-        "rev": "7696fda49e204304af947e39a68c8ab24519fced",
+        "rev": "01cfa3ad1cbf359bda10fb10be01e4408452978c",
         "type": "github"
       },
       "original": {
