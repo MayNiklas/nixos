@@ -100,6 +100,12 @@
         ];
       };
 
+
+      nginx = {
+        enable = true;
+        configure-prometheus = true;
+      };
+
       wireguard = {
         enable = true;
         configure-prometheus = true;
