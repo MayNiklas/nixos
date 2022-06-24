@@ -21,6 +21,14 @@
       };
     };
 
+    dyson-exporter = {
+      url = "github:MayNiklas/dyson-exporter";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     shelly-exporter = {
       url = "github:MayNiklas/shelly-exporter";
       inputs = {
@@ -29,8 +37,8 @@
       };
     };
 
-    dyson-exporter = {
-      url = "github:MayNiklas/dyson-exporter";
+    valorant-exporter = {
+      url = "github:MayNiklas/valorant-exporter";
       inputs = {
         flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";

@@ -1,12 +1,13 @@
-{ self, pkgs, dyson-exporter, shelly-exporter, ... }: {
+{ self, pkgs, dyson-exporter, shelly-exporter, valorant-exporter, ... }: {
 
   imports = [
     ./wg0.nix
     ./wg1.nix
     ./wg2.nix
     ./unbound.nix
-    shelly-exporter.nixosModules.default
     dyson-exporter.nixosModules.default
+    shelly-exporter.nixosModules.default
+    valorant-exporter.nixosModules.default
   ];
 
   mayniklas.unbound = { enable = true; };
@@ -25,10 +26,13 @@
       targets = [
         "http://192.168.15.2"
         "http://192.168.15.3"
-        # "http://192.168.52.20"
-        # "http://192.168.52.21"
-        # "http://192.168.52.22"
+        "http://192.168.15.4"
       ];
+    };
+
+    valorant-exporter = {
+      enable = true;
+      configure-prometheus = true;
     };
 
   };

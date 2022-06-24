@@ -138,7 +138,8 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "shelly-exporter": "shelly-exporter"
+        "shelly-exporter": "shelly-exporter",
+        "valorant-exporter": "valorant-exporter"
       }
     },
     "shelly-exporter": {
@@ -161,6 +162,29 @@
       "original": {
         "owner": "MayNiklas",
         "repo": "shelly-exporter",
+        "type": "github"
+      }
+    },
+    "valorant-exporter": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1656066739,
+        "narHash": "sha256-jA6uXzfjGfhf27WpcfWX+VH2jf14ai/toT1MaPOTziA=",
+        "owner": "MayNiklas",
+        "repo": "valorant-exporter",
+        "rev": "6a5432c13231a511270cfa0e7c9f9cf98909b5dc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MayNiklas",
+        "repo": "valorant-exporter",
         "type": "github"
       }
     }
