@@ -33,6 +33,10 @@
     valorant-exporter = {
       enable = true;
       configure-prometheus = true;
+      targets = [
+        "mayniklas/niki"
+        "slimegod/euw"
+      ];
     };
 
   };
