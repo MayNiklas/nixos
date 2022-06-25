@@ -2,19 +2,38 @@
   description = "My NixOS infrastructure";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
 
-    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs = {
+      type = "github";
+      owner = "NixOS";
+      repo = "nixpkgs";
+      ref = "nixos-22.05";
+    };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.05";
+      type = "github";
+      owner = "nix-community";
+      repo = "home-manager";
+      ref = "release-22.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    flake-utils = {
+      type = "github";
+      owner = "numtide";
+      repo = "flake-utils";
+    };
+
+    nixos-hardware = {
+      type = "github";
+      owner = "NixOS";
+      repo = "nixos-hardware";
+    };
 
     adblock-unbound = {
-      url = "github:MayNiklas/nixos-adblock-unbound";
+      type = "github";
+      owner = "MayNiklas";
+      repo = "nixos-adblock-unbound";
       inputs = {
         flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
@@ -22,7 +41,9 @@
     };
 
     dyson-exporter = {
-      url = "github:MayNiklas/dyson-exporter";
+      type = "github";
+      owner = "MayNiklas";
+      repo = "dyson-exporter";
       inputs = {
         flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
@@ -30,7 +51,9 @@
     };
 
     shelly-exporter = {
-      url = "github:MayNiklas/shelly-exporter";
+      type = "github";
+      owner = "MayNiklas";
+      repo = "shelly-exporter";
       inputs = {
         flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
@@ -38,7 +61,9 @@
     };
 
     valorant-exporter = {
-      url = "github:MayNiklas/valorant-exporter";
+      type = "github";
+      owner = "MayNiklas";
+      repo = "valorant-exporter";
       inputs = {
         flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
