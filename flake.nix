@@ -30,6 +30,12 @@
       repo = "nixos-hardware";
     };
 
+    nixpkgs-update = {
+      type = "github";
+      owner = "ryantm";
+      repo = "nixpkgs-update";
+    };
+
     adblock-unbound = {
       type = "github";
       owner = "MayNiklas";

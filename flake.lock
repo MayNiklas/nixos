@@ -63,6 +63,22 @@
         "type": "github"
       }
     },
+    "flake-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1627913399,
+        "narHash": "sha256-hY8g6H2KFL8ownSiFeMOjwPC8P0ueXpCVEbxgda3pko=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "12c64ca55c1014cdc1b16ed5a804aa8576601ff2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1656065134,
@@ -99,6 +115,28 @@
         "type": "github"
       }
     },
+    "mmdoc": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-update",
+          "nixpkgs"
+        ],
+        "nixpkgs-for-manual": "nixpkgs-for-manual"
+      },
+      "locked": {
+        "lastModified": 1648942939,
+        "narHash": "sha256-IvXTQcv32LptJGxHjffji1f0XyG+wh566YJuS5dEcoo=",
+        "owner": "ryantm",
+        "repo": "mmdoc",
+        "rev": "a308fd7ef02241216aac5dfa2c584b37fca3c26a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryantm",
+        "repo": "mmdoc",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1655789751,
@@ -130,6 +168,57 @@
         "type": "github"
       }
     },
+    "nixpkgs-for-manual": {
+      "locked": {
+        "lastModified": 1644686402,
+        "narHash": "sha256-qxQKjsj51pIQ6qJrLOw93m9z+vJCngpRLfPgp2Ib28Q=",
+        "owner": "ryantm",
+        "repo": "nixpkgs",
+        "rev": "78d909765da7e23d5d5d59993bca0ee6a9e3d3ba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryantm",
+        "ref": "minman",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-update": {
+      "inputs": {
+        "flake-compat": "flake-compat",
+        "mmdoc": "mmdoc",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1651161649,
+        "narHash": "sha256-PEELAXiUXqkr4/PLDb5GsdVJYIrGpge74xoej7covS8=",
+        "owner": "ryantm",
+        "repo": "nixpkgs-update",
+        "rev": "934b497d8e32a42238a9525126614ad74142da78",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryantm",
+        "repo": "nixpkgs-update",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1629859457,
+        "narHash": "sha256-JlAU1EboVCOJeMXNLJusf+0vnx++xK1Y4DW5y80zMfY=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "12613bf6d91543db59de89e231eafab72f4dc2e8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "adblock-unbound": "adblock-unbound",
@@ -138,6 +227,7 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-update": "nixpkgs-update",
         "shelly-exporter": "shelly-exporter",
         "valorant-exporter": "valorant-exporter"
       }

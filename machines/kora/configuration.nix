@@ -1,10 +1,16 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, nixpkgs-update, ... }: {
 
   imports = [ ./cron.nix ];
 
   home-manager.users."${config.mayniklas.home-manager.username}" = {
     home.packages =
-      with pkgs; [ go gotools ];
+      with pkgs; [
+        go
+        gotools
+
+        # https://github.com/ryantm/nixpkgs-update
+        nixpkgs-update.packages.${pkgs.system}.nixpkgs-update
+      ];
   };
 
   mayniklas = {
