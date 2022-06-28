@@ -265,11 +265,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1656068073,
-        "narHash": "sha256-2pbQyJGo4FKtCr7ZpKvVyi/vYjJCgPuFrXoEt43rcvY=",
+        "lastModified": 1656410954,
+        "narHash": "sha256-qYIcW/C7nM+a6azU9Znl/plaAuG0IENHHLNPywPNKQ4=",
         "owner": "MayNiklas",
         "repo": "valorant-exporter",
-        "rev": "42c8fa168bc5f8fd3d6a348d8da3ba4d7f585fe3",
+        "rev": "00dc1138f5446357bbd57bd48388878af0fa1e3d",
         "type": "github"
       },
       "original": {
