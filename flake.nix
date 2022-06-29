@@ -181,10 +181,9 @@
 
     } //
 
-    # All packages in the ./packages subfolder are also added to the flake.
     # flake-utils is used for this part to make each package available for each
     # system. This works as all packages are compatible with all architectures
-    (flake-utils.lib.eachSystem [ "aarch64-darwin" "aarch64-linux" "i686-linux" "x86_64-linux" ])
+    (flake-utils.lib.eachSystem (flake-utils.lib.defaultSystems))
       (system:
         let
           pkgs = import nixpkgs {
@@ -198,18 +197,12 @@
         in
         rec {
 
-          # Use nixpkgs-fmt for `nix fmt'
-          formatter = pkgs.nixpkgs-fmt;
-
           # Custom packages added via the overlay are selectively exposed here, to
           # allow using them from other flakes that import this one.
 
           packages = flake-utils.lib.flattenTree {
             anki-bin = pkgs.anki-bin;
-            # darknet = pkgs.darknet;
             drone = pkgs.drone;
-            drone-gen = pkgs.drone-gen;
-            niki-store = pkgs.niki-store;
             owncast = pkgs.owncast;
             plex = pkgs.plex;
             plexRaw = pkgs.plexRaw;
@@ -220,22 +213,54 @@
             unifi6 = pkgs.unifi6;
             unifi7 = pkgs.unifi7;
             unifiLTS = pkgs.unifiLTS;
-            verification-listener = pkgs.verification-listener;
             vs-fix = pkgs.vs-fix;
           };
+
+          # needed for 'nix run'
           apps = {
-            # is needed for 'nix run'
-            drone-gen = flake-utils.lib.mkApp { drv = packages.drone-gen; };
             s3uploader = flake-utils.lib.mkApp { drv = packages.s3uploader; };
             vs-fix = flake-utils.lib.mkApp { drv = packages.vs-fix; };
+          };
+
+        })
+
+    //
+
+    # valid for all architectures including aarch64-darwin & x86_64-darwin
+    (flake-utils.lib.eachSystem (flake-utils.lib.defaultSystems ++ [ "aarch64-darwin" ]))
+      (system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [ self.overlays.default ];
+          };
+        in
+        rec {
+          # Use nixpkgs-fmt for `nix fmt'
+          formatter = pkgs.nixpkgs-fmt;
+
+          packages = flake-utils.lib.flattenTree {
+            drone-gen = pkgs.drone-gen;
+          };
+
+          # needed for 'nix run'
+          apps = {
+            drone-gen = flake-utils.lib.mkApp { drv = packages.drone-gen; };
 
             # lollypops deployment tool
             # https://github.com/pinpox/lollypops
+            #
+            # nix run '.#lollypops' -- --list-all
+            # nix run '.#lollypops' -- aida
+            # nix run '.#lollypops' -- aida kora
+            # nix run '.#lollypops' -- aida deke kora simmons snowflake the-bus -p
             default = self.apps.${pkgs.system}.lollypops;
             lollypops = lollypops.apps.${pkgs.system}.default {
               configFlake = self;
             };
+
           };
 
-        });
+        }
+      );
 }
