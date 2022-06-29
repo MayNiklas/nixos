@@ -33,6 +33,7 @@
     valorant-exporter = {
       enable = true;
       configure-prometheus = true;
+      # syntax: 'username/tag'
       targets = [
         "mayniklas/niki"
         "slimegod/euw"
