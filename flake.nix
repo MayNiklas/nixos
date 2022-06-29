@@ -142,6 +142,7 @@
           system = "x86_64-linux";
           specialArgs = { flake-self = self; } // inputs;
           modules = [
+            lollypops.nixosModules.lollypops
             ./images/hetzner-x86/configuration.nix
             { imports = builtins.attrValues self.nixosModules; }
           ];
@@ -223,6 +224,11 @@
             vs-fix = pkgs.vs-fix;
           };
           apps = {
+
+            # lollypops deployment tool
+            # https://github.com/pinpox/lollypops
+            default = lollypops.apps.${pkgs.system}.default { configFlake = self; };
+
             # Allow custom packages to be run using `nix run`
             anki-bin = flake-utils.lib.mkApp { drv = packages.anki-bin; };
             # darknet = flake-utils.lib.mkApp { drv = packages.darknet; };
@@ -243,8 +249,5 @@
               flake-utils.lib.mkApp { drv = packages.verification-listener; };
             vs-fix = flake-utils.lib.mkApp { drv = packages.vs-fix; };
           };
-          # lollypops deployment tool
-          # https://github.com/pinpox/lollypops
-          apps.default = lollypops.apps.${pkgs.system}.default { configFlake = self; };
         });
 }
