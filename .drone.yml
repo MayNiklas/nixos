@@ -85,11 +85,6 @@ steps:
   - nix build '.#nixosConfigurations.hetzner-x86.config.system.build.toplevel' --out-link result-hetzner-x86
   - nix path-info --closure-size -h $(readlink -f result-hetzner-x86)
 
-- name: build water-on-fire
-  commands:
-  - nix build '.#nixosConfigurations.water-on-fire.config.system.build.toplevel' --out-link result-water-on-fire
-  - nix path-info --closure-size -h $(readlink -f result-water-on-fire)
-
 - name: upload to binary cache via s3
   commands:
   - nix run 'github:mayniklas/nixos'#s3uploader
@@ -121,11 +116,6 @@ clone:
 
 steps:
 
-- name: Build drone
-  commands:
-  - nix build .#drone --out-link result-drone
-  - nix path-info --closure-size -h $(readlink -f result-drone)
-
 - name: Build drone-gen
   commands:
   - nix build .#drone-gen --out-link result-drone-gen
@@ -140,16 +130,6 @@ steps:
   commands:
   - nix build .#plexRaw --out-link result-plexRaw
   - nix path-info --closure-size -h $(readlink -f result-plexRaw)
-
-- name: Build tautulli
-  commands:
-  - nix build .#tautulli --out-link result-tautulli
-  - nix path-info --closure-size -h $(readlink -f result-tautulli)
-
-- name: Build unifi
-  commands:
-  - nix build .#unifi --out-link result-unifi
-  - nix path-info --closure-size -h $(readlink -f result-unifi)
 
 - name: Build s3uploader
   commands:
@@ -192,11 +172,6 @@ clone:
 
 steps:
 
-- name: Build drone
-  commands:
-  - nix build .#drone --out-link result-drone
-  - nix path-info --closure-size -h $(readlink -f result-drone)
-
 - name: Build drone-gen
   commands:
   - nix build .#drone-gen --out-link result-drone-gen
@@ -216,11 +191,6 @@ steps:
   commands:
   - nix build .#s3uploader --out-link result-s3uploader
   - nix path-info --closure-size -h $(readlink -f result-s3uploader)
-
-- name: Build unifi
-  commands:
-  - nix build .#unifi --out-link result-unifi
-  - nix path-info --closure-size -h $(readlink -f result-unifi)
 
 - name: Build vs-fix
   commands:

@@ -32,9 +32,6 @@
                 },
                 {
                     "name": "hetzner-x86"
-                },
-                {
-                    "name": "water-on-fire"
                 }
             ]
         }
@@ -44,9 +41,6 @@
             "arch": "amd64",
             "apps": [
                 {
-                    "name": "drone"
-                },
-                {
                     "name": "drone-gen"
                 },
                 {
@@ -54,12 +48,6 @@
                 },
                 {
                     "name": "plexRaw"
-                },
-                {
-                    "name": "tautulli"
-                },
-                {
-                    "name": "unifi"
                 },
                 {
                     "name": "s3uploader"
@@ -73,9 +61,6 @@
             "arch": "arm64",
             "apps": [
                 {
-                    "name": "drone"
-                },
-                {
                     "name": "drone-gen"
                 },
                 {
@@ -86,9 +71,6 @@
                 },
                 {
                     "name": "s3uploader"
-                },
-                {
-                    "name": "unifi"
                 },
                 {
                     "name": "vs-fix"
