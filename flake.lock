@@ -136,11 +136,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1656460815,
-        "narHash": "sha256-qmzFwuo7IS4KtiQzKxhSxB86eW/EJA+JijwUCwcshJ4=",
+        "lastModified": 1656509643,
+        "narHash": "sha256-xZjrIlGrVJUmw1Zl8rRpOrRktiba2W7nSmlvBpP3wEo=",
         "owner": "pinpox",
         "repo": "lollypops",
-        "rev": "4ef65c94bbb217861efc522a0c41936a6f500c23",
+        "rev": "ad2d9b9504fefbcabfe92c734d80f2f3a5e3b69e",
         "type": "github"
       },
       "original": {
