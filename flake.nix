@@ -24,6 +24,10 @@
       repo = "flake-utils";
     };
 
+    lollypops = {
+      url = "github:pinpox/lollypops";
+    };
+
     nixos-hardware = {
       type = "github";
       owner = "NixOS";
@@ -124,6 +128,7 @@
               system = "x86_64-linux";
 
               modules = [
+                lollypops.nixosModules.lollypops
                 (./machines + "/${x}/configuration.nix")
                 { imports = builtins.attrValues self.nixosModules; }
               ];
@@ -238,5 +243,8 @@
               flake-utils.lib.mkApp { drv = packages.verification-listener; };
             vs-fix = flake-utils.lib.mkApp { drv = packages.vs-fix; };
           };
+          # lollypops deployment tool
+          # https://github.com/pinpox/lollypops
+          apps.default = lollypops.apps.${pkgs.system}.default { configFlake = self; };
         });
 }
