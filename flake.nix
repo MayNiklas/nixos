@@ -3,6 +3,8 @@
 
   inputs = {
 
+    # Nix Packages collection
+    # https://github.com/NixOS/nixpkgs
     nixpkgs = {
       type = "github";
       owner = "NixOS";
@@ -10,6 +12,8 @@
       ref = "nixos-22.05";
     };
 
+    # Manage a user environment using Nix 
+    # https://github.com/nix-community/home-manager
     home-manager = {
       type = "github";
       owner = "nix-community";
@@ -18,24 +22,38 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Pure Nix flake utility functions
+    # https://github.com/numtide/flake-utils
     flake-utils = {
       type = "github";
       owner = "numtide";
       repo = "flake-utils";
     };
 
+    # lollypops deployment tool
+    # https://github.com/pinpox/lollypops
+    lollypops = {
+      url = "github:pinpox/lollypops";
+    };
+
+    # A collection of NixOS modules covering hardware quirks.
+    # https://github.com/NixOS/nixos-hardware
     nixos-hardware = {
       type = "github";
       owner = "NixOS";
       repo = "nixos-hardware";
     };
 
+    # nixpkgs update script
+    # https://github.com/ryantm/nixpkgs-update
     nixpkgs-update = {
       type = "github";
       owner = "ryantm";
       repo = "nixpkgs-update";
     };
 
+    # Adblocking lists for Unbound DNS servers running on NixOS
+    # https://github.com/MayNiklas/nixos-adblock-unbound
     adblock-unbound = {
       type = "github";
       owner = "MayNiklas";
@@ -46,6 +64,8 @@
       };
     };
 
+    # Prometheus exporter providing temperature metrics
+    # https://github.com/MayNiklas/dyson-exporter
     dyson-exporter = {
       type = "github";
       owner = "MayNiklas";
@@ -56,6 +76,8 @@
       };
     };
 
+    # A Shelly power metrics exporter written in golang. 
+    # https://github.com/MayNiklas/shelly-exporter
     shelly-exporter = {
       type = "github";
       owner = "MayNiklas";
@@ -66,6 +88,8 @@
       };
     };
 
+    # A valorant metrics exporter written in golang. 
+    # https://github.com/MayNiklas/valorant-exporter
     valorant-exporter = {
       type = "github";
       owner = "MayNiklas";
@@ -124,6 +148,7 @@
               system = "x86_64-linux";
 
               modules = [
+                lollypops.nixosModules.lollypops
                 (./machines + "/${x}/configuration.nix")
                 { imports = builtins.attrValues self.nixosModules; }
               ];
@@ -137,6 +162,7 @@
           system = "x86_64-linux";
           specialArgs = { flake-self = self; } // inputs;
           modules = [
+            lollypops.nixosModules.lollypops
             ./images/hetzner-x86/configuration.nix
             { imports = builtins.attrValues self.nixosModules; }
           ];
@@ -237,6 +263,19 @@
             verification-listener =
               flake-utils.lib.mkApp { drv = packages.verification-listener; };
             vs-fix = flake-utils.lib.mkApp { drv = packages.vs-fix; };
+
+            # lollypops deployment tool
+            # https://github.com/pinpox/lollypops
+            #
+            # nix run '.#lollypops' -- --list-all
+            # nix run '.#lollypops' -- aida
+            # nix run '.#lollypops' -- aida kora
+            # nix run '.#lollypops' -- aida deke kora simmons snowflake the-bus -p
+            default = self.apps.${pkgs.system}.lollypops;
+            lollypops = lollypops.apps.${pkgs.system}.default {
+              configFlake = self;
+            };
+
           };
         });
 }
