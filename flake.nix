@@ -204,7 +204,7 @@
     # All packages in the ./packages subfolder are also added to the flake.
     # flake-utils is used for this part to make each package available for each
     # system. This works as all packages are compatible with all architectures
-    (flake-utils.lib.eachSystem [ "aarch64-linux" "i686-linux" "x86_64-linux" ])
+    (flake-utils.lib.eachSystem (flake-utils.lib.defaultSystems ++ [ "aarch64-darwin" ]))
       (system:
         let
           pkgs = import nixpkgs {
@@ -225,43 +225,15 @@
           # allow using them from other flakes that import this one.
 
           packages = flake-utils.lib.flattenTree {
-            anki-bin = pkgs.anki-bin;
-            # darknet = pkgs.darknet;
-            drone = pkgs.drone;
             drone-gen = pkgs.drone-gen;
-            niki-store = pkgs.niki-store;
-            owncast = pkgs.owncast;
-            plex = pkgs.plex;
-            plexRaw = pkgs.plexRaw;
             s3uploader = pkgs.s3uploader;
-            tautulli = pkgs.tautulli;
-            unifi = pkgs.unifi;
-            unifi5 = pkgs.unifi5;
-            unifi6 = pkgs.unifi6;
-            unifi7 = pkgs.unifi7;
-            unifiLTS = pkgs.unifiLTS;
-            verification-listener = pkgs.verification-listener;
             vs-fix = pkgs.vs-fix;
           };
+
+          # Allow custom packages to be run using `nix run`
           apps = {
-            # Allow custom packages to be run using `nix run`
-            anki-bin = flake-utils.lib.mkApp { drv = packages.anki-bin; };
-            # darknet = flake-utils.lib.mkApp { drv = packages.darknet; };
-            drone = flake-utils.lib.mkApp { drv = packages.drone; };
             drone-gen = flake-utils.lib.mkApp { drv = packages.drone-gen; };
-            niki-store = flake-utils.lib.mkApp { drv = packages.niki-store; };
-            owncast = flake-utils.lib.mkApp { drv = packages.owncast; };
-            plex = flake-utils.lib.mkApp { drv = packages.plex; };
-            plexRaw = flake-utils.lib.mkApp { drv = packages.plexRaw; };
             s3uploader = flake-utils.lib.mkApp { drv = packages.s3uploader; };
-            tautulli = flake-utils.lib.mkApp { drv = packages.tautulli; };
-            unifi = flake-utils.lib.mkApp { drv = packages.unifi; };
-            unifi5 = flake-utils.lib.mkApp { drv = packages.unifi5; };
-            unifi6 = flake-utils.lib.mkApp { drv = packages.unifi6; };
-            unifi7 = flake-utils.lib.mkApp { drv = packages.unifi7; };
-            unifiLTS = flake-utils.lib.mkApp { drv = packages.unifiLTS; };
-            verification-listener =
-              flake-utils.lib.mkApp { drv = packages.verification-listener; };
             vs-fix = flake-utils.lib.mkApp { drv = packages.vs-fix; };
 
             # lollypops deployment tool

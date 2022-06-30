@@ -44,12 +44,6 @@
                     "name": "drone-gen"
                 },
                 {
-                    "name": "owncast"
-                },
-                {
-                    "name": "plexRaw"
-                },
-                {
                     "name": "s3uploader"
                 },
                 {
@@ -62,12 +56,6 @@
             "apps": [
                 {
                     "name": "drone-gen"
-                },
-                {
-                    "name": "owncast"
-                },
-                {
-                    "name": "plexRaw"
                 },
                 {
                     "name": "s3uploader"
