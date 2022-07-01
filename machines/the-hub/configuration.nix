@@ -62,6 +62,8 @@
 
     metrics = {
 
+      esphome.configure-prometheus = true;
+
       blackbox = {
         enable = true;
         configure-prometheus = true;

@@ -3,6 +3,7 @@
 {
   imports = [
     ./exporter/blackbox.nix
+    ./exporter/esphome.nix
     ./exporter/nginx.nix
     ./exporter/node.nix
     ./exporter/wireguard.nix
