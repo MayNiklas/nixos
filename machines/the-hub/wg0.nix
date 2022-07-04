@@ -108,6 +108,11 @@
           publicKey = "dWMWrCKd/vTDhs+15YiFeSQziZACBiOK/f3vC5x73Qc=";
           allowedIPs = [ "10.88.88.24/32" ];
         }
+        # J. iPad
+        {
+          publicKey = "wB2rMFT63MjRHfzmhbPLEZUCPc/K4OWXR2DdgOecxXQ=";
+          allowedIPs = [ "10.88.88.31/32" ];
+        }
         # MacBook A.
         {
           publicKey = "+UaFc1DRQIRgCU38G9qi7k2BiCUbIZVMYdYT/ZUyuCU=";
