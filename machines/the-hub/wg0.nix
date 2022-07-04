@@ -17,6 +17,9 @@
       privateKeyFile = toString /var/src/secrets/wireguard/private;
 
       peers = [
+
+        ### S2S connections
+
         # S2S home
         {
           publicKey = "lgEYddHkOxjEVqgnQruhwsRa/riiGm1jgcInDtCjfiU=";
@@ -78,20 +81,21 @@
           publicKey = "UG0F7CwFzbVydl13q1qnLKwMIqLf2+dVK6jeDwtF4TQ=";
           allowedIPs = [ "10.88.88.10/32" "192.168.97.0/24" ];
         }
+
+        ### servers
+
         # the-bus
         {
           publicKey = "QugvtwQs3pvGMiXgHL80A0HrBhLwqQ+IXA0iH/M9BDk=";
           allowedIPs = [ "10.88.88.19/32" ];
         }
+
+        ### Nik
+
         # 14 inch MacBook Pro
         {
           publicKey = "Kt0KK/cBKoMn29IUoiMEMNTTHgAlrBhqVcVtq0J9x04=";
           allowedIPs = [ "10.88.88.20/32" ];
-        }
-        # 16 inch MacBook Pro
-        {
-          publicKey = "l8IA2CW95sT+fURHmUkxmfpb78amqodNHUs5tk71xRM=";
-          allowedIPs = [ "10.88.88.21/32" ];
         }
         # 12.9 inch iPad Pro
         {
@@ -108,21 +112,37 @@
           publicKey = "dWMWrCKd/vTDhs+15YiFeSQziZACBiOK/f3vC5x73Qc=";
           allowedIPs = [ "10.88.88.24/32" ];
         }
+
+        ### J.
+
+        # # J. Thinkpad T15 G2
+        # {
+        #   publicKey = "";
+        #   allowedIPs = [ "10.88.88.30/32" ];
+        # }
         # J. iPad
         {
           publicKey = "wB2rMFT63MjRHfzmhbPLEZUCPc/K4OWXR2DdgOecxXQ=";
           allowedIPs = [ "10.88.88.31/32" ];
         }
+        # # J. iPhone
+        # {
+        #   publicKey = "";
+        #   allowedIPs = [ "10.88.88.32/32" ];
+        # }
+
         # MacBook A.
         {
           publicKey = "+UaFc1DRQIRgCU38G9qi7k2BiCUbIZVMYdYT/ZUyuCU=";
           allowedIPs = [ "10.88.88.200/32" ];
         }
+
         # Lukas Home
         {
           publicKey = "+Pw1XTLRbguc/HnAHMOl56ycQOozvSvLN6xaoAr2fQ8=";
           allowedIPs = [ "10.88.88.201/32" ];
         }
+
       ];
 
     };
