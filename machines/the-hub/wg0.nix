@@ -97,6 +97,11 @@
           publicKey = "Kt0KK/cBKoMn29IUoiMEMNTTHgAlrBhqVcVtq0J9x04=";
           allowedIPs = [ "10.88.88.20/32" ];
         }
+        # 14 inch MacBook Pro -> when using P2P
+        {
+          publicKey = "l8IA2CW95sT+fURHmUkxmfpb78amqodNHUs5tk71xRM=";
+          allowedIPs = [ "10.88.88.21/32" ];
+        }
         # 12.9 inch iPad Pro
         {
           publicKey = "pt5IcSnJdIKl12sNEZuV2vnR3qVQOuXASvd1OfWuZAU=";
