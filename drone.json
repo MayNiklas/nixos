@@ -13,9 +13,6 @@
                     "name": "flint"
                 },
                 {
-                    "name": "keycloak-hetzner"
-                },
-                {
                     "name": "kora"
                 },
                 {
@@ -29,9 +26,6 @@
                 },
                 {
                     "name": "the-hub"
-                },
-                {
-                    "name": "hetzner-x86"
                 }
             ]
         }
