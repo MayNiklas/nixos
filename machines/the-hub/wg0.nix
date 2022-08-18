@@ -78,7 +78,7 @@
         }
         # S2S A. pfSense
         {
-          publicKey = "UG0F7CwFzbVydl13q1qnLKwMIqLf2+dVK6jeDwtF4TQ=";
+          publicKey = "gCo7+rsUa21TMG4RK8UYeYLOtt8wxtFgtcdm49epRx4=";
           allowedIPs = [ "10.88.88.10/32" "192.168.97.0/24" ];
         }
 
