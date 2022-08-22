@@ -65,6 +65,11 @@ steps:
   - nix build '.#nixosConfigurations.snowflake.config.system.build.toplevel' --out-link result-snowflake
   - nix path-info --closure-size -h $(readlink -f result-snowflake)
 
+- name: build stone
+  commands:
+  - nix build '.#nixosConfigurations.stone.config.system.build.toplevel' --out-link result-stone
+  - nix path-info --closure-size -h $(readlink -f result-stone)
+
 - name: build the-bus
   commands:
   - nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel' --out-link result-the-bus
