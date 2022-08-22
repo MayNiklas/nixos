@@ -15,9 +15,6 @@
     };
   };
 
-
-
-
   networking = {
     hostName = "stone";
     firewall = { allowedTCPPorts = [ 9100 9115 ]; };
