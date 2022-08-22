@@ -40,7 +40,10 @@
 
   networking = {
     hostName = "stone";
-    firewall = { allowedTCPPorts = [ 9100 9115 ]; };
+    firewall = {
+      allowedTCPPorts = [ 9100 9115 25565 ];
+      allowedUDPPorts = [ 25565 ];
+    };
   };
 
   system.stateVersion = "20.09";
