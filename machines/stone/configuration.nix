@@ -1,7 +1,7 @@
 { pkgs, ... }: {
 
   mayniklas = {
-    cloud.vmware-x86.enable = true;
+    cloud.pve-x86.enable = true;
     hosts = { enable = true; };
     server = {
       enable = true;

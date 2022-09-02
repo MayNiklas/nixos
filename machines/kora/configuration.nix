@@ -14,7 +14,7 @@
   };
 
   mayniklas = {
-    cloud.vmware-x86.enable = true;
+    cloud.pve-x86.enable = true;
     docker = { enable = true; };
     hosts = { enable = true; };
     in-stock-bot = { enable = false; };
