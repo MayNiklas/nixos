@@ -10,6 +10,12 @@ in
 
   config = mkIf cfg.enable {
 
+    # enable fstrim to reduce disk image size
+    services.fstrim = {
+      enable = true;
+      interval = "weekly";
+    };
+
     fileSystems."/" = {
       device = "/dev/disk/by-label/nixos";
       autoResize = true;
