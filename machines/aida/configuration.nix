@@ -1,10 +1,10 @@
-{ pkgs, config, nixpkgs-update, ... }: {
+{ pkgs, config, ... }: {
 
   home-manager.users."${config.mayniklas.home-manager.username}" = {
     home.packages =
       with pkgs; [
         # https://github.com/ryantm/nixpkgs-update
-        nixpkgs-update.packages.${pkgs.system}.nixpkgs-update
+        # nixpkgs-update.packages.${pkgs.system}.nixpkgs-update
       ];
   };
 

@@ -1,4 +1,4 @@
-{ pkgs, config, nixpkgs-update, ... }: {
+{ pkgs, config, ... }: {
 
   imports = [ ./cron.nix ];
 
@@ -9,7 +9,7 @@
         gotools
 
         # https://github.com/ryantm/nixpkgs-update
-        nixpkgs-update.packages.${pkgs.system}.nixpkgs-update
+        # nixpkgs-update.packages.${pkgs.system}.nixpkgs-update
       ];
   };
 
