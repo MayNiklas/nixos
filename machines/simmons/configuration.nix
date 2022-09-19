@@ -33,7 +33,7 @@
     database.user = "git";
     disableRegistration = true;
     domain = "git.lounge.rocks";
-    dump.enable = true;
+    dump.enable = false;
     dump.interval = "weekly";
     httpAddress = "127.0.0.1";
     httpPort = 3000;
