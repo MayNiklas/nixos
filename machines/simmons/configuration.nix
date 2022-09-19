@@ -38,6 +38,7 @@
     httpAddress = "127.0.0.1";
     httpPort = 3000;
     rootUrl = "https://git.lounge.rocks/";
+    lfs.enable = true;
     settings = {
       "repository" = {
         ENABLE_PUSH_CREATE_USER = true;
