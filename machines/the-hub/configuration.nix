@@ -37,7 +37,17 @@
       # syntax: 'username/tag'
       targets = [
         "mayniklas/niki"
+
         "slimegod/euw"
+
+        "ImJonazz/EUW"
+
+        "Mana Tee Jay/1306"
+        "TeeJay/1306"
+        "Un4JHINate/4444"
+        "TJ1306/7950"
+
+        "sleepyjxnnie/love"
       ];
     };
 
@@ -187,4 +197,3 @@
   system.stateVersion = "20.09";
 
 }
-
