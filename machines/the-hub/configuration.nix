@@ -101,6 +101,7 @@
           "https://drone.lounge.rocks"
           "https://matrix.lounge.rocks/.well-known/matrix/client"
           "https://git.lounge.rocks"
+          "https://jellyfin.pamiro.net"
         ];
       };
 
