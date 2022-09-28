@@ -17,19 +17,13 @@
     cloud.pve-x86.enable = true;
     docker = { enable = true; };
     hosts = { enable = true; };
-    in-stock-bot = { enable = false; };
     metrics = {
       node = {
         enable = true;
         flake = true;
       };
     };
-    pihole = {
-      enable = true;
-      port = "8080";
-    };
     plex-version-bot = { enable = true; };
-    scene-extractor = { enable = true; };
     librespeedtest = {
       enable = true;
       port = "8000";
