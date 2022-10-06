@@ -21,7 +21,12 @@
       "git.lounge.rocks" = {
         forceSSL = true;
         enableACME = true;
-        locations."/" = { proxyPass = "http://127.0.0.1:3000"; };
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:3000";
+          extraConfig = ''
+            client_max_body_size 256M;
+          '';
+        };
       };
     };
   };
@@ -49,7 +54,7 @@
         MAX_FILES = "20";
       };
       "git.timeout" = {
-        DEFAUlT = "360";
+        DEFAUlT = "3600";
         MIGRATE = "600";
         MIRROR = "300";
         CLONE = "300";
