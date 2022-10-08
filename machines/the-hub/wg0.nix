@@ -81,6 +81,11 @@
           publicKey = "gCo7+rsUa21TMG4RK8UYeYLOtt8wxtFgtcdm49epRx4=";
           allowedIPs = [ "10.88.88.10/32" "192.168.97.0/24" ];
         }
+        # S2S A. / O. pfSense
+        {
+          publicKey = "Bk93ocUWLtUO4sJYjWp7KdBb8V3X3oquVe5HXCWeelw=";
+          allowedIPs = [ "10.88.88.11/32" "192.168.87.0/24" "192.168.86.0/24" ];
+        }
 
         ### servers
 
