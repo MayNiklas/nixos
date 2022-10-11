@@ -11,11 +11,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1655220242,
-        "narHash": "sha256-rWPK2ya7PyB4n+Kbf6sfv1RUzeAl20F6Z+bH13SHNBw=",
+        "lastModified": 1665473501,
+        "narHash": "sha256-/hM76t9fa/lUgEmjgSvOB+Q8yzZwbXvU4/j+bMil9yY=",
         "owner": "MayNiklas",
         "repo": "nixos-adblock-unbound",
-        "rev": "a05f34f74e315d539fe40882f65978ad5279aebd",
+        "rev": "43be8f38efd94de033bd1e7c38c1f3b00a41ffbf",
         "type": "github"
       },
       "original": {
@@ -27,11 +27,11 @@
     "adblockStevenBlack": {
       "flake": false,
       "locked": {
-        "lastModified": 1654831104,
-        "narHash": "sha256-qybp7aELcGKZjcPBR3ouXEoUgMKlfcxGecvCalMvT2w=",
+        "lastModified": 1665337238,
+        "narHash": "sha256-LYYjWMy4xXXqnM3ROKseS7y0faNLYyyDPqUe1+Uf+RE=",
         "owner": "StevenBlack",
         "repo": "hosts",
-        "rev": "11b8c3d9ac5b154ff4a5f5ff203b822e9fc27d11",
+        "rev": "ff7d9bed83732bd3980ae452927541c6c4b15382",
         "type": "github"
       },
       "original": {
