@@ -23,6 +23,7 @@ in
       default = {
         "status.nik-ste.de" = "10.88.88.1";
         "nas.mh0.eu" = "192.168.42.10";
+        "pass.telekom.de" = "109.237.176.33";
       };
       description = ''
         Custom DNS A records
