@@ -55,6 +55,7 @@
 
   mayniklas = {
     cloud.netcup-x86.enable = true;
+    kernel= { enable = true; };
     server = {
       enable = true;
       home-manager = true;

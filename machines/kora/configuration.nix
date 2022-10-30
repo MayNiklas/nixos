@@ -28,6 +28,7 @@
       enable = true;
       port = "8000";
     };
+    kernel = { enable = true; };
     server = {
       enable = true;
       home-manager = true;
