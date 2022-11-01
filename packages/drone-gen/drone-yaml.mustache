@@ -12,14 +12,17 @@ clone:
 
 steps:
 
-- name: show flake info
-  commands:
-  - nix --experimental-features "nix-command flakes" flake show
-  - nix --experimental-features "nix-command flakes" flake metadata
+  - name: show flake show
+    commands:
+      - nix flake show
 
-- name: run flake checks
-  commands:
-  - nix --experimental-features "nix-command flakes" flake check --show-trace
+  - name: show flake info
+    commands:
+      - nix flake info
+
+  - name: run flake checks
+    commands:
+      - nix flake check
 {{#hosts}}
 
 ---
