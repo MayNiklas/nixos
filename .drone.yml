@@ -12,14 +12,17 @@ clone:
 
 steps:
 
-- name: show flake info
-  commands:
-  - nix --experimental-features "nix-command flakes" flake show
-  - nix --experimental-features "nix-command flakes" flake metadata
+  - name: show flake show
+    commands:
+      - nix flake show
 
-- name: run flake checks
-  commands:
-  - nix --experimental-features "nix-command flakes" flake check --show-trace
+  - name: show flake info
+    commands:
+      - nix flake info
+
+  - name: run flake checks
+    commands:
+      - nix flake check
 
 ---
 kind: pipeline
@@ -45,11 +48,6 @@ steps:
   - nix build '.#nixosConfigurations.deke.config.system.build.toplevel' --out-link result-deke
   - nix path-info --closure-size -h $(readlink -f result-deke)
 
-- name: build flint
-  commands:
-  - nix build '.#nixosConfigurations.flint.config.system.build.toplevel' --out-link result-flint
-  - nix path-info --closure-size -h $(readlink -f result-flint)
-
 - name: build kora
   commands:
   - nix build '.#nixosConfigurations.kora.config.system.build.toplevel' --out-link result-kora
@@ -64,11 +62,6 @@ steps:
   commands:
   - nix build '.#nixosConfigurations.snowflake.config.system.build.toplevel' --out-link result-snowflake
   - nix path-info --closure-size -h $(readlink -f result-snowflake)
-
-- name: build stone
-  commands:
-  - nix build '.#nixosConfigurations.stone.config.system.build.toplevel' --out-link result-stone
-  - nix path-info --closure-size -h $(readlink -f result-stone)
 
 - name: build the-bus
   commands:
