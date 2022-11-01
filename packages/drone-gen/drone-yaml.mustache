@@ -104,3 +104,35 @@ trigger:
   - pull_request
 
 {{/packages}}
+{{#hosts}}
+---
+kind: pipeline
+type: exec
+name: nix flake update - {{arch}}
+
+platform:
+  os: linux
+  arch: {{arch}}
+
+clone:
+  depth: 1
+
+steps:
+
+- name: nix flake update
+  commands:
+  - nix flake update
+
+{{#machines}}
+- name: build {{name}}
+  commands:
+  - nix build '.#nixosConfigurations.{{name}}.config.system.build.toplevel' --out-link result-{{name}}
+  - nix path-info --closure-size -h $(readlink -f result-{{name}})
+
+{{/machines}}
+trigger:
+  branch:
+  - main
+  event:
+  - cron
+{{/hosts}}

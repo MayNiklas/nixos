@@ -182,3 +182,61 @@ trigger:
   - cron
   - pull_request
 
+---
+kind: pipeline
+type: exec
+name: nix flake update - amd64
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+
+- name: nix flake update
+  commands:
+  - nix flake update
+
+- name: build aida
+  commands:
+  - nix build '.#nixosConfigurations.aida.config.system.build.toplevel' --out-link result-aida
+  - nix path-info --closure-size -h $(readlink -f result-aida)
+
+- name: build deke
+  commands:
+  - nix build '.#nixosConfigurations.deke.config.system.build.toplevel' --out-link result-deke
+  - nix path-info --closure-size -h $(readlink -f result-deke)
+
+- name: build kora
+  commands:
+  - nix build '.#nixosConfigurations.kora.config.system.build.toplevel' --out-link result-kora
+  - nix path-info --closure-size -h $(readlink -f result-kora)
+
+- name: build simmons
+  commands:
+  - nix build '.#nixosConfigurations.simmons.config.system.build.toplevel' --out-link result-simmons
+  - nix path-info --closure-size -h $(readlink -f result-simmons)
+
+- name: build snowflake
+  commands:
+  - nix build '.#nixosConfigurations.snowflake.config.system.build.toplevel' --out-link result-snowflake
+  - nix path-info --closure-size -h $(readlink -f result-snowflake)
+
+- name: build the-bus
+  commands:
+  - nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel' --out-link result-the-bus
+  - nix path-info --closure-size -h $(readlink -f result-the-bus)
+
+- name: build the-hub
+  commands:
+  - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' --out-link result-the-hub
+  - nix path-info --closure-size -h $(readlink -f result-the-hub)
+
+trigger:
+  branch:
+  - main
+  event:
+  - cron
