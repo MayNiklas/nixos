@@ -55,7 +55,13 @@ in
       shellAliases = rec {
 
         # git
+
+        # git status
         gs = "${pkgs.git}/bin/git status";
+
+        # clean up repository
+        clean = "${pkgs.git}/bin/git clean -xdn";
+        destroy = "${pkgs.git}/bin/git clean -xdf";
 
         # nix
 
