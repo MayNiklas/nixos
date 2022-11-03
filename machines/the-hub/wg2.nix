@@ -29,6 +29,11 @@
           publicKey = "VZr3sY7tBcv0ETaNI2a8gvwyH1OG3+Rq/pUKYz703XQ=";
           allowedIPs = [ "10.10.10.9/32" ];
         }
+        # VM
+        {
+          publicKey = "ujNbYq05wK1g8lrUbqilyKHxJB7eiifYTvVumVNEznM=";
+          allowedIPs = [ "10.10.10.10/32" ];
+        }
       ];
 
     };
