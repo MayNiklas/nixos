@@ -40,6 +40,26 @@
         "type": "github"
       }
     },
+    "darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1667419884,
+        "narHash": "sha256-oLNw87ZI5NxTMlNQBv1wG2N27CUzo9admaFlnmavpiY=",
+        "owner": "lnl7",
+        "repo": "nix-darwin",
+        "rev": "cfc0125eafadc9569d3d6a16ee928375b77e3100",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lnl7",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
     "dyson-exporter": {
       "inputs": {
         "flake-utils": [
@@ -272,6 +292,7 @@
     "root": {
       "inputs": {
         "adblock-unbound": "adblock-unbound",
+        "darwin": "darwin",
         "dyson-exporter": "dyson-exporter",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
