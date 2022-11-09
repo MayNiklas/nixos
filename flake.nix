@@ -144,6 +144,8 @@
       };
 
       # https://github.com/lnl7/nix-darwin
+      # darwin-rebuild switch --flake .
+      # nix build .#darwinConfigurations.MacBook-Pro-14-2021.system
       darwinConfigurations.MacBook-Pro-14-2021 = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
