@@ -17,7 +17,7 @@ jobs:
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
       - name: Update flake.lock
         id: update
-        uses: DeterminateSystems/update-flake-lock@14
+        uses: DeterminateSystems/update-flake-lock@v14
         with:
           inputs: nixpkgs home-manager flake-utils
       - name: Print PR number
