@@ -5,92 +5,76 @@
 
     # Nix Packages collection
     # https://github.com/NixOS/nixpkgs
-    nixpkgs = {
-      type = "github";
-      owner = "NixOS";
-      repo = "nixpkgs";
-      ref = "nixos-22.05";
-    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
 
     # Manage a user environment using Nix 
     # https://github.com/nix-community/home-manager
     home-manager = {
-      type = "github";
-      owner = "nix-community";
-      repo = "home-manager";
-      ref = "release-22.05";
+      url = "github:nix-community/home-manager/release-22.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Manage Mac systems using Nix
     # https://github.com/lnl7/nix-darwin
     darwin = {
-      type = "github";
-      owner = "lnl7";
-      repo = "nix-darwin";
+      url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Pure Nix flake utility functions
     # https://github.com/numtide/flake-utils
     flake-utils = {
-      type = "github";
-      owner = "numtide";
-      repo = "flake-utils";
+      url = "github:numtide/flake-utils";
     };
 
     # lollypops deployment tool
     # https://github.com/pinpox/lollypops
     lollypops = {
       url = "github:pinpox/lollypops";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
 
     # A collection of NixOS modules covering hardware quirks.
     # https://github.com/NixOS/nixos-hardware
     nixos-hardware = {
-      type = "github";
-      owner = "NixOS";
-      repo = "nixos-hardware";
-    };
-
-    # nixpkgs update script
-    # https://github.com/ryantm/nixpkgs-update
-    nixpkgs-update = {
-      type = "github";
-      owner = "ryantm";
-      repo = "nixpkgs-update";
+      url = "github:NixOS/nixos-hardware";
     };
 
     # Adblocking lists for Unbound DNS servers running on NixOS
     # https://github.com/MayNiklas/nixos-adblock-unbound
     adblock-unbound = {
-      type = "github";
-      owner = "MayNiklas";
-      repo = "nixos-adblock-unbound";
+      url = "github:MayNiklas/nixos-adblock-unbound";
       inputs = {
+        adblockStevenBlack.follows = "adblockStevenBlack";
         flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
       };
     };
 
-    # Prometheus exporter providing temperature metrics
-    # https://github.com/MayNiklas/dyson-exporter
-    dyson-exporter = {
-      type = "github";
-      owner = "MayNiklas";
-      repo = "dyson-exporter";
-      inputs = {
-        flake-utils.follows = "flake-utils";
-        nixpkgs.follows = "nixpkgs";
-      };
+    # Adblocking lists for DNS servers
+    # input here, so it will get updated by nix flake update
+    adblockStevenBlack = {
+      url = "github:StevenBlack/hosts";
+      flake = false;
     };
+
+    # # Prometheus exporter providing temperature metrics
+    # # https://github.com/MayNiklas/dyson-exporter
+    # dyson-exporter = {
+    #   url = "github:MayNiklas/dyson-exporter";
+    #   inputs = {
+    #     flake-utils.follows = "flake-utils";
+    #     nixpkgs.follows = "nixpkgs";
+    #   };
+    # };
 
     # A Shelly power metrics exporter written in golang. 
     # https://github.com/MayNiklas/shelly-exporter
     shelly-exporter = {
-      type = "github";
-      owner = "MayNiklas";
-      repo = "shelly-exporter";
+      url = "github:MayNiklas/shelly-exporter";
       inputs = {
         flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
@@ -100,9 +84,7 @@
     # A valorant metrics exporter written in golang. 
     # https://github.com/MayNiklas/valorant-exporter
     valorant-exporter = {
-      type = "github";
-      owner = "MayNiklas";
-      repo = "valorant-exporter";
+      url = "github:MayNiklas/valorant-exporter";
       inputs = {
         flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
