@@ -14,13 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Manage Mac systems using Nix
-    # https://github.com/lnl7/nix-darwin
-    darwin = {
-      url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Pure Nix flake utility functions
     # https://github.com/numtide/flake-utils
     flake-utils = {
@@ -94,10 +87,6 @@
   };
   outputs = { self, ... }@inputs:
     with inputs;
-    let
-      system = "aarch64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
     {
 
       # Expose overlay to flake outputs, to allow using it from other flakes.
@@ -123,23 +112,6 @@
         home-manager = { config, pkgs, lib, ... }: {
           imports = [ ./home-manager ];
         };
-      };
-
-      # https://github.com/lnl7/nix-darwin
-      # darwin-rebuild switch --flake .
-      # nix build .#darwinConfigurations.MacBook-Pro-14-2021.system
-      # ./result/sw/bin/darwin-rebuild switch --flake .
-      darwinConfigurations.MacBook-Pro-14-2021 = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        modules = [
-          ./darwinConfigurations/configuration.nix
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.nik = import ./home-manager/profiles/mac.nix;
-          }
-        ];
       };
 
       # Each subdirectory in ./machines is a host. Add them all to
