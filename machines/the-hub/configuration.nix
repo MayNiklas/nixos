@@ -1,11 +1,10 @@
-{ self, pkgs, dyson-exporter, shelly-exporter, valorant-exporter, ... }: {
+{ self, pkgs, shelly-exporter, valorant-exporter, ... }: {
 
   imports = [
     ./wg0.nix
     ./wg1.nix
     ./wg2.nix
     ./unbound.nix
-    dyson-exporter.nixosModules.default
     shelly-exporter.nixosModules.default
     valorant-exporter.nixosModules.default
   ];
@@ -13,12 +12,6 @@
   mayniklas.unbound = { enable = true; };
 
   services = {
-
-    dyson-exporter = {
-      enable = true;
-      configure-prometheus = true;
-      envfile = "/var/src/secrets/dyson-exporter/envfile";
-    };
 
     shelly-exporter = {
       enable = true;
@@ -55,7 +48,7 @@
 
   mayniklas = {
     cloud.netcup-x86.enable = true;
-    kernel= { enable = true; };
+    kernel = { enable = true; };
     server = {
       enable = true;
       home-manager = true;
