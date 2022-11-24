@@ -19,6 +19,10 @@ in
 
     services.qemuGuest.enable = true;
 
+    services.logind.extraConfig = ''
+      RuntimeDirectorySize=2G
+    '';
+
     # Basic VM settings
     fileSystems."/" = {
       device = "/dev/disk/by-label/nixos";
