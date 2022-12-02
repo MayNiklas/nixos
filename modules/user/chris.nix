@@ -21,6 +21,6 @@ in
         })
       ];
     };
-    nix.allowedUsers = [ "chris" ];
+    nix.settings.allowed-users = [ "chris" ];
   };
 }

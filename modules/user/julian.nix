@@ -20,6 +20,6 @@ in
         })
       ];
     };
-    nix.allowedUsers = [ "julian" ];
+    nix.settings.allowed-users = [ "julian" ];
   };
 }

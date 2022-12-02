@@ -51,19 +51,27 @@ in
       addr = "127.0.0.1";
       auth.anonymous.enable = true;
 
-      provision.datasources = [
+      # Provisioning dashboards and datasources declaratively by
+      # setting `dashboards` or `datasources` to a list is not supported
+      # anymore. Use `services.grafana.provision.datasources.settings.datasources`
+      # (or `services.grafana.provision.dashboards.settings.providers`) instead.
+      provision.datasources =
         {
-          name = "Prometheus localhost";
-          url = "http://localhost:9090";
-          type = "prometheus";
-          isDefault = true;
-        }
-        {
-          name = "loki";
-          url = "http://localhost:3100";
-          type = "loki";
-        }
-      ];
+          settings.datasources =
+            [
+              {
+                name = "Prometheus localhost";
+                url = "http://localhost:9090";
+                type = "prometheus";
+                isDefault = true;
+              }
+              {
+                name = "loki";
+                url = "http://localhost:3100";
+                type = "loki";
+              }
+            ];
+        };
     };
 
   };

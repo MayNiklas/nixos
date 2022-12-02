@@ -6,7 +6,7 @@ in
 
   options.mayniklas.github-runner = {
     enable = mkEnableOption "activate github-runner";
-    allowedUsers = mkEnableOption "add github-runner to nix.allowedUsers";
+    allowedUsers = mkEnableOption "add github-runner to nix.settings.allowed-users";
     url = mkOption {
       type = types.str;
       default = "https://github.com/MayNiklas/nixos";
@@ -46,7 +46,7 @@ in
       tokenFile = cfg.path;
     };
 
-    nix.allowedUsers = mkIf cfg.allowedUsers [ "github-runner" ];
+    nix.settings.allowed-users = mkIf cfg.allowedUsers [ "github-runner" ];
 
   };
 }

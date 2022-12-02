@@ -38,7 +38,7 @@
     };
   };
 
-  nix.allowedUsers = [ "nik" ];
+  nix.settings.allowed-users = [ "nik" ];
 
   environment.systemPackages =
     with self.inputs.nixpkgs.legacyPackages.x86_64-linux; [

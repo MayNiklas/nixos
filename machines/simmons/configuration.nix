@@ -74,7 +74,11 @@
     };
     ssh = {
       clonePort = 22;
-      enable = true;
+      # The option definition `services.gitea.ssh.enable'
+      # no longer has any effect; please remove it.
+      # services.gitea.ssh.enable has been migrated into freeform setting services.gitea.settings.server.DISABLE_SSH.
+      # Keep in mind that the setting is inverted
+      # enable = true;
     };
     user = "git";
   };

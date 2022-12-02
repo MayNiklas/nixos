@@ -12,6 +12,9 @@ in
 
     environment.systemPackages = with pkgs; [ virt-manager ];
 
+    # The libvirtd module currently requires Polkit to be enabled ('security.polkit.enable = true').
+    security.polkit.enable = true;
+
     virtualisation.libvirtd = {
       enable = true;
       # allowedBridges = [ "br0" ];

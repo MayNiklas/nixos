@@ -48,8 +48,12 @@ in
         "https://s3.lounge.rocks/nix-cache/"
       ];
 
-      # Save space by hardlinking store files
-      autoOptimiseStore = true;
+      settings = {
+        #Users allowed to run nix
+        allowed-users = [ "root" ];
+        # Save space by hardlinking store files
+        auto-optimise-store = true;
+      };
 
       # Clean up old generations after 30 days
       gc = {
@@ -57,9 +61,6 @@ in
         dates = "weekly";
         options = "--delete-older-than 30d";
       };
-
-      # Users allowed to run nix
-      allowedUsers = [ "root" ];
 
     };
 

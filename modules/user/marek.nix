@@ -20,6 +20,6 @@ in
         })
       ];
     };
-    nix.allowedUsers = [ "marek" ];
+    nix.settings.allowed-users = [ "marek" ];
   };
 }

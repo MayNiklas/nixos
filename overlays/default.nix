@@ -19,7 +19,7 @@ self: super: {
   plex = super.pkgs.callPackage ../packages/plex { };
   plexRaw = super.pkgs.callPackage ../packages/plex/raw.nix { };
   s3uploader = super.pkgs.callPackage ../packages/s3uploader { };
-  tautulli = super.pkgs.python3Packages.callPackage ../packages/tautulli { };
+  # tautulli = super.pkgs.python3Packages.callPackage ../packages/tautulli { };
   verification-listener =
     super.pkgs.python3Packages.callPackage ../packages/verification-listener
       { };
