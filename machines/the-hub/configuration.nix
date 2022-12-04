@@ -67,13 +67,13 @@
 
     metrics = {
 
-      pve = {
-        enable = true;
-        configure-prometheus = true;
-        targets = [ "192.168.5.11" ];
-      };
+      # pve = {
+      #   enable = true;
+      #   configure-prometheus = true;
+      #   targets = [ "192.168.5.11" ];
+      # };
 
-      esphome.configure-prometheus = true;
+      # esphome.configure-prometheus = true;
 
       blackbox = {
         enable = true;
