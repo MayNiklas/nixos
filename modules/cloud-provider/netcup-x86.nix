@@ -19,10 +19,6 @@ in
 
     services.qemuGuest.enable = true;
 
-    services.logind.extraConfig = ''
-      RuntimeDirectorySize=2G
-    '';
-
     # Basic VM settings
     fileSystems."/" = {
       device = "/dev/disk/by-label/nixos";
@@ -30,16 +26,24 @@ in
       autoResize = true;
     };
 
-    fileSystems."/tmp" = {
-      fsType = "tmpfs";
-      device = "tmpfs";
-      options = [ "nosuid" "nodev" "relatime" "size=2G" ];
-    };
+
 
     boot.growPartition = true;
     boot.kernelParams = [ "console=ttyS0" ];
     boot.loader.grub.device = "/dev/sda";
     boot.loader.timeout = 5;
+
+    # config to fix the `no space left`
+    # error during nix build
+    fileSystems."/tmp" = {
+      fsType = "tmpfs";
+      device = "tmpfs";
+      options = [ "nosuid" "nodev" "relatime" "size=2G" ];
+    };
+    boot.tmpOnTmpfs = false;
+    services.logind.extraConfig = ''
+      RuntimeDirectorySize=2G
+    '';
 
   };
 
