@@ -7,7 +7,7 @@ let
       for path in $(nix-store -qR $f); do
             signatures=$(nix path-info --sigs --json $path | ${pkgs.jq}/bin/jq 'try .[].signatures[]')
         if [[ $signatures == *"cache.lounge.rocks"* ]]; then
-          echo "add $path to upload.list"
+          # echo "add $path to upload.list"
           echo $path >> upload.list
         fi
       done
