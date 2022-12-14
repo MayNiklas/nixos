@@ -28,7 +28,18 @@ in
 
       package = pkgs.nixFlakes;
       extraOptions = ''
+        # this enables the technically experimental feature Flakes
         experimental-features = nix-command flakes
+
+        # If set to true, Nix will fall back to building from source if a binary substitute fails.
+        fallback = true
+
+        # the timeout (in seconds) for establishing connections in the binary cache substituter. 
+        connect-timeout = 10
+
+        # these log lines are only shown on a failed build
+        log-lines = 25
+
         # Free up to 1GiB whenever there is less than 100MiB left.
         min-free = ${toString (100 * 1024 * 1024)}
         max-free = ${toString (1024 * 1024 * 1024)}
