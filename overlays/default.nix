@@ -18,6 +18,7 @@ self: super: {
   owncast = super.pkgs.callPackage ../packages/owncast { };
   plex = super.pkgs.callPackage ../packages/plex { };
   plexRaw = super.pkgs.callPackage ../packages/plex/raw.nix { };
+  mtu-check = super.pkgs.callPackage ../packages/mtu-check { };
   s3uploader = super.pkgs.callPackage ../packages/s3uploader { };
   # tautulli = super.pkgs.python3Packages.callPackage ../packages/tautulli { };
   verification-listener =

@@ -7,6 +7,7 @@ in
 self: super: {
   mayniklas = {
     drone-gen = super.pkgs.callPackage ../packages/drone-gen { };
+    mtu-check = super.pkgs.callPackage ../packages/mtu-check { };
     s3uploader = super.pkgs.callPackage ../packages/s3uploader { };
     vs-fix = super.pkgs.callPackage ../packages/vs-fix { };
   };

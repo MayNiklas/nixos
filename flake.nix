@@ -210,6 +210,7 @@
 
           packages = flake-utils.lib.flattenTree {
             drone-gen = pkgs.drone-gen;
+            mtu-check = pkgs.mtu-check;
             s3uploader = pkgs.s3uploader;
             vs-fix = pkgs.vs-fix;
           };
