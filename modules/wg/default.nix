@@ -33,6 +33,32 @@ in
 
     networking = {
 
+      # Cable internet: MTU of 1500
+      # DSL & vDSL internet: MTU of 1492
+      #
+      # package overhead:
+      #   8 bytes for UDP
+      #   20 bytes for IPv4
+      #   40 bytes for IPv6
+      #   32 bytes for WireGuard
+      #
+      # when connecting to a Wireguard peer over IPv4, we have to subtract 20+8+32 = 60 bytes
+      # when connecting to a Wireguard peer over IPv6, we have to subtract 40+8+32 = 80 bytes
+      #
+      # since we should always calculate the MTU for the worst case scenario,
+      # we make the assumption that we are always connecting to a peer over IPv6 on VDSL:
+      # 1492 - 80 = 1412
+      #
+      # Bigger MTU values are problematic, because they can cause fragmentation.
+      # Fragmentation is a problem, because it can cause packet loss.
+      # In some cases, a missconfigured MTU can cause weird problems on some services,
+      # while others are working fine.
+      #
+      # The MTU of 1412 is a good compromise between performance and stability.
+      # In some cases, it might be necessary to lower the MTU even further (NAT).
+      interfaces.wg0 = { mtu = 1412; };
+
+
       wireguard.interfaces = {
         wg0 = {
           ips = [ "${cfg.ip}/24" ];
