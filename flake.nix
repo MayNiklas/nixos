@@ -96,6 +96,8 @@
 
       overlays.mayniklas = final: prev: (import ./overlays/mayniklas.nix inputs) final prev;
 
+      templates = import ./templates;
+
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
       nixosModules = builtins.listToAttrs
