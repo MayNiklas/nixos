@@ -73,6 +73,11 @@ steps:
   - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' --out-link result-the-hub
   - nix path-info --closure-size -h $(readlink -f result-the-hub)
 
+- name: build zammad-hetzner
+  commands:
+  - nix build '.#nixosConfigurations.zammad-hetzner.config.system.build.toplevel' --out-link result-zammad-hetzner
+  - nix path-info --closure-size -h $(readlink -f result-zammad-hetzner)
+
 - name: upload to binary cache via s3
   commands:
   - nix run 'github:mayniklas/nixos'#s3uploader
@@ -234,6 +239,11 @@ steps:
   commands:
   - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' --out-link result-the-hub
   - nix path-info --closure-size -h $(readlink -f result-the-hub)
+
+- name: build zammad-hetzner
+  commands:
+  - nix build '.#nixosConfigurations.zammad-hetzner.config.system.build.toplevel' --out-link result-zammad-hetzner
+  - nix path-info --closure-size -h $(readlink -f result-zammad-hetzner)
 
 trigger:
   branch:
