@@ -118,6 +118,7 @@
           "water-on-fire:9100"
           "the-bus:9100"
           "the-hub:9100"
+          "zammad:9100"
           "lasse:9100"
           "10.88.88.2:9100"
         ];
@@ -158,6 +159,7 @@
       10.88.88.1 status.nik-ste.de
       10.88.88.8 simone-pi4b
       10.88.88.9 bella-pi4b
+      10.88.88.18 zammad
       10.88.88.19 the-bus
       10.88.88.24 water-on-fire
       192.168.88.70 chris
