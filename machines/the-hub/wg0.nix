@@ -89,6 +89,12 @@
 
         ### servers
 
+        # zammad
+        {
+          publicKey = "utTQ7nXjFzvoelIM92mxwfBN/LplPidKrVgYN8GKTXw=";
+          allowedIPs = [ "10.88.88.18/32" ];
+        }
+
         # the-bus
         {
           publicKey = "QugvtwQs3pvGMiXgHL80A0HrBhLwqQ+IXA0iH/M9BDk=";
