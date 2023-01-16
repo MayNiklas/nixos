@@ -114,15 +114,36 @@ steps:
   - nix build .#drone-gen --out-link result-drone-gen
   - nix path-info --closure-size -h $(readlink -f result-drone-gen)
 
+- name: Push drone-gen to cachix
+  commands:
+  - nix build .#drone-gen --json | jq -r '.[].outputs | to_entries[].value' | nix run 'github:cachix/cachix' -- push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
+
 - name: Build s3uploader
   commands:
   - nix build .#s3uploader --out-link result-s3uploader
   - nix path-info --closure-size -h $(readlink -f result-s3uploader)
 
+- name: Push s3uploader to cachix
+  commands:
+  - nix build .#s3uploader --json | jq -r '.[].outputs | to_entries[].value' | nix run 'github:cachix/cachix' -- push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
+
 - name: Build vs-fix
   commands:
   - nix build .#vs-fix --out-link result-vs-fix
   - nix path-info --closure-size -h $(readlink -f result-vs-fix)
+
+- name: Push vs-fix to cachix
+  commands:
+  - nix build .#vs-fix --json | jq -r '.[].outputs | to_entries[].value' | nix run 'github:cachix/cachix' -- push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
 
 - name: upload to binary cache via s3
   commands:
@@ -160,15 +181,36 @@ steps:
   - nix build .#drone-gen --out-link result-drone-gen
   - nix path-info --closure-size -h $(readlink -f result-drone-gen)
 
+- name: Push drone-gen to cachix
+  commands:
+  - nix build .#drone-gen --json | jq -r '.[].outputs | to_entries[].value' | nix run 'github:cachix/cachix' -- push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
+
 - name: Build s3uploader
   commands:
   - nix build .#s3uploader --out-link result-s3uploader
   - nix path-info --closure-size -h $(readlink -f result-s3uploader)
 
+- name: Push s3uploader to cachix
+  commands:
+  - nix build .#s3uploader --json | jq -r '.[].outputs | to_entries[].value' | nix run 'github:cachix/cachix' -- push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
+
 - name: Build vs-fix
   commands:
   - nix build .#vs-fix --out-link result-vs-fix
   - nix path-info --closure-size -h $(readlink -f result-vs-fix)
+
+- name: Push vs-fix to cachix
+  commands:
+  - nix build .#vs-fix --json | jq -r '.[].outputs | to_entries[].value' | nix run 'github:cachix/cachix' -- push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
 
 - name: upload to binary cache via s3
   commands:
