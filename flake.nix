@@ -89,6 +89,15 @@
     with inputs;
     {
 
+      nixConfig = {
+        extra-substituters = [
+          "https://mayniklas.cachix.org"
+        ];
+        extra-trusted-public-keys = [
+          "mayniklas.cachix.org-1:gti3flcBaUNMoDN2nWCOPzCi2P68B5JbA/4jhUqHAFU="
+        ];
+      };
+
       # Expose overlay to flake outputs, to allow using it from other flakes.
       # Flake inputs are passed to the overlay so that the packages defined in
       # it can use the sources pinned in flake.lock
