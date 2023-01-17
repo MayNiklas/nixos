@@ -45,21 +45,19 @@ in
         max-free = ${toString (1024 * 1024 * 1024)}
       '';
 
-      # binary cache -> build by DroneCI
-      binaryCachePublicKeys = mkIf (cfg.disable-cache != true)
-        [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
-      binaryCaches = mkIf (cfg.disable-cache != true) [
-        "https://cache.nixos.org"
-        "https://cache.lounge.rocks?priority=100"
-        "https://s3.lounge.rocks/nix-cache?priority=50"
-      ];
-      trustedBinaryCaches = mkIf (cfg.disable-cache != true) [
-        "https://cache.nixos.org"
-        "https://cache.lounge.rocks"
-        "https://s3.lounge.rocks/nix-cache/"
-      ];
-
       settings = {
+        # binary cache -> build by DroneCI
+        trusted-public-keys = mkIf (cfg.disable-cache != true)
+          [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
+        substituters = mkIf (cfg.disable-cache != true) [
+          "https://cache.nixos.org"
+          "https://cache.lounge.rocks?priority=100"
+        ];
+        trusted-substituters = mkIf (cfg.disable-cache != true) [
+          "https://cache.nixos.org"
+          "https://cache.lounge.rocks"
+        ];
+
         #Users allowed to run nix
         allowed-users = [ "root" ];
         # Save space by hardlinking store files
