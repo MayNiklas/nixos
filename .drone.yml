@@ -43,40 +43,96 @@ steps:
   - nix build '.#nixosConfigurations.aida.config.system.build.toplevel' --out-link result-aida
   - nix path-info --closure-size -h $(readlink -f result-aida)
 
+- name: Push aida to cachix
+  commands:
+  - nix build '.#nixosConfigurations.aida.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
+
 - name: build deke
   commands:
   - nix build '.#nixosConfigurations.deke.config.system.build.toplevel' --out-link result-deke
   - nix path-info --closure-size -h $(readlink -f result-deke)
+
+- name: Push deke to cachix
+  commands:
+  - nix build '.#nixosConfigurations.deke.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
 
 - name: build kora
   commands:
   - nix build '.#nixosConfigurations.kora.config.system.build.toplevel' --out-link result-kora
   - nix path-info --closure-size -h $(readlink -f result-kora)
 
+- name: Push kora to cachix
+  commands:
+  - nix build '.#nixosConfigurations.kora.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
+
 - name: build simmons
   commands:
   - nix build '.#nixosConfigurations.simmons.config.system.build.toplevel' --out-link result-simmons
   - nix path-info --closure-size -h $(readlink -f result-simmons)
+
+- name: Push simmons to cachix
+  commands:
+  - nix build '.#nixosConfigurations.simmons.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
 
 - name: build snowflake
   commands:
   - nix build '.#nixosConfigurations.snowflake.config.system.build.toplevel' --out-link result-snowflake
   - nix path-info --closure-size -h $(readlink -f result-snowflake)
 
+- name: Push snowflake to cachix
+  commands:
+  - nix build '.#nixosConfigurations.snowflake.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
+
 - name: build the-bus
   commands:
   - nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel' --out-link result-the-bus
   - nix path-info --closure-size -h $(readlink -f result-the-bus)
+
+- name: Push the-bus to cachix
+  commands:
+  - nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
 
 - name: build the-hub
   commands:
   - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' --out-link result-the-hub
   - nix path-info --closure-size -h $(readlink -f result-the-hub)
 
+- name: Push the-hub to cachix
+  commands:
+  - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
+
 - name: build zammad-hetzner
   commands:
   - nix build '.#nixosConfigurations.zammad-hetzner.config.system.build.toplevel' --out-link result-zammad-hetzner
   - nix path-info --closure-size -h $(readlink -f result-zammad-hetzner)
+
+- name: Push zammad-hetzner to cachix
+  commands:
+  - nix build '.#nixosConfigurations.zammad-hetzner.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
 
 - name: upload to binary cache via s3
   commands:
@@ -116,7 +172,7 @@ steps:
 
 - name: Push drone-gen to cachix
   commands:
-  - nix build .#drone-gen --json | jq -r '.[].outputs | to_entries[].value' | nix run 'github:cachix/cachix' -- push mayniklas
+  - nix build .#drone-gen --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
   environment:
     CACHIX_AUTH_TOKEN:
       from_secret: CACHIX_AUTH_TOKEN
@@ -128,7 +184,7 @@ steps:
 
 - name: Push s3uploader to cachix
   commands:
-  - nix build .#s3uploader --json | jq -r '.[].outputs | to_entries[].value' | nix run 'github:cachix/cachix' -- push mayniklas
+  - nix build .#s3uploader --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
   environment:
     CACHIX_AUTH_TOKEN:
       from_secret: CACHIX_AUTH_TOKEN
@@ -140,7 +196,7 @@ steps:
 
 - name: Push vs-fix to cachix
   commands:
-  - nix build .#vs-fix --json | jq -r '.[].outputs | to_entries[].value' | nix run 'github:cachix/cachix' -- push mayniklas
+  - nix build .#vs-fix --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
   environment:
     CACHIX_AUTH_TOKEN:
       from_secret: CACHIX_AUTH_TOKEN
@@ -183,7 +239,7 @@ steps:
 
 - name: Push drone-gen to cachix
   commands:
-  - nix build .#drone-gen --json | jq -r '.[].outputs | to_entries[].value' | nix run 'github:cachix/cachix' -- push mayniklas
+  - nix build .#drone-gen --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
   environment:
     CACHIX_AUTH_TOKEN:
       from_secret: CACHIX_AUTH_TOKEN
@@ -195,7 +251,7 @@ steps:
 
 - name: Push s3uploader to cachix
   commands:
-  - nix build .#s3uploader --json | jq -r '.[].outputs | to_entries[].value' | nix run 'github:cachix/cachix' -- push mayniklas
+  - nix build .#s3uploader --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
   environment:
     CACHIX_AUTH_TOKEN:
       from_secret: CACHIX_AUTH_TOKEN
@@ -207,7 +263,7 @@ steps:
 
 - name: Push vs-fix to cachix
   commands:
-  - nix build .#vs-fix --json | jq -r '.[].outputs | to_entries[].value' | nix run 'github:cachix/cachix' -- push mayniklas
+  - nix build .#vs-fix --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
   environment:
     CACHIX_AUTH_TOKEN:
       from_secret: CACHIX_AUTH_TOKEN

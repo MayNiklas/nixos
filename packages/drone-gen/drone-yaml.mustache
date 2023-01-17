@@ -45,6 +45,13 @@ steps:
   - nix build '.#nixosConfigurations.{{name}}.config.system.build.toplevel' --out-link result-{{name}}
   - nix path-info --closure-size -h $(readlink -f result-{{name}})
 
+- name: Push {{name}} to cachix
+  commands:
+  - nix build '.#nixosConfigurations.{{name}}.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
+
 {{/machines}}
 - name: upload to binary cache via s3
   commands:
@@ -87,7 +94,7 @@ steps:
 
 - name: Push {{name}} to cachix
   commands:
-  - nix build .#{{name}} --json | jq -r '.[].outputs | to_entries[].value' | nix run 'github:cachix/cachix' -- push mayniklas
+  - nix build .#{{name}} --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
   environment:
     CACHIX_AUTH_TOKEN:
       from_secret: CACHIX_AUTH_TOKEN
