@@ -89,6 +89,12 @@
 
         ### servers
 
+        # whisper
+        {
+          publicKey = "gVJDuYk8V5wyN5E+r/TDGWq3NJZ8ifQ2/IZ8BjEW6B0=";
+          allowedIPs = [ "10.88.88.17/32" ];
+        }
+
         # zammad
         {
           publicKey = "utTQ7nXjFzvoelIM92mxwfBN/LplPidKrVgYN8GKTXw=";
