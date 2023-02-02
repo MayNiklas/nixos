@@ -28,6 +28,12 @@
       enable = true;
       home-manager = true;
     };
+    metrics = {
+      node = {
+        enable = true;
+        flake = true;
+      };
+    };
     nginx.enable = true;
   };
 
