@@ -180,6 +180,22 @@
           name = "base-image";
         };
 
+
+      # nix build '.#linode-x86-image'
+      linode-x86-image =
+        let system = "x86_64-linux";
+        in
+        import "${nixpkgs}/nixos/lib/make-disk-image.nix" {
+          pkgs = nixpkgs.legacyPackages."${system}";
+          lib = nixpkgs.lib;
+          config = (nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [ ./images/linode-x86/configuration.nix ];
+          }).config;
+          format = "raw";
+          name = "linode-image";
+        };
+
       # nix build .#vmware-x86-image.config.system.build.vmwareImage
       vmware-x86-image =
         let system = "x86_64-linux";
