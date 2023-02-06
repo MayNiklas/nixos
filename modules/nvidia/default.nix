@@ -13,8 +13,11 @@ in
     services.xserver = { videoDrivers = [ "nvidia" ]; };
     hardware.nvidia.package =
       mkIf cfg.beta-driver config.boot.kernelPackages.nvidiaPackages.beta;
-    nixpkgs.config.allowUnfreePredicate = pkg:
-      builtins.elem (lib.getName pkg) [ "nvidia-x11" "nvidia-settings" ];
+    nixpkgs.config = {
+      allowUnfreePredicate = pkg:
+        builtins.elem (lib.getName pkg) [ "nvidia-x11" "nvidia-settings" ];
+      cudaSupport = true;
+    };
   };
 
 }
