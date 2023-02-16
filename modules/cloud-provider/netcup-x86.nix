@@ -13,6 +13,7 @@ in
 
   options.mayniklas.cloud.netcup-x86 = {
     enable = mkEnableOption "profile for netcup servers";
+    growPartition = mkEnableOption "activate partition grow on boot";
   };
 
   config = mkIf cfg.enable {
@@ -23,12 +24,12 @@ in
     fileSystems."/" = {
       device = "/dev/disk/by-label/nixos";
       fsType = "ext4";
-      autoResize = true;
+      autoResize = mkIf cfg.growPartition true;
     };
 
 
 
-    boot.growPartition = true;
+    boot.growPartition = mkIf cfg.growPartition true;
     boot.kernelParams = [ "console=ttyS0" ];
     boot.loader.grub.device = "/dev/sda";
     boot.loader.timeout = 5;

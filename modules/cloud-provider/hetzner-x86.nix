@@ -10,6 +10,7 @@ in
 
   options.mayniklas.cloud.hetzner-x86 = {
     enable = mkEnableOption "activate hetzner-x86";
+    growPartition = mkEnableOption "activate partition grow on boot";
   };
 
   config = mkIf cfg.enable {
@@ -18,7 +19,7 @@ in
     fileSystems."/" = {
       device = "/dev/disk/by-label/nixos";
       fsType = "ext4";
-      autoResize = true;
+      autoResize = mkIf cfg.growPartition true;
     };
 
     # Use the GRUB 2 boot loader.
@@ -29,7 +30,7 @@ in
         grub.device = "/dev/sda";
         timeout = 0;
       };
-      growPartition = true;
+      growPartition = mkIf cfg.growPartition true;
       kernelParams = [ "console=ttyS0" ];
       initrd.availableKernelModules =
         [ "ata_piix" "virtio_pci" "xhci_pci" "sd_mod" "sr_mod" ];
