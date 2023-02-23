@@ -1,4 +1,4 @@
-{ self, lib, ... }: {
+{ self, pkgs, lib, config, cachix, ... }: {
 
   mayniklas = {
     user = {
@@ -21,6 +21,14 @@
       home-manager = true;
     };
     zsh.enable = true;
+  };
+
+  home-manager.users.nik = {
+    home.packages =
+      let
+        cachix_package = cachix.packages.${pkgs.system}.cachix;
+      in
+      with pkgs; [ cachix_package ];
   };
 
   fileSystems."/" = {

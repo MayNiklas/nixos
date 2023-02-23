@@ -84,6 +84,8 @@
       };
     };
 
+    cachix.url = "github:cachix/cachix/v1.2";
+
   };
   outputs = { self, ... }@inputs:
     with inputs;
