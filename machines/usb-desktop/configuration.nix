@@ -57,6 +57,7 @@
   networking = {
     hostName = "usb-desktop";
     useDHCP = lib.mkDefault true;
+    firewall = { allowedTCPPorts = [ 9100 9115 ]; };
   };
 
   system.stateVersion = "22.05";
