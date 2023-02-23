@@ -21,6 +21,8 @@ in
     hardware.nvidia.package =
       mkIf cfg.beta-driver config.boot.kernelPackages.nvidiaPackages.beta;
 
+    environment.systemPackages = with pkgs; [ nvtop ];
+
     nixpkgs.config = {
       # allow nvidia-x11 and nvidia-settings to be installed (unfree)
       allowUnfreePredicate = pkg:
