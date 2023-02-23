@@ -210,6 +210,22 @@
           ];
         };
 
+      # nix build '.#usb-desktop-image'
+      usb-desktop-image =
+        let system = "x86_64-linux";
+        in
+        import "${nixpkgs}/nixos/lib/make-disk-image.nix" {
+          pkgs = nixpkgs.legacyPackages."${system}";
+          lib = nixpkgs.lib;
+          config = (nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [ ./images/usb-desktop/configuration.nix ];
+          }).config;
+          partitionTableType = "efi";
+          format = "raw";
+          name = "usb-desktop-image";
+        };
+
     } //
 
     # All packages in the ./packages subfolder are also added to the flake.
