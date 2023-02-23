@@ -13,13 +13,16 @@ in
 
     services.xserver = { videoDrivers = [ "nvidia" ]; };
 
-    # when docker is enabled, enable nvidia-docker
-    hardware.opengl.driSupport32Bit = mkIf config.virtualisation.docker.enable true;
-    virtualisation.docker.enableNvidia = mkIf config.virtualisation.docker.enable true;
+    hardware = {
+      opengl.enable = true;
+      opengl.driSupport32Bit = mkIf config.virtualisation.docker.enable true;
+      # use nvidia-beta driver when beta-driver is enabled
+      nvidia.package =
+        mkIf cfg.beta-driver config.boot.kernelPackages.nvidiaPackages.beta;
+    };
 
-    # use nvidia-beta driver when beta-driver is enabled
-    hardware.nvidia.package =
-      mkIf cfg.beta-driver config.boot.kernelPackages.nvidiaPackages.beta;
+    # when docker is enabled, enable nvidia-docker
+    virtualisation.docker.enableNvidia = mkIf config.virtualisation.docker.enable true;
 
     environment.systemPackages = with pkgs; [ nvtop ];
 
