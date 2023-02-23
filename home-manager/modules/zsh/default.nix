@@ -8,6 +8,13 @@ in
   options.mayniklas.programs.zsh.enable = mkEnableOption "enable zsh";
 
   config = mkIf cfg.enable {
+
+    programs.tmux = {
+      enable = true;
+      # not available in 22.11
+      # mouse = true;
+    };
+
     programs.zsh = {
       enable = true;
       enableAutosuggestions = true;
