@@ -14,12 +14,13 @@ self: super: {
   drone = super.pkgs.callPackage ../packages/drone { };
   drone-gen = super.pkgs.callPackage ../packages/drone-gen { };
   minecraft-server = super.pkgs.callPackage ../packages/minecraft-server { };
+  mtu-check = super.pkgs.callPackage ../packages/mtu-check { };
   niki-store = super.pkgs.callPackage ../packages/niki-store { };
   owncast = super.pkgs.callPackage ../packages/owncast { };
   plex = super.pkgs.callPackage ../packages/plex { };
   plexRaw = super.pkgs.callPackage ../packages/plex/raw.nix { };
-  mtu-check = super.pkgs.callPackage ../packages/mtu-check { };
   s3uploader = super.pkgs.callPackage ../packages/s3uploader { };
+  update-input = super.pkgs.callPackage ../packages/update-input { };
   # tautulli = super.pkgs.python3Packages.callPackage ../packages/tautulli { };
   verification-listener =
     super.pkgs.python3Packages.callPackage ../packages/verification-listener

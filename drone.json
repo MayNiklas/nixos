@@ -58,6 +58,9 @@
                     "name": "s3uploader"
                 },
                 {
+                    "name": "update-input"
+                },
+                {
                     "name": "vs-fix"
                 }
             ]

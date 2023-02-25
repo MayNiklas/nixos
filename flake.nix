@@ -257,6 +257,7 @@
             drone-gen = pkgs.drone-gen;
             mtu-check = pkgs.mtu-check;
             s3uploader = pkgs.s3uploader;
+            update-input = pkgs.update-input;
             vs-fix = pkgs.vs-fix;
           };
 
@@ -264,6 +265,7 @@
           apps = {
             drone-gen = flake-utils.lib.mkApp { drv = packages.drone-gen; };
             s3uploader = flake-utils.lib.mkApp { drv = packages.s3uploader; };
+            update-input = flake-utils.lib.mkApp { drv = packages.update-input; };
             vs-fix = flake-utils.lib.mkApp { drv = packages.vs-fix; };
 
             # lollypops deployment tool

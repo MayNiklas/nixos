@@ -9,6 +9,7 @@ self: super: {
     drone-gen = super.pkgs.callPackage ../packages/drone-gen { };
     mtu-check = super.pkgs.callPackage ../packages/mtu-check { };
     s3uploader = super.pkgs.callPackage ../packages/s3uploader { };
+    update-input = super.pkgs.callPackage ../packages/update-input { };
     vs-fix = super.pkgs.callPackage ../packages/vs-fix { };
   };
 }

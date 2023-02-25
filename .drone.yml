@@ -268,6 +268,18 @@ steps:
     CACHIX_AUTH_TOKEN:
       from_secret: CACHIX_AUTH_TOKEN
 
+- name: Build update-input
+  commands:
+  - nix build .#update-input --out-link result-update-input
+  - nix path-info --closure-size -h $(readlink -f result-update-input)
+
+- name: Push update-input to cachix
+  commands:
+  - nix build .#update-input --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
+
 - name: Build vs-fix
   commands:
   - nix build .#vs-fix --out-link result-vs-fix
