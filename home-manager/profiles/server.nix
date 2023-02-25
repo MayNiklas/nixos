@@ -7,6 +7,7 @@
   home.packages =
     let
       drone-gen = pkgs.callPackage ../../packages/drone-gen { };
+      update-input = pkgs.callPackage ../../packages/update-input { };
       vs-fix = pkgs.callPackage ../../packages/vs-fix { };
     in
     with pkgs; [
@@ -17,6 +18,7 @@
       unzip
 
       drone-gen
+      update-input
       vs-fix
     ];
 
