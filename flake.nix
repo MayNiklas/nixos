@@ -254,6 +254,7 @@
           # allow using them from other flakes that import this one.
 
           packages = flake-utils.lib.flattenTree {
+            build-system = pkgs.build-system;
             drone-gen = pkgs.drone-gen;
             mtu-check = pkgs.mtu-check;
             s3uploader = pkgs.s3uploader;
@@ -263,6 +264,7 @@
 
           # Allow custom packages to be run using `nix run`
           apps = {
+            build-system = flake-utils.lib.mkApp { drv = packages.build-system; };
             drone-gen = flake-utils.lib.mkApp { drv = packages.drone-gen; };
             s3uploader = flake-utils.lib.mkApp { drv = packages.s3uploader; };
             update-input = flake-utils.lib.mkApp { drv = packages.update-input; };

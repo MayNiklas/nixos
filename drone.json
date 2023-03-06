@@ -38,6 +38,9 @@
             "arch": "amd64",
             "apps": [
                 {
+                    "name": "build-system"
+                },
+                {
                     "name": "drone-gen"
                 },
                 {
@@ -51,6 +54,9 @@
         {
             "arch": "arm64",
             "apps": [
+                {
+                    "name": "build-system"
+                },
                 {
                     "name": "drone-gen"
                 },

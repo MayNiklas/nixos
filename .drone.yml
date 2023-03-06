@@ -177,6 +177,18 @@ clone:
 
 steps:
 
+- name: Build build-system
+  commands:
+  - nix build .#build-system --out-link result-build-system
+  - nix path-info --closure-size -h $(readlink -f result-build-system)
+
+- name: Push build-system to cachix
+  commands:
+  - nix build .#build-system --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
+
 - name: Build drone-gen
   commands:
   - nix build .#drone-gen --out-link result-drone-gen
@@ -243,6 +255,18 @@ clone:
   depth: 1
 
 steps:
+
+- name: Build build-system
+  commands:
+  - nix build .#build-system --out-link result-build-system
+  - nix path-info --closure-size -h $(readlink -f result-build-system)
+
+- name: Push build-system to cachix
+  commands:
+  - nix build .#build-system --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
 
 - name: Build drone-gen
   commands:

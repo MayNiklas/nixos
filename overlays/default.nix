@@ -9,6 +9,7 @@ self: super: {
   # needed.
 
   anki-bin = super.pkgs.callPackage ../packages/anki-bin { };
+  build-system = super.pkgs.callPackage ../packages/build-system { };
   bukkit-spigot = super.pkgs.callPackage ../packages/bukkit-spigot { };
   darknet = super.pkgs.callPackage ../packages/darknet { };
   drone = super.pkgs.callPackage ../packages/drone { };

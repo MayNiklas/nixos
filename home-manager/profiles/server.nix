@@ -6,6 +6,7 @@
   # Install these packages for my user
   home.packages =
     let
+      build-system = pkgs.callPackage ../../packages/build-system { };
       drone-gen = pkgs.callPackage ../../packages/drone-gen { };
       update-input = pkgs.callPackage ../../packages/update-input { };
       vs-fix = pkgs.callPackage ../../packages/vs-fix { };
@@ -17,6 +18,7 @@
       nixpkgs-fmt
       unzip
 
+      build-system
       drone-gen
       update-input
       vs-fix
