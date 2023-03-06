@@ -9,6 +9,7 @@ let
 
   # build system script
   build-system-in-tmux-skript = writeShellScriptBin "build-system-in-tmux" ''
+    # build nixos system configuration
     ${nixos-rebuild}/bin/nixos-rebuild build --flake 'github:mayniklas/nixos'
   '';
 
@@ -18,7 +19,7 @@ let
     ${tmux}/bin/tmux has-session -t build-system || ${tmux}/bin/tmux new-session -d -s build-system
 
     # run nixos-rebuild build in tmux session 'build-system'
-    ${tmux}/bin/tmux send-keys -t build-system "${build-system-in-tmux-skript}/bin/build-system-in-tmux" C-m
+    ${tmux}/bin/tmux send-keys -t build-system "${build-system-in-tmux-skript}/bin/build-system-in-tmux && exit" C-m
   '';
 
 in
