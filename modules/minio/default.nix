@@ -13,14 +13,22 @@ in
 
   config = mkIf cfg.enable {
 
+    # services.minio = mkIf cfg.storage-target {
+    #   enable = true;
+    #   listenAddress = "127.0.0.1:9000";
+    #   consoleAddress = "127.0.0.1:9001";
+    #   region = "eu-central-1";
+    #   rootCredentialsFile = config.sops.secrets."minio/env".path;
+    # };
+
+    # systemd.services.minio = mkIf cfg.storage-target {
+    #   environment = {
+    #     MINIO_SERVER_URL = "https://s3.lounge.rocks";
+    #     MINIO_BROWSER_REDIRECT_URL = "https://minio.s3.lounge.rocks";
+    #   };
+    # };
+
     networking = {
-      # Additional hosts to put in /etc/hosts
-      # for:
-      # nix run '.#lollypops' -- minio-nginx-hetzner minio-hetzner-1 -p
-      extraHosts = ''
-        100.108.70.109 minio-nginx-hetzner
-        100.90.219.83 minio-hetzner-1
-      '';
       firewall.checkReversePath = "loose";
     };
 

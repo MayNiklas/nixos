@@ -24,7 +24,7 @@
 
 
   networking = {
-    hostName = "minio-hetzner-1";
+    hostName = "minio-1";
     interfaces.ens3 = {
       ipv6.addresses = [{
         address = "2a01:4f8:1c1c:1adb::";

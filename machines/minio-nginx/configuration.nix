@@ -24,7 +24,7 @@
 
 
   networking = {
-    hostName = "minio-nginx-hetzner";
+    hostName = "minio-nginx";
     interfaces.ens3 = {
       ipv6.addresses = [{
         address = "2a01:4f8:1c1b:c680::";
