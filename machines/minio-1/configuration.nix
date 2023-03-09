@@ -7,7 +7,11 @@
       enable = true;
       storage-target = true;
     };
-    cloud.hetzner-x86.enable = true;
+    cloud.hetzner-x86 = {
+      enable = true;
+      interface = "ens3";
+      ipv6_address = "2a01:4f8:1c1c:1adb::";
+    };
     server = {
       enable = true;
       home-manager = true;
@@ -25,16 +29,6 @@
 
   networking = {
     hostName = "minio-1";
-    interfaces.ens3 = {
-      ipv6.addresses = [{
-        address = "2a01:4f8:1c1c:1adb::";
-        prefixLength = 64;
-      }];
-    };
-    defaultGateway6 = {
-      address = "fe80::1";
-      interface = "ens3";
-    };
   };
 
   system.stateVersion = "22.05";

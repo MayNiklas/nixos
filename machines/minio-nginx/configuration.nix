@@ -7,7 +7,11 @@
       enable = true;
       load-ballancer = true;
     };
-    cloud.hetzner-x86.enable = true;
+    cloud.hetzner-x86 = {
+      enable = true;
+      interface = "ens3";
+      ipv6_address = "2a01:4f8:1c1b:c680::";
+    };
     server = {
       enable = true;
       home-manager = true;
@@ -22,19 +26,8 @@
     zsh.enable = true;
   };
 
-
   networking = {
     hostName = "minio-nginx";
-    interfaces.ens3 = {
-      ipv6.addresses = [{
-        address = "2a01:4f8:1c1b:c680::";
-        prefixLength = 64;
-      }];
-    };
-    defaultGateway6 = {
-      address = "fe80::1";
-      interface = "ens3";
-    };
   };
 
   system.stateVersion = "22.05";
