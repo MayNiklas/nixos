@@ -21,6 +21,7 @@ in
         100.108.70.109 minio-nginx-hetzner
         100.90.219.83 minio-hetzner-1
       '';
+      firewall.checkReversePath = "loose";
     };
 
     # we use tailscale for communication between the reverse proxy & storage targets
