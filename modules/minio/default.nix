@@ -30,6 +30,7 @@ in
 
     networking = {
       firewall.checkReversePath = "loose";
+      nameservers = [ "100.100.100.100" ];
     };
 
     # we use tailscale for communication between the reverse proxy & storage targets
