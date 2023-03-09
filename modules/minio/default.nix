@@ -31,6 +31,14 @@ in
     networking = {
       firewall.checkReversePath = "loose";
       nameservers = [ "100.100.100.100" ];
+
+      firewall.interfaces = {
+        ${config.services.tailscale.interfaceName} = {
+          # minio storage targets should have ports 9000 & 9001 open via tailscale
+          allowedTCPPorts = mkIf cfg.storage-target [ 9000 9001 ];
+        };
+      };
+
     };
 
     # we use tailscale for communication between the reverse proxy & storage targets
