@@ -36,6 +36,12 @@
       url = "github:NixOS/nixos-hardware";
     };
 
+    # Visual Studio Code Server support in NixOS
+    # https://github.com/msteen/nixos-vscode-server
+    vscode-server = {
+      url = "github:msteen/nixos-vscode-server";
+    };
+
     # Adblocking lists for Unbound DNS servers running on NixOS
     # https://github.com/MayNiklas/nixos-adblock-unbound
     adblock-unbound = {
@@ -122,9 +128,23 @@
       //
 
       {
-        home-manager = { config, pkgs, lib, ... }: {
-          imports = [ ./home-manager ];
-        };
+        home-manager = { config, pkgs, lib, ... }:
+          let
+            cfg = config.mayniklas.home-manager;
+          in
+          {
+            imports = [ ./home-manager ];
+
+            home-manager.users."${cfg.username}" = lib.mkIf cfg.enable {
+              imports = [
+                vscode-server.nixosModules.home
+              ];
+
+              # Visual Studio Code Server support
+              services.vscode-server.enable = true;
+
+            };
+          };
       };
 
       # Each subdirectory in ./machines is a host. Add them all to
