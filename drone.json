@@ -23,12 +23,6 @@
                 },
                 {
                     "name": "the-hub"
-                },
-                {
-                    "name": "whisper"
-                },
-                {
-                    "name": "zammad-hetzner"
                 }
             ]
         }

@@ -122,30 +122,6 @@ steps:
     CACHIX_AUTH_TOKEN:
       from_secret: CACHIX_AUTH_TOKEN
 
-- name: build whisper
-  commands:
-  - nix build '.#nixosConfigurations.whisper.config.system.build.toplevel' --out-link result-whisper
-  - nix path-info --closure-size -h $(readlink -f result-whisper)
-
-- name: Push whisper to cachix
-  commands:
-  - nix build '.#nixosConfigurations.whisper.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  environment:
-    CACHIX_AUTH_TOKEN:
-      from_secret: CACHIX_AUTH_TOKEN
-
-- name: build zammad-hetzner
-  commands:
-  - nix build '.#nixosConfigurations.zammad-hetzner.config.system.build.toplevel' --out-link result-zammad-hetzner
-  - nix path-info --closure-size -h $(readlink -f result-zammad-hetzner)
-
-- name: Push zammad-hetzner to cachix
-  commands:
-  - nix build '.#nixosConfigurations.zammad-hetzner.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  environment:
-    CACHIX_AUTH_TOKEN:
-      from_secret: CACHIX_AUTH_TOKEN
-
 - name: upload to binary cache via s3
   commands:
   - nix run 'github:mayniklas/nixos'#s3uploader
@@ -385,16 +361,6 @@ steps:
   commands:
   - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' --out-link result-the-hub
   - nix path-info --closure-size -h $(readlink -f result-the-hub)
-
-- name: build whisper
-  commands:
-  - nix build '.#nixosConfigurations.whisper.config.system.build.toplevel' --out-link result-whisper
-  - nix path-info --closure-size -h $(readlink -f result-whisper)
-
-- name: build zammad-hetzner
-  commands:
-  - nix build '.#nixosConfigurations.zammad-hetzner.config.system.build.toplevel' --out-link result-zammad-hetzner
-  - nix path-info --closure-size -h $(readlink -f result-zammad-hetzner)
 
 trigger:
   branch:
