@@ -11,9 +11,39 @@ in
   options.mayniklas.cloud.hetzner-x86 = {
     enable = mkEnableOption "activate hetzner-x86";
     growPartition = mkEnableOption "activate partition grow on boot";
+
+    interface = mkOption {
+      type = types.str;
+      default = "ens3";
+      description = "Interface to use";
+    };
+    ipv6_address = mkOption {
+      type = types.str;
+      default = "NONE";
+      description = "IPv6 address of the server";
+    };
+
   };
 
   config = mkIf cfg.enable {
+
+    # set cfg.ipv6_address to the IPv6 address of the server
+    # set cfg.interface to the interface to use
+    networking = {
+      interfaces.${cfg.interface} = {
+        ipv6.addresses = (mkIf (cfg.ipv6_address != "NONE"))
+          [
+            {
+              address = "${cfg.ipv6_address}";
+              prefixLength = 64;
+            }
+          ];
+      };
+      defaultGateway6 = (mkIf (cfg.ipv6_address != "NONE")) {
+        address = "fe80::1";
+        interface = "${cfg.interface}";
+      };
+    };
 
     # Filesystem
     fileSystems."/" = {
