@@ -16,14 +16,12 @@
     };
   };
 
-  ### remove lines once server module got enabled
   mayniklas = {
     locale.enable = true;
     nix-common = { enable = true; };
     openssh.enable = true;
     zsh.enable = true;
   };
-
 
   networking = {
     hostName = "minio-1";

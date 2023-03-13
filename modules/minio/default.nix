@@ -24,6 +24,9 @@ in
       listenAddress = "0.0.0.0:9000";
       consoleAddress = "0.0.0.0:9001";
       region = "eu-central-1";
+      # file contains:
+      # MINIO_ROOT_USER=
+      # MINIO_ROOT_PASSWORD=
       rootCredentialsFile = "/var/src/secrets/minio";
     };
 
@@ -35,18 +38,20 @@ in
     };
 
     networking = {
+
       firewall.checkReversePath = "loose";
       nameservers = [ "100.100.100.100" "1.1.1.1" ];
 
       firewall = {
 
+        # minio load ballancer should have ports 80 & 443 open
         allowedTCPPorts =
           mkIf cfg.load-ballancer [ 80 443 ];
 
         interfaces = {
 
+          # minio storage targets should have ports 9000 & 9001 open via tailscale
           ${config.services.tailscale.interfaceName} = {
-            # minio storage targets should have ports 9000 & 9001 open via tailscale
             allowedTCPPorts =
               mkIf cfg.storage-target [ 9000 9001 ];
           };
@@ -72,7 +77,11 @@ in
 
       virtualHosts = {
 
-        # Minio s3 backend
+        # TODO:
+        # add minio-upstream group and use it in the locations
+        # https://min.io/docs/minio/linux/integrations/setup-nginx-proxy-with-minio.html#integrations-nginx-proxy
+
+        # minio s3 backend
         "${cfg.domain}" = {
           addSSL = true;
           enableACME = true;
@@ -103,8 +112,8 @@ in
           };
         };
 
-        # Minio admin console
-        "minio1.${cfg.domain}" = {
+        # minio admin console
+        "minio.${cfg.domain}" = {
           addSSL = true;
           enableACME = true;
           extraConfig = ''
@@ -142,15 +151,6 @@ in
     services.tailscale = {
       enable = true;
       interfaceName = "tailscale0";
-    };
-
-    # we want to deploy from our nginx system -> dev purposes
-    users.users = {
-      root = {
-        openssh.authorizedKeys.keys = [
-          "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQChYWn2XCh9VYr6DXibX9rLbnikafhZyviDvwfiKQ1m1WNy9sLkd5s3iK4kc1QFeN9y3Kw5oIeok1c6OmG9YsGJVwt/TooobFQiN0gzeBi5rEiFzBcaCPEbooL+n7Yu9/tq7j4bp28eqfzxtJquEQnXan/X1GOSusXcMI2YyCkQW29dX1YwDnftS9MR5KYky795yEwSa0VjpRm84RfzFN4bbS5sRKvWokODGh7hVF6wGXVrm2slnClRlvhOuLUvrKD2svCxH1mc0HW5CIuVK+1dDLlnNHy8Yhbr+iT+CMFRbBreIFK4htDYwRcxzOBmejZMRB7DfvKlkAl4Eca9/H7SrP/bALsP6PQdHqoCIfUhM/XQqRdmBw3hHsyIDqxIPMLqwCqSgyoRUFH/gBtla1AE1LTmV6TOpFFeDQ3DkGrwYyllJO+0qd/u9VcbDYm441K69nUsoXmURULCfKg+dCPly3Yf6aig4hXY6S7FQidvZpd2N8o9RQujoi0Osn8Lve0= nik@minio-hetzner-1"
-        ];
-      };
     };
 
   };

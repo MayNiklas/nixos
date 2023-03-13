@@ -16,7 +16,6 @@
     };
   };
 
-  ### remove lines once server module got enabled
   mayniklas = {
     locale.enable = true;
     nix-common = { enable = true; };
