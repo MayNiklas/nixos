@@ -30,7 +30,7 @@ in
     systemd.services.minio = mkIf cfg.storage-target {
       environment = {
         MINIO_SERVER_URL = "https://${cfg.domain}";
-        MINIO_BROWSER_REDIRECT_URL = "https://minio.{cfg.domain}";
+        MINIO_BROWSER_REDIRECT_URL = "https://minio1.${cfg.domain}";
       };
     };
 
@@ -40,7 +40,8 @@ in
 
       firewall = {
 
-        allowedTCPPorts = mkIf cfg.load-ballancer [ 80 443 ];
+        allowedTCPPorts =
+          mkIf cfg.load-ballancer [ 80 443 ];
 
         interfaces = {
 
@@ -103,7 +104,7 @@ in
         };
 
         # Minio admin console
-        "minio.${cfg.domain}" = {
+        "minio1.${cfg.domain}" = {
           addSSL = true;
           enableACME = true;
           extraConfig = ''
