@@ -107,7 +107,7 @@ in
 
         speed-limit-down = 22500;
         speed-limit-down-enabled = true;
-        speed-limit-up = 2500;
+        speed-limit-up = 1500;
         speed-limit-up-enabled = true;
 
         alt-speed-down = 12500;
