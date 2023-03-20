@@ -122,6 +122,18 @@ steps:
     CACHIX_AUTH_TOKEN:
       from_secret: CACHIX_AUTH_TOKEN
 
+- name: build usb-desktop
+  commands:
+  - nix build '.#nixosConfigurations.usb-desktop.config.system.build.toplevel' --out-link result-usb-desktop
+  - nix path-info --closure-size -h $(readlink -f result-usb-desktop)
+
+- name: Push usb-desktop to cachix
+  commands:
+  - nix build '.#nixosConfigurations.usb-desktop.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
+
 - name: upload to binary cache via s3
   commands:
   - nix run 'github:mayniklas/nixos'#s3uploader
@@ -361,6 +373,11 @@ steps:
   commands:
   - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' --out-link result-the-hub
   - nix path-info --closure-size -h $(readlink -f result-the-hub)
+
+- name: build usb-desktop
+  commands:
+  - nix build '.#nixosConfigurations.usb-desktop.config.system.build.toplevel' --out-link result-usb-desktop
+  - nix path-info --closure-size -h $(readlink -f result-usb-desktop)
 
 trigger:
   branch:

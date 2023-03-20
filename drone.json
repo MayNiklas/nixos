@@ -23,6 +23,9 @@
                 },
                 {
                     "name": "the-hub"
+                },
+                {
+                    "name": "usb-desktop"
                 }
             ]
         }
