@@ -63,6 +63,7 @@
       gtk.enable = true;
       i3.enable = true;
       rofi.enable = true;
+      tmux.enable = true;
       vim.enable = true;
       vscode.enable = true;
       zsh.enable = true;
@@ -81,6 +82,7 @@
     ../modules/gtk
     ../modules/i3
     ../modules/rofi
+    ../modules/tmux
     ../modules/vim
     ../modules/vim
     ../modules/vs-fix

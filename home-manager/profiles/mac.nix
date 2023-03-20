@@ -33,10 +33,12 @@
 
   mayniklas.programs = {
     git.enable = true;
+    tmux.enable = true;
   };
 
   imports = [
     ../modules/git
+    ../modules/tmux
   ];
 
   home = {
