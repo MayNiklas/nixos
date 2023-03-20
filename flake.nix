@@ -173,54 +173,8 @@
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            {
-              mayniklas.programs.git.enable = true;
-
-              home.packages = with pkgs;[
-                # my packages
-                whisper_cli
-
-                # nix tools
-                nixpkgs-fmt
-
-                # network tools
-                iperf
-                nmap
-                speedtest-cli
-                wakeonlan
-                wireshark
-
-                # devops tools
-                ansible
-                ansible-lint
-                glances
-                glances
-                hugo
-                terraform
-                wget
-
-                # dev tools
-                asciinema
-                go
-                pre-commit
-                rpiboot
-                texlive.combined.scheme-full
-              ];
-
-              manual.manpages.enable = true;
-
-              home = {
-                username = "nik";
-                homeDirectory = "/Users/nik";
-                stateVersion = "22.05";
-              };
-
-              programs.command-not-found.enable = true;
-
-              # Let Home Manager install and manage itself.
-              programs.home-manager.enable = true;
-            }
-            ./home-manager/modules/git/default.nix
+            { }
+            ./home-manager/profiles/mac.nix
           ];
           # Optionally use extraSpecialArgs
           # to pass through arguments to home.nix
