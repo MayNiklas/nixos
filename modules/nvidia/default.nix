@@ -23,15 +23,8 @@ in
         driSupport32Bit = mkIf config.virtualisation.docker.enable true;
       };
 
-      nvidia = {
-
-        # nvidia-drm.modeset=1 is required for some wayland compositors, e.g. sway
-        modesetting.enable = true;
-
-        # use nvidia-beta driver when beta-driver is enabled
-        package = mkIf cfg.beta-driver config.boot.kernelPackages.nvidiaPackages.beta;
-
-      };
+      # use nvidia-beta driver when beta-driver is enabled
+      nvidia.package = mkIf cfg.beta-driver config.boot.kernelPackages.nvidiaPackages.beta;
 
     };
 

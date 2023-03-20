@@ -20,6 +20,7 @@
       enable = true;
       home-manager = true;
     };
+    sway.enable = true;
     zsh.enable = true;
   };
 
@@ -28,7 +29,18 @@
       let
         cachix_package = cachix.packages.${pkgs.system}.cachix;
       in
-      with pkgs; [ cachix_package ];
+      with pkgs; [
+        cachix_package
+
+        firefox
+        sublime4
+      ];
+    # TODO: fix VSCode with sway on NVIDIA
+    programs.vscode = {
+      enable = true;
+      package = pkgs.vscode;
+      extensions = with pkgs.vscode-extensions; [ ];
+    };
   };
 
   fileSystems."/" = {
