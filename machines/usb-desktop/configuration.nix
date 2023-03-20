@@ -1,4 +1,11 @@
-{ self, pkgs, lib, config, cachix, ... }: {
+{ self, pkgs, lib, config, nixos-hardware, cachix, ... }: {
+
+  imports = with nixos-hardware.nixosModules; [
+    common-cpu-amd
+    common-cpu-amd-pstate
+    common-gpu-nvidia-nonprime
+    common-pc-ssd
+  ];
 
   mayniklas = {
     user = {
