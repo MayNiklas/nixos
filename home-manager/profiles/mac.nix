@@ -4,6 +4,9 @@
     # my packages
     whisper_cli
 
+    # GUI apps
+    obsidian
+
     # nix tools
     nixpkgs-fmt
 
