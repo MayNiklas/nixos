@@ -7,6 +7,10 @@
     # https://github.com/NixOS/nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
 
+    # Nix Packages collection
+    # https://github.com/NixOS/nixpkgs/tree/nixos-unstable
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
     # Manage a user environment using Nix 
     # https://github.com/nix-community/home-manager
     home-manager = {
@@ -90,6 +94,10 @@
       };
     };
 
+    whisper_api = {
+      url = "github:MayNiklas/whisper_api";
+    };
+
     cachix.url = "github:cachix/cachix/v1.2";
 
   };
@@ -146,6 +154,78 @@
             };
           };
       };
+
+      # nix run .#homeConfigurations.nik@MacBook-Pro-14-2021.activationPackage
+      # home-manager switch --flake .
+      homeConfigurations."nik@MacBook-Pro-14-2021" =
+        let
+          system = "aarch64-darwin";
+          pkgs = import nixpkgs-unstable {
+            inherit system;
+            config = { allowUnfree = true; };
+            overlays = [
+              (self: super: {
+                whisper_cli = whisper_api.packages.${system}.whisper_cli;
+              })
+            ];
+          };
+        in
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            {
+              mayniklas.programs.git.enable = true;
+
+              home.packages = with pkgs;[
+                # my packages
+                whisper_cli
+
+                # nix tools
+                nixpkgs-fmt
+
+                # network tools
+                iperf
+                nmap
+                speedtest-cli
+                wakeonlan
+                wireshark
+
+                # devops tools
+                ansible
+                ansible-lint
+                glances
+                glances
+                hugo
+                terraform
+                wget
+
+                # dev tools
+                asciinema
+                go
+                pre-commit
+                rpiboot
+                texlive.combined.scheme-full
+              ];
+
+              manual.manpages.enable = true;
+
+              home = {
+                username = "nik";
+                homeDirectory = "/Users/nik";
+                stateVersion = "22.05";
+              };
+
+              programs.command-not-found.enable = true;
+
+              # Let Home Manager install and manage itself.
+              programs.home-manager.enable = true;
+            }
+            ./home-manager/modules/git/default.nix
+          ];
+          # Optionally use extraSpecialArgs
+          # to pass through arguments to home.nix
+          extraSpecialArgs = { } // inputs;
+        };
 
       # Each subdirectory in ./machines is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
