@@ -163,11 +163,7 @@
           pkgs = import nixpkgs-unstable {
             inherit system;
             config = { allowUnfree = true; };
-            overlays = [
-              (self: super: {
-                whisper_cli = whisper_api.packages.${system}.whisper_cli;
-              })
-            ];
+            overlays = [ ];
           };
         in
         home-manager.lib.homeManagerConfiguration {

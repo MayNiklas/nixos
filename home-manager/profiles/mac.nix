@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, whisper_api, ... }: {
 
   home.packages = with pkgs;[
     # my packages
@@ -40,6 +40,13 @@
   };
 
   imports = [
+    {
+      nixpkgs.overlays = [
+        (self: super: {
+          whisper_cli = whisper_api.packages.${pkgs.system}.whisper_cli;
+        })
+      ];
+    }
     ../modules/git
     ../modules/tmux
   ];
