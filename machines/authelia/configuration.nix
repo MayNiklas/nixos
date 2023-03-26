@@ -19,13 +19,45 @@
   ### NOT WORKING YET ###
   services.authelia.instances = {
     main = {
-      enable = false;
+      enable = true;
       package = pkgs.authelia;
       settings = {
         theme = "dark";
         server = {
           host = "0.0.0.0";
           port = 9091;
+        };
+
+        authentication_backend = {
+          file.path = "/var/lib/authelia-main/user.yml";
+        };
+
+        storage.local.path = "/var/lib/authelia-main/db.sqlite";
+
+        session = {
+          secret = "this-is-just-a-test-secret";
+          domain = "authelia.lounge.rocks";
+          expiration = 3600; # 1 hour
+          inactivity = 300; # 5 minutes
+        };
+        # redis:
+        #   host: redis
+        #   port: 6379
+
+        notifier.filesystem.filename = "/var/lib/authelia-main/emails.txt";
+
+        access_control = {
+          default_policy = "bypass";
+          rules = [
+            {
+              domain = "public.example.com";
+              policy = "bypass";
+            }
+            {
+              domain = "traefik.example.com";
+              policy = "one_factor";
+            }
+          ];
         };
       };
       secrets = {
@@ -39,6 +71,26 @@
   # server also runs keycloak for evaluation purposes
   mayniklas.keycloak.enable = true;
   mayniklas.nginx.enable = true;
+
+
+
+    services.nginx.virtualHosts = {
+      "authelia.lounge.rocks" = {
+        enableACME = true;
+        forceSSL = true;
+        locations = {
+          "/" = {
+            proxyPass = "http://127.0.0.1:9091";
+            # extraConfig = ''
+            #   proxy_set_header X-Forwarded-Host $http_host;
+            #   proxy_set_header X-Real-IP $remote_addr;
+            #   proxy_set_header X-Forwarded-Proto $scheme;
+            # '';
+          };
+        };
+      };
+    };
+
 
   users.users.root = {
     openssh.authorizedKeys.keyFiles = [
