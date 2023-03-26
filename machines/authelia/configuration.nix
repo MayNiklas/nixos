@@ -19,7 +19,7 @@
   ### NOT WORKING YET ###
   services.authelia.instances = {
     main = {
-      enable = true;
+      enable = false;
       package = pkgs.authelia;
       settings = {
         theme = "dark";
@@ -34,6 +34,11 @@
       };
     };
   };
+
+
+  # server also runs keycloak for evaluation purposes
+  mayniklas.keycloak.enable = true;
+  mayniklas.nginx.enable = true;
 
   users.users.root = {
     openssh.authorizedKeys.keyFiles = [
@@ -58,6 +63,9 @@
 
   networking = {
     hostName = "authelia";
+    firewall = {
+      allowedTCPPorts = [ 80 443 ];
+    };
   };
 
   system.stateVersion = "22.05";
