@@ -26,6 +26,10 @@ in
   };
   config = mkIf cfg.enable {
 
+    # Before enabling this module, you need to create a database password file:
+    # sudo mkdir -p /var/src/secrets/keycloak
+    # sudo touch /var/src/secrets/keycloak/db_passwordFile
+
     services.keycloak = {
       enable = true;
       database = {
