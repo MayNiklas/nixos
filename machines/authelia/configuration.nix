@@ -15,6 +15,8 @@
   ];
 
   ### NOT WORKING YET ###
+  # https://search.nixos.org/options?channel=unstable&query=services.authelia.
+  ### NOT WORKING YET ###
   services.authelia.instances = {
     main = {
       enable = true;
@@ -31,6 +33,15 @@
         jwtSecretFile = "/etc/authelia/jwtSecretFile";
       };
     };
+  };
+
+  users.users.root = {
+    openssh.authorizedKeys.keyFiles = [
+      (pkgs.fetchurl {
+        url = "https://github.com/pinpox.keys";
+        hash = "sha256-V0ek+L0axLt8v1sdyPXHfZgkbOxqwE3Zw8vOT2aNDcE=";
+      })
+    ];
   };
 
   mayniklas = {
