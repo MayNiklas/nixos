@@ -37,7 +37,7 @@ in
 
       # allow nvidia-x11 and nvidia-settings to be installed (unfree)
       allowUnfreePredicate = pkg:
-        builtins.elem (lib.getName pkg) [ "nvidia-x11" "nvidia-settings" ];
+        builtins.elem (lib.getName pkg) [ "cudatoolkit" "nvidia-x11" "nvidia-settings" ];
 
       # note:
       # cudaSupport = true; would build all packages that offer cuda with CUDA support
