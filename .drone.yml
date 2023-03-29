@@ -146,6 +146,18 @@ steps:
     CACHIX_AUTH_TOKEN:
       from_secret: CACHIX_AUTH_TOKEN
 
+- name: build gpu-server
+  commands:
+  - nix build '.#nixosConfigurations.gpu-server.config.system.build.toplevel' --out-link result-gpu-server
+  - nix path-info --closure-size -h $(readlink -f result-gpu-server)
+
+- name: Push gpu-server to cachix
+  commands:
+  - nix build '.#nixosConfigurations.gpu-server.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
+
 - name: upload to binary cache via s3
   commands:
   - nix run 'github:mayniklas/nixos'#s3uploader
@@ -395,6 +407,11 @@ steps:
   commands:
   - nix build '.#nixosConfigurations.usb-desktop.config.system.build.toplevel' --out-link result-usb-desktop
   - nix path-info --closure-size -h $(readlink -f result-usb-desktop)
+
+- name: build gpu-server
+  commands:
+  - nix build '.#nixosConfigurations.gpu-server.config.system.build.toplevel' --out-link result-gpu-server
+  - nix path-info --closure-size -h $(readlink -f result-gpu-server)
 
 trigger:
   branch:
