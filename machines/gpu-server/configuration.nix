@@ -81,7 +81,7 @@
   # };
   ###
 
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_6_0;
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
   networking = {
     hostName = "gpu-server";
