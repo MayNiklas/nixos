@@ -94,7 +94,7 @@
       };
     };
 
-    whisper_api = {
+    whisper-api = {
       url = "github:MayNiklas/whisper_api";
     };
 

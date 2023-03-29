@@ -1,12 +1,32 @@
-{ self, config, pkgs, lib, ... }:
+{ self, config, pkgs, lib, whisper-api, ... }:
 
 {
 
   imports =
     [
+
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+
+      # include packages from flake inputs
+      {
+        nixpkgs.overlays = [
+          (self: super: {
+            whisper_api = whisper-api.packages.${pkgs.system}.whisper_api_withCUDA;
+          })
+        ];
+      }
+
     ];
+
+  home-manager.users.nik = {
+    home.packages = with pkgs; [
+      # my packages
+      whisper_api
+
+      glances
+    ];
+  };
 
   mayniklas = {
     docker.enable = true;
@@ -31,14 +51,42 @@
     zsh.enable = true;
   };
 
-  nixpkgs.config = {
-    # cudaSupport = true;
-  };
+  ### WHISPER_API
+  # systemd.services.whisper_api = {
+  #   description = "A whisper_api";
+  #   wantedBy = [ "multi-user.target" ];
+  #   serviceConfig = lib.mkMerge [
+  #     {
+  #       User = "whisper_api";
+  #       Group = "whisper_api";
+  #       WorkingDirectory = "${pkgs.whisper_api.src}";
+  #       ExecStart = "${pkgs.whisper_api}/bin/whisper_api";
+  #       Restart = "on-failure";
+  #     }
+  #   ];
+  # };
+
+  # users.users = {
+  #   whisper_api = {
+  #     isSystemUser = true;
+  #     createHome = true;
+  #     home = "/var/lib/whisper_api";
+  #     group = "whisper_api";
+  #     description = "whisper_api system user";
+  #   };
+  # };
+
+  # users.groups = {
+  #   whisper_api = { };
+  # };
+  ###
+
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_6_0;
 
   networking = {
     hostName = "gpu-server";
     firewall = {
-      allowedTCPPorts = [ 9100 9115 ];
+      allowedTCPPorts = [ 3001 9100 9115 ];
     };
   };
 

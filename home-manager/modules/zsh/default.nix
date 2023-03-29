@@ -13,7 +13,7 @@ in
       enable = true;
       enableAutosuggestions = true;
       enableCompletion = true;
-      autocd = true;
+      # autocd = true;
       dotDir = ".config/zsh";
 
       sessionVariables = { ZDOTDIR = "/home/nik/.config/zsh"; };

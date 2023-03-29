@@ -149,11 +149,11 @@
     },
     "flake-utils_3": {
       "locked": {
-        "lastModified": 1676283394,
-        "narHash": "sha256-XX2f9c3iySLCw54rJ/CZs+ZK6IQy7GXNY4nSOyu2QG4=",
+        "lastModified": 1678901627,
+        "narHash": "sha256-U02riOqrKKzwjsxc/400XnElV+UtPUQWpANPlyazjH0=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "3db36a8b464d0c4532ba1c7dda728f4576d6d073",
+        "rev": "93a2b84fc4b70d9e089d029deacc3583435c2ed6",
         "type": "github"
       },
       "original": {
@@ -413,11 +413,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1677063315,
-        "narHash": "sha256-qiB4ajTeAOVnVSAwCNEEkoybrAlA+cpeiBxLobHndE8=",
+        "lastModified": 1679944645,
+        "narHash": "sha256-e5Qyoe11UZjVfgRfwNoSU57ZeKuEmjYb77B9IVW7L/M=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "988cc958c57ce4350ec248d2d53087777f9e1949",
+        "rev": "4bb072f0a8b267613c127684e099a70e1f6ff106",
         "type": "github"
       },
       "original": {
@@ -471,7 +471,7 @@
         "shelly-exporter": "shelly-exporter",
         "valorant-exporter": "valorant-exporter",
         "vscode-server": "vscode-server",
-        "whisper_api": "whisper_api"
+        "whisper-api": "whisper-api"
       }
     },
     "shelly-exporter": {
@@ -553,17 +553,17 @@
         "type": "github"
       }
     },
-    "whisper_api": {
+    "whisper-api": {
       "inputs": {
         "flake-utils": "flake-utils_3",
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1679425962,
-        "narHash": "sha256-+MSfFLCJPzKmALfaHxPWV3+n95GmzwR3QfWTyvQq87Q=",
+        "lastModified": 1680095873,
+        "narHash": "sha256-FkmQc6dOQF8teJX9Xw/1Q/am8A+hkXh5m4Yfb7hJjag=",
         "owner": "MayNiklas",
         "repo": "whisper_api",
-        "rev": "08ad27b398c4e8644377aa08733009109618e842",
+        "rev": "c942d62ecacac5e1459994ab9f07f0f05ce06d61",
         "type": "github"
       },
       "original": {

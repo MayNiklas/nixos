@@ -1,4 +1,4 @@
-{ config, pkgs, lib, whisper_api, ... }: {
+{ config, pkgs, lib, whisper-api, ... }: {
 
   home.packages = with pkgs;[
     # my packages
@@ -43,7 +43,7 @@
     {
       nixpkgs.overlays = [
         (self: super: {
-          whisper_cli = whisper_api.packages.${pkgs.system}.whisper_cli;
+          whisper_cli = whisper-api.packages.${pkgs.system}.whisper_cli;
         })
       ];
     }
