@@ -49,6 +49,8 @@
     openFirewall = true;
   };
 
+  # Lower GPU power consumption on newer kernels?
+  boot.kernelPackages = pkgs.linuxPackages_6_1;
 
   networking = {
     hostName = "gpu-server";
