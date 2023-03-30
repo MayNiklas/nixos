@@ -38,6 +38,10 @@ in
         { nixpkgs.overlays = [ flake-self.overlays.default ]; }
         ./profiles/${cfg.profile}.nix
       ];
+
+      nixpkgs.config = import ./nixpkgs-config.nix;
+      xdg.configFile."nixpkgs/config.nix".source = ./nixpkgs-config.nix;
+
     };
   };
 }
