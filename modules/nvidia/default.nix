@@ -23,8 +23,12 @@ in
         driSupport32Bit = mkIf config.virtualisation.docker.enable true;
       };
 
-      # use nvidia-beta driver when beta-driver is enabled
-      nvidia.package = mkIf cfg.beta-driver config.boot.kernelPackages.nvidiaPackages.beta;
+      nvidia = {
+        # use nvidia-beta driver when beta-driver is enabled
+        package = mkIf cfg.beta-driver config.boot.kernelPackages.nvidiaPackages.beta;
+        
+        powerManagement.enable = true;
+      };
 
     };
 
