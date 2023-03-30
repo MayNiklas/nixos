@@ -28,7 +28,10 @@
         flake = true;
       };
     };
-    nvidia = { enable = true; };
+    nvidia = {
+      enable = true;
+      beta-driver = true;
+    };
     openssh.enable = true;
     server = {
       enable = true;
@@ -41,13 +44,13 @@
     zsh.enable = true;
   };
 
-  services.whisper_api = {
-    enable = true;
-    preload = true;
-    listen = "0.0.0.0";
-    port = 3001;
-    openFirewall = true;
-  };
+  # services.whisper_api = {
+  #   enable = true;
+  #   preload = true;
+  #   listen = "0.0.0.0";
+  #   port = 3001;
+  #   openFirewall = true;
+  # };
 
   # Lower GPU power consumption on newer kernels?
   boot.kernelPackages = pkgs.linuxPackages_6_1;
