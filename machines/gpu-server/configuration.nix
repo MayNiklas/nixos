@@ -8,22 +8,12 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
 
-      # include packages from flake inputs
-      {
-        nixpkgs.overlays = [
-          (self: super: {
-            whisper_api = whisper-api.packages.${pkgs.system}.whisper_api_withCUDA;
-          })
-        ];
-      }
+      whisper-api.nixosModules.whisper_api
 
     ];
 
   home-manager.users.nik = {
     home.packages = with pkgs; [
-      # my packages
-      whisper_api
-
       glances
     ];
   };
@@ -51,42 +41,22 @@
     zsh.enable = true;
   };
 
-  ### WHISPER_API
-  # systemd.services.whisper_api = {
-  #   description = "A whisper_api";
-  #   wantedBy = [ "multi-user.target" ];
-  #   serviceConfig = lib.mkMerge [
-  #     {
-  #       User = "whisper_api";
-  #       Group = "whisper_api";
-  #       WorkingDirectory = "${pkgs.whisper_api.src}";
-  #       ExecStart = "${pkgs.whisper_api}/bin/whisper_api";
-  #       Restart = "on-failure";
-  #     }
-  #   ];
-  # };
+  services.whisper_api = {
+    enable = true;
+    preload = true;
+    listen = "0.0.0.0";
+    port = 3001;
+    openFirewall = true;
+  };
 
-  # users.users = {
-  #   whisper_api = {
-  #     isSystemUser = true;
-  #     createHome = true;
-  #     home = "/var/lib/whisper_api";
-  #     group = "whisper_api";
-  #     description = "whisper_api system user";
-  #   };
-  # };
-
-  # users.groups = {
-  #   whisper_api = { };
-  # };
-  ###
-
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
   networking = {
     hostName = "gpu-server";
     firewall = {
-      allowedTCPPorts = [ 3001 9100 9115 ];
+      allowedTCPPorts = [
+        9100
+        9115
+      ];
     };
   };
 

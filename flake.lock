@@ -559,11 +559,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1680095873,
-        "narHash": "sha256-FkmQc6dOQF8teJX9Xw/1Q/am8A+hkXh5m4Yfb7hJjag=",
+        "lastModified": 1680169091,
+        "narHash": "sha256-k50t34e8fTumjuiRAScWXdyPJkbG+P3aWHCZqKz6oX4=",
         "owner": "MayNiklas",
         "repo": "whisper_api",
-        "rev": "c942d62ecacac5e1459994ab9f07f0f05ce06d61",
+        "rev": "da211ac3823100358e1c34fc8813a414ffcda13c",
         "type": "github"
       },
       "original": {
