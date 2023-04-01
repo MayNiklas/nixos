@@ -45,7 +45,6 @@
   };
 
   virtualisation.oci-containers = {
-    backend = "docker";
     containers.whisper_api = {
       autoStart = true;
       image = "mayniklas/whisper_api:latest";

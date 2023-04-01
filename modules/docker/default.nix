@@ -18,6 +18,10 @@ in
       };
     };
 
+    virtualisation.oci-containers = {
+      backend = "docker";
+    };
+
     users.extraUsers.${config.mayniklas.var.mainUser}.extraGroups =
       [ "docker" ];
 
