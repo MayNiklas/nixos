@@ -58,6 +58,13 @@
     };
   };
 
+  # Why is this needed?
+  # For some reason, stopping the systemd service does not stop the container.
+  # Still: fixes my problem.
+  systemd.services.docker-whisper_api = {
+    preStop = "${pkgs.docker}/bin/docker stop whisper_api";
+  };
+
   # services.whisper_api = {
   #   enable = true;
   #   preload = true;
@@ -88,3 +95,8 @@
   system.stateVersion = "22.05"; # Did you read the comment?
 
 }
+
+
+
+
+
