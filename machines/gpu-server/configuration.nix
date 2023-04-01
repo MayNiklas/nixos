@@ -44,6 +44,20 @@
     zsh.enable = true;
   };
 
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers.whisper_api = {
+      autoStart = true;
+      image = "mayniklas/whisper_api:latest";
+      ports = [ "3001:3001" ];
+      extraOptions = [ "--gpus" "all" ];
+      environment = {
+        "PRELOAD" = "true";
+        "PORT" = "3001";
+      };
+    };
+  };
+
   # services.whisper_api = {
   #   enable = true;
   #   preload = true;
