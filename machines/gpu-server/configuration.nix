@@ -27,6 +27,7 @@
         enable = true;
         flake = true;
       };
+      nvidia-dcgm.enable = true;
     };
     nvidia = {
       enable = true;
@@ -44,8 +45,9 @@
     zsh.enable = true;
   };
 
-  virtualisation.oci-containers = {
-    containers.whisper_api = {
+  virtualisation.oci-containers.containers = {
+
+    whisper_api = {
       autoStart = true;
       image = "mayniklas/whisper_api:latest";
       ports = [ "3001:3001" ];
@@ -55,6 +57,7 @@
         "PORT" = "3001";
       };
     };
+
   };
 
   # Why is this needed?
@@ -81,6 +84,7 @@
       allowedTCPPorts = [
         9100
         9115
+        9400
       ];
     };
   };

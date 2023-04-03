@@ -106,14 +106,15 @@
         configure-prometheus = true;
         targets = [
           "aida:9100"
+          "bella-pi4b:9100"
           "bob:9100"
           "chris:9100"
           "deke:9100"
           "flint:9100"
+          "gpu-server:9100"
           "kora:9100"
           "simmons:9100"
           "simone-pi4b:9100"
-          "bella-pi4b:9100"
           "snowflake:9100"
           "water-on-fire:9100"
           "the-bus:9100"
@@ -137,6 +138,10 @@
         listenAddress = "10.88.88.1";
       };
 
+      nvidia-dcgm = {
+        configure-prometheus = true;
+      };
+
     };
   };
 
@@ -155,6 +160,7 @@
       192.168.20.75 lasse
       192.168.30.95 snowflake
       192.168.30.99 deke
+      192.168.199.10 gpu-server
 
       # wg
       10.88.88.1 status.nik-ste.de
