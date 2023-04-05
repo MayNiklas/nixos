@@ -2,7 +2,7 @@
 
   imports = [
 
-    "${nixpkgs-unstable}/nixos/modules/services/web-servers/authelia.nix"
+    "${nixpkgs-unstable}/nixos/modules/services/security/authelia.nix"
 
     {
       nixpkgs.overlays = [
@@ -74,22 +74,22 @@
 
 
 
-    services.nginx.virtualHosts = {
-      "authelia.lounge.rocks" = {
-        enableACME = true;
-        forceSSL = true;
-        locations = {
-          "/" = {
-            proxyPass = "http://127.0.0.1:9091";
-            # extraConfig = ''
-            #   proxy_set_header X-Forwarded-Host $http_host;
-            #   proxy_set_header X-Real-IP $remote_addr;
-            #   proxy_set_header X-Forwarded-Proto $scheme;
-            # '';
-          };
+  services.nginx.virtualHosts = {
+    "authelia.lounge.rocks" = {
+      enableACME = true;
+      forceSSL = true;
+      locations = {
+        "/" = {
+          proxyPass = "http://127.0.0.1:9091";
+          # extraConfig = ''
+          #   proxy_set_header X-Forwarded-Host $http_host;
+          #   proxy_set_header X-Real-IP $remote_addr;
+          #   proxy_set_header X-Forwarded-Proto $scheme;
+          # '';
         };
       };
     };
+  };
 
 
   users.users.root = {
