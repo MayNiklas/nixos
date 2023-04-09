@@ -78,6 +78,8 @@
   # Lower GPU power consumption on newer kernels?
   boot.kernelPackages = pkgs.linuxPackages_6_1;
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   networking = {
     hostName = "gpu-server";
     firewall = {
