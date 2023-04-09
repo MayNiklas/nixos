@@ -21,6 +21,10 @@
   mayniklas = {
     docker.enable = true;
     grub.enable = true;
+    invokeai = {
+      enable = true;
+      openFirewall = true;
+    };
     locale.enable = true;
     metrics = {
       node = {
