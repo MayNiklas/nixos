@@ -98,7 +98,9 @@
       url = "github:MayNiklas/whisper_api";
     };
 
-    cachix.url = "github:cachix/cachix/v1.2";
+    cachix = {
+      url = "github:cachix/cachix/v1.4.2";
+    };
 
   };
   outputs = { self, ... }@inputs:
