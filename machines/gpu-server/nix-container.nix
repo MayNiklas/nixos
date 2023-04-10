@@ -31,9 +31,14 @@
             ]))
           htop
           nvtop
+          wget
+          openai-whisper
         ];
         services.xserver.videoDrivers = [ "nvidia" ];
-        nixpkgs.config.allowUnfree = true;
+        nixpkgs.config = {
+          allowUnfree = true;
+          cudaSupport = true;
+        };
         system.stateVersion = "23.05";
 
       };
