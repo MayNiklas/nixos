@@ -1,4 +1,4 @@
-{ self, config, pkgs, lib, whisper-api, ... }:
+{ self, config, pkgs, lib, nixpkgs-unstable, whisper-api, ... }:
 
 {
 
@@ -7,6 +7,8 @@
 
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+
+      ./nix-container.nix
 
       whisper-api.nixosModules.whisper_api
 
