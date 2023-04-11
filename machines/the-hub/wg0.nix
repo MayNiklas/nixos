@@ -90,9 +90,9 @@
 
         ### servers
 
-        # whisper
+        # gpu-server
         {
-          publicKey = "gVJDuYk8V5wyN5E+r/TDGWq3NJZ8ifQ2/IZ8BjEW6B0=";
+          publicKey = "HnWGjYLK8FHpzBI3GJIfXx7XPRIQNLormwcN3gElwUU=";
           allowedIPs = [ "10.88.88.17/32" ];
         }
 

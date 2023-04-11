@@ -50,6 +50,11 @@
       root.enable = true;
     };
     zsh.enable = true;
+    wg = {
+      enable = true;
+      ip = "10.88.88.17";
+      allowedIPs = [ "10.88.88.1/32" ];
+    };
   };
 
   virtualisation.oci-containers.containers = {
