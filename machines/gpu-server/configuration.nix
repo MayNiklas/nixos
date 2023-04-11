@@ -9,6 +9,7 @@
       ./hardware-configuration.nix
 
       # ./nix-container.nix
+      ./invokeai.nix
 
       whisper-api.nixosModules.whisper_api
 
