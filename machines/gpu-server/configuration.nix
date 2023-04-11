@@ -53,7 +53,7 @@
     wg = {
       enable = true;
       ip = "10.88.88.17";
-      allowedIPs = [ "10.88.88.1/32" ];
+      allowedIPs = [ "10.88.88.0/24" ];
     };
   };
 
@@ -94,6 +94,10 @@
 
   networking = {
     hostName = "gpu-server";
+    extraHosts = ''
+      # external
+      5.181.49.14 the-hub
+    '';
     firewall = {
       allowedTCPPorts = [
         9100
