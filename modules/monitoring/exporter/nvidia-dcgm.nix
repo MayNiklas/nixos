@@ -29,6 +29,8 @@ in
       # ports = [ "9400:9400" ];
       extraOptions = [ "--network" "host" "--cap-add" "SYS_ADMIN" "--gpus" "all" ];
     };
+    
+    networking.firewall.interfaces.wg0.allowedTCPPorts = lib.optional cfg.enable 9400;
 
     services.prometheus.scrapeConfigs = mkIf cfg.configure-prometheus [
       {
