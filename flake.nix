@@ -102,10 +102,6 @@
       url = "github:cachix/cachix/v1.4.2";
     };
 
-    nixified-ai = {
-      url = "github:nixified-ai/flake";
-    };
-
   };
   outputs = { self, ... }@inputs:
     with inputs;
