@@ -85,7 +85,7 @@
         # S2S A. / O. pfSense
         {
           publicKey = "Bk93ocUWLtUO4sJYjWp7KdBb8V3X3oquVe5HXCWeelw=";
-          allowedIPs = [ "10.88.88.11/32" "192.168.87.0/24" "192.168.86.0/24" ];
+          allowedIPs = [ "10.88.88.11/32" "192.168.87.0/24" "192.168.86.0/24" "192.168.96.0/24" ];
         }
 
         ### servers
