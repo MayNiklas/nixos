@@ -64,6 +64,9 @@ in
         clean = "${pkgs.git}/bin/git clean -xdn";
         destroy = "${pkgs.git}/bin/git clean -xdf";
 
+        # systemd / systemctl
+        failed = "${pkgs.systemd}/bin/systemctl --failed";
+
         # nix
 
         # switching within a flake repository
