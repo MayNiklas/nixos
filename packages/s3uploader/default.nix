@@ -1,6 +1,7 @@
 { pkgs, stdenv, ... }:
 let
   s3uploader-skript = pkgs.writeShellScriptBin "s3uploader" ''
+    touch upload.list
     # go through all result files
     # use --out-link result-*NAME* during build
     for f in result*; do
