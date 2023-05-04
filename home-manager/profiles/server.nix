@@ -9,6 +9,7 @@
       vs-fix = pkgs.callPackage ../../packages/vs-fix { };
     in
     with pkgs; [
+      dnsutils
       htop
       iperf3
       nixfmt
