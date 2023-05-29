@@ -73,7 +73,7 @@ in
         cache-size-mb = 32;
         download-dir = "/var/lib/transmission/Downloads";
         incomplete-dir = "/var/lib/transmission/.incomplete";
-        incomplete-dir-enabled = true;
+        incomplete-dir-enabled = false;
         message-level = 1;
         peer-port = cfg.port;
         peer-port-random-high = 65535;
