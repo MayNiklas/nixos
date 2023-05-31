@@ -19,6 +19,7 @@
       gcc
       glances
       gparted
+      h
       htop
       htop
       hugo

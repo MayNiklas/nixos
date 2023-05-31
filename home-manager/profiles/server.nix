@@ -10,6 +10,7 @@
     in
     with pkgs; [
       dnsutils
+      h
       htop
       iperf3
       nixfmt

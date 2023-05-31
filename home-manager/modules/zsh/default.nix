@@ -31,6 +31,8 @@ in
         gh() {
           echo $(${pkgs.git}/bin/git config --get remote.origin.url | sed -e 's/\(.*\)git@\(.*\):[0-9\/]*/https:\/\/\2\//g')
         }
+
+        eval "$(${pkgs.h}/bin/h --setup ~/code)"
       '';
 
       history = {
