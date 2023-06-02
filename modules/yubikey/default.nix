@@ -10,7 +10,7 @@ in
 
     programs.ssh.startAgent = false;
 
-    environment.systemPackages = with pkgs; [ yubioath-desktop ];
+    environment.systemPackages = with pkgs; [ yubioath-flutter ];
 
     programs.gnupg.agent = {
       enable = true;
