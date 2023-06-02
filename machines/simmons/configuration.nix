@@ -3,7 +3,7 @@
   mayniklas = {
     cloud.pve-x86.enable = true;
     hosts = { enable = true; };
-    kernel= { enable = true; };
+    kernel = { enable = true; };
     server = {
       enable = true;
       home-manager = true;
@@ -35,17 +35,26 @@
   services.gitea = {
     enable = true;
     appName = "A personal git server";
-    cookieSecure = true;
     database.user = "git";
-    disableRegistration = true;
-    domain = "git.lounge.rocks";
-    dump.enable = false;
-    dump.interval = "weekly";
-    httpAddress = "127.0.0.1";
-    httpPort = 3000;
-    rootUrl = "https://git.lounge.rocks/";
+    # dump.enable = true;
+    # dump.interval = "weekly";
     lfs.enable = true;
+    user = "git";
+
     settings = {
+      server = {
+        ROOT_URL = "https://git.lounge.rocks/";
+        DOMAIN = "git.lounge.rocks";
+        HTTP_ADDR = "127.0.0.1";
+        HTTP_PORT = 3000;
+        SSH_PORT = 22;
+      };
+      service = {
+        DISABLE_REGISTRATION = true;
+      };
+      session = {
+        COOKIE_SECURE = true;
+      };
       "repository" = {
         ENABLE_PUSH_CREATE_USER = true;
         ENABLE_PUSH_CREATE_ORG = true;
@@ -72,15 +81,7 @@
         SHOW_FOOTER_TEMPLATE_LOAD_TIME = true;
       };
     };
-    ssh = {
-      clonePort = 22;
-      # The option definition `services.gitea.ssh.enable'
-      # no longer has any effect; please remove it.
-      # services.gitea.ssh.enable has been migrated into freeform setting services.gitea.settings.server.DISABLE_SSH.
-      # Keep in mind that the setting is inverted
-      # enable = true;
-    };
-    user = "git";
+
   };
 
   users.users = {

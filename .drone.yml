@@ -50,18 +50,6 @@ steps:
     CACHIX_AUTH_TOKEN:
       from_secret: CACHIX_AUTH_TOKEN
 
-- name: build authelia
-  commands:
-  - nix build '.#nixosConfigurations.authelia.config.system.build.toplevel' --out-link result-authelia
-  - nix path-info --closure-size -h $(readlink -f result-authelia)
-
-- name: Push authelia to cachix
-  commands:
-  - nix build '.#nixosConfigurations.authelia.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  environment:
-    CACHIX_AUTH_TOKEN:
-      from_secret: CACHIX_AUTH_TOKEN
-
 - name: build deke
   commands:
   - nix build '.#nixosConfigurations.deke.config.system.build.toplevel' --out-link result-deke
@@ -355,11 +343,6 @@ steps:
   commands:
   - nix build '.#nixosConfigurations.aida.config.system.build.toplevel' --out-link result-aida
   - nix path-info --closure-size -h $(readlink -f result-aida)
-
-- name: build authelia
-  commands:
-  - nix build '.#nixosConfigurations.authelia.config.system.build.toplevel' --out-link result-authelia
-  - nix path-info --closure-size -h $(readlink -f result-authelia)
 
 - name: build deke
   commands:

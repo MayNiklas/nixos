@@ -3,7 +3,7 @@ let
   vs-fix-skript = pkgs.writeShellScriptBin "vs-fix" ''
     for f in ~/.vscode-server/bin/*; do
       rm $f/node            
-      ln -s $(which ${pkgs.nodejs-16_x}/bin/node) $f/node 
+      ln -s $(which ${pkgs.nodejs}/bin/node) $f/node 
     done
     echo "Done patching vs-code server!"
   '';
