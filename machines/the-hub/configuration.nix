@@ -47,7 +47,11 @@
   };
 
   mayniklas = {
-    cloud.netcup-x86.enable = true;
+    cloud.netcup-x86 = {
+      enable = true;
+      ipv6_address = "2a03:4000:3f:5d:98d5:41ff:feca:d0e7";
+      ipv6_prefixLength = 128;
+    };
     kernel = { enable = true; };
     server = {
       enable = true;
@@ -170,13 +174,6 @@
       10.88.88.24 water-on-fire
       192.168.88.70 chris
     '';
-
-    interfaces.ens3 = {
-      ipv6.addresses = [{
-        address = "2a03:4000:3f:5d:98d5:41ff:feca:d0e7";
-        prefixLength = 128;
-      }];
-    };
 
     firewall = { enable = false; };
     nftables = {
