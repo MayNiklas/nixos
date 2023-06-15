@@ -19,6 +19,7 @@ in
         PUID = "1000";
         PGID = "1000";
       };
+      extraOptions = [ "--network" "host" ];
       volumes =
         let
           Targets-file = pkgs.writeText "Targets" (
@@ -265,6 +266,8 @@ in
           "/docker/smokeping/data:/data:rw"
         ];
     };
+
+    networking.firewall.allowedTCPPorts = [ 80 ];
 
   };
 }
