@@ -41,7 +41,6 @@
       unzip
       unzip
       vagrant
-      vim
       virt-manager
       vlc
       xfce.thunar
