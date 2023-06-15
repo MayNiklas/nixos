@@ -75,16 +75,13 @@
     ../modules/chromium
     ../modules/devolopment
     ../modules/git
-    ../modules/git
     ../modules/gtk
     ../modules/i3
+    ../modules/nvim
     ../modules/rofi
     ../modules/tmux
-    ../modules/vim
-    ../modules/vim
     ../modules/vs-fix
     ../modules/vscode
-    ../modules/zsh
     ../modules/zsh
   ];
 

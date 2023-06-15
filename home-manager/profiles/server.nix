@@ -36,7 +36,7 @@
   imports = [
     ../modules/git
     ../modules/tmux
-    ../modules/vim
+    ../modules/nvim
     ../modules/zsh
   ];
 
