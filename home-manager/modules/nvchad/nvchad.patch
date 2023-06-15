@@ -1,0 +1,69 @@
+diff --git a/init.lua b/init.lua
+index 21f0b6f..4a6af80 100644
+--- a/init.lua
++++ b/init.lua
+@@ -8,14 +8,10 @@ end
+ 
+ require("core.utils").load_mappings()
+ 
+-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+-
+--- bootstrap lazy.nvim!
+-if not vim.loop.fs_stat(lazypath) then
+-  require("core.bootstrap").gen_chadrc_template()
+-  require("core.bootstrap").lazy(lazypath)
++-- bootstrap base46
++if not vim.loop.fs_stat(vim.g.base46_cache) then
++  require("base46").compile()
+ end
+ 
+ dofile(vim.g.base46_cache .. "defaults")
+-vim.opt.rtp:prepend(lazypath)
+ require "plugins"
+diff --git a/lua/plugins/configs/lazy_nvim.lua b/lua/plugins/configs/lazy_nvim.lua
+index cd170bd..7024e58 100644
+--- a/lua/plugins/configs/lazy_nvim.lua
++++ b/lua/plugins/configs/lazy_nvim.lua
+@@ -1,4 +1,10 @@
+ return {
++  dev = {
++    path = vim.fn.stdpath("config") .. "/lazyPlugins/pack/lazyPlugins/start",
++    patterns = { "." },
++    fallback = true,
++  },
++
+   defaults = { lazy = true },
+   install = { colorscheme = { "nvchad" } },
+ 
+@@ -12,6 +18,8 @@ return {
+   },
+ 
+   performance = {
++    cache = { enabled = false },
++    reset_packpath = false,
+     rtp = {
+       disabled_plugins = {
+         "2html_plugin",
+diff --git a/lua/plugins/configs/treesitter.lua b/lua/plugins/configs/treesitter.lua
+index b21b55d..3323500 100644
+--- a/lua/plugins/configs/treesitter.lua
++++ b/lua/plugins/configs/treesitter.lua
+@@ -1,6 +1,4 @@
+ local options = {
+-  ensure_installed = { "lua" },
+-
+   highlight = {
+     enable = true,
+     use_languagetree = true,
+diff --git a/lua/plugins/init.lua b/lua/plugins/init.lua
+index 2f711af..8251ae1 100644
+--- a/lua/plugins/init.lua
++++ b/lua/plugins/init.lua
+@@ -123,6 +123,7 @@ local default_plugins = {
+   -- lsp stuff
+   {
+     "williamboman/mason.nvim",
++    enabled = false,
+     cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
+     opts = function()
+       return require "plugins.configs.mason"
