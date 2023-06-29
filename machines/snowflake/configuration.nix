@@ -20,7 +20,7 @@
     transmission = {
       enable = true;
       smb = true;
-      port = 57267;
+      port = 48677;
       web-port = 9091;
     };
   };
