@@ -32,6 +32,12 @@ in
           echo $(${pkgs.git}/bin/git config --get remote.origin.url | sed -e 's/\(.*\)git@\(.*\):[0-9\/]*/https:\/\/\2\//g')
         }
 
+        flake_update() {
+          ${pkgs.nix}/bin/nix flake update
+          ${pkgs.git}/bin/git add flake.lock
+          ${pkgs.git}/bin/git commit -m "❅ flake.lock: update"
+        }
+
         eval "$(${pkgs.h}/bin/h --setup ~/code)"
       '';
 
