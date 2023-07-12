@@ -15,15 +15,12 @@
       drone-cli
       filezilla
       firefox
-      gcc
       glances
       gparted
       h
       htop
       hugo
       iperf3
-      nixfmt
-      nixpkgs-fmt
       nmap
       nvtop
       obs-studio

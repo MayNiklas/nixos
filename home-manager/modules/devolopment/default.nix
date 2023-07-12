@@ -7,11 +7,18 @@ in
     mkEnableOption "enable devolopment applications";
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs.jetbrains; [
-      jdk
-      clion
-      idea-ultimate
-      pycharm-professional
+    home.packages = with pkgs; [
+      # Programming languages / compiler
+      cargo
+      gcc
+      go
+      # Formatter
+      nixfmt
+      nixpkgs-fmt
+      # Jetbrains Software
+      jetbrains.clion
+      jetbrains.goland
+      jetbrains.pycharm-professional
     ];
   };
 }
