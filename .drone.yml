@@ -50,6 +50,18 @@ steps:
     CACHIX_AUTH_TOKEN:
       from_secret: CACHIX_AUTH_TOKEN
 
+- name: build daisy
+  commands:
+  - nix build '.#nixosConfigurations.daisy.config.system.build.toplevel' --out-link result-daisy
+  - nix path-info --closure-size -h $(readlink -f result-daisy)
+
+- name: Push daisy to cachix
+  commands:
+  - nix build '.#nixosConfigurations.daisy.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+  environment:
+    CACHIX_AUTH_TOKEN:
+      from_secret: CACHIX_AUTH_TOKEN
+
 - name: build deke
   commands:
   - nix build '.#nixosConfigurations.deke.config.system.build.toplevel' --out-link result-deke
@@ -343,6 +355,11 @@ steps:
   commands:
   - nix build '.#nixosConfigurations.aida.config.system.build.toplevel' --out-link result-aida
   - nix path-info --closure-size -h $(readlink -f result-aida)
+
+- name: build daisy
+  commands:
+  - nix build '.#nixosConfigurations.daisy.config.system.build.toplevel' --out-link result-daisy
+  - nix path-info --closure-size -h $(readlink -f result-daisy)
 
 - name: build deke
   commands:
