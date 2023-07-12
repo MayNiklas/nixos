@@ -4,7 +4,6 @@
   home.packages =
     let
       drone-gen = pkgs.callPackage ../../packages/drone-gen { };
-      vs-fix = pkgs.callPackage ../../packages/vs-fix { };
     in
     with pkgs; [
       _1password-gui
@@ -21,11 +20,8 @@
       gparted
       h
       htop
-      htop
       hugo
       iperf3
-      iperf3
-      nixfmt
       nixfmt
       nixpkgs-fmt
       nmap
@@ -39,7 +35,6 @@
       teamspeak_client
       thunderbird-bin
       unzip
-      unzip
       vagrant
       virt-manager
       vlc
@@ -48,7 +43,6 @@
       zoom-us
 
       drone-gen
-      vs-fix
     ];
 
   mayniklas = {
@@ -58,7 +52,7 @@
       devolopment.enable = true;
       git.enable = true;
       gtk.enable = true;
-      i3.enable = true;
+      # i3.enable = true;
       rofi.enable = true;
       tmux.enable = true;
       vim.enable = true;
