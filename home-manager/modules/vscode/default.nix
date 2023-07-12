@@ -17,7 +17,14 @@ in
       keybindings = [ ];
 
       userSettings = {
+        "telemetry.telemetryLevel" = "off";
         "terminal.integrated.fontFamily" = "source code pro";
+        "[go]" = {
+          "editor.defaultFormatter" = "golang.go";
+        };
+        "[nix]" = {
+          "editor.defaultFormatter" = "B4dM4n.nixpkgs-fmt";
+        };
       };
 
       extensions = with pkgs.vscode-extensions; [
