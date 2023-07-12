@@ -16,6 +16,10 @@ in
       # https://rycee.gitlab.io/home-manager/options.html#opt-programs.vscode.keybindings
       keybindings = [ ];
 
+      userSettings = {
+        "terminal.integrated.fontFamily" = "source code pro";
+      };
+
       extensions = with pkgs.vscode-extensions; [
         b4dm4n.vscode-nixpkgs-fmt
         bbenoist.nix
