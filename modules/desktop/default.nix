@@ -33,7 +33,8 @@ in
       fonts.enable = true;
       sound.enable = true;
       locale.enable = true;
-      hosts.enable = true;
+      # hosts.enable = true;
+      networking.enable = true;
       nix-common = {
         enable = true;
         # disable-cache = true;
