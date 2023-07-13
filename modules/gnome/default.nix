@@ -16,6 +16,14 @@ in
       desktopManager.gnome.enable = true;
     };
 
+    services.gnome = {
+      core-developer-tools.enable = true;
+      core-os-services.enable = true;
+      core-shell.enable = true;
+      core-utilities.enable = true;
+      gnome-settings-daemon.enable = true;
+    };
+
     # Enable CUPS to print documents.
     services.printing.enable = true;
 
