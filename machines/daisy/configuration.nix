@@ -7,6 +7,9 @@
     nixos-hardware.nixosModules.lenovo-thinkpad-x390
   ];
 
+  # fingerprint login
+  services.fprintd.enable = true;
+
   mayniklas = {
     gnome.enable = true;
     desktop = {
