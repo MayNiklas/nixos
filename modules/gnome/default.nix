@@ -27,7 +27,11 @@ in
     # Enable CUPS to print documents.
     services.printing.enable = true;
 
-    environment.systemPackages = with pkgs; [ gnomeExtensions.appindicator ];
+    environment.systemPackages = with pkgs; [
+      gnomeExtensions.appindicator
+      gnomeExtensions.zoom-wayland-extension
+    ];
+
     services.udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
 
   };
