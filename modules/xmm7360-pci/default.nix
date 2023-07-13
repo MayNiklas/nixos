@@ -21,8 +21,7 @@ in
     environment.systemPackages = [ start-modem ];
 
     boot = {
-      # 5.15 works with xmm7360-pci
-      kernelPackages = pkgs.linuxPackages_5_15;
+      # blacklisting iosm modules
       blacklistedKernelModules = [ "iosm" ];
       # https://github.com/xmm7360/xmm7360-pci/
       extraModulePackages = [ xmm7360-pci ];
