@@ -14,16 +14,11 @@
   netkit.xmm7360 = {
     enable = true;
     autoStart = true;
-    # https://github.com/xmm7360/xmm7360-pci/blob/master/xmm7360.ini.sample
-    configFile = pkgs.writeText "xmm7360-config" ''
-      # driver config
-      apn=internet.v6.telekom
-    '';
   };
 
   boot = {
     # Kernel 6.4 - because why not?
-    kernelPackages = pkgs.linuxPackages_6_4;
+    kernelPackages = pkgs.linuxPackages_5_15;
   };
 
   environment.systemPackages = with pkgs; [

@@ -15,14 +15,6 @@ in
       default = false;
       description = "Start the service on startup.";
     };
-    configFile = mkOption {
-      type = types.path;
-      default = pkgs.writeText "xmm7360-config" ''
-        # driver config
-        apn=internet.v6.telekom
-      '';
-      description = "Configuration file for Fibocom L850-GL.";
-    };
     package = mkOption {
       type = types.package;
       default = config.boot.kernelPackages.callPackage ./xmm7360-pci.nix { };
@@ -40,13 +32,6 @@ in
     networking = {
       networkmanager = {
         enableFccUnlock = true;
-        #   unmanaged = [
-        #     "*"
-        #     "except:type:cdma"
-        #     "except:type:gsm"
-        #     "except:type:wifi"
-        #     # "except:type:wwan"
-        #   ];
       };
     };
 
@@ -61,6 +46,25 @@ in
     powerManagement.resumeCommands = ''
       ${config.systemd.package}/bin/systemctl try-restart xmm7360 || true
     '';
+
+    ### ARGUMENTS:
+
+    # usage: open_xdatachannel.py [-h] [-c CONF] -a APN [-n] [-m METRIC] [-t IP_FETCH_TIMEOUT] [-r] [-d]
+
+    # Hacky tool to bring up XMM7x60 modem
+
+    # options:
+    #   -h, --help            show this help message and exit
+    #   -c CONF, --conf CONF
+    #   -a APN, --apn APN     Network provider APN
+    #   -n, --nodefaultroute  Don't install modem as default route for IP traffic
+    #   -m METRIC, --metric METRIC
+    #                         Metric for default route (higher is lower priority)
+    #   -t IP_FETCH_TIMEOUT, --ip-fetch-timeout IP_FETCH_TIMEOUT
+    #                         Retry interval in seconds when getting IP config
+    #   -r, --noresolv        Don't add modem-provided DNS servers to /etc/resolv.conf
+    #   -d, --dbus            Activate Networkmanager Connection via DBUS
+
 
     systemd.services.xmm7360 =
       let
@@ -82,7 +86,7 @@ in
         # Include it here in ExecStart so that it would block the activation process anyway.
         script = ''
           sleep 10
-          ${cfg.package}/bin/open_xdatachannel.py -c ${cfg.configFile}
+          ${cfg.package}/bin/open_xdatachannel.py -a internet.telekom
         '';
         serviceConfig = {
           # We want to keep it up, else the rules set up are discarded immediately.
