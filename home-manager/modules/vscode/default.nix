@@ -40,7 +40,10 @@ in
         ms-python.python
         ms-vscode-remote.remote-ssh
         ms-vscode.cpptools
+        redhat.vscode-xml
+        redhat.vscode-yaml
         rust-lang.rust-analyzer
+        yzhang.markdown-all-in-one
       ];
 
     };
