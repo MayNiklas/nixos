@@ -17,7 +17,13 @@ in
 
   config = mkIf cfg.enable {
 
-    environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
+    environment.systemPackages = with pkgs; [
+      bash-completion
+      git
+      nixfmt
+      usbutils
+      wget
+    ];
 
     mayniklas = {
       user = {
