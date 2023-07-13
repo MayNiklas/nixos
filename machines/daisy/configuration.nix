@@ -8,22 +8,14 @@
     nixos-hardware.nixosModules.lenovo-thinkpad-x390
   ];
 
-  # fingerprint login
-  services.fprintd.enable = true;
-
-  netkit.xmm7360 = {
+  # LTE "support"
+  xmm7360 = {
     enable = true;
     autoStart = true;
   };
 
-  boot = {
-    # Kernel 6.4 - because why not?
-    kernelPackages = pkgs.linuxPackages_5_15;
-  };
-
-  environment.systemPackages = with pkgs; [
-    usbutils
-  ];
+  # fingerprint login
+  services.fprintd.enable = true;
 
   mayniklas = {
     gnome.enable = true;
@@ -32,6 +24,8 @@
       home-manager = true;
     };
   };
+
+  environment.systemPackages = with pkgs; [ ];
 
   networking = {
     hostName = "daisy";

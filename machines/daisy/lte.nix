@@ -1,10 +1,11 @@
 { pkgs, config, lib, ... }:
 with lib;
 let
-  cfg = config.netkit.xmm7360;
+  cfg = config.xmm7360;
+  xmm7360-pci = config.boot.kernelPackages.callPackage ./xmm7360-pci.nix { };
 in
 {
-  options.netkit.xmm7360 = {
+  options.xmm7360 = {
     enable = mkOption {
       type = types.bool;
       default = false;
@@ -15,30 +16,16 @@ in
       default = false;
       description = "Start the service on startup.";
     };
-    package = mkOption {
-      type = types.package;
-      default = config.boot.kernelPackages.callPackage ./xmm7360-pci.nix { };
-      description =
-        "Kernel Module Package of XMM7360-PCI to use. Make sure that this matches up with your kernel version.";
-    };
   };
 
   config = mkIf cfg.enable {
 
-    environment.systemPackages = with pkgs; [
-      modem-manager-gui
-    ];
-
-    networking = {
-      networkmanager = {
-        enableFccUnlock = true;
-      };
-    };
-
-    hardware.usbWwan.enable = true;
-
     boot = {
-      extraModulePackages = [ cfg.package ];
+      # 5.15 works with xmm7360-pci
+      kernelPackages = pkgs.linuxPackages_5_15;
+      # https://github.com/xmm7360/xmm7360-pci/
+      extraModulePackages = [ xmm7360-pci ];
+      blacklistedKernelModules = [ "iosm" ];
     };
 
     # Currently, due to absence of power management
@@ -46,25 +33,6 @@ in
     powerManagement.resumeCommands = ''
       ${config.systemd.package}/bin/systemctl try-restart xmm7360 || true
     '';
-
-    ### ARGUMENTS:
-
-    # usage: open_xdatachannel.py [-h] [-c CONF] -a APN [-n] [-m METRIC] [-t IP_FETCH_TIMEOUT] [-r] [-d]
-
-    # Hacky tool to bring up XMM7x60 modem
-
-    # options:
-    #   -h, --help            show this help message and exit
-    #   -c CONF, --conf CONF
-    #   -a APN, --apn APN     Network provider APN
-    #   -n, --nodefaultroute  Don't install modem as default route for IP traffic
-    #   -m METRIC, --metric METRIC
-    #                         Metric for default route (higher is lower priority)
-    #   -t IP_FETCH_TIMEOUT, --ip-fetch-timeout IP_FETCH_TIMEOUT
-    #                         Retry interval in seconds when getting IP config
-    #   -r, --noresolv        Don't add modem-provided DNS servers to /etc/resolv.conf
-    #   -d, --dbus            Activate Networkmanager Connection via DBUS
-
 
     systemd.services.xmm7360 =
       let
@@ -85,8 +53,8 @@ in
         # Sleep for 10 seconds to make sure that device is fully up.
         # Include it here in ExecStart so that it would block the activation process anyway.
         script = ''
-          sleep 30
-          ${cfg.package}/bin/open_xdatachannel.py -a internet.v6.telekom
+          sleep 10
+          ${xmm7360-pci}/bin/open_xdatachannel.py -a internet.v6.telekom
         '';
         serviceConfig = {
           # We want to keep it up, else the rules set up are discarded immediately.
@@ -100,6 +68,6 @@ in
           # SuccessExitStatus = 1;
         };
       };
-  };
 
+  };
 }
