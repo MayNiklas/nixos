@@ -11,7 +11,7 @@
   # LTE "support"
   xmm7360 = {
     enable = true;
-    autoStart = true;
+    autoStart = false;
   };
 
   # fingerprint login

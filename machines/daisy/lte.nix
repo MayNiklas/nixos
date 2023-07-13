@@ -20,6 +20,22 @@ in
 
   config = mkIf cfg.enable {
 
+    # sudo start-modem
+    environment.systemPackages =
+      let
+        inherit (pkgs) kmod;
+        start-modem = pkgs.writeShellScriptBin "start-modem" ''
+          # load needed kernel module
+          ${kmod}/bin/modprobe xmm7360 || true
+
+          # start script
+          ${xmm7360-pci}/bin/open_xdatachannel.py -a internet.v6.telekom
+        '';
+      in
+      with pkgs; [
+        start-modem
+      ];
+
     boot = {
       # 5.15 works with xmm7360-pci
       kernelPackages = pkgs.linuxPackages_5_15;
