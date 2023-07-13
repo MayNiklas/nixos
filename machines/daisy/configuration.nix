@@ -11,6 +11,9 @@
   # fingerprint login
   services.fprintd.enable = true;
 
+  # automatic screen orientation
+  hardware.sensor.iio.enable = true;
+
   mayniklas = {
     xmm7360.enable = true;
     gnome.enable = true;
