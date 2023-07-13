@@ -10,6 +10,9 @@
   # fingerprint login
   services.fprintd.enable = true;
 
+  # Kernel 6.4 - because why not?
+  boot.kernelPackages = pkgs.linuxPackages_6_4;
+
   mayniklas = {
     gnome.enable = true;
     desktop = {
