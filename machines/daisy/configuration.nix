@@ -10,8 +10,15 @@
   # fingerprint login
   services.fprintd.enable = true;
 
-  # Kernel 6.4 - because why not?
-  boot.kernelPackages = pkgs.linuxPackages_6_4;
+  boot =
+    let
+      xmm7360-pci = config.boot.kernelPackages.callPackage ./xmm7360-pci.nix { };
+    in
+    {
+      # Kernel 6.4 - because why not?
+      kernelPackages = pkgs.linuxPackages_6_4;
+      extraModulePackages = [ xmm7360-pci ];
+    };
 
   mayniklas = {
     gnome.enable = true;
