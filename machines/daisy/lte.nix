@@ -33,6 +33,25 @@ in
 
   config = mkIf cfg.enable {
 
+    environment.systemPackages = with pkgs; [
+      modem-manager-gui
+    ];
+
+    networking = {
+      networkmanager = {
+        enableFccUnlock = true;
+        #   unmanaged = [
+        #     "*"
+        #     "except:type:cdma"
+        #     "except:type:gsm"
+        #     "except:type:wifi"
+        #     # "except:type:wwan"
+        #   ];
+      };
+    };
+
+    hardware.usbWwan.enable = true;
+
     boot = {
       extraModulePackages = [ cfg.package ];
     };

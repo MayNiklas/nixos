@@ -26,6 +26,10 @@
     kernelPackages = pkgs.linuxPackages_6_4;
   };
 
+  environment.systemPackages = with pkgs; [
+    usbutils
+  ];
+
   mayniklas = {
     gnome.enable = true;
     desktop = {
