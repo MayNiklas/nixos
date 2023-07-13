@@ -2,22 +2,17 @@
 
   imports = [
     # Include the results of the hardware scan.
-    ./lte.nix
     ./hardware-configuration.nix
+
     # https://github.com/NixOS/nixos-hardware/tree/master/lenovo/thinkpad/x390
     nixos-hardware.nixosModules.lenovo-thinkpad-x390
   ];
-
-  # LTE "support"
-  xmm7360 = {
-    enable = true;
-    autoStart = false;
-  };
 
   # fingerprint login
   services.fprintd.enable = true;
 
   mayniklas = {
+    xmm7360.enable = true;
     gnome.enable = true;
     desktop = {
       enable = true;
