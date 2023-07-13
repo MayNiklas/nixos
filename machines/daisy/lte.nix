@@ -85,8 +85,8 @@ in
         # Sleep for 10 seconds to make sure that device is fully up.
         # Include it here in ExecStart so that it would block the activation process anyway.
         script = ''
-          sleep 10
-          ${cfg.package}/bin/open_xdatachannel.py -a internet.telekom
+          sleep 15
+          ${cfg.package}/bin/open_xdatachannel.py -a internet.v6.telekom
         '';
         serviceConfig = {
           # We want to keep it up, else the rules set up are discarded immediately.
