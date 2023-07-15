@@ -8,6 +8,13 @@
     nixos-hardware.nixosModules.lenovo-thinkpad-x390
   ];
 
+  home-manager.users."${config.mayniklas.home-manager.username}" = {
+    home.packages =
+      with pkgs; [
+        xournalpp
+      ];
+  };
+
   # fingerprint login
   services.fprintd.enable = true;
 
