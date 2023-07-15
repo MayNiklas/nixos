@@ -37,19 +37,19 @@ in
             }
           ];
 
-          # Display device configuration
-          output = {
-            DP-1 = {
-              # Set HIDP scale (pixel integer scaling)
-              scale = "1";
-              pos = "3840 0";
-            };
-            DP-2 = {
-              # Set HIDP scale (pixel integer scaling)
-              scale = "1";
-              pos = "0 0";
-            };
-          };
+          # # Display device configuration
+          # output = {
+          #   DP-1 = {
+          #     # Set HIDP scale (pixel integer scaling)
+          #     scale = "1";
+          #     pos = "3840 0";
+          #   };
+          #   DP-2 = {
+          #     # Set HIDP scale (pixel integer scaling)
+          #     scale = "1";
+          #     pos = "0 0";
+          #   };
+          # };
 
         };
       };
@@ -81,6 +81,8 @@ in
     # printing and others.
     services.dbus.enable = true;
     xdg = {
+      mime.enable = true;
+      icons.enable = true;
       portal = {
         enable = true;
         wlr.enable = true;

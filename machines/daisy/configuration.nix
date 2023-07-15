@@ -1,3 +1,4 @@
+# TTY: Control + Alt + F1
 { config, pkgs, nixos-hardware, ... }: {
 
   imports = [
@@ -22,12 +23,13 @@
   hardware.sensor.iio.enable = true;
 
   mayniklas = {
-    xmm7360.enable = true;
-    gnome.enable = true;
     desktop = {
       enable = true;
       home-manager = true;
     };
+    # gnome.enable = true;
+    sway.enable = true;
+    xmm7360.enable = true;
   };
 
   environment.systemPackages = with pkgs; [ ];
