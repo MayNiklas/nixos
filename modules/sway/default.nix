@@ -166,6 +166,7 @@ in
         swayidle
         wl-clipboard
         mako
+        wlr-randr
       ];
 
     };
