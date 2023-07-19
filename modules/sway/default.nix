@@ -23,6 +23,17 @@ in
         # Sway-specific Configuration
         config = {
 
+          input = {
+            "type:keyboard" = {
+              xkb_layout = "de";
+              xkb_numlock = "enabled";
+            };
+            "type:touchpad" = {
+              click_method = "clickfinger";
+              tap = "enabled";
+            };
+          };
+
           modifier = "Mod4";
 
           terminal = "${pkgs.alacritty}/bin/alacritty";
