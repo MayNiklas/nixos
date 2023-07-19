@@ -114,6 +114,8 @@ in
     users.extraUsers.${config.mayniklas.var.mainUser}.extraGroups = [ "video" "audio" ];
 
     hardware = {
+      # fixes'ÈGL_EXT_platform_base not supported'
+      opengl.enable = true;
       # nvidia-drm.modeset=1 is required for some wayland compositors, e.g. sway
       nvidia.modesetting.enable = mkIf config.mayniklas.nvidia.enable true;
     };
