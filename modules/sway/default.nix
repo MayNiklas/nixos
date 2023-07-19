@@ -48,6 +48,15 @@ in
             }
           ];
 
+          # TODO: keybindings
+          # I want to control my volume and brightness
+          # https://rycee.gitlab.io/home-manager/options.html#opt-wayland.windowManager.sway.config.keybindings
+
+          # Brightness
+          # bindsym XF86MonBrightnessDown exec light -U 10
+          # bindsym XF86MonBrightnessUp exec light -A 10
+
+          # not needed since my laptop only has 1 screen
           # # Display device configuration
           # output = {
           #   DP-1 = {
@@ -103,6 +112,8 @@ in
         ];
       };
     };
+
+    programs.light.enable = true;
 
     security = {
       # Allow swaylock to unlock the computer for us
