@@ -48,9 +48,13 @@ in
             }
           ];
 
-          # TODO: keybindings
-          # I want to control my volume and brightness
-          # https://rycee.gitlab.io/home-manager/options.html#opt-wayland.windowManager.sway.config.keybindings
+          # TODO: Laptop specific stuff should be enabled by a function 
+          keybindings = let modifier = config.wayland.windowManager.sway.config.modifier; in
+            lib.mkOptionDefault {
+              # control brightness
+              "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10";
+              "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10";
+            };
 
           # Brightness
           # bindsym XF86MonBrightnessDown exec light -U 10
