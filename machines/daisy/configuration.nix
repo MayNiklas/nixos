@@ -39,6 +39,12 @@
     networkmanager.enable = true;
   };
 
+  # swapfile
+  swapDevices = [{
+    device = "/var/swapfile";
+    size = (32 * 1024);
+  }];
+
   system.stateVersion = "23.05";
 
 }
