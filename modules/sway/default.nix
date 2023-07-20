@@ -131,25 +131,6 @@ in
                 "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10";
               };
 
-          # Brightness
-          # bindsym XF86MonBrightnessDown exec light -U 10
-          # bindsym XF86MonBrightnessUp exec light -A 10
-
-          # not needed since my laptop only has 1 screen
-          # # Display device configuration
-          # output = {
-          #   DP-1 = {
-          #     # Set HIDP scale (pixel integer scaling)
-          #     scale = "1";
-          #     pos = "3840 0";
-          #   };
-          #   DP-2 = {
-          #     # Set HIDP scale (pixel integer scaling)
-          #     scale = "1";
-          #     pos = "0 0";
-          #   };
-          # };
-
         };
       };
 
