@@ -17,6 +17,7 @@
       filezilla
       firefox
       glances
+      gnome.gnome-system-monitor
       gparted
       h
       htop
