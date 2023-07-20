@@ -11,7 +11,7 @@ in
   config = mkIf cfg.enable {
 
     ### BEGIN HOME MANAGER CONFIGURATION ###
-
+    # https://rycee.gitlab.io/home-manager/options.html#opt-wayland.windowManager.sway.enable
     home-manager.users.nik = {
 
       # Use sway desktop environment with Wayland display server
@@ -44,8 +44,15 @@ in
             {
               fonts.size = 15.0;
               command = "${pkgs.waybar}/bin/waybar";
+              # I have no idea, why the bar still appears at the top
               position = "bottom";
             }
+            # {
+            #   statusCommand = "${pkgs.i3status}/bin/i3status";
+            #   command = "${pkgs.sway}/bin/swaybar";
+            #   position = "top";
+            #   trayOutput = "*";
+            # }
           ];
 
           keybindings =
