@@ -29,7 +29,7 @@
     };
     # gnome.enable = true;
     sway.enable = true;
-    xmm7360.enable = true;
+    # xmm7360.enable = true;
   };
 
   environment.systemPackages = with pkgs; [ ];
