@@ -148,6 +148,7 @@ in
         wl-clipboard
         mako
         wlr-randr
+        xdg-utils # for opening default programs when clicking links
       ];
 
     };
