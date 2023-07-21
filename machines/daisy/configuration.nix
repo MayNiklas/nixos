@@ -29,7 +29,7 @@
       home-manager = true;
     };
     # gnome.enable = true;
-    sway.enable = true;
+    wayland.enable = true;
     # xmm7360.enable = true;
   };
 

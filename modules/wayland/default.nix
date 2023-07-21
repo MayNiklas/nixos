@@ -1,11 +1,11 @@
 { lib, pkgs, config, ... }:
 with lib;
-let cfg = config.mayniklas.sway;
+let cfg = config.mayniklas.wayland;
 in
 {
 
-  options.mayniklas.sway = {
-    enable = mkEnableOption "activate sway";
+  options.mayniklas.wayland = {
+    enable = mkEnableOption "activate wayland";
   };
 
   config = mkIf cfg.enable {
