@@ -67,6 +67,7 @@
 
   # Imports
   imports = [
+    ../colorscheme.nix
     ../modules/alacritty
     ../modules/chromium
     ../modules/devolopment

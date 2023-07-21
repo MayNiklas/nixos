@@ -56,7 +56,39 @@ in
               "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10";
               "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10";
             };
+
+        colors = let c = config.pinpox.colors; in {
+          focused = {
+            background = "#${c.Blue}";
+            border = "#${c.BrightBlue}";
+            childBorder = "#${c.Blue}";
+            indicator = "#${c.BrightBlue}";
+            text = "#${c.Black}";
+          };
+          focusedInactive = {
+            background = "#${c.BrightWhite}";
+            border = "#${c.BrightBlack}";
+            childBorder = "#${c.BrightWhite}";
+            indicator = "#${c.BrightBlack}";
+            text = "#${c.White}";
+          };
+          unfocused = {
+            background = "#${c.Black}";
+            border = "#${c.BrightBlack}";
+            childBorder = "#${c.Black}";
+            indicator = "#${c.BrightBlack}";
+            text = "#${c.BrightBlack}";
+          };
+          urgent = {
+            background = "#${c.Red}";
+            border = "#${c.Black}";
+            childBorder = "#${c.Red}";
+            indicator = "#${c.Red}";
+            text = "#${c.White}";
+          };
+        };
       };
+
     };
 
     programs = {
