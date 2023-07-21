@@ -37,6 +37,10 @@ in
         # Status bar(s)
         bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
 
+        startup = [
+          { command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"; }
+        ];
+
         keybindings =
           let
             inherit (config.wayland.windowManager.sway.config) modifier left down up right menu terminal;
