@@ -63,32 +63,32 @@ in
       swaylock = {
         enable = true;
       };
+      zsh = {
+        shellAliases = rec {
+          # suspend
+          zzz = "systemctl suspend";
+        };
+      };
     };
 
     services = {
-      # swayidle = {
-      # enable = true;
-      # events = [
-      # { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock"; }
-      # { event = "lock"; command = "lock"; }
-      # ];
-      # timeouts = [
-      # {
-      # timeout = 60;
-      # command = "${pkgs.swaylock}/bin/swaylock -fF";
-      # }
-      # ];
-      # };
-    };
-
-    programs.zsh.shellAliases = rec {
-      # suspend
-      zzz = "systemctl suspend";
+      swayidle = {
+        enable = true;
+        events = [
+          { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock"; }
+          { event = "lock"; command = "lock"; }
+        ];
+        timeouts = [
+          {
+            # timeout in seconds
+            timeout = 60;
+            command = "${pkgs.swaylock}/bin/swaylock -fF";
+          }
+        ];
+      };
     };
 
     home.packages = with pkgs; [
-      swaylock
-      swayidle
       wl-clipboard
       mako
       wlr-randr
