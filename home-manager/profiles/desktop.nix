@@ -28,6 +28,7 @@
       obs-studio
       okular
       signal-desktop
+      speedtest-cli
       spotify
       sublime-merge
       sublime3
