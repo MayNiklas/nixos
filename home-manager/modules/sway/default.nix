@@ -55,6 +55,11 @@ in
       };
     };
 
+    programs.zsh.shellAliases = rec {
+      # suspend
+      zzz = "systemctl suspend";
+    };
+
     home.packages = with pkgs; [
       swaylock
       swayidle
