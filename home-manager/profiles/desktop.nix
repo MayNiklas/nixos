@@ -51,6 +51,7 @@
       alacritty.enable = true;
       chromium.enable = true;
       devolopment.enable = true;
+      foot.enable = true;
       git.enable = true;
       gtk.enable = true;
       # i3.enable = true;
@@ -69,6 +70,7 @@
     ../modules/alacritty
     ../modules/chromium
     ../modules/devolopment
+    ../modules/foot
     ../modules/git
     ../modules/gtk
     ../modules/i3
