@@ -26,6 +26,7 @@
       nmap
       nvtop
       obs-studio
+      okular
       signal-desktop
       spotify
       sublime-merge
