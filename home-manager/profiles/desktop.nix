@@ -71,11 +71,12 @@
     ../modules/gtk
     ../modules/i3
     ../modules/nvim
-    ../modules/sway
     ../modules/rofi
+    ../modules/sway
     ../modules/tmux
     ../modules/vs-fix
     ../modules/vscode
+    ../modules/waybar
     ../modules/zsh
   ];
 

@@ -7,11 +7,6 @@ in
   options.mayniklas.programs.sway.enable = mkEnableOption "enable sway";
   config = mkIf cfg.enable {
 
-    programs.waybar = {
-      enable = true;
-    };
-
-
     # Use sway desktop environment with Wayland display server
     # https://rycee.gitlab.io/home-manager/options.html#opt-wayland.windowManager.sway.enable
 
