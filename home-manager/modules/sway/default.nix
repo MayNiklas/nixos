@@ -31,7 +31,7 @@ in
 
         modifier = "Mod4";
 
-        terminal = "${pkgs.alacritty}/bin/alacritty";
+        terminal = "${pkgs.foot}/bin/foot";
         menu = "${pkgs.wofi}/bin/wofi --show run";
 
         # Status bar(s)
