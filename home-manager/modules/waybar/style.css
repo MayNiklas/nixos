@@ -53,11 +53,14 @@ window#waybar {
  *  WORKSPACES/TAGS  *
  *********************/
 
+/*
+workspace numbers
+*/
 #workspaces button,
 #tags button {
 	background: @Black;
 	color: @White;
-	padding: 0px 0px;
+	padding: 5px 5px;
 }
 
 #workspaces button.focused,
