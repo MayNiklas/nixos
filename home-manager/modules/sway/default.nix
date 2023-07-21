@@ -59,8 +59,26 @@ in
       };
     };
 
-    programs.swaylock = {
-      enable = true;
+    programs = {
+      swaylock = {
+        enable = true;
+      };
+    };
+
+    services = {
+      swayidle = {
+        enable = true;
+        events = [
+          { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock"; }
+          { event = "lock"; command = "lock"; }
+        ];
+        timeouts = [
+          {
+            timeout = 60;
+            command = "${pkgs.swaylock}/bin/swaylock -fF";
+          }
+        ];
+      };
     };
 
     programs.zsh.shellAliases = rec {
