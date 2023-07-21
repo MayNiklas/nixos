@@ -55,6 +55,10 @@ in
       };
     };
 
+    programs.swaylock = {
+      enable = true;
+    };
+
     programs.zsh.shellAliases = rec {
       # suspend
       zzz = "systemctl suspend";
