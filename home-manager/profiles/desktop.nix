@@ -71,6 +71,7 @@
     ../modules/gtk
     ../modules/i3
     ../modules/nvim
+    ../modules/sway
     ../modules/rofi
     ../modules/tmux
     ../modules/vs-fix

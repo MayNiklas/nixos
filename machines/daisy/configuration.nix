@@ -10,6 +10,7 @@
   ];
 
   home-manager.users."${config.mayniklas.home-manager.username}" = {
+    mayniklas.programs = { sway.enable = true; };
     home.packages =
       with pkgs; [
         xournalpp
