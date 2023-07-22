@@ -25,7 +25,6 @@
       iperf3
       nmap
       nvtop
-      obs-studio
       okular
       signal-desktop
       speedtest-cli
@@ -84,6 +83,11 @@
     ../modules/wofi
     ../modules/zsh
   ];
+
+  programs.obs-studio = {
+    enable = true;
+    plugins = with pkgs.obs-studio-plugins; [ ];
+  };
 
   # Include man-pages
   manual.manpages.enable = true;
