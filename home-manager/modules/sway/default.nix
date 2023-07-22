@@ -66,6 +66,9 @@ in
           in
           lib.mkOptionDefault
             {
+              # take screenshot of whole screen
+              "Print" = "exec ${pkgs.grim}/bin/grim /home/nik/Pictures/Screenshots/Screenshot-$(date +'%Y-%m-%d_%H-%M-%S.png')";
+
               # control volume
               "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
               "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
@@ -73,6 +76,8 @@ in
 
               # control brightness
               "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10";
+
+
               "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10";
             };
 
