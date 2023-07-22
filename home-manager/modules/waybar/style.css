@@ -60,7 +60,7 @@ workspace numbers
 #tags button {
 	background: @Black;
 	color: @White;
-	padding: 5px 5px;
+	padding: 0px 0px;
 }
 
 #workspaces button.focused,
