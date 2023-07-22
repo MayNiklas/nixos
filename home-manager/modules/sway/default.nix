@@ -21,6 +21,7 @@ in
     home.packages = with pkgs; [
       mako
       start-sway
+      wlay
       wl-clipboard
       wlr-randr
       xdg-utils # for opening default programs when clicking links
