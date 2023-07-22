@@ -18,6 +18,7 @@ in
       server.enable = true;
       settings = {
         main = {
+          dpi-aware = "yes";
           term = "xterm-256color";
           # font = "Berkeley Mono:size=11";
         };
