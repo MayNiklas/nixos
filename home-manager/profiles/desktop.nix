@@ -54,11 +54,10 @@
       foot.enable = true;
       git.enable = true;
       gtk.enable = true;
-      # i3.enable = true;
-      rofi.enable = true;
       tmux.enable = true;
       vim.enable = true;
       vscode.enable = true;
+      wofi.enable = true;
       zsh.enable = true;
     };
   };
@@ -76,12 +75,12 @@
     ../modules/gtk
     ../modules/i3
     ../modules/nvim
-    ../modules/rofi
     ../modules/sway
     ../modules/tmux
     ../modules/vs-fix
     ../modules/vscode
     ../modules/waybar
+    ../modules/wofi
     ../modules/zsh
   ];
 
