@@ -2,6 +2,11 @@
 with lib;
 let
   cfg = config.mayniklas.programs.sway;
+  start-sway = pkgs.writeShellScriptBin "start-sway" /* sh */
+    ''
+      export WLR_DRM_NO_MODIFIERS=1
+      dbus-launch --sh-syntax --exit-with-session ${pkgs.sway}/bin/sway
+    '';
 in
 {
   options.mayniklas.programs.sway.enable = mkEnableOption "enable sway";
@@ -12,6 +17,14 @@ in
         waybar.enable = true;
       };
     };
+
+    home.packages = with pkgs; [
+      mako
+      start-sway
+      wl-clipboard
+      wlr-randr
+      xdg-utils # for opening default programs when clicking links
+    ];
 
     # Use sway desktop environment with Wayland display server
     # https://rycee.gitlab.io/home-manager/options.html#opt-wayland.windowManager.sway.enable
@@ -105,13 +118,6 @@ in
         };
       };
     };
-
-    home.packages = with pkgs; [
-      wl-clipboard
-      mako
-      wlr-randr
-      xdg-utils # for opening default programs when clicking links
-    ];
 
   };
 }
