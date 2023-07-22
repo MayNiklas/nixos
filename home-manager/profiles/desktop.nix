@@ -76,6 +76,7 @@
     ../modules/i3
     ../modules/nvim
     ../modules/sway
+    ../modules/swaylock
     ../modules/tmux
     ../modules/vs-fix
     ../modules/vscode

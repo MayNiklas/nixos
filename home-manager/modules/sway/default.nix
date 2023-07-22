@@ -7,6 +7,12 @@ in
   options.mayniklas.programs.sway.enable = mkEnableOption "enable sway";
   config = mkIf cfg.enable {
 
+    mayniklas = {
+      programs = {
+        waybar.enable = true;
+      };
+    };
+
     # Use sway desktop environment with Wayland display server
     # https://rycee.gitlab.io/home-manager/options.html#opt-wayland.windowManager.sway.enable
 
@@ -92,31 +98,11 @@ in
     };
 
     programs = {
-      swaylock = {
-        enable = true;
-      };
       zsh = {
         shellAliases = rec {
           # suspend
           zzz = "systemctl suspend";
         };
-      };
-    };
-
-    services = {
-      swayidle = {
-        enable = true;
-        events = [
-          { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock"; }
-          { event = "lock"; command = "lock"; }
-        ];
-        timeouts = [
-          {
-            # timeout in seconds
-            timeout = 60;
-            command = "${pkgs.swaylock}/bin/swaylock -fF";
-          }
-        ];
       };
     };
 
