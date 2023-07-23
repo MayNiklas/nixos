@@ -7,6 +7,11 @@ in
   options.mayniklas.programs.swaylock.enable = mkEnableOption "enable swaylock";
   config = mkIf cfg.enable {
 
+    # TODO:
+    # suspend (lid closed) should trigger swaylock
+    # swaylock & suspend should be possible without closing the lid
+    # I need to understand, how Swaylock works. It seems to want my pw and fingerprint?
+
     programs = {
       swaylock = {
         enable = true;
