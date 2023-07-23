@@ -1,4 +1,4 @@
-{ config, pkgs, lib, flake-self, home-manager, ... }:
+{ config, pkgs, lib, flake-self, home-manager, nixpkgs-unstable, ... }:
 with lib;
 let cfg = config.mayniklas.home-manager;
 in
@@ -35,7 +35,17 @@ in
     home-manager.users."${cfg.username}" = {
 
       imports = [
-        { nixpkgs.overlays = [ flake-self.overlays.default ]; }
+        {
+          nixpkgs.overlays = [
+            flake-self.overlays.default
+            (final: prev: {
+              unstable = import nixpkgs-unstable {
+                system = "${pkgs.system}";
+                config.allowUnfree = true;
+              };
+            })
+          ];
+        }
         ./profiles/${cfg.profile}.nix
       ];
 

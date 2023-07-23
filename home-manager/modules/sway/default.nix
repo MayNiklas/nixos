@@ -18,14 +18,18 @@ in
       };
     };
 
-    home.packages = with pkgs; [
-      mako
-      start-sway
-      wlay
-      wl-clipboard
-      wlr-randr
-      xdg-utils # for opening default programs when clicking links
-    ];
+    home.packages = with pkgs;
+      let
+        wlay = unstable.wlay;
+      in
+      [
+        mako
+        start-sway
+        wlay
+        wl-clipboard
+        wlr-randr
+        xdg-utils # for opening default programs when clicking links
+      ];
 
     # Use sway desktop environment with Wayland display server
     # https://rycee.gitlab.io/home-manager/options.html#opt-wayland.windowManager.sway.enable
