@@ -124,7 +124,7 @@ in
       zsh = {
         shellAliases = rec {
           # suspend
-          zzz = "systemctl suspend";
+          zzz = "${pkgs.swaylock}/bin/swaylock -fF && systemctl suspend";
         };
       };
     };
