@@ -35,6 +35,7 @@ self: super: {
   discord = self.unstable.discord;
   firefox = self.unstable.firefox;
   foot = self.unstable.foot;
+  htop = self.unstable.htop;
   hugo = self.unstable.hugo;
   nvtop = self.unstable.nvtop;
   spotify = self.unstable.spotify;
@@ -45,4 +46,5 @@ self: super: {
   wlay = self.unstable.wlay;
   wofi = self.unstable.wofi;
   zoom-us = self.unstable.zoom-us;
+  zsh = self.unstable.zsh;
 }
