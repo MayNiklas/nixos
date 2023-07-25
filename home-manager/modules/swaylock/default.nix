@@ -53,11 +53,7 @@ in
         timeouts = [
           {
             timeout = 180;
-            command = "${pkgs.swaylock}/bin/swaylock -fF";
-          }
-          {
-            timeout = 300;
-            command = "systemctl suspend";
+            command = "${pkgs.swaylock}/bin/swaylock -fF && systemctl suspend";
           }
         ];
         events = [
