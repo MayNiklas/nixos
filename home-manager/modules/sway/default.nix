@@ -119,6 +119,10 @@ in
     programs = {
       zsh = {
         shellAliases = rec {
+          # energy profiles
+          performance = "echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor";
+          powersave = "echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor";
+
           # suspend
           zzz = "${pkgs.swaylock}/bin/swaylock -fF && systemctl suspend";
         };
