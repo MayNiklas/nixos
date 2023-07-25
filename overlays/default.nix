@@ -34,6 +34,7 @@ self: super: {
   # override with newer version from nixpkgs-unstable
   discord = self.unstable.discord;
   firefox = self.unstable.firefox;
+  foot = self.unstable.foot;
   hugo = self.unstable.hugo;
   nvtop = self.unstable.nvtop;
   spotify = self.unstable.spotify;
@@ -42,5 +43,6 @@ self: super: {
   swaylock = self.unstable.swaylock;
   waybar = self.unstable.waybar;
   wlay = self.unstable.wlay;
+  wofi = self.unstable.wofi;
   zoom-us = self.unstable.zoom-us;
 }

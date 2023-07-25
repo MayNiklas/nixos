@@ -9,7 +9,7 @@ in
 
     programs.vscode = {
       enable = true;
-      package = pkgs.vscode;
+      package = pkgs.unstable.vscode;
       enableExtensionUpdateCheck = false;
       enableUpdateCheck = false;
 
