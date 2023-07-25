@@ -31,7 +31,7 @@
       enable = true;
       home-manager = true;
     };
-    intel = true;
+    intel.enable = true;
     # gnome.enable = true;
     wayland.enable = true;
     # xmm7360.enable = true;
