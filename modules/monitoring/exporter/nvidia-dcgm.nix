@@ -25,7 +25,7 @@ in
     # https://github.com/NVIDIA/dcgm-exporter/
     virtualisation.oci-containers.containers.dcgm_exporter = mkIf cfg.enable {
       autoStart = true;
-      image = "nvcr.io/nvidia/k8s/dcgm-exporter:3.1.7-3.1.4-ubuntu20.04";
+      image = "nvcr.io/nvidia/k8s/dcgm-exporter:3.1.8-3.1.5-ubuntu20.04";
       # ports = [ "9400:9400" ];
       extraOptions = [ "--network" "host" "--cap-add" "SYS_ADMIN" "--gpus" "all" ];
     };
