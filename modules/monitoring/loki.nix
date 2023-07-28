@@ -87,8 +87,8 @@ in
         chunk_store_config = { max_look_back_period = "0s"; };
 
         table_manager = {
-          retention_deletes_enabled = false;
-          retention_period = "0s";
+          retention_deletes_enabled = true;
+          retention_period = "744h";
         };
 
         compactor = {
