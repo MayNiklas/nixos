@@ -21,6 +21,7 @@ in
     home.packages = with pkgs;      [
       mako
       start-sway
+      wev # find out how a key is called
       wlay
       wl-clipboard
       wlr-randr
