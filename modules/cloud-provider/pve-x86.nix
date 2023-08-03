@@ -34,7 +34,6 @@ in
     boot.growPartition = mkIf cfg.growPartition true;
 
     boot.loader.grub = {
-      version = 2;
       device = "nodev";
       efiSupport = true;
       efiInstallAsRemovable = true;

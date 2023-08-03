@@ -28,7 +28,6 @@ in
     boot.growPartition = true;
 
     boot.loader.grub = {
-      version = 2;
       device = "nodev";
       efiSupport = true;
       efiInstallAsRemovable = true;
