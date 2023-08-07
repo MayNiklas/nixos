@@ -241,47 +241,47 @@ clone:
 steps:
   - name: Build aida
     commands:
-      - nix build .#aida --out-link result-aida
+      - nix build '.#nixosConfigurations.aida.config.system.build.toplevel' --out-link result-aida
       - nix path-info --closure-size -h $(readlink -f result-aida)
 
   - name: Build daisy
     commands:
-      - nix build .#daisy --out-link result-daisy
+      - nix build '.#nixosConfigurations.daisy.config.system.build.toplevel' --out-link result-daisy
       - nix path-info --closure-size -h $(readlink -f result-daisy)
 
   - name: Build deke
     commands:
-      - nix build .#deke --out-link result-deke
+      - nix build '.#nixosConfigurations.deke.config.system.build.toplevel' --out-link result-deke
       - nix path-info --closure-size -h $(readlink -f result-deke)
 
   - name: Build kora
     commands:
-      - nix build .#kora --out-link result-kora
+      - nix build '.#nixosConfigurations.kora.config.system.build.toplevel' --out-link result-kora
       - nix path-info --closure-size -h $(readlink -f result-kora)
 
   - name: Build simmons
     commands:
-      - nix build .#simmons --out-link result-simmons
+      - nix build '.#nixosConfigurations.simmons.config.system.build.toplevel' --out-link result-simmons
       - nix path-info --closure-size -h $(readlink -f result-simmons)
 
   - name: Build snowflake
     commands:
-      - nix build .#snowflake --out-link result-snowflake
+      - nix build '.#nixosConfigurations.snowflake.config.system.build.toplevel' --out-link result-snowflake
       - nix path-info --closure-size -h $(readlink -f result-snowflake)
 
   - name: Build the-bus
     commands:
-      - nix build .#the-bus --out-link result-the-bus
+      - nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel' --out-link result-the-bus
       - nix path-info --closure-size -h $(readlink -f result-the-bus)
 
   - name: Build the-hub
     commands:
-      - nix build .#the-hub --out-link result-the-hub
+      - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' --out-link result-the-hub
       - nix path-info --closure-size -h $(readlink -f result-the-hub)
 
   - name: Build usb-desktop
     commands:
-      - nix build .#usb-desktop --out-link result-usb-desktop
+      - nix build '.#nixosConfigurations.usb-desktop.config.system.build.toplevel' --out-link result-usb-desktop
       - nix path-info --closure-size -h $(readlink -f result-usb-desktop)
 
 trigger:

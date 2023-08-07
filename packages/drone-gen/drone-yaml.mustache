@@ -142,7 +142,7 @@ steps:
 {{#machines}}
   - name: Build {{name}}
     commands:
-      - nix build .#{{name}} --out-link result-{{name}}
+      - nix build '.#nixosConfigurations.{{name}}.config.system.build.toplevel' --out-link result-{{name}}
       - nix path-info --closure-size -h $(readlink -f result-{{name}})
 
 {{/machines}}
