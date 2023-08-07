@@ -46,36 +46,36 @@ clone:
 
 steps:
 {{#machines}}
-- name: build {{name}}
-  commands:
-  - nix build '.#nixosConfigurations.{{name}}.config.system.build.toplevel' --out-link result-{{name}}
-  - nix path-info --closure-size -h $(readlink -f result-{{name}})
+  - name: build {{name}}
+    commands:
+      - nix build '.#nixosConfigurations.{{name}}.config.system.build.toplevel' --out-link result-{{name}}
+      - nix path-info --closure-size -h $(readlink -f result-{{name}})
 
 {{/machines}}
-- name: Push {{arch}} hosts to cachix
-  commands:
+  - name: Push {{arch}} hosts to cachix
+    commands:
 {{#machines}}
-  - nix build '.#nixosConfigurations.{{name}}.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build '.#nixosConfigurations.{{name}}.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
 {{/machines}}
-  environment:
-    CACHIX_AUTH_TOKEN:
-      from_secret: CACHIX_AUTH_TOKEN
+    environment:
+      CACHIX_AUTH_TOKEN:
+        from_secret: CACHIX_AUTH_TOKEN
 
-- name: upload to binary cache via s3
-  commands:
-  - nix run 'github:mayniklas/nixos'#s3uploader
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
+  - name: upload to binary cache via s3
+    commands:
+      - nix run 'github:mayniklas/nixos'#s3uploader
+    environment:
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_key
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_secret
 
 trigger:
   branch:
-  - main
+    - main
   event:
-  - cron
-  - push
+    - cron
+    - push
 {{/hosts}}
 
 {{#packages}}
@@ -92,38 +92,37 @@ clone:
   depth: 1
 
 steps:
-
 {{#apps}}
-- name: Build {{name}}
-  commands:
-  - nix build .#{{name}} --out-link result-{{name}}
-  - nix path-info --closure-size -h $(readlink -f result-{{name}})
+  - name: Build {{name}}
+    commands:
+      - nix build .#{{name}} --out-link result-{{name}}
+      - nix path-info --closure-size -h $(readlink -f result-{{name}})
 
 {{/apps}}
-- name: Push {{arch}} apps to cachix
-  commands:
+  - name: Push {{arch}} apps to cachix
+    commands:
 {{#apps}}
-  - nix build .#{{name}} --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build .#{{name}} --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
 {{/apps}}
-  environment:
-    CACHIX_AUTH_TOKEN:
-      from_secret: CACHIX_AUTH_TOKEN
+    environment:
+      CACHIX_AUTH_TOKEN:
+        from_secret: CACHIX_AUTH_TOKEN
 
-- name: upload to binary cache via s3
-  commands:
-  - nix run 'github:mayniklas/nixos'#s3uploader
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
+  - name: upload to binary cache via s3
+    commands:
+      - nix run 'github:mayniklas/nixos'#s3uploader
+    environment:
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_key
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_secret
 
 trigger:
   branch:
-  - main
+    - main
   event:
-  - push
-  - cron
+    - push
+    - cron
 
 {{/packages}}
 {{#hosts}}
@@ -141,17 +140,17 @@ clone:
 
 steps:
 {{#machines}}
-- name: Build {{name}}
-  commands:
-  - nix build .#{{name}} --out-link result-{{name}}
-  - nix path-info --closure-size -h $(readlink -f result-{{name}})
+  - name: Build {{name}}
+    commands:
+      - nix build .#{{name}} --out-link result-{{name}}
+      - nix path-info --closure-size -h $(readlink -f result-{{name}})
 
 {{/machines}}
 trigger:
   branch:
-  - main
+    - main
   event:
-  - pull_request
+    - pull_request
 {{/hosts}}
 {{#packages}}
 
@@ -168,17 +167,16 @@ clone:
   depth: 1
 
 steps:
-
 {{#apps}}
-- name: Build {{name}}
-  commands:
-  - nix build .#{{name}} --out-link result-{{name}}
-  - nix path-info --closure-size -h $(readlink -f result-{{name}})
+  - name: Build {{name}}
+    commands:
+      - nix build .#{{name}} --out-link result-{{name}}
+      - nix path-info --closure-size -h $(readlink -f result-{{name}})
 
 {{/apps}}
 trigger:
   branch:
-  - main
+    - main
   event:
-  - pull_request
+    - pull_request
 {{/packages}}

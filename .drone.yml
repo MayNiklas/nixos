@@ -11,7 +11,6 @@ clone:
   depth: 1
 
 steps:
-
   - name: show flake show
     commands:
       - nix flake show
@@ -26,11 +25,11 @@ steps:
 
 trigger:
   branch:
-  - main
+    - main
   event:
-  - push
-  - cron
-  - pull_request
+    - push
+    - cron
+    - pull_request
 
 ---
 kind: pipeline
@@ -45,81 +44,81 @@ clone:
   depth: 1
 
 steps:
-- name: build aida
-  commands:
-  - nix build '.#nixosConfigurations.aida.config.system.build.toplevel' --out-link result-aida
-  - nix path-info --closure-size -h $(readlink -f result-aida)
+  - name: build aida
+    commands:
+      - nix build '.#nixosConfigurations.aida.config.system.build.toplevel' --out-link result-aida
+      - nix path-info --closure-size -h $(readlink -f result-aida)
 
-- name: build daisy
-  commands:
-  - nix build '.#nixosConfigurations.daisy.config.system.build.toplevel' --out-link result-daisy
-  - nix path-info --closure-size -h $(readlink -f result-daisy)
+  - name: build daisy
+    commands:
+      - nix build '.#nixosConfigurations.daisy.config.system.build.toplevel' --out-link result-daisy
+      - nix path-info --closure-size -h $(readlink -f result-daisy)
 
-- name: build deke
-  commands:
-  - nix build '.#nixosConfigurations.deke.config.system.build.toplevel' --out-link result-deke
-  - nix path-info --closure-size -h $(readlink -f result-deke)
+  - name: build deke
+    commands:
+      - nix build '.#nixosConfigurations.deke.config.system.build.toplevel' --out-link result-deke
+      - nix path-info --closure-size -h $(readlink -f result-deke)
 
-- name: build kora
-  commands:
-  - nix build '.#nixosConfigurations.kora.config.system.build.toplevel' --out-link result-kora
-  - nix path-info --closure-size -h $(readlink -f result-kora)
+  - name: build kora
+    commands:
+      - nix build '.#nixosConfigurations.kora.config.system.build.toplevel' --out-link result-kora
+      - nix path-info --closure-size -h $(readlink -f result-kora)
 
-- name: build simmons
-  commands:
-  - nix build '.#nixosConfigurations.simmons.config.system.build.toplevel' --out-link result-simmons
-  - nix path-info --closure-size -h $(readlink -f result-simmons)
+  - name: build simmons
+    commands:
+      - nix build '.#nixosConfigurations.simmons.config.system.build.toplevel' --out-link result-simmons
+      - nix path-info --closure-size -h $(readlink -f result-simmons)
 
-- name: build snowflake
-  commands:
-  - nix build '.#nixosConfigurations.snowflake.config.system.build.toplevel' --out-link result-snowflake
-  - nix path-info --closure-size -h $(readlink -f result-snowflake)
+  - name: build snowflake
+    commands:
+      - nix build '.#nixosConfigurations.snowflake.config.system.build.toplevel' --out-link result-snowflake
+      - nix path-info --closure-size -h $(readlink -f result-snowflake)
 
-- name: build the-bus
-  commands:
-  - nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel' --out-link result-the-bus
-  - nix path-info --closure-size -h $(readlink -f result-the-bus)
+  - name: build the-bus
+    commands:
+      - nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel' --out-link result-the-bus
+      - nix path-info --closure-size -h $(readlink -f result-the-bus)
 
-- name: build the-hub
-  commands:
-  - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' --out-link result-the-hub
-  - nix path-info --closure-size -h $(readlink -f result-the-hub)
+  - name: build the-hub
+    commands:
+      - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' --out-link result-the-hub
+      - nix path-info --closure-size -h $(readlink -f result-the-hub)
 
-- name: build usb-desktop
-  commands:
-  - nix build '.#nixosConfigurations.usb-desktop.config.system.build.toplevel' --out-link result-usb-desktop
-  - nix path-info --closure-size -h $(readlink -f result-usb-desktop)
+  - name: build usb-desktop
+    commands:
+      - nix build '.#nixosConfigurations.usb-desktop.config.system.build.toplevel' --out-link result-usb-desktop
+      - nix path-info --closure-size -h $(readlink -f result-usb-desktop)
 
-- name: Push amd64 hosts to cachix
-  commands:
-  - nix build '.#nixosConfigurations.aida.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  - nix build '.#nixosConfigurations.daisy.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  - nix build '.#nixosConfigurations.deke.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  - nix build '.#nixosConfigurations.kora.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  - nix build '.#nixosConfigurations.simmons.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  - nix build '.#nixosConfigurations.snowflake.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  - nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  - nix build '.#nixosConfigurations.usb-desktop.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  environment:
-    CACHIX_AUTH_TOKEN:
-      from_secret: CACHIX_AUTH_TOKEN
+  - name: Push amd64 hosts to cachix
+    commands:
+      - nix build '.#nixosConfigurations.aida.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build '.#nixosConfigurations.daisy.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build '.#nixosConfigurations.deke.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build '.#nixosConfigurations.kora.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build '.#nixosConfigurations.simmons.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build '.#nixosConfigurations.snowflake.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build '.#nixosConfigurations.usb-desktop.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+    environment:
+      CACHIX_AUTH_TOKEN:
+        from_secret: CACHIX_AUTH_TOKEN
 
-- name: upload to binary cache via s3
-  commands:
-  - nix run 'github:mayniklas/nixos'#s3uploader
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
+  - name: upload to binary cache via s3
+    commands:
+      - nix run 'github:mayniklas/nixos'#s3uploader
+    environment:
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_key
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_secret
 
 trigger:
   branch:
-  - main
+    - main
   event:
-  - cron
-  - push
+    - cron
+    - push
 
 ---
 kind: pipeline
@@ -134,52 +133,51 @@ clone:
   depth: 1
 
 steps:
+  - name: Build build-system
+    commands:
+      - nix build .#build-system --out-link result-build-system
+      - nix path-info --closure-size -h $(readlink -f result-build-system)
 
-- name: Build build-system
-  commands:
-  - nix build .#build-system --out-link result-build-system
-  - nix path-info --closure-size -h $(readlink -f result-build-system)
+  - name: Build drone-gen
+    commands:
+      - nix build .#drone-gen --out-link result-drone-gen
+      - nix path-info --closure-size -h $(readlink -f result-drone-gen)
 
-- name: Build drone-gen
-  commands:
-  - nix build .#drone-gen --out-link result-drone-gen
-  - nix path-info --closure-size -h $(readlink -f result-drone-gen)
+  - name: Build s3uploader
+    commands:
+      - nix build .#s3uploader --out-link result-s3uploader
+      - nix path-info --closure-size -h $(readlink -f result-s3uploader)
 
-- name: Build s3uploader
-  commands:
-  - nix build .#s3uploader --out-link result-s3uploader
-  - nix path-info --closure-size -h $(readlink -f result-s3uploader)
+  - name: Build vs-fix
+    commands:
+      - nix build .#vs-fix --out-link result-vs-fix
+      - nix path-info --closure-size -h $(readlink -f result-vs-fix)
 
-- name: Build vs-fix
-  commands:
-  - nix build .#vs-fix --out-link result-vs-fix
-  - nix path-info --closure-size -h $(readlink -f result-vs-fix)
+  - name: Push amd64 apps to cachix
+    commands:
+      - nix build .#build-system --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build .#drone-gen --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build .#s3uploader --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build .#vs-fix --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+    environment:
+      CACHIX_AUTH_TOKEN:
+        from_secret: CACHIX_AUTH_TOKEN
 
-- name: Push amd64 apps to cachix
-  commands:
-  - nix build .#build-system --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  - nix build .#drone-gen --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  - nix build .#s3uploader --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  - nix build .#vs-fix --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  environment:
-    CACHIX_AUTH_TOKEN:
-      from_secret: CACHIX_AUTH_TOKEN
-
-- name: upload to binary cache via s3
-  commands:
-  - nix run 'github:mayniklas/nixos'#s3uploader
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
+  - name: upload to binary cache via s3
+    commands:
+      - nix run 'github:mayniklas/nixos'#s3uploader
+    environment:
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_key
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_secret
 
 trigger:
   branch:
-  - main
+    - main
   event:
-  - push
-  - cron
+    - push
+    - cron
 
 ---
 kind: pipeline
@@ -194,58 +192,57 @@ clone:
   depth: 1
 
 steps:
+  - name: Build build-system
+    commands:
+      - nix build .#build-system --out-link result-build-system
+      - nix path-info --closure-size -h $(readlink -f result-build-system)
 
-- name: Build build-system
-  commands:
-  - nix build .#build-system --out-link result-build-system
-  - nix path-info --closure-size -h $(readlink -f result-build-system)
+  - name: Build drone-gen
+    commands:
+      - nix build .#drone-gen --out-link result-drone-gen
+      - nix path-info --closure-size -h $(readlink -f result-drone-gen)
 
-- name: Build drone-gen
-  commands:
-  - nix build .#drone-gen --out-link result-drone-gen
-  - nix path-info --closure-size -h $(readlink -f result-drone-gen)
+  - name: Build s3uploader
+    commands:
+      - nix build .#s3uploader --out-link result-s3uploader
+      - nix path-info --closure-size -h $(readlink -f result-s3uploader)
 
-- name: Build s3uploader
-  commands:
-  - nix build .#s3uploader --out-link result-s3uploader
-  - nix path-info --closure-size -h $(readlink -f result-s3uploader)
+  - name: Build update-input
+    commands:
+      - nix build .#update-input --out-link result-update-input
+      - nix path-info --closure-size -h $(readlink -f result-update-input)
 
-- name: Build update-input
-  commands:
-  - nix build .#update-input --out-link result-update-input
-  - nix path-info --closure-size -h $(readlink -f result-update-input)
+  - name: Build vs-fix
+    commands:
+      - nix build .#vs-fix --out-link result-vs-fix
+      - nix path-info --closure-size -h $(readlink -f result-vs-fix)
 
-- name: Build vs-fix
-  commands:
-  - nix build .#vs-fix --out-link result-vs-fix
-  - nix path-info --closure-size -h $(readlink -f result-vs-fix)
+  - name: Push arm64 apps to cachix
+    commands:
+      - nix build .#build-system --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build .#drone-gen --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build .#s3uploader --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build .#update-input --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build .#vs-fix --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+    environment:
+      CACHIX_AUTH_TOKEN:
+        from_secret: CACHIX_AUTH_TOKEN
 
-- name: Push arm64 apps to cachix
-  commands:
-  - nix build .#build-system --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  - nix build .#drone-gen --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  - nix build .#s3uploader --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  - nix build .#update-input --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  - nix build .#vs-fix --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-  environment:
-    CACHIX_AUTH_TOKEN:
-      from_secret: CACHIX_AUTH_TOKEN
-
-- name: upload to binary cache via s3
-  commands:
-  - nix run 'github:mayniklas/nixos'#s3uploader
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
+  - name: upload to binary cache via s3
+    commands:
+      - nix run 'github:mayniklas/nixos'#s3uploader
+    environment:
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_key
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_secret
 
 trigger:
   branch:
-  - main
+    - main
   event:
-  - push
-  - cron
+    - push
+    - cron
 
 ---
 kind: pipeline
@@ -260,56 +257,56 @@ clone:
   depth: 1
 
 steps:
-- name: Build aida
-  commands:
-  - nix build .#aida --out-link result-aida
-  - nix path-info --closure-size -h $(readlink -f result-aida)
+  - name: Build aida
+    commands:
+      - nix build .#aida --out-link result-aida
+      - nix path-info --closure-size -h $(readlink -f result-aida)
 
-- name: Build daisy
-  commands:
-  - nix build .#daisy --out-link result-daisy
-  - nix path-info --closure-size -h $(readlink -f result-daisy)
+  - name: Build daisy
+    commands:
+      - nix build .#daisy --out-link result-daisy
+      - nix path-info --closure-size -h $(readlink -f result-daisy)
 
-- name: Build deke
-  commands:
-  - nix build .#deke --out-link result-deke
-  - nix path-info --closure-size -h $(readlink -f result-deke)
+  - name: Build deke
+    commands:
+      - nix build .#deke --out-link result-deke
+      - nix path-info --closure-size -h $(readlink -f result-deke)
 
-- name: Build kora
-  commands:
-  - nix build .#kora --out-link result-kora
-  - nix path-info --closure-size -h $(readlink -f result-kora)
+  - name: Build kora
+    commands:
+      - nix build .#kora --out-link result-kora
+      - nix path-info --closure-size -h $(readlink -f result-kora)
 
-- name: Build simmons
-  commands:
-  - nix build .#simmons --out-link result-simmons
-  - nix path-info --closure-size -h $(readlink -f result-simmons)
+  - name: Build simmons
+    commands:
+      - nix build .#simmons --out-link result-simmons
+      - nix path-info --closure-size -h $(readlink -f result-simmons)
 
-- name: Build snowflake
-  commands:
-  - nix build .#snowflake --out-link result-snowflake
-  - nix path-info --closure-size -h $(readlink -f result-snowflake)
+  - name: Build snowflake
+    commands:
+      - nix build .#snowflake --out-link result-snowflake
+      - nix path-info --closure-size -h $(readlink -f result-snowflake)
 
-- name: Build the-bus
-  commands:
-  - nix build .#the-bus --out-link result-the-bus
-  - nix path-info --closure-size -h $(readlink -f result-the-bus)
+  - name: Build the-bus
+    commands:
+      - nix build .#the-bus --out-link result-the-bus
+      - nix path-info --closure-size -h $(readlink -f result-the-bus)
 
-- name: Build the-hub
-  commands:
-  - nix build .#the-hub --out-link result-the-hub
-  - nix path-info --closure-size -h $(readlink -f result-the-hub)
+  - name: Build the-hub
+    commands:
+      - nix build .#the-hub --out-link result-the-hub
+      - nix path-info --closure-size -h $(readlink -f result-the-hub)
 
-- name: Build usb-desktop
-  commands:
-  - nix build .#usb-desktop --out-link result-usb-desktop
-  - nix path-info --closure-size -h $(readlink -f result-usb-desktop)
+  - name: Build usb-desktop
+    commands:
+      - nix build .#usb-desktop --out-link result-usb-desktop
+      - nix path-info --closure-size -h $(readlink -f result-usb-desktop)
 
 trigger:
   branch:
-  - main
+    - main
   event:
-  - pull_request
+    - pull_request
 
 ---
 kind: pipeline
@@ -324,32 +321,31 @@ clone:
   depth: 1
 
 steps:
+  - name: Build build-system
+    commands:
+      - nix build .#build-system --out-link result-build-system
+      - nix path-info --closure-size -h $(readlink -f result-build-system)
 
-- name: Build build-system
-  commands:
-  - nix build .#build-system --out-link result-build-system
-  - nix path-info --closure-size -h $(readlink -f result-build-system)
+  - name: Build drone-gen
+    commands:
+      - nix build .#drone-gen --out-link result-drone-gen
+      - nix path-info --closure-size -h $(readlink -f result-drone-gen)
 
-- name: Build drone-gen
-  commands:
-  - nix build .#drone-gen --out-link result-drone-gen
-  - nix path-info --closure-size -h $(readlink -f result-drone-gen)
+  - name: Build s3uploader
+    commands:
+      - nix build .#s3uploader --out-link result-s3uploader
+      - nix path-info --closure-size -h $(readlink -f result-s3uploader)
 
-- name: Build s3uploader
-  commands:
-  - nix build .#s3uploader --out-link result-s3uploader
-  - nix path-info --closure-size -h $(readlink -f result-s3uploader)
-
-- name: Build vs-fix
-  commands:
-  - nix build .#vs-fix --out-link result-vs-fix
-  - nix path-info --closure-size -h $(readlink -f result-vs-fix)
+  - name: Build vs-fix
+    commands:
+      - nix build .#vs-fix --out-link result-vs-fix
+      - nix path-info --closure-size -h $(readlink -f result-vs-fix)
 
 trigger:
   branch:
-  - main
+    - main
   event:
-  - pull_request
+    - pull_request
 
 ---
 kind: pipeline
@@ -364,34 +360,33 @@ clone:
   depth: 1
 
 steps:
+  - name: Build build-system
+    commands:
+      - nix build .#build-system --out-link result-build-system
+      - nix path-info --closure-size -h $(readlink -f result-build-system)
 
-- name: Build build-system
-  commands:
-  - nix build .#build-system --out-link result-build-system
-  - nix path-info --closure-size -h $(readlink -f result-build-system)
+  - name: Build drone-gen
+    commands:
+      - nix build .#drone-gen --out-link result-drone-gen
+      - nix path-info --closure-size -h $(readlink -f result-drone-gen)
 
-- name: Build drone-gen
-  commands:
-  - nix build .#drone-gen --out-link result-drone-gen
-  - nix path-info --closure-size -h $(readlink -f result-drone-gen)
+  - name: Build s3uploader
+    commands:
+      - nix build .#s3uploader --out-link result-s3uploader
+      - nix path-info --closure-size -h $(readlink -f result-s3uploader)
 
-- name: Build s3uploader
-  commands:
-  - nix build .#s3uploader --out-link result-s3uploader
-  - nix path-info --closure-size -h $(readlink -f result-s3uploader)
+  - name: Build update-input
+    commands:
+      - nix build .#update-input --out-link result-update-input
+      - nix path-info --closure-size -h $(readlink -f result-update-input)
 
-- name: Build update-input
-  commands:
-  - nix build .#update-input --out-link result-update-input
-  - nix path-info --closure-size -h $(readlink -f result-update-input)
-
-- name: Build vs-fix
-  commands:
-  - nix build .#vs-fix --out-link result-vs-fix
-  - nix path-info --closure-size -h $(readlink -f result-vs-fix)
+  - name: Build vs-fix
+    commands:
+      - nix build .#vs-fix --out-link result-vs-fix
+      - nix path-info --closure-size -h $(readlink -f result-vs-fix)
 
 trigger:
   branch:
-  - main
+    - main
   event:
-  - pull_request
+    - pull_request
