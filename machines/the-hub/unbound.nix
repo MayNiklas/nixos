@@ -60,16 +60,19 @@ in
         domain-insecure = [ "haus" ];
         stub-zone = [
           {
-            name = "too-many-tb.de";
-            stub-addr = "10.88.88.2";
-          }
-          {
             name = "haus";
             stub-addr = "10.88.88.4";
           }
         ];
 
         forward-zone = [
+          {
+            name = "too-many-tb.de.";
+            forward-addr = [
+              "10.88.88.2"
+            ];
+            forward-tls-upstream = "no";
+          }
           {
             name = "google.*.";
             forward-addr = [
