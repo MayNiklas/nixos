@@ -23,6 +23,14 @@ steps:
   - name: run flake checks
     commands:
       - nix flake check
+
+trigger:
+  branch:
+  - main
+  event:
+  - push
+  - cron
+  - pull_request
 {{#hosts}}
 
 ---
@@ -38,21 +46,22 @@ clone:
   depth: 1
 
 steps:
-
 {{#machines}}
 - name: build {{name}}
   commands:
   - nix build '.#nixosConfigurations.{{name}}.config.system.build.toplevel' --out-link result-{{name}}
   - nix path-info --closure-size -h $(readlink -f result-{{name}})
 
-- name: Push {{name}} to cachix
+{{/machines}}
+- name: Push {{arch}} hosts to cachix
   commands:
+{{#machines}}
   - nix build '.#nixosConfigurations.{{name}}.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+{{/machines}}
   environment:
     CACHIX_AUTH_TOKEN:
       from_secret: CACHIX_AUTH_TOKEN
 
-{{/machines}}
 - name: upload to binary cache via s3
   commands:
   - nix run 'github:mayniklas/nixos'#s3uploader
@@ -68,7 +77,6 @@ trigger:
   event:
   - cron
   - push
-  - pull_request
 {{/hosts}}
 
 {{#packages}}
@@ -92,14 +100,16 @@ steps:
   - nix build .#{{name}} --out-link result-{{name}}
   - nix path-info --closure-size -h $(readlink -f result-{{name}})
 
-- name: Push {{name}} to cachix
+{{/apps}}
+- name: Push {{arch}} apps to cachix
   commands:
+{{#apps}}
   - nix build .#{{name}} --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+{{/apps}}
   environment:
     CACHIX_AUTH_TOKEN:
       from_secret: CACHIX_AUTH_TOKEN
 
-{{/apps}}
 - name: upload to binary cache via s3
   commands:
   - nix run 'github:mayniklas/nixos'#s3uploader
@@ -115,14 +125,41 @@ trigger:
   event:
   - push
   - cron
-  - pull_request
 
 {{/packages}}
 {{#hosts}}
 ---
 kind: pipeline
 type: exec
-name: nix flake update - {{arch}}
+name: build hosts - {{arch}} (PR)
+
+platform:
+  os: linux
+  arch: {{arch}}
+
+clone:
+  depth: 1
+
+steps:
+{{#machines}}
+- name: Build {{name}}
+  commands:
+  - nix build .#{{name}} --out-link result-{{name}}
+  - nix path-info --closure-size -h $(readlink -f result-{{name}})
+
+{{/machines}}
+trigger:
+  branch:
+  - main
+  event:
+  - pull_request
+{{/hosts}}
+{{#packages}}
+
+---
+kind: pipeline
+type: exec
+name: build packages - {{arch}} (PR)
 
 platform:
   os: linux
@@ -133,20 +170,16 @@ clone:
 
 steps:
 
-- name: nix flake update
+{{#apps}}
+- name: Build {{name}}
   commands:
-  - nix flake update
-
-{{#machines}}
-- name: build {{name}}
-  commands:
-  - nix build '.#nixosConfigurations.{{name}}.config.system.build.toplevel' --out-link result-{{name}}
+  - nix build .#{{name}} --out-link result-{{name}}
   - nix path-info --closure-size -h $(readlink -f result-{{name}})
 
-{{/machines}}
+{{/apps}}
 trigger:
   branch:
   - main
   event:
-  - cron
-{{/hosts}}
+  - pull_request
+{{/packages}}
