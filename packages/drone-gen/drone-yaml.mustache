@@ -11,7 +11,6 @@ clone:
   depth: 1
 
 steps:
-
   - name: show flake show
     commands:
       - nix flake show
@@ -26,11 +25,11 @@ steps:
 
 trigger:
   branch:
-  - main
+    - main
   event:
-  - push
-  - cron
-  - pull_request
+    - push
+    - cron
+    - pull_request
 {{#hosts}}
 
 ---
