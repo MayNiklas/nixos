@@ -27,7 +27,7 @@ in
           useOSProber = true;
         };
       };
-      cleanTmpDir = true;
+      tmp.cleanOnBoot = true;
       initrd.luks.devices = {
         root = {
           # Get UUID from blkid /dev/sda2

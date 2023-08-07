@@ -45,11 +45,15 @@ in
     # Graphana fronend
     services.grafana = {
       enable = true;
-      domain = cfg.domain;
-      # Default is 3000
-      port = 9005;
-      addr = "127.0.0.1";
-      auth.anonymous.enable = true;
+
+      settings = {
+        server = {
+          http_port = 9005;
+          http_addr = "127.0.0.1";
+          domain = cfg.domain;
+        };
+        "auth.anonymous".enabled' = true;
+      };
 
       # Provisioning dashboards and datasources declaratively by
       # setting `dashboards` or `datasources` to a list is not supported

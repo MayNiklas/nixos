@@ -18,7 +18,7 @@ in
           useOSProber = true;
         };
       };
-      cleanTmpDir = true;
+      tmp.cleanOnBoot = true;
     };
   };
 }

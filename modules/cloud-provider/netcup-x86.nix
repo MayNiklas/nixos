@@ -78,7 +78,7 @@ in
       device = "tmpfs";
       options = [ "nosuid" "nodev" "relatime" "size=2G" ];
     };
-    boot.tmpOnTmpfs = false;
+    boot.tmp.useTmpfs = false;
     services.logind.extraConfig = ''
       RuntimeDirectorySize=2G
     '';

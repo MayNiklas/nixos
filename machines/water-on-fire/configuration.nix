@@ -40,8 +40,6 @@
     xserver = { enable = false; };
   };
 
-  boot.loader.grub.default = "2";
-
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   networking = {
