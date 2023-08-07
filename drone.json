@@ -1,4 +1,5 @@
 {
+    "cachix_name": "mayniklas",
     "hosts": [
         {
             "arch": "amd64",

@@ -55,7 +55,7 @@ steps:
   - name: Push {{arch}} hosts to cachix
     commands:
 {{#machines}}
-      - nix build '.#nixosConfigurations.{{name}}.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build '.#nixosConfigurations.{{name}}.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push {{cachix_name}}
 {{/machines}}
     environment:
       CACHIX_AUTH_TOKEN:
@@ -102,7 +102,7 @@ steps:
   - name: Push {{arch}} apps to cachix
     commands:
 {{#apps}}
-      - nix build .#{{name}} --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build .#{{name}} --json | jq -r '.[].outputs | to_entries[].value' | cachix push {{cachix_name}}
 {{/apps}}
     environment:
       CACHIX_AUTH_TOKEN:
