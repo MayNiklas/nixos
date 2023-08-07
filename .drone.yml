@@ -24,6 +24,14 @@ steps:
     commands:
       - nix flake check
 
+trigger:
+  branch:
+  - main
+  event:
+  - push
+  - cron
+  - pull_request
+
 ---
 kind: pipeline
 type: exec
