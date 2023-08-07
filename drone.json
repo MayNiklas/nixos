@@ -39,25 +39,19 @@
             "arch": "amd64",
             "apps": [
                 {
-                    "name": "build-system"
-                },
-                {
                     "name": "drone-gen"
                 },
                 {
                     "name": "s3uploader"
                 },
                 {
-                    "name": "vs-fix"
+                    "name": "update-input"
                 }
             ]
         },
         {
             "arch": "arm64",
             "apps": [
-                {
-                    "name": "build-system"
-                },
                 {
                     "name": "drone-gen"
                 },
@@ -66,9 +60,6 @@
                 },
                 {
                     "name": "update-input"
-                },
-                {
-                    "name": "vs-fix"
                 }
             ]
         }

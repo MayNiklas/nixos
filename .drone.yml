@@ -133,11 +133,6 @@ clone:
   depth: 1
 
 steps:
-  - name: Build build-system
-    commands:
-      - nix build .#build-system --out-link result-build-system
-      - nix path-info --closure-size -h $(readlink -f result-build-system)
-
   - name: Build drone-gen
     commands:
       - nix build .#drone-gen --out-link result-drone-gen
@@ -148,17 +143,16 @@ steps:
       - nix build .#s3uploader --out-link result-s3uploader
       - nix path-info --closure-size -h $(readlink -f result-s3uploader)
 
-  - name: Build vs-fix
+  - name: Build update-input
     commands:
-      - nix build .#vs-fix --out-link result-vs-fix
-      - nix path-info --closure-size -h $(readlink -f result-vs-fix)
+      - nix build .#update-input --out-link result-update-input
+      - nix path-info --closure-size -h $(readlink -f result-update-input)
 
   - name: Push amd64 apps to cachix
     commands:
-      - nix build .#build-system --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
       - nix build .#drone-gen --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
       - nix build .#s3uploader --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-      - nix build .#vs-fix --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
+      - nix build .#update-input --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
     environment:
       CACHIX_AUTH_TOKEN:
         from_secret: CACHIX_AUTH_TOKEN
@@ -192,11 +186,6 @@ clone:
   depth: 1
 
 steps:
-  - name: Build build-system
-    commands:
-      - nix build .#build-system --out-link result-build-system
-      - nix path-info --closure-size -h $(readlink -f result-build-system)
-
   - name: Build drone-gen
     commands:
       - nix build .#drone-gen --out-link result-drone-gen
@@ -212,18 +201,11 @@ steps:
       - nix build .#update-input --out-link result-update-input
       - nix path-info --closure-size -h $(readlink -f result-update-input)
 
-  - name: Build vs-fix
-    commands:
-      - nix build .#vs-fix --out-link result-vs-fix
-      - nix path-info --closure-size -h $(readlink -f result-vs-fix)
-
   - name: Push arm64 apps to cachix
     commands:
-      - nix build .#build-system --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
       - nix build .#drone-gen --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
       - nix build .#s3uploader --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
       - nix build .#update-input --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
-      - nix build .#vs-fix --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
     environment:
       CACHIX_AUTH_TOKEN:
         from_secret: CACHIX_AUTH_TOKEN
@@ -321,11 +303,6 @@ clone:
   depth: 1
 
 steps:
-  - name: Build build-system
-    commands:
-      - nix build .#build-system --out-link result-build-system
-      - nix path-info --closure-size -h $(readlink -f result-build-system)
-
   - name: Build drone-gen
     commands:
       - nix build .#drone-gen --out-link result-drone-gen
@@ -336,10 +313,10 @@ steps:
       - nix build .#s3uploader --out-link result-s3uploader
       - nix path-info --closure-size -h $(readlink -f result-s3uploader)
 
-  - name: Build vs-fix
+  - name: Build update-input
     commands:
-      - nix build .#vs-fix --out-link result-vs-fix
-      - nix path-info --closure-size -h $(readlink -f result-vs-fix)
+      - nix build .#update-input --out-link result-update-input
+      - nix path-info --closure-size -h $(readlink -f result-update-input)
 
 trigger:
   branch:
@@ -360,11 +337,6 @@ clone:
   depth: 1
 
 steps:
-  - name: Build build-system
-    commands:
-      - nix build .#build-system --out-link result-build-system
-      - nix path-info --closure-size -h $(readlink -f result-build-system)
-
   - name: Build drone-gen
     commands:
       - nix build .#drone-gen --out-link result-drone-gen
@@ -379,11 +351,6 @@ steps:
     commands:
       - nix build .#update-input --out-link result-update-input
       - nix path-info --closure-size -h $(readlink -f result-update-input)
-
-  - name: Build vs-fix
-    commands:
-      - nix build .#vs-fix --out-link result-vs-fix
-      - nix path-info --closure-size -h $(readlink -f result-vs-fix)
 
 trigger:
   branch:
