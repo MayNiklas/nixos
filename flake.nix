@@ -306,6 +306,7 @@
           # allow using them from other flakes that import this one.
 
           packages = flake-utils.lib.flattenTree {
+            build-push = pkgs.build-push;
             build-system = pkgs.build-system;
             drone-gen = pkgs.drone-gen;
             mtu-check = pkgs.mtu-check;
