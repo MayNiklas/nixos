@@ -7,6 +7,7 @@
       with pkgs; [
         go
         gotools
+        nil
 
         # https://github.com/ryantm/nixpkgs-update
         # nixpkgs-update.packages.${pkgs.system}.nixpkgs-update

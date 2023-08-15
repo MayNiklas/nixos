@@ -25,6 +25,8 @@ in
         "[nix]" = {
           "editor.defaultFormatter" = "B4dM4n.nixpkgs-fmt";
         };
+        "nix.enableLanguageServer" = "true";
+        "nix.serverPath" = "${pkgs.nil}/bin/nil";
       };
 
       extensions = with pkgs.vscode-extensions; [
