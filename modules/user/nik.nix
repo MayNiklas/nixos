@@ -19,6 +19,6 @@ in
         })
       ];
     };
-    nix.settings.allowed-users = [ "nik" ];
+    nix.settings = { allowed-users = [ "nik" ]; trusted-users = [ "nik" ]; };
   };
 }
