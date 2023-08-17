@@ -98,6 +98,12 @@
       url = "github:MayNiklas/whisper_api";
     };
 
+    # https://github.com/zhaofengli/attic
+    # Multi-tenant Nix Binary Cache
+    attic = {
+      url = "github:zhaofengli/attic";
+    };
+
     cachix = {
       url = "github:cachix/cachix/v1.4.2";
     };

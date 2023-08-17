@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, attic, ... }: {
 
   imports = [ ./cron.nix ];
 
@@ -8,6 +8,8 @@
         go
         gotools
         nil
+
+        attic.packages.${pkgs.system}.attic
 
         # https://github.com/ryantm/nixpkgs-update
         # nixpkgs-update.packages.${pkgs.system}.nixpkgs-update
