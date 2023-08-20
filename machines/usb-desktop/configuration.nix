@@ -1,4 +1,4 @@
-{ self, pkgs, lib, config, nixos-hardware, cachix, ... }: {
+{ self, pkgs, lib, config, nixos-hardware, ... }: {
 
   imports = with nixos-hardware.nixosModules; [
     common-cpu-amd
@@ -32,13 +32,8 @@
   };
 
   home-manager.users.nik = {
-    home.packages =
-      let
-        cachix_package = cachix.packages.${pkgs.system}.cachix;
-      in
-      with pkgs; [
-        cachix_package
-      ];
+    home.packages = with pkgs; [
+    ];
   };
 
   fileSystems."/" = {

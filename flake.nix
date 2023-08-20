@@ -104,10 +104,6 @@
       url = "github:zhaofengli/attic";
     };
 
-    cachix = {
-      url = "github:cachix/cachix/v1.4.2";
-    };
-
   };
   outputs = { self, ... }@inputs:
     with inputs;
