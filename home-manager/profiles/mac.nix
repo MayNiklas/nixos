@@ -1,9 +1,6 @@
-{ config, pkgs, lib, whisper-api, ... }: {
+{ config, pkgs, lib, ... }: {
 
   home.packages = with pkgs;[
-    # my packages
-    whisper_cli
-
     # GUI apps
     obsidian
 
@@ -42,9 +39,7 @@
   imports = [
     {
       nixpkgs.overlays = [
-        (self: super: {
-          whisper_cli = whisper-api.packages.${pkgs.system}.whisper_cli;
-        })
+        (self: super: { })
       ];
     }
     ../modules/git

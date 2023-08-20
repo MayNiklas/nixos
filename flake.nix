@@ -64,16 +64,6 @@
       flake = false;
     };
 
-    # # Prometheus exporter providing temperature metrics
-    # # https://github.com/MayNiklas/dyson-exporter
-    # dyson-exporter = {
-    #   url = "github:MayNiklas/dyson-exporter";
-    #   inputs = {
-    #     flake-utils.follows = "flake-utils";
-    #     nixpkgs.follows = "nixpkgs";
-    #   };
-    # };
-
     # A Shelly power metrics exporter written in golang. 
     # https://github.com/MayNiklas/shelly-exporter
     shelly-exporter = {
@@ -92,10 +82,6 @@
         flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
       };
-    };
-
-    whisper-api = {
-      url = "github:MayNiklas/whisper_api";
     };
 
     # https://github.com/zhaofengli/attic
