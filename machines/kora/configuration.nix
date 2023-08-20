@@ -16,6 +16,16 @@
       ];
   };
 
+  # virtualisation.oci-containers = {
+  #   containers = {
+  #     influxdb = {
+  #       autoStart = true;
+  #       image = "influxdb:2.7.1-alpine";
+  #       ports = [ "8086:8086" ];
+  #     };
+  #   };
+  # };
+
   mayniklas = {
     cloud.pve-x86.enable = true;
     docker = { enable = true; };
