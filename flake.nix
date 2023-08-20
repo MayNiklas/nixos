@@ -111,16 +111,16 @@
   };
   outputs = { self, ... }@inputs:
     with inputs;
+    let
+      supportedSystems = [ "aarch64-linux" "x86_64-linux" ];
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+      nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; overlays = [ self.overlays.default ]; });
+    in
     {
 
-      nixConfig = {
-        extra-substituters = [
-          "https://mayniklas.cachix.org"
-        ];
-        extra-trusted-public-keys = [
-          "mayniklas.cachix.org-1:gti3flcBaUNMoDN2nWCOPzCi2P68B5JbA/4jhUqHAFU="
-        ];
-      };
+      # Use nixpkgs-fmt for `nix fmt'
+      formatter = forAllSystems
+        (system: nixpkgsFor.${system}.nixpkgs-fmt);
 
       # Expose overlay to flake outputs, to allow using it from other flakes.
       # Flake inputs are passed to the overlay so that the packages defined in
@@ -304,9 +304,6 @@
           };
         in
         rec {
-
-          # Use nixpkgs-fmt for `nix fmt'
-          formatter = pkgs.nixpkgs-fmt;
 
           # Custom packages added via the overlay are selectively exposed here, to
           # allow using them from other flakes that import this one.
