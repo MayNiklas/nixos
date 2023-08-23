@@ -20,6 +20,9 @@
       ];
   };
 
+  # todo: Steam is totally broken
+  programs.steam.enable = true;
+
   # fingerprint login
   services.fprintd.enable = true;
 
