@@ -11,7 +11,7 @@ in
   config = mkIf cfg.enable {
 
     # tools to watch iGPU usage
-    environment.systemPackages = with pkgs; [ intel-gpu-tools nvtop ];
+    environment.systemPackages = with pkgs; [ intel-gpu-tools nvtop powertop ];
 
     # I have to check, which of the following options are really needed
     # for hardware transcoding to work
