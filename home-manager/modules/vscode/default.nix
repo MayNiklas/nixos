@@ -16,28 +16,43 @@ in
       # https://rycee.gitlab.io/home-manager/options.html#opt-programs.vscode.keybindings
       keybindings = [ ];
 
+      # ~/.config/Code/User/settings.json
       userSettings = {
+        # privacy
         "telemetry.telemetryLevel" = "off";
+
+        # style
         "terminal.integrated.fontFamily" = "source code pro";
+        "workbench.colorTheme" = "GitHub Dark Default";
+
+        # jnoortheen.nix-ide
+        "nix" = {
+          "enableLanguageServer" = true;
+          "serverPath" = "${pkgs.nil}/bin/nil";
+          "serverSettings" = {
+            "nil" = {
+              "formatting" = {
+                "command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
+              };
+            };
+          };
+        };
+
+        # Go
         "[go]" = {
           "editor.defaultFormatter" = "golang.go";
         };
-        "[nix]" = {
-          "editor.defaultFormatter" = "B4dM4n.nixpkgs-fmt";
-        };
-        "nix.enableLanguageServer" = "true";
-        "nix.serverPath" = "${pkgs.nil}/bin/nil";
+        "go.toolsManagement.checkForUpdates" = "off";
       };
 
       extensions = with pkgs.vscode-extensions; [
-        b4dm4n.vscode-nixpkgs-fmt
-        bbenoist.nix
         github.copilot
         github.github-vscode-theme
         github.vscode-github-actions
         github.vscode-pull-request-github
         golang.go
         james-yu.latex-workshop
+        jnoortheen.nix-ide
         ms-azuretools.vscode-docker
         ms-python.python
         ms-vscode-remote.remote-ssh
