@@ -23,6 +23,7 @@
       htop
       hugo
       iperf3
+      nil
       nmap
       nvtop
       okular

@@ -7,7 +7,6 @@
       with pkgs; [
         go
         gotools
-        nil
 
         attic.packages.${pkgs.system}.attic
 
