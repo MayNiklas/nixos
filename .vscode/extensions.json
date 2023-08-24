@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "jnoortheen.nix-ide",
+        "github.copilot",
+        "github.vscode-pull-request-github"
+    ]
+}
