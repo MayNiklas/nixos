@@ -29,7 +29,6 @@
       git.enable = true;
       tmux.enable = true;
       vim.enable = true;
-      # vscode-server.enable = true;
       zsh.enable = true;
     };
   };
@@ -40,7 +39,6 @@
     ../modules/tmux
     ../modules/nvim
     ../modules/zsh
-    ../modules/vscode-server
   ];
 
   # Include man-pages
