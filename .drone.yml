@@ -44,6 +44,13 @@ clone:
   depth: 1
 
 steps:
+  - name: login into attic
+    commands:
+      - nix run 'github:zhaofengli/attic' -- login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default
+    environment:
+      ATTIC_KEY:
+        from_secret: attic_key
+
   - name: build aida
     commands:
       - nix build '.#nixosConfigurations.aida.config.system.build.toplevel' --out-link result-aida
@@ -89,6 +96,18 @@ steps:
       - nix build '.#nixosConfigurations.usb-desktop.config.system.build.toplevel' --out-link result-usb-desktop
       - nix path-info --closure-size -h $(readlink -f result-usb-desktop)
 
+  - name: Push amd64 hosts to attic
+    commands:
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link .#nixosConfigurations.aida.config.system.build.toplevel)
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link .#nixosConfigurations.daisy.config.system.build.toplevel)
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link .#nixosConfigurations.deke.config.system.build.toplevel)
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link .#nixosConfigurations.kora.config.system.build.toplevel)
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link .#nixosConfigurations.simmons.config.system.build.toplevel)
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link .#nixosConfigurations.snowflake.config.system.build.toplevel)
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link .#nixosConfigurations.the-bus.config.system.build.toplevel)
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link .#nixosConfigurations.the-hub.config.system.build.toplevel)
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link .#nixosConfigurations.usb-desktop.config.system.build.toplevel)
+
   - name: Push amd64 hosts to cachix
     commands:
       - nix build '.#nixosConfigurations.aida.config.system.build.toplevel' --json | jq -r '.[].outputs | to_entries[].value' | cachix push mayniklas
@@ -133,6 +152,13 @@ clone:
   depth: 1
 
 steps:
+  - name: login into attic
+    commands:
+      - nix run 'github:zhaofengli/attic' -- login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default
+    environment:
+      ATTIC_KEY:
+        from_secret: attic_key
+
   - name: Build drone-gen
     commands:
       - nix build .#drone-gen --out-link result-drone-gen
@@ -147,6 +173,12 @@ steps:
     commands:
       - nix build .#update-input --out-link result-update-input
       - nix path-info --closure-size -h $(readlink -f result-update-input)
+
+  - name: Push amd64 apps to attic
+    commands:
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link .#drone-gen)  
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link .#s3uploader)  
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link .#update-input)  
 
   - name: Push amd64 apps to cachix
     commands:
@@ -186,6 +218,13 @@ clone:
   depth: 1
 
 steps:
+  - name: login into attic
+    commands:
+      - nix run 'github:zhaofengli/attic' -- login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default
+    environment:
+      ATTIC_KEY:
+        from_secret: attic_key
+
   - name: Build drone-gen
     commands:
       - nix build .#drone-gen --out-link result-drone-gen
@@ -200,6 +239,12 @@ steps:
     commands:
       - nix build .#update-input --out-link result-update-input
       - nix path-info --closure-size -h $(readlink -f result-update-input)
+
+  - name: Push arm64 apps to attic
+    commands:
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link .#drone-gen)  
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link .#s3uploader)  
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link .#update-input)  
 
   - name: Push arm64 apps to cachix
     commands:

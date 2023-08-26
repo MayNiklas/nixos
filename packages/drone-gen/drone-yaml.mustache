@@ -45,6 +45,13 @@ clone:
   depth: 1
 
 steps:
+  - name: login into attic
+    commands:
+      - nix run 'github:zhaofengli/attic' -- login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default
+    environment:
+      ATTIC_KEY:
+        from_secret: attic_key
+
 {{#machines}}
   - name: build {{name}}
     commands:
@@ -52,6 +59,12 @@ steps:
       - nix path-info --closure-size -h $(readlink -f result-{{name}})
 
 {{/machines}}
+  - name: Push {{arch}} hosts to attic
+    commands:
+{{#machines}}
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link .#nixosConfigurations.{{name}}.config.system.build.toplevel)
+{{/machines}}
+
   - name: Push {{arch}} hosts to cachix
     commands:
 {{#machines}}
@@ -92,6 +105,13 @@ clone:
   depth: 1
 
 steps:
+  - name: login into attic
+    commands:
+      - nix run 'github:zhaofengli/attic' -- login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default
+    environment:
+      ATTIC_KEY:
+        from_secret: attic_key
+
 {{#apps}}
   - name: Build {{name}}
     commands:
@@ -99,6 +119,12 @@ steps:
       - nix path-info --closure-size -h $(readlink -f result-{{name}})
 
 {{/apps}}
+  - name: Push {{arch}} apps to attic
+    commands:
+{{#apps}}
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link .#{{name}})  
+{{/apps}}
+
   - name: Push {{arch}} apps to cachix
     commands:
 {{#apps}}
