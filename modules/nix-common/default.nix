@@ -56,17 +56,12 @@ in
       settings = {
         # binary cache -> build by DroneCI
         trusted-public-keys = mkIf (cfg.disable-cache != true) [
+          "nix-cache:4FILs79Adxn/798F8qk2PC1U8HaTlaPqptwNJrXNA1g="
           "mayniklas.cachix.org-1:gti3flcBaUNMoDN2nWCOPzCi2P68B5JbA/4jhUqHAFU="
-          "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY="
         ];
         substituters = mkIf (cfg.disable-cache != true) [
-          "https://cache.nixos.org"
-          "https://mayniklas.cachix.org?priority=75"
-          "https://cache.lounge.rocks?priority=100"
-        ];
-        trusted-substituters = mkIf (cfg.disable-cache != true) [
-          "https://cache.nixos.org"
           "https://cache.lounge.rocks"
+          "https://mayniklas.cachix.org"
         ];
 
         #Users allowed to run nix
