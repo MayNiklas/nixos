@@ -60,7 +60,7 @@ in
           "mayniklas.cachix.org-1:gti3flcBaUNMoDN2nWCOPzCi2P68B5JbA/4jhUqHAFU="
         ];
         substituters = mkIf (cfg.disable-cache != true) [
-          "https://cache.lounge.rocks"
+          "https://cache.lounge.rocks/nix-cache"
           "https://mayniklas.cachix.org"
         ];
 
