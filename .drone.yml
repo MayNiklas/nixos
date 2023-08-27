@@ -159,6 +159,10 @@ steps:
       ATTIC_KEY:
         from_secret: attic_key
 
+  - name: push attic into attic
+    commands:
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link 'github:zhaofengli/attic')
+
   - name: Build drone-gen
     commands:
       - nix build .#drone-gen --out-link result-drone-gen
@@ -224,6 +228,10 @@ steps:
     environment:
       ATTIC_KEY:
         from_secret: attic_key
+
+  - name: push attic into attic
+    commands:
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link 'github:zhaofengli/attic')
 
   - name: Build drone-gen
     commands:

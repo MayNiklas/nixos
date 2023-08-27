@@ -112,6 +112,10 @@ steps:
       ATTIC_KEY:
         from_secret: attic_key
 
+  - name: push attic into attic
+    commands:
+      - nix run 'github:zhaofengli/attic' -- push nix-cache $(nix build --print-out-paths --no-link 'github:zhaofengli/attic')
+
 {{#apps}}
   - name: Build {{name}}
     commands:
