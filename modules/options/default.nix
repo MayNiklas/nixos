@@ -4,6 +4,15 @@ let cfg = config.mayniklas.var;
 in
 {
 
+  options.mayniklas.defaults = {
+    CISkip = mkOption {
+      type = types.bool;
+      default = false;
+      example = true;
+      description = "Wheter this host should be skipped by the CI pipeline";
+    };
+  };
+
   options.mayniklas.var.mainUser = lib.mkOption {
     type = lib.types.str;
     default = "nik";
