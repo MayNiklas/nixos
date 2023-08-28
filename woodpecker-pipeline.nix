@@ -33,7 +33,7 @@ writeText "pipeline" (builtins.toJSON {
         name = "Host: ${host}";
         data = (builtins.toJSON {
           labels.backend = "local";
-          platform = woodpecker-platforms."${flake-self.nixosConfigurations.${host}.config.nixpkgs.system}";
+          # platform = woodpecker-platforms."${flake-self.nixosConfigurations.${host}.config.nixpkgs.system}";
           pipeline = [
             atticSetupStep
             {
