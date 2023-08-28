@@ -6,6 +6,8 @@
 
 {
 
+  mayniklas.defaults.CISkip = true;
+
   imports = [ ./hardware-configuration.nix ];
 
   mayniklas = {

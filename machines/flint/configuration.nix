@@ -1,5 +1,7 @@
 { self, ... }: {
 
+  mayniklas.defaults.CISkip = true;
+
   mayniklas = {
     cloud.pve-x86.enable = true;
     hosts = { enable = true; };
