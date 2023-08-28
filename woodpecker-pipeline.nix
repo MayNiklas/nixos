@@ -16,12 +16,6 @@ writeText "pipeline" (builtins.toJSON {
         ];
         secrets = [ "attic_key" ];
       };
-      mkAtticPushStep = output: {
-        name = "Push ${output} to Attic";
-        image = "bash";
-        commands = [ "attic push lounge-rocks:nix-cache '${output}'" ];
-        secrets = [ "attic_key" ];
-      };
     in
     [
       # TODO Show flake info
@@ -41,18 +35,22 @@ writeText "pipeline" (builtins.toJSON {
                 # Skip hosts with this option set
                   flake-self.nixosConfigurations.${host}.config.mayniklas.defaults.CISkip then
                   [ ]
+                else if
+                # only build hosts for the arch we are currently building
+                  (flake-self.nixosConfigurations.${host}.config.nixpkgs.system != arch) then
+                  [ ]
                 else [
                   {
                     name = "Build configuration for ${host}";
                     image = "bash";
                     commands = [
                       "nix build '.#nixosConfigurations.${host}.config.system.build.toplevel' -o 'result-${host}'"
+                      "attic push lounge-rocks:nix-cache 'result-${host}'"
                     ];
                   }
-                  (mkAtticPushStep "result-${host}")
                 ])
               (builtins.attrNames flake-self.nixosConfigurations)));
           });
-        }) [ "x86_64-linux" ])
+        }) [ "x86_64-linux" "aarch64-linux" ])
     ]);
 })
