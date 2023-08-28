@@ -291,6 +291,8 @@
           # allow using them from other flakes that import this one.
 
           packages = flake-utils.lib.flattenTree {
+            woodpecker-pipeline = pkgs.callPackage ./woodpecker-pipeline.nix { inputs = inputs; flake-self = self; };
+
             build-push = pkgs.build-push;
             build-system = pkgs.build-system;
             drone-gen = pkgs.drone-gen;
