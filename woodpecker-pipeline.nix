@@ -4,10 +4,10 @@ writeText "pipeline" (builtins.toJSON {
   configs =
     let
       # Map platform names between woodpecker and nix
-      # woodpecker-platforms = {
-      #   "aarch64-linux" = "linux/arm64";
-      #   "x86_64-linux" = "linux/amd64";
-      # };
+      woodpecker-platforms = {
+        "aarch64-linux" = "linux/arm64";
+        "x86_64-linux" = "linux/amd64";
+      };
       atticSetupStep = {
         name = "Setup Attic";
         image = "bash";
@@ -18,9 +18,37 @@ writeText "pipeline" (builtins.toJSON {
       };
     in
     [
-      # TODO Show flake info
+      {
+        name = "Nix flake check";
+        data = (builtins.toJSON {
+          labels.backend = "local";
+          platform = "linux/amd64";
+          steps = [
+            {
+              name = "nix flake show";
+              image = "bash";
+              commands = [
+                "nix flake show"
+              ];
+            }
+            {
+              name = "nix flake info";
+              image = "bash";
+              commands = [
+                "nix flake info"
+              ];
+            }
+            {
+              name = "nix flake check";
+              image = "bash";
+              commands = [
+                "nix flake check"
+              ];
+            }
+          ];
+        });
+      }
     ] ++
-
     # Hosts
     pkgs.lib.lists.flatten ([
       (map
@@ -28,7 +56,8 @@ writeText "pipeline" (builtins.toJSON {
           name = "Hosts with arch: ${arch}";
           data = (builtins.toJSON {
             labels.backend = "local";
-            # platform = woodpecker-platforms."${flake-self.nixosConfigurations.${host}.config.nixpkgs.system}";
+            # platform will be deprecated in the future!
+            platform = woodpecker-platforms."${arch}";
             steps = pkgs.lib.lists.flatten ([ atticSetupStep ] ++ (map
               (host:
                 if
