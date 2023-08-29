@@ -96,7 +96,7 @@
         ];
         targets = [
           "https://status.nik-ste.de"
-          "https://cache.lounge.rocks/nix-cache-info"
+          "https://cache.lounge.rocks/nix-cache/nix-cache-info"
           "https://drone.lounge.rocks"
           "https://matrix.lounge.rocks/.well-known/matrix/client"
           "https://git.lounge.rocks"
