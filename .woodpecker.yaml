@@ -1,137 +1,97 @@
 {
-  "labels": {
-    "backend": "local"
-  },
+  "labels": { "backend": "local" },
   "platform": "linux/amd64",
-  "steps": [
-    {
-      "commands": [
-        "nix flake show"
-      ],
-      "image": "bash",
-      "name": "nix flake show"
-    },
-    {
-      "commands": [
-        "nix flake info"
-      ],
-      "image": "bash",
-      "name": "nix flake info"
-    },
-    {
-      "commands": [
-        "nix flake check"
-      ],
-      "image": "bash",
-      "name": "nix flake check"
-    }
-  ]
-}
-{
-  "labels": {
-    "backend": "local"
-  },
-  "platform": "linux/amd64",
-  "steps": [
-    {
-      "commands": [
-        "attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default"
-      ],
-      "image": "bash",
-      "name": "Setup Attic",
-      "secrets": [
-        "attic_key"
-      ]
-    },
-    {
-      "commands": [
-        "nix build '.#nixosConfigurations.aida.config.system.build.toplevel' -o 'result-aida'",
-        "attic push lounge-rocks:nix-cache 'result-aida'"
-      ],
-      "image": "bash",
-      "name": "Build configuration for aida"
-    },
-    {
-      "commands": [
-        "nix build '.#nixosConfigurations.daisy.config.system.build.toplevel' -o 'result-daisy'",
-        "attic push lounge-rocks:nix-cache 'result-daisy'"
-      ],
-      "image": "bash",
-      "name": "Build configuration for daisy"
-    },
-    {
-      "commands": [
-        "nix build '.#nixosConfigurations.deke.config.system.build.toplevel' -o 'result-deke'",
-        "attic push lounge-rocks:nix-cache 'result-deke'"
-      ],
-      "image": "bash",
-      "name": "Build configuration for deke"
-    },
-    {
-      "commands": [
-        "nix build '.#nixosConfigurations.hetzner-x86.config.system.build.toplevel' -o 'result-hetzner-x86'",
-        "attic push lounge-rocks:nix-cache 'result-hetzner-x86'"
-      ],
-      "image": "bash",
-      "name": "Build configuration for hetzner-x86"
-    },
-    {
-      "commands": [
-        "nix build '.#nixosConfigurations.kora.config.system.build.toplevel' -o 'result-kora'",
-        "attic push lounge-rocks:nix-cache 'result-kora'"
-      ],
-      "image": "bash",
-      "name": "Build configuration for kora"
-    },
-    {
-      "commands": [
-        "nix build '.#nixosConfigurations.simmons.config.system.build.toplevel' -o 'result-simmons'",
-        "attic push lounge-rocks:nix-cache 'result-simmons'"
-      ],
-      "image": "bash",
-      "name": "Build configuration for simmons"
-    },
-    {
-      "commands": [
-        "nix build '.#nixosConfigurations.snowflake.config.system.build.toplevel' -o 'result-snowflake'",
-        "attic push lounge-rocks:nix-cache 'result-snowflake'"
-      ],
-      "image": "bash",
-      "name": "Build configuration for snowflake"
-    },
-    {
-      "commands": [
-        "nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel' -o 'result-the-bus'",
-        "attic push lounge-rocks:nix-cache 'result-the-bus'"
-      ],
-      "image": "bash",
-      "name": "Build configuration for the-bus"
-    },
-    {
-      "commands": [
-        "nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' -o 'result-the-hub'",
-        "attic push lounge-rocks:nix-cache 'result-the-hub'"
-      ],
-      "image": "bash",
-      "name": "Build configuration for the-hub"
-    }
-  ]
-}
-{
-  "labels": {
-    "backend": "local"
-  },
-  "platform": "linux/arm64",
-  "steps": [
-    {
-      "commands": [
-        "attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default"
-      ],
-      "image": "bash",
-      "name": "Setup Attic",
-      "secrets": [
-        "attic_key"
-      ]
-    }
-  ]
+  "steps":
+    [
+      {
+        "commands":
+          [
+            "attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default",
+          ],
+        "image": "bash",
+        "name": "Setup Attic",
+        "secrets": ["attic_key"],
+      },
+      {
+        "commands":
+          [
+            "nix build '.#nixosConfigurations.aida.config.system.build.toplevel' -o 'result-aida'",
+            "attic push lounge-rocks:nix-cache 'result-aida'",
+          ],
+        "image": "bash",
+        "name": "Build configuration for aida",
+      },
+      {
+        "commands":
+          [
+            "nix build '.#nixosConfigurations.daisy.config.system.build.toplevel' -o 'result-daisy'",
+            "attic push lounge-rocks:nix-cache 'result-daisy'",
+          ],
+        "image": "bash",
+        "name": "Build configuration for daisy",
+      },
+      {
+        "commands":
+          [
+            "nix build '.#nixosConfigurations.deke.config.system.build.toplevel' -o 'result-deke'",
+            "attic push lounge-rocks:nix-cache 'result-deke'",
+          ],
+        "image": "bash",
+        "name": "Build configuration for deke",
+      },
+      {
+        "commands":
+          [
+            "nix build '.#nixosConfigurations.hetzner-x86.config.system.build.toplevel' -o 'result-hetzner-x86'",
+            "attic push lounge-rocks:nix-cache 'result-hetzner-x86'",
+          ],
+        "image": "bash",
+        "name": "Build configuration for hetzner-x86",
+      },
+      {
+        "commands":
+          [
+            "nix build '.#nixosConfigurations.kora.config.system.build.toplevel' -o 'result-kora'",
+            "attic push lounge-rocks:nix-cache 'result-kora'",
+          ],
+        "image": "bash",
+        "name": "Build configuration for kora",
+      },
+      {
+        "commands":
+          [
+            "nix build '.#nixosConfigurations.simmons.config.system.build.toplevel' -o 'result-simmons'",
+            "attic push lounge-rocks:nix-cache 'result-simmons'",
+          ],
+        "image": "bash",
+        "name": "Build configuration for simmons",
+      },
+      {
+        "commands":
+          [
+            "nix build '.#nixosConfigurations.snowflake.config.system.build.toplevel' -o 'result-snowflake'",
+            "attic push lounge-rocks:nix-cache 'result-snowflake'",
+          ],
+        "image": "bash",
+        "name": "Build configuration for snowflake",
+      },
+      {
+        "commands":
+          [
+            "nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel' -o 'result-the-bus'",
+            "attic push lounge-rocks:nix-cache 'result-the-bus'",
+          ],
+        "image": "bash",
+        "name": "Build configuration for the-bus",
+      },
+      {
+        "commands":
+          [
+            "nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' -o 'result-the-hub'",
+            "attic push lounge-rocks:nix-cache 'result-the-hub'",
+          ],
+        "image": "bash",
+        "name": "Build configuration for the-hub",
+      },
+    ],
 }
