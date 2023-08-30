@@ -82,9 +82,36 @@
       };
       "markup.latex" =
         let
+          # have to check if that makes it better
+          # https://github.com/go-gitea/gitea/issues/17635
           template-config = builtins.toFile "basic.html" (
             ''
+              $for(include-before)$
+              $include-before$
+              $endfor$
+              $if(title)$
+              $title$
+              $if(subtitle)$
+              $subtitle$
+              $endif$
+              $for(author)$
+              $author$
+              $endfor$
+              $if(date)$
+              $date$
+              $endif$
+              $endif$
+              $if(toc)$
+              $idprefix$TOC
+              $if(toc-title)$
+              $toc-title$
+              $endif$
+              $table-of-contents$
+              $endif$
               $body$
+              $for(include-after)$
+              $include-after$
+              $endfor$
             ''
           );
         in
