@@ -14,6 +14,7 @@
       htop
       iperf3
       nil
+      nix-top
       nixfmt
       nixpkgs-fmt
       unzip

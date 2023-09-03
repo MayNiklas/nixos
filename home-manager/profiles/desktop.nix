@@ -24,6 +24,7 @@
       hugo
       iperf3
       nil
+      nix-top
       nmap
       nvtop
       okular
