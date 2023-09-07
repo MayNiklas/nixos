@@ -1,4 +1,4 @@
-{ self, pkgs, ... }: {
+{ self, lib, pkgs, ... }: {
 
   mayniklas = {
     cloud.pve-x86.enable = true;
@@ -141,6 +141,7 @@
     firewall = { allowedTCPPorts = [ 80 443 9100 9115 ]; };
   };
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   system.stateVersion = "20.09";
 
 }

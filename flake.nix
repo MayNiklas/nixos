@@ -176,8 +176,6 @@
               # allows to only pass what is needed to each module.
               specialArgs = { flake-self = self; } // inputs;
 
-              system = "x86_64-linux";
-
               modules = [
                 lollypops.nixosModules.lollypops
                 (./machines + "/${x}/configuration.nix")
@@ -185,63 +183,63 @@
               ];
             };
           })
-          (builtins.attrNames (builtins.readDir ./machines)))
+          (builtins.attrNames (builtins.readDir ./machines)));
+    }
 
-      //
+    //
 
-      # All packages in the ./packages subfolder are also added to the flake.
-      # flake-utils is used for this part to make each package available for each
-      # system. This works as all packages are compatible with all architectures
-      (flake-utils.lib.eachSystem (flake-utils.lib.defaultSystems ++ [ "aarch64-darwin" ]))
-        (system:
-          let
-            pkgs = import nixpkgs {
-              inherit system;
-              overlays = [ self.overlays.default ];
-              config = {
-                allowUnsupportedSystem = true;
-                allowUnfree = true;
-              };
+    # All packages in the ./packages subfolder are also added to the flake.
+    # flake-utils is used for this part to make each package available for each
+    # system. This works as all packages are compatible with all architectures
+    (flake-utils.lib.eachSystem (flake-utils.lib.defaultSystems ++ [ "aarch64-darwin" ]))
+      (system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [ self.overlays.default ];
+            config = {
+              allowUnsupportedSystem = true;
+              allowUnfree = true;
             };
-          in
-          rec {
+          };
+        in
+        rec {
 
-            # Custom packages added via the overlay are selectively exposed here, to
-            # allow using them from other flakes that import this one.
+          # Custom packages added via the overlay are selectively exposed here, to
+          # allow using them from other flakes that import this one.
 
-            packages = flake-utils.lib.flattenTree {
-              woodpecker-pipeline = pkgs.callPackage ./woodpecker-pipeline.nix { inputs = inputs; flake-self = self; };
+          packages = flake-utils.lib.flattenTree {
+            woodpecker-pipeline = pkgs.callPackage ./woodpecker-pipeline.nix { inputs = inputs; flake-self = self; };
 
-              build-push = pkgs.build-push;
-              build-system = pkgs.build-system;
-              drone-gen = pkgs.drone-gen;
-              mtu-check = pkgs.mtu-check;
-              s3uploader = pkgs.s3uploader;
-              update-input = pkgs.update-input;
-              vs-fix = pkgs.vs-fix;
+            build-push = pkgs.build-push;
+            build-system = pkgs.build-system;
+            drone-gen = pkgs.drone-gen;
+            mtu-check = pkgs.mtu-check;
+            s3uploader = pkgs.s3uploader;
+            update-input = pkgs.update-input;
+            vs-fix = pkgs.vs-fix;
+          };
+
+          # Allow custom packages to be run using `nix run`
+          apps = {
+            build-system = flake-utils.lib.mkApp { drv = packages.build-system; };
+            drone-gen = flake-utils.lib.mkApp { drv = packages.drone-gen; };
+            s3uploader = flake-utils.lib.mkApp { drv = packages.s3uploader; };
+            update-input = flake-utils.lib.mkApp { drv = packages.update-input; };
+            vs-fix = flake-utils.lib.mkApp { drv = packages.vs-fix; };
+
+            # lollypops deployment tool
+            # https://github.com/pinpox/lollypops
+            #
+            # nix run '.#lollypops' -- --list-all
+            # nix run '.#lollypops' -- aida
+            # nix run '.#lollypops' -- aida kora
+            # nix run '.#lollypops' -- aida deke kora simmons snowflake the-bus -p
+            default = self.apps.${pkgs.system}.lollypops;
+            lollypops = lollypops.apps.${pkgs.system}.default {
+              configFlake = self;
             };
 
-            # Allow custom packages to be run using `nix run`
-            apps = {
-              build-system = flake-utils.lib.mkApp { drv = packages.build-system; };
-              drone-gen = flake-utils.lib.mkApp { drv = packages.drone-gen; };
-              s3uploader = flake-utils.lib.mkApp { drv = packages.s3uploader; };
-              update-input = flake-utils.lib.mkApp { drv = packages.update-input; };
-              vs-fix = flake-utils.lib.mkApp { drv = packages.vs-fix; };
-
-              # lollypops deployment tool
-              # https://github.com/pinpox/lollypops
-              #
-              # nix run '.#lollypops' -- --list-all
-              # nix run '.#lollypops' -- aida
-              # nix run '.#lollypops' -- aida kora
-              # nix run '.#lollypops' -- aida deke kora simmons snowflake the-bus -p
-              default = self.apps.${pkgs.system}.lollypops;
-              lollypops = lollypops.apps.${pkgs.system}.default {
-                configFlake = self;
-              };
-
-            };
-          });
-    };
+          };
+        });
 }

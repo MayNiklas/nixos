@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, lib, config, ... }: {
 
   home-manager.users."${config.mayniklas.home-manager.username}" = {
     home.packages =
@@ -72,6 +72,7 @@
     firewall = { allowedTCPPorts = [ 9100 9115 ]; };
   };
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   system.stateVersion = "20.09";
 
 }

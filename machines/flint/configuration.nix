@@ -1,4 +1,4 @@
-{ self, ... }: {
+{ self, lib, ... }: {
 
   mayniklas.defaults.CISkip = true;
 
@@ -62,6 +62,7 @@
     firewall = { allowedTCPPorts = [ 9100 9115 ]; };
   };
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   system.stateVersion = "21.11";
 
 }

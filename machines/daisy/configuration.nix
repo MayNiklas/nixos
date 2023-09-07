@@ -1,5 +1,5 @@
 # TTY: Control + Alt + F1
-{ config, pkgs, nixos-hardware, ... }: {
+{ config, lib, pkgs, nixos-hardware, ... }: {
 
   imports = [
     # Include the results of the hardware scan.

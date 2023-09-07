@@ -1,4 +1,4 @@
-{ self, pkgs, shelly-exporter, valorant-exporter, ... }: {
+{ self, lib, pkgs, shelly-exporter, valorant-exporter, ... }: {
 
   imports = [
     ./wg0.nix
@@ -195,6 +195,7 @@
     size = (1024 * 1);
   }];
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   system.stateVersion = "20.09";
 
 }

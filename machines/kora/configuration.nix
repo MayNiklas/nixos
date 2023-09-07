@@ -1,4 +1,4 @@
-{ pkgs, config, attic, ... }: {
+{ pkgs, lib, config, attic, ... }: {
 
   imports = [ ./cron.nix ];
 
@@ -68,6 +68,7 @@
     firewall = { allowedTCPPorts = [ 9100 9115 ]; };
   };
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   system.stateVersion = "20.09";
 
 }

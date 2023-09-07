@@ -1,4 +1,4 @@
-{ self, ... }: {
+{ self, lib, ... }: {
 
   mayniklas = {
     cloud.netcup-x86 = {
@@ -33,6 +33,7 @@
     firewall.interfaces.wg0.allowedTCPPorts = [ 9100 ];
   };
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   system.stateVersion = "20.09";
 
 }
