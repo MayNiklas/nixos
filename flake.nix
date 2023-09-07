@@ -107,8 +107,6 @@
 
       overlays.mayniklas = final: prev: (import ./overlays/mayniklas.nix inputs) final prev;
 
-      templates = import ./templates;
-
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
       nixosModules = builtins.listToAttrs
@@ -189,135 +187,61 @@
           })
           (builtins.attrNames (builtins.readDir ./machines)))
 
-      // {
+      //
 
-        hetzner-x86 = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { flake-self = self; } // inputs;
-          modules = [
-            lollypops.nixosModules.lollypops
-            ./images/hetzner-x86/configuration.nix
-            { imports = builtins.attrValues self.nixosModules; }
-          ];
-        };
-
-      };
-
-      # nix build '.#netcup-x86-image'
-      netcup-x86-image =
-        let system = "x86_64-linux";
-        in
-        import "${nixpkgs}/nixos/lib/make-disk-image.nix" {
-          pkgs = nixpkgs.legacyPackages."${system}";
-          lib = nixpkgs.lib;
-          config = (nixpkgs.lib.nixosSystem {
-            inherit system;
-            modules = [ ./images/netcup-x86/configuration.nix ];
-          }).config;
-          format = "qcow2";
-          name = "base-image";
-        };
-
-
-      # nix build '.#linode-x86-image'
-      linode-x86-image =
-        let system = "x86_64-linux";
-        in
-        import "${nixpkgs}/nixos/lib/make-disk-image.nix" {
-          pkgs = nixpkgs.legacyPackages."${system}";
-          lib = nixpkgs.lib;
-          config = (nixpkgs.lib.nixosSystem {
-            inherit system;
-            modules = [ ./images/linode-x86/configuration.nix ];
-          }).config;
-          format = "raw";
-          name = "linode-image";
-        };
-
-      # nix build .#vmware-x86-image.config.system.build.vmwareImage
-      vmware-x86-image =
-        let system = "x86_64-linux";
-        in
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { flake-self = self; } // inputs;
-          lib = nixpkgs.lib;
-          modules = [
-            ./images/vmware-x86/configuration.nix
-            { imports = builtins.attrValues self.nixosModules; }
-          ];
-        };
-
-      # nix build '.#usb-desktop-image'
-      usb-desktop-image =
-        let system = "x86_64-linux";
-        in
-        import "${nixpkgs}/nixos/lib/make-disk-image.nix" {
-          pkgs = nixpkgs.legacyPackages."${system}";
-          lib = nixpkgs.lib;
-          config = (nixpkgs.lib.nixosSystem {
-            inherit system;
-            modules = [ ./images/usb-desktop/configuration.nix ];
-          }).config;
-          partitionTableType = "efi";
-          format = "raw";
-          name = "usb-desktop-image";
-        };
-
-    } //
-
-    # All packages in the ./packages subfolder are also added to the flake.
-    # flake-utils is used for this part to make each package available for each
-    # system. This works as all packages are compatible with all architectures
-    (flake-utils.lib.eachSystem (flake-utils.lib.defaultSystems ++ [ "aarch64-darwin" ]))
-      (system:
-        let
-          pkgs = import nixpkgs {
-            inherit system;
-            overlays = [ self.overlays.default ];
-            config = {
-              allowUnsupportedSystem = true;
-              allowUnfree = true;
+      # All packages in the ./packages subfolder are also added to the flake.
+      # flake-utils is used for this part to make each package available for each
+      # system. This works as all packages are compatible with all architectures
+      (flake-utils.lib.eachSystem (flake-utils.lib.defaultSystems ++ [ "aarch64-darwin" ]))
+        (system:
+          let
+            pkgs = import nixpkgs {
+              inherit system;
+              overlays = [ self.overlays.default ];
+              config = {
+                allowUnsupportedSystem = true;
+                allowUnfree = true;
+              };
             };
-          };
-        in
-        rec {
+          in
+          rec {
 
-          # Custom packages added via the overlay are selectively exposed here, to
-          # allow using them from other flakes that import this one.
+            # Custom packages added via the overlay are selectively exposed here, to
+            # allow using them from other flakes that import this one.
 
-          packages = flake-utils.lib.flattenTree {
-            woodpecker-pipeline = pkgs.callPackage ./woodpecker-pipeline.nix { inputs = inputs; flake-self = self; };
+            packages = flake-utils.lib.flattenTree {
+              woodpecker-pipeline = pkgs.callPackage ./woodpecker-pipeline.nix { inputs = inputs; flake-self = self; };
 
-            build-push = pkgs.build-push;
-            build-system = pkgs.build-system;
-            drone-gen = pkgs.drone-gen;
-            mtu-check = pkgs.mtu-check;
-            s3uploader = pkgs.s3uploader;
-            update-input = pkgs.update-input;
-            vs-fix = pkgs.vs-fix;
-          };
-
-          # Allow custom packages to be run using `nix run`
-          apps = {
-            build-system = flake-utils.lib.mkApp { drv = packages.build-system; };
-            drone-gen = flake-utils.lib.mkApp { drv = packages.drone-gen; };
-            s3uploader = flake-utils.lib.mkApp { drv = packages.s3uploader; };
-            update-input = flake-utils.lib.mkApp { drv = packages.update-input; };
-            vs-fix = flake-utils.lib.mkApp { drv = packages.vs-fix; };
-
-            # lollypops deployment tool
-            # https://github.com/pinpox/lollypops
-            #
-            # nix run '.#lollypops' -- --list-all
-            # nix run '.#lollypops' -- aida
-            # nix run '.#lollypops' -- aida kora
-            # nix run '.#lollypops' -- aida deke kora simmons snowflake the-bus -p
-            default = self.apps.${pkgs.system}.lollypops;
-            lollypops = lollypops.apps.${pkgs.system}.default {
-              configFlake = self;
+              build-push = pkgs.build-push;
+              build-system = pkgs.build-system;
+              drone-gen = pkgs.drone-gen;
+              mtu-check = pkgs.mtu-check;
+              s3uploader = pkgs.s3uploader;
+              update-input = pkgs.update-input;
+              vs-fix = pkgs.vs-fix;
             };
 
-          };
-        });
+            # Allow custom packages to be run using `nix run`
+            apps = {
+              build-system = flake-utils.lib.mkApp { drv = packages.build-system; };
+              drone-gen = flake-utils.lib.mkApp { drv = packages.drone-gen; };
+              s3uploader = flake-utils.lib.mkApp { drv = packages.s3uploader; };
+              update-input = flake-utils.lib.mkApp { drv = packages.update-input; };
+              vs-fix = flake-utils.lib.mkApp { drv = packages.vs-fix; };
+
+              # lollypops deployment tool
+              # https://github.com/pinpox/lollypops
+              #
+              # nix run '.#lollypops' -- --list-all
+              # nix run '.#lollypops' -- aida
+              # nix run '.#lollypops' -- aida kora
+              # nix run '.#lollypops' -- aida deke kora simmons snowflake the-bus -p
+              default = self.apps.${pkgs.system}.lollypops;
+              lollypops = lollypops.apps.${pkgs.system}.default {
+                configFlake = self;
+              };
+
+            };
+          });
+    };
 }
