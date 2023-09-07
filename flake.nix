@@ -161,6 +161,13 @@
           extraSpecialArgs = { } // inputs;
         };
 
+      homeManagerModules = builtins.listToAttrs (map
+        (name: {
+          inherit name;
+          value = import (./home-manager/modules + "/${name}");
+        })
+        (builtins.attrNames (builtins.readDir ./home-manager/modules)));
+
       # Each subdirectory in ./machines is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
