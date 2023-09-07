@@ -32,20 +32,4 @@ self: super: {
     unifiLTS unifi5 unifi6 unifi7;
   unifi = super.pkgs.unifi7;
 
-  # override with newer version from nixpkgs-unstable
-  discord = self.unstable.discord;
-  firefox = self.unstable.firefox;
-  foot = self.unstable.foot;
-  htop = self.unstable.htop;
-  hugo = self.unstable.hugo;
-  nvtop = self.unstable.nvtop;
-  spotify = self.unstable.spotify;
-  sway = self.unstable.sway;
-  swayidle = self.unstable.swayidle;
-  swaylock = self.unstable.swaylock;
-  waybar = self.unstable.waybar;
-  wlay = self.unstable.wlay;
-  wofi = self.unstable.wofi;
-  zoom-us = self.unstable.zoom-us;
-  zsh = self.unstable.zsh;
 }

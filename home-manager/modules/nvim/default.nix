@@ -5,30 +5,16 @@ in
 {
   options.mayniklas.programs.vim.enable = mkEnableOption "Setup neovim";
 
-  # Clear all caches
-  # rm -rf ~/.config/nvim/plugin/packer_compiled.lua ~/.cache/nvim/ ~/.local/share/nvim/site/
-  imports = [
-    ../nvchad
-  ];
-
   config = mkIf cfg.enable {
 
-    # xdg = {
-    #   enable = true;
-    #   configFile = {
-    #     nvim_lua_config = {
-    #       target = "nvim/lua/config";
-    #       source = ./lua/config;
-    #     };
-    #   };
-    # };
-
-    programs.neovim.nvchad = {
+    xdg = {
       enable = true;
-      extraLazyPlugins = with pkgs.vimPlugins; [
-        csv-vim
-        diffview-nvim
-      ];
+      configFile = {
+        nvim_lua_config = {
+          target = "nvim/lua/config";
+          source = ./lua/config;
+        };
+      };
     };
 
     programs.neovim = {
@@ -50,8 +36,6 @@ in
         ansible-vim
         vim-better-whitespace
         vim-nix
-      ] ++ lib.optionals (config.programs.neovim.nvchad.enable) [
-        (nvim-treesitter.withPlugins (plugins: with plugins; [ nix yaml ]))
       ];
     };
 

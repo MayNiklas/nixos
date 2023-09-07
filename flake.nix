@@ -5,16 +5,12 @@
 
     # Nix Packages collection
     # https://github.com/NixOS/nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
-
-    # Nix Packages collection
-    # https://github.com/NixOS/nixpkgs/tree/nixos-unstable
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Manage a user environment using Nix 
     # https://github.com/nix-community/home-manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -150,7 +146,7 @@
       homeConfigurations."nik@MacBook-Pro-14-2021" =
         let
           system = "aarch64-darwin";
-          pkgs = import nixpkgs-unstable {
+          pkgs = import nixpkgs {
             inherit system;
             config = { allowUnfree = true; };
             overlays = [ ];
