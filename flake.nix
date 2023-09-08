@@ -42,6 +42,12 @@
       url = "github:msteen/nixos-vscode-server";
     };
 
+    # Generate wallpaper images from mathematical functions
+    # https://github.com/pinpox/wallpaper-generator
+    wallpaper-generator = {
+      url = "github:pinpox/wallpaper-generator/";
+    };
+
     # Adblocking lists for Unbound DNS servers running on NixOS
     # https://github.com/MayNiklas/nixos-adblock-unbound
     adblock-unbound = {
