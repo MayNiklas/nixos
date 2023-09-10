@@ -12,6 +12,7 @@ self: super: {
   build-push = super.pkgs.callPackage ../packages/build-push { };
   build-system = super.pkgs.callPackage ../packages/build-system { };
   bukkit-spigot = super.pkgs.callPackage ../packages/bukkit-spigot { };
+  csgo-server = super.pkgs.callPackage ../packages/csgo-server { };
   darknet = super.pkgs.callPackage ../packages/darknet { };
   drone = super.pkgs.callPackage ../packages/drone { };
   drone-gen = super.pkgs.callPackage ../packages/drone-gen { };

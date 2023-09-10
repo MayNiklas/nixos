@@ -226,6 +226,7 @@
 
             build-push = pkgs.build-push;
             build-system = pkgs.build-system;
+            csgo-server = pkgs.csgo-server;
             drone-gen = pkgs.drone-gen;
             mtu-check = pkgs.mtu-check;
             s3uploader = pkgs.s3uploader;
