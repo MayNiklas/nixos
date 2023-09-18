@@ -55,6 +55,11 @@ writeText "pipeline" (builtins.toJSON {
                       commands = [ "nix build '.#nixosConfigurations.${host}.config.system.build.toplevel' -o 'result-${host}'" ];
                     }
                     {
+                      "name" = "Show ${host} info";
+                      "image" = "bash";
+                      "commands" = [ "nix path-info --closure-size -h $(readlink -f 'result-${host}')" ];
+                    }
+                    {
                       name = "Push ${host} to Attic";
                       image = "bash";
                       commands = [ "attic push lounge-rocks:nix-cache 'result-${host}'" ];

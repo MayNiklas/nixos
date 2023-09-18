@@ -6,17 +6,17 @@
   "steps": [
     {
       "commands": [
-        "nix flake check"
-      ],
-      "image": "bash",
-      "name": "Nix flake check"
-    },
-    {
-      "commands": [
         "nix flake show"
       ],
       "image": "bash",
       "name": "Nix flake show"
+    },
+    {
+      "commands": [
+        "nix flake check"
+      ],
+      "image": "bash",
+      "name": "Nix flake check"
     },
     {
       "commands": [
@@ -37,13 +37,17 @@
     },
     {
       "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-aida')"
+      ],
+      "image": "bash",
+      "name": "Show aida info"
+    },
+    {
+      "commands": [
         "attic push lounge-rocks:nix-cache 'result-aida'"
       ],
       "image": "bash",
-      "name": "Push aida to Attic",
-      "secrets": [
-        "attic_key"
-      ]
+      "name": "Push aida to Attic"
     },
     {
       "commands": [
@@ -54,13 +58,17 @@
     },
     {
       "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-daisy')"
+      ],
+      "image": "bash",
+      "name": "Show daisy info"
+    },
+    {
+      "commands": [
         "attic push lounge-rocks:nix-cache 'result-daisy'"
       ],
       "image": "bash",
-      "name": "Push daisy to Attic",
-      "secrets": [
-        "attic_key"
-      ]
+      "name": "Push daisy to Attic"
     },
     {
       "commands": [
@@ -71,13 +79,17 @@
     },
     {
       "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-deke')"
+      ],
+      "image": "bash",
+      "name": "Show deke info"
+    },
+    {
+      "commands": [
         "attic push lounge-rocks:nix-cache 'result-deke'"
       ],
       "image": "bash",
-      "name": "Push deke to Attic",
-      "secrets": [
-        "attic_key"
-      ]
+      "name": "Push deke to Attic"
     },
     {
       "commands": [
@@ -88,13 +100,17 @@
     },
     {
       "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-kora')"
+      ],
+      "image": "bash",
+      "name": "Show kora info"
+    },
+    {
+      "commands": [
         "attic push lounge-rocks:nix-cache 'result-kora'"
       ],
       "image": "bash",
-      "name": "Push kora to Attic",
-      "secrets": [
-        "attic_key"
-      ]
+      "name": "Push kora to Attic"
     },
     {
       "commands": [
@@ -105,13 +121,17 @@
     },
     {
       "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-simmons')"
+      ],
+      "image": "bash",
+      "name": "Show simmons info"
+    },
+    {
+      "commands": [
         "attic push lounge-rocks:nix-cache 'result-simmons'"
       ],
       "image": "bash",
-      "name": "Push simmons to Attic",
-      "secrets": [
-        "attic_key"
-      ]
+      "name": "Push simmons to Attic"
     },
     {
       "commands": [
@@ -122,13 +142,17 @@
     },
     {
       "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-snowflake')"
+      ],
+      "image": "bash",
+      "name": "Show snowflake info"
+    },
+    {
+      "commands": [
         "attic push lounge-rocks:nix-cache 'result-snowflake'"
       ],
       "image": "bash",
-      "name": "Push snowflake to Attic",
-      "secrets": [
-        "attic_key"
-      ]
+      "name": "Push snowflake to Attic"
     },
     {
       "commands": [
@@ -139,13 +163,17 @@
     },
     {
       "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-the-bus')"
+      ],
+      "image": "bash",
+      "name": "Show the-bus info"
+    },
+    {
+      "commands": [
         "attic push lounge-rocks:nix-cache 'result-the-bus'"
       ],
       "image": "bash",
-      "name": "Push the-bus to Attic",
-      "secrets": [
-        "attic_key"
-      ]
+      "name": "Push the-bus to Attic"
     },
     {
       "commands": [
@@ -156,13 +184,17 @@
     },
     {
       "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-the-hub')"
+      ],
+      "image": "bash",
+      "name": "Show the-hub info"
+    },
+    {
+      "commands": [
         "attic push lounge-rocks:nix-cache 'result-the-hub'"
       ],
       "image": "bash",
-      "name": "Push the-hub to Attic",
-      "secrets": [
-        "attic_key"
-      ]
+      "name": "Push the-hub to Attic"
     }
   ]
 }
