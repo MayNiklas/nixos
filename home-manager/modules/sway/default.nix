@@ -46,7 +46,7 @@ in
       wrapperFeatures.gtk = true;
 
       # Sway-specific Configuration
-      config = {
+      config = rec{
 
         input = {
           "type:keyboard" = {
@@ -71,31 +71,27 @@ in
           { command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"; }
         ];
 
-        keybindings =
-          let
-            inherit (config.wayland.windowManager.sway.config) modifier left down up right menu terminal;
-          in
-          lib.mkOptionDefault (
-            # general keybindings not specific to laptop or desktop
-            {
-              # take screenshot of whole screen
-              "Print" = "exec ${pkgs.grim}/bin/grim /home/nik/Pictures/Screenshots/Screenshot-$(date +'%Y-%m-%d_%H-%M-%S.png')";
-              # control volume
-              "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
-              "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
-              "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
-            }
+        keybindings = lib.mkOptionDefault (
+          # general keybindings not specific to laptop or desktop
+          {
+            # take screenshot of whole screen
+            "Print" = "exec ${pkgs.grim}/bin/grim /home/nik/Pictures/Screenshots/Screenshot-$(date +'%Y-%m-%d_%H-%M-%S.png')";
+            # control volume
+            "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+            "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
+            "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
+          }
 
-            # desktop specific keybindings
-            // (lib.optionalAttrs (cfg.type == "desktop") { })
+          # desktop specific keybindings
+          // (lib.optionalAttrs (cfg.type == "desktop") { })
 
-            # laptop specific keybindings
-            // (lib.optionalAttrs (cfg.type == "laptop") {
-              # control brightness
-              "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10";
-              "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10";
-            })
-          );
+          # laptop specific keybindings
+          // (lib.optionalAttrs (cfg.type == "laptop") {
+            # control brightness
+            "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10";
+            "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10";
+          })
+        );
 
         colors = let c = config.pinpox.colors; in {
           focused = {
