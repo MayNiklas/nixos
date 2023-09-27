@@ -9,7 +9,16 @@ let
     '';
 in
 {
-  options.mayniklas.programs.sway.enable = mkEnableOption "enable sway";
+
+  options.mayniklas.programs.sway = {
+    enable = mkEnableOption "enable sway";
+    type = mkOption {
+      type = types.enum [ "desktop" "laptop" ];
+      default = "laptop";
+      example = "desktop";
+    };
+  };
+
   config = mkIf cfg.enable {
 
     mayniklas = {
@@ -66,8 +75,10 @@ in
           let
             inherit (config.wayland.windowManager.sway.config) modifier left down up right menu terminal;
           in
-          lib.mkOptionDefault
-            {
+          lib.attrsets.mergeAttrsList [
+
+            # general keybindings not specific to laptop or desktop
+            (lib.mkOptionDefault {
               # take screenshot of whole screen
               "Print" = "exec ${pkgs.grim}/bin/grim /home/nik/Pictures/Screenshots/Screenshot-$(date +'%Y-%m-%d_%H-%M-%S.png')";
 
@@ -75,13 +86,19 @@ in
               "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
               "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
               "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
+            })
 
+            # desktop specific keybindings
+            (mkIf (cfg.type == "desktop") { })
+
+            # laptop specific keybindings
+            (mkIf (cfg.type == "laptop") {
               # control brightness
               "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10";
-
-
               "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10";
-            };
+            })
+
+          ];
 
         colors = let c = config.pinpox.colors; in {
           focused = {
