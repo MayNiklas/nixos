@@ -72,25 +72,29 @@ in
         ];
 
         keybindings = lib.mkOptionDefault (
-          # general keybindings not specific to laptop or desktop
-          {
-            # take screenshot of whole screen
-            "Print" = "exec ${pkgs.grim}/bin/grim /home/nik/Pictures/Screenshots/Screenshot-$(date +'%Y-%m-%d_%H-%M-%S.png')";
-            # control volume
-            "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
-            "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
-            "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
-          }
+          (lib.attrsets.mergeAttrsList [
 
-          # desktop specific keybindings
-          // (lib.optionalAttrs (cfg.type == "desktop") { })
+            # general keybindings not specific to laptop or desktop
+            (lib.optionalAttrs true {
+              # take screenshot of whole screen
+              "Print" = "exec ${pkgs.grim}/bin/grim /home/nik/Pictures/Screenshots/Screenshot-$(date +'%Y-%m-%d_%H-%M-%S.png')";
+              # control volume
+              "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+              "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
+              "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
+            })
 
-          # laptop specific keybindings
-          // (lib.optionalAttrs (cfg.type == "laptop") {
-            # control brightness
-            "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10";
-            "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10";
-          })
+            # desktop specific keybindings
+            (lib.optionalAttrs (cfg.type == "desktop") { })
+
+            # laptop specific keybindings
+            (lib.optionalAttrs (cfg.type == "laptop") {
+              # control brightness
+              "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 10";
+              "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 10";
+            })
+
+          ])
         );
 
         colors = let c = config.pinpox.colors; in {
