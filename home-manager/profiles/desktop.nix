@@ -8,7 +8,6 @@
     with pkgs; [
       _1password-gui
       asciinema
-      atom
       cura
       dconf
       discord
