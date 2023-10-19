@@ -7,6 +7,11 @@ in
 
   config = mkIf cfg.enable {
 
+    home.packages = with pkgs; [
+      nil
+      nixpkgs-fmt
+    ];
+
     programs.vscode = {
       enable = true;
       package = pkgs.vscode;
@@ -28,11 +33,11 @@ in
         # jnoortheen.nix-ide
         "nix" = {
           "enableLanguageServer" = true;
-          "serverPath" = "${pkgs.nil}/bin/nil";
+          "serverPath" = "nil";
           "serverSettings" = {
             "nil" = {
               "formatting" = {
-                "command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
+                "command" = [ "nixpkgs-fmt" ];
               };
             };
           };
