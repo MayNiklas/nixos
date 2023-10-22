@@ -38,7 +38,7 @@
       unzip
       vagrant
       virt-manager
-      vlc
+      (vlc.override { libbluray = libbluray.override { withAACS = true; withBDplus = true; }; })
       xfce.thunar
       youtube-dl
       zoom-us
