@@ -16,6 +16,7 @@ self: super: {
   darknet = super.pkgs.callPackage ../packages/darknet { };
   drone = super.pkgs.callPackage ../packages/drone { };
   drone-gen = super.pkgs.callPackage ../packages/drone-gen { };
+  gen-module = super.pkgs.callPackage ../packages/gen-module { };
   minecraft-server = super.pkgs.callPackage ../packages/minecraft-server { };
   mtu-check = super.pkgs.callPackage ../packages/mtu-check { };
   niki-store = super.pkgs.callPackage ../packages/niki-store { };

@@ -44,6 +44,7 @@
       zoom-us
 
       drone-gen
+      gen-module
     ];
 
   mayniklas = {

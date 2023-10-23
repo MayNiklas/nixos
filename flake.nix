@@ -228,6 +228,7 @@
             build-system = pkgs.build-system;
             csgo-server = pkgs.csgo-server;
             drone-gen = pkgs.drone-gen;
+            gen-module = pkgs.gen-module;
             mtu-check = pkgs.mtu-check;
             s3uploader = pkgs.s3uploader;
             update-input = pkgs.update-input;
@@ -238,6 +239,7 @@
           apps = {
             build-system = flake-utils.lib.mkApp { drv = packages.build-system; };
             drone-gen = flake-utils.lib.mkApp { drv = packages.drone-gen; };
+            gen-module = flake-utils.lib.mkApp { drv = packages.gen-module; };
             s3uploader = flake-utils.lib.mkApp { drv = packages.s3uploader; };
             update-input = flake-utils.lib.mkApp { drv = packages.update-input; };
             vs-fix = flake-utils.lib.mkApp { drv = packages.vs-fix; };
