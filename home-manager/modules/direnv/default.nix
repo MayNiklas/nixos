@@ -18,6 +18,7 @@ in
         nix-direnv.enable = true;
       };
       git = { ignores = [ ".direnv/" ]; };
+      vscode = { extensions = with pkgs.vscode-extensions; [ mkhl.direnv ]; };
     };
 
   };
