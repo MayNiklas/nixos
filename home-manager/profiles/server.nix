@@ -37,6 +37,7 @@
 
   mayniklas = {
     programs = {
+      direnv.enable = true;
       git.enable = true;
       tmux.enable = true;
       vim.enable = true;
@@ -46,9 +47,10 @@
 
   # Imports
   imports = [
+    ../modules/direnv
     ../modules/git
-    ../modules/tmux
     ../modules/nvim
+    ../modules/tmux
     ../modules/zsh
   ];
 

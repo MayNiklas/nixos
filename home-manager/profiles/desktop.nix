@@ -52,6 +52,7 @@
       alacritty.enable = true;
       chromium.enable = true;
       devolopment.enable = true;
+      direnv.enable = true;
       foot.enable = true;
       git.enable = true;
       gtk.enable = true;
@@ -71,6 +72,7 @@
     ../modules/alacritty
     ../modules/chromium
     ../modules/devolopment
+    ../modules/direnv
     ../modules/foot
     ../modules/git
     ../modules/gtk
