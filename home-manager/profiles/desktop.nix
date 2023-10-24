@@ -4,6 +4,7 @@
   home.packages =
     let
       drone-gen = pkgs.callPackage ../../packages/drone-gen { };
+      gen-module = pkgs.callPackage ../../packages/gen-module { };
     in
     with pkgs; [
       _1password-gui

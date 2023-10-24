@@ -5,6 +5,7 @@
     let
       build-system = pkgs.callPackage ../../packages/build-system { };
       drone-gen = pkgs.callPackage ../../packages/drone-gen { };
+      gen-module = pkgs.callPackage ../../packages/gen-module { };
       update-input = pkgs.callPackage ../../packages/update-input { };
       vs-fix = pkgs.callPackage ../../packages/vs-fix { };
     in
