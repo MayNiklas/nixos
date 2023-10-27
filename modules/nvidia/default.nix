@@ -31,10 +31,12 @@ in
       overlays = [ cudaoverlay ];
     };
 
-    home-manager.users."nik" = {
-      nixpkgs = {
-        config.cudaSupport = mkIf cfg.cudaSupport true;
-        overlays = [ cudaoverlay ];
+    home-manager.users = mkIf config.mayniklas.home-manager.enable {
+      "${config.mayniklas.home-manager.username}" = {
+        nixpkgs = {
+          config.cudaSupport = mkIf cfg.cudaSupport true;
+          overlays = [ cudaoverlay ];
+        };
       };
     };
 
