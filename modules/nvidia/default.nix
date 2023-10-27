@@ -10,7 +10,9 @@ let
 
   # packages that should be built with CUDA support on NVIDIA systems
   cudaoverlay = (self: super: {
-    nvtop = withCUDA.nvtop;
+    inherit (withCUDA)
+      nvtop
+      ;
   });
 
 in
