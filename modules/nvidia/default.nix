@@ -1,15 +1,40 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, config, flake-self, ... }:
 with lib;
-let cfg = config.mayniklas.nvidia;
+let
+  cfg = config.mayniklas.nvidia;
+
+  withCUDA = import flake-self.inputs.nixpkgs {
+    system = "${pkgs.system}";
+    config = { allowUnfree = true; cudaSupport = true; };
+  };
+
+  # packages that should be built with CUDA support on NVIDIA systems
+  cudaoverlay = (self: super: {
+    nvtop = withCUDA.nvtop;
+  });
+
 in
 {
 
   options.mayniklas.nvidia = {
     enable = mkEnableOption "activate nvidia";
+    cudaSupport = mkEnableOption "enable CUDA support";
     beta-driver = mkEnableOption "use nvidia-beta driver";
   };
 
   config = mkIf cfg.enable {
+
+    nixpkgs = {
+      config.cudaSupport = mkIf cfg.cudaSupport true;
+      overlays = [ cudaoverlay ];
+    };
+
+    home-manager.users."nik" = {
+      nixpkgs = {
+        config.cudaSupport = mkIf cfg.cudaSupport true;
+        overlays = [ cudaoverlay ];
+      };
+    };
 
     services.xserver = {
       videoDrivers = [ "nvidia" ];
@@ -26,7 +51,7 @@ in
       nvidia = {
         # use nvidia-beta driver when beta-driver is enabled
         package = mkIf cfg.beta-driver config.boot.kernelPackages.nvidiaPackages.beta;
-        
+
         powerManagement.enable = true;
       };
 
