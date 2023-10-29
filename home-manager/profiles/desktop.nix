@@ -25,6 +25,7 @@
       iperf3
       nil
       nix-top
+      nix-tree
       nmap
       nvtop
       okular

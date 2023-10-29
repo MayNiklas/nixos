@@ -16,6 +16,7 @@
       iperf3
       nil
       nix-top
+      nix-tree
       nixfmt
       nixpkgs-fmt
       unzip
