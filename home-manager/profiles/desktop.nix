@@ -5,6 +5,7 @@
     let
       drone-gen = pkgs.callPackage ../../packages/drone-gen { };
       gen-module = pkgs.callPackage ../../packages/gen-module { };
+      preview-update = pkgs.callPackage ../../packages/preview-update { };
     in
     with pkgs; [
       _1password-gui

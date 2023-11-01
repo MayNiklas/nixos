@@ -6,6 +6,7 @@
       build-system = pkgs.callPackage ../../packages/build-system { };
       drone-gen = pkgs.callPackage ../../packages/drone-gen { };
       gen-module = pkgs.callPackage ../../packages/gen-module { };
+      preview-update = pkgs.callPackage ../../packages/preview-update { };
       update-input = pkgs.callPackage ../../packages/update-input { };
       vs-fix = pkgs.callPackage ../../packages/vs-fix { };
     in
