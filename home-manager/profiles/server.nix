@@ -12,6 +12,7 @@
     in
     with pkgs; [
       dnsutils
+      glances
       h
       htop
       iperf3

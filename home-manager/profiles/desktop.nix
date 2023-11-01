@@ -18,6 +18,7 @@
       filezilla
       firefox
       glances
+      glances
       gnome.gnome-system-monitor
       gparted
       h
