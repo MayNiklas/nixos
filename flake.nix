@@ -120,6 +120,7 @@
           (x: {
             name = x;
             value = import (./modules + "/${x}");
+            _module.args.inputs = inputs;
           })
           (builtins.attrNames (builtins.readDir ./modules)))
 
@@ -230,6 +231,7 @@
             drone-gen = pkgs.drone-gen;
             gen-module = pkgs.gen-module;
             mtu-check = pkgs.mtu-check;
+            preview-update = pkgs.preview-update;
             s3uploader = pkgs.s3uploader;
             update-input = pkgs.update-input;
             vs-fix = pkgs.vs-fix;

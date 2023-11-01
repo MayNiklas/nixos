@@ -24,6 +24,7 @@
       build-system
       drone-gen
       gen-module
+      preview-update
       update-input
       vs-fix
 

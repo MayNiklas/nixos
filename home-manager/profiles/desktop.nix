@@ -29,6 +29,7 @@
       nmap
       nvtop
       okular
+      preview-update
       signal-desktop
       speedtest-cli
       spotify
