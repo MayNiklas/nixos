@@ -17,6 +17,25 @@ in
 
   config = mkIf cfg.enable {
 
+    # 1. get the path of the postgresql versions
+    # > nix build --print-out-paths nixpkgs#postgresql_14
+    # > nix build --print-out-paths nixpkgs#postgresql_15
+    # 2. rebuild to the target postgresql version
+    # 3. stop the postgresql service
+    # > sudo systemctl stop postgresql.service
+    # 4. Switch to postgres user:
+    # > sudo su postgres
+    # 5. run the pg_upgrade
+    # pg_upgrade \
+    #   --old-datadir "/var/lib/postgresql/14" \
+    #   --new-datadir "/var/lib/postgresql/15" \
+    #   --old-bindir "/nix/store/ki3srrjjzqalvh0hd9lmqavp5v9wr9jp-postgresql-14.9/bin" \
+    #   --new-bindir "/nix/store/vx04ph23h5bg6r10161k3wmx9j9dfbik-postgresql-15.4/bin"
+
+    # we lock the postgresql version to 15, because we don't want the server to just
+    # stop working after a nixos-rebuild
+    services.postgresql.package = pkgs.postgresql_15;
+
     services.postgresql.enable = true;
     services.postgresql.initialScript = pkgs.writeText "synapse-init.sql" ''
       CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'synapse';
