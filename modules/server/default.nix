@@ -17,7 +17,7 @@ in
 
   config = mkIf cfg.enable {
 
-    services.postgresql.package = pkgs.postgresql_11;
+    services.postgresql.package = pkgs.postgresql_15;
 
     environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
