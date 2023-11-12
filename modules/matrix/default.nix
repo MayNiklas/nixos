@@ -115,6 +115,12 @@ in
             compress = false;
           }];
         }];
+        # TODO: is this enough?
+        turn_uris = [
+          "turn:turn.matrix.org:3478?transport=udp"
+          "turn:turn.matrix.org:3478?transport=tcp"
+        ];
+        turn_user_lifetime = "1h";
       };
     };
 
