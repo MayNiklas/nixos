@@ -8,6 +8,8 @@
         go
         gotools
 
+        nix-init
+
         attic.packages.${pkgs.system}.attic
 
         # https://github.com/ryantm/nixpkgs-update
