@@ -48,16 +48,19 @@
       git.enable = true;
       tmux.enable = true;
       vim.enable = true;
+      zellij.enable = true;
       zsh.enable = true;
     };
   };
 
   # Imports
   imports = [
+    ../colorscheme.nix
     ../modules/direnv
     ../modules/git
     ../modules/nvim
     ../modules/tmux
+    ../modules/zellij
     ../modules/zsh
   ];
 
