@@ -242,6 +242,7 @@
             mtu-check = pkgs.mtu-check;
             preview-update = pkgs.preview-update;
             s3uploader = pkgs.s3uploader;
+            start-tmux = pkgs.start-tmux;
             update-input = pkgs.update-input;
             vs-fix = pkgs.vs-fix;
           };
