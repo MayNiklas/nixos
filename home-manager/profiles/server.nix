@@ -8,6 +8,7 @@
       gen-module = pkgs.callPackage ../../packages/gen-module { };
       preview-update = pkgs.callPackage ../../packages/preview-update { };
       start-tmux = pkgs.callPackage ../../packages/start-tmux { };
+      start-zellij = pkgs.callPackage ../../packages/start-zellij { };
       update-input = pkgs.callPackage ../../packages/update-input { };
       vs-fix = pkgs.callPackage ../../packages/vs-fix { };
     in
@@ -29,6 +30,7 @@
       gen-module
       preview-update
       start-tmux
+      start-zellij
       update-input
       vs-fix
 
