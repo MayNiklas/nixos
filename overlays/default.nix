@@ -25,8 +25,6 @@ self: super: {
   plexRaw = super.pkgs.callPackage ../packages/plex/raw.nix { };
   preview-update = super.pkgs.callPackage ../packages/preview-update { };
   s3uploader = super.pkgs.callPackage ../packages/s3uploader { };
-  start-tmux = super.pkgs.callPackage ../packages/start-tmux { };
-  start-zellij = super.pkgs.callPackage ../packages/start-zellij { };
   update-input = super.pkgs.callPackage ../packages/update-input { };
   # tautulli = super.pkgs.python3Packages.callPackage ../packages/tautulli { };
   verification-listener =

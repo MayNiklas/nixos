@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 with lib;
 let cfg = config.mayniklas.programs.zellij;
 in
@@ -7,9 +7,13 @@ in
     mkEnableOption "zellij terminal mutliplexer";
 
   config = mkIf cfg.enable {
+
+    home.packages = with pkgs; [
+      (pkgs.callPackage ./start-zellij.nix { })
+    ];
+
     programs.zellij = {
       enable = true;
-
       settings = {
         theme = "custom";
         themes.custom = {
@@ -27,5 +31,6 @@ in
         };
       };
     };
+
   };
 }

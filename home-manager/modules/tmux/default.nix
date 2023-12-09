@@ -8,6 +8,10 @@ in
 
   config = mkIf cfg.enable {
 
+    home.packages = with pkgs; [
+      (pkgs.callPackage ./start-tmux.nix { })
+    ];
+
     programs.tmux = {
       enable = true;
       # not available in 22.11
