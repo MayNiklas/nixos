@@ -1,4 +1,4 @@
-{ lib, pkgs, config, flake-self, home-manager, ... }:
+{ lib, pkgs, config, flake-self, ... }:
 with lib;
 let cfg = config.mayniklas.server;
 in
