@@ -128,8 +128,14 @@
         (map
           (x: {
             name = x;
-            value = import (./modules + "/${x}");
-            _module.args.inputs = inputs;
+            value = { config, pkgs, lib, modulesPath, ... }: {
+              imports = [
+                (import ./modules/${x} {
+                  flake-self = self;
+                  inherit config pkgs lib modulesPath inputs nixpkgs disko;
+                })
+              ];
+            };
           })
           (builtins.attrNames (builtins.readDir ./modules)))
 
