@@ -1,4 +1,4 @@
-{ lib, config, modulesPath, disko, ... }:
+{ lib, config, disko, ... }:
 with lib;
 let
   cfg = config.mayniklas.cloud-provider-default;
@@ -6,8 +6,6 @@ in
 {
   imports = [
     disko.nixosModules.disko
-    (modulesPath + "/installer/scan/not-detected.nix")
-    (modulesPath + "/profiles/qemu-guest.nix")
     # provider specific modules
     ./netcup.nix
     ./proxmox.nix
@@ -79,12 +77,21 @@ in
     fileSystems."/".autoResize = true;
     boot.growPartition = true;
 
-    boot.loader.grub = {
-      devices = [ cfg.primaryDisk ];
-      efiSupport = true;
-      efiInstallAsRemovable = true;
+    boot = {
+      loader = {
+        timeout = 10;
+        grub = {
+          devices = [ cfg.primaryDisk ];
+          efiSupport = true;
+          efiInstallAsRemovable = true;
+        };
+      };
+      initrd = {
+        availableKernelModules = [ "virtio_net" "virtio_pci" "virtio_mmio" "virtio_blk" "virtio_scsi" "9p" "9pnet_virtio" ];
+        kernelModules = [ "virtio_balloon" "virtio_console" "virtio_rng" ];
+      };
     };
-    boot.loader.timeout = 10;
+
 
     # Currently all our providers use KVM / QEMU
     services.qemuGuest.enable = true;
