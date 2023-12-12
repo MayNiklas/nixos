@@ -1,11 +1,11 @@
-{ lib, config, disko, ... }:
+{ lib, config, flake-self, ... }:
 with lib;
 let
   cfg = config.mayniklas.cloud-provider-default;
 in
 {
   imports = [
-    disko.nixosModules.disko
+    flake-self.inputs.disko.nixosModules.disko
     # provider specific modules
     ./netcup.nix
     ./proxmox.nix

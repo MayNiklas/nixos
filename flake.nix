@@ -132,7 +132,7 @@
               imports = [
                 (import ./modules/${x} {
                   flake-self = self;
-                  inherit config pkgs lib modulesPath inputs nixpkgs disko;
+                  inherit pkgs lib config modulesPath inputs nixpkgs;
                 })
               ];
             };
