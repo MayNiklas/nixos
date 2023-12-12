@@ -268,7 +268,7 @@
               in
               pkgs.writeShellScriptBin "build_outputs" ''
                 # makes sure we don't garbage collect the build outputs
-                ln -sfn ${all_outputs} ~/.keep-nix-outputs
+                ln -sfn ${all_outputs} ~/.keep-nix-outputs-MayNiklas
 
                 # push outputs to attic
                 ${inputs.attic.packages.${pkgs.system}.attic}/bin/attic push lounge-rocks:nix-cache ${all_outputs}               
