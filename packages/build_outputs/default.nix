@@ -8,26 +8,26 @@
 #
 # nix run .#build_outputs
 # nix-tree $(nix build --print-out-paths .#build_outputs)
-{ pkgs, self, ... }:
+{ pkgs, lib, self, ... }:
 let
-  all_outputs = (pkgs.writeShellScriptBin "all_outputs" ''
-    # NixOS systems - x86_64-linux
-    echo ${self.nixosConfigurations.aida.config.system.build.toplevel}
-    echo ${self.nixosConfigurations.daisy.config.system.build.toplevel}
-    echo ${self.nixosConfigurations.deke.config.system.build.toplevel}
-    echo ${self.nixosConfigurations.kora.config.system.build.toplevel}
-    echo ${self.nixosConfigurations.simmons.config.system.build.toplevel}
-    echo ${self.nixosConfigurations.snowflake.config.system.build.toplevel}
-    echo ${self.nixosConfigurations.the-bus.config.system.build.toplevel}
-    echo ${self.nixosConfigurations.the-hub.config.system.build.toplevel}
-  '');
+  all_outputs = (pkgs.writeShellScriptBin "all_outputs" (lib.strings.concatMapStrings
+    (host:
+      ''
+        echo ${host}:
+        ${pkgs.nix}/bin/nix path-info --closure-size -h ${self.nixosConfigurations.${host}.config.system.build.toplevel}
+      ''
+    )
+    (builtins.attrNames self.nixosConfigurations)));
 in
 pkgs.writeShellScriptBin "build_outputs" ''
   # makes sure we don't garbage collect the build outputs
   ln -sfn ${all_outputs} ~/.keep-nix-outputs-MayNiklas
 
   # print the size of the build outputs
-  nix path-info --closure-size -h ${all_outputs}
+  ${pkgs.nix}/bin/nix path-info --closure-size -h ${all_outputs}
+
+  # execute script that prints the size of all individual build outputs and pushes them to attic
+  ${all_outputs}/bin/all_outputs
 
   # push outputs to attic when attic is available
   if command -v attic &> /dev/null
