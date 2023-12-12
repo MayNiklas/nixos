@@ -238,6 +238,8 @@
           # allow using them from other flakes that import this one.
 
           packages = flake-utils.lib.flattenTree {
+
+            build_outputs = pkgs.callPackage ./packages/build_outputs { inherit self; };
             woodpecker-pipeline = pkgs.callPackage ./woodpecker-pipeline.nix { inputs = inputs; flake-self = self; };
 
             build-push = pkgs.build-push;
@@ -250,30 +252,6 @@
             s3uploader = pkgs.s3uploader;
             update-input = pkgs.update-input;
             vs-fix = pkgs.vs-fix;
-
-            # nix run .#build_outputs
-            build_outputs =
-              let
-                all_outputs = (pkgs.writeShellScriptBin "all_outputs" ''
-                  # NixOS systems
-                  echo ${self.nixosConfigurations.aida.config.system.build.toplevel}
-                  echo ${self.nixosConfigurations.daisy.config.system.build.toplevel}
-                  echo ${self.nixosConfigurations.deke.config.system.build.toplevel}
-                  echo ${self.nixosConfigurations.kora.config.system.build.toplevel}
-                  echo ${self.nixosConfigurations.simmons.config.system.build.toplevel}
-                  echo ${self.nixosConfigurations.snowflake.config.system.build.toplevel}
-                  echo ${self.nixosConfigurations.the-bus.config.system.build.toplevel}
-                  echo ${self.nixosConfigurations.the-hub.config.system.build.toplevel}
-                '');
-              in
-              pkgs.writeShellScriptBin "build_outputs" ''
-                # makes sure we don't garbage collect the build outputs
-                ln -sfn ${all_outputs} ~/.keep-nix-outputs-MayNiklas
-
-                # push outputs to attic
-                ${inputs.attic.packages.${pkgs.system}.attic}/bin/attic push lounge-rocks:nix-cache ${all_outputs}               
-              '';
-
           };
 
           # Allow custom packages to be run using `nix run`
