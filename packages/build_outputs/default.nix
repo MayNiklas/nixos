@@ -8,7 +8,12 @@
 #
 # nix run .#build_outputs
 # nix-tree $(nix build --print-out-paths .#build_outputs)
-{ pkgs, lib, self, ... }:
+{ pkgs
+, lib
+, self
+, output_path ? "~/.keep-nix-outputs-MayNiklas"
+, ...
+}:
 let
   all_outputs = (pkgs.writeShellScriptBin "all_outputs" (lib.strings.concatMapStrings
     (host:
@@ -21,7 +26,7 @@ let
 in
 pkgs.writeShellScriptBin "build_outputs" ''
   # makes sure we don't garbage collect the build outputs
-  ln -sfn ${all_outputs} ~/.keep-nix-outputs-MayNiklas
+  ln -sfn ${all_outputs} ${output_path}
 
   # print the size of the build outputs
   ${pkgs.nix}/bin/nix path-info --closure-size -h ${all_outputs}
