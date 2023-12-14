@@ -11,6 +11,7 @@
 { pkgs
 , lib
 , self
+, build_hosts ? (builtins.attrNames self.nixosConfigurations)
 , output_path ? "~/.keep-nix-outputs-MayNiklas"
 , ...
 }:
@@ -22,7 +23,8 @@ let
         ${pkgs.nix}/bin/nix path-info --closure-size -h ${self.nixosConfigurations.${host}.config.system.build.toplevel}
       ''
     )
-    (builtins.attrNames self.nixosConfigurations)));
+    build_hosts
+  ));
 in
 pkgs.writeShellScriptBin "build_outputs" ''
   # makes sure we don't garbage collect the build outputs
