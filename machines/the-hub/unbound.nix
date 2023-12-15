@@ -21,10 +21,11 @@ in
     A-records = mkOption {
       type = types.attrs;
       default = {
-        "status.nik-ste.de" = "10.88.88.1";
-        "smokeping.lounge.rocks" = "192.168.5.21";
+        "iceportal.de" = "172.18.1.110";
         "nas.mh0.eu" = "192.168.42.10";
         "pass.telekom.de" = "109.237.176.33";
+        "smokeping.lounge.rocks" = "192.168.5.21";
+        "status.nik-ste.de" = "10.88.88.1";
       };
       description = ''
         Custom DNS A records
