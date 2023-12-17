@@ -28,7 +28,7 @@ let
 in
 pkgs.writeShellScriptBin "build_outputs" ''
   # makes sure we don't garbage collect the build outputs
-  ln -sfn ${all_outputs} ${output_path}
+  ${pkgs.nix}/bin/nix build --out-link ${output_path} ${all_outputs}
 
   # print the size of the build outputs
   ${pkgs.nix}/bin/nix path-info --closure-size -h ${all_outputs}
