@@ -68,6 +68,13 @@ in
         # git status
         gs = "${pkgs.git}/bin/git status";
 
+        # git sync
+        gitSync = ''
+          ${pkgs.git}/bin/git fetch upstream
+          ${pkgs.git}/bin/git checkout main
+          ${pkgs.git}/bin/git merge upstream/main
+        '';
+
         # clean up repository
         clean = "${pkgs.git}/bin/git clean -xdn";
         destroy = "${pkgs.git}/bin/git clean -xdf";
