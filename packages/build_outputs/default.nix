@@ -8,6 +8,9 @@
 #
 # nix run .#build_outputs
 # nix-tree $(nix build --print-out-paths .#build_outputs)
+#
+# ls -lA /nix/var/nix/gcroots/auto/
+# -> paths that are referenced by a gcroot are not garbage collected
 { pkgs
 , lib
 , self
@@ -28,8 +31,7 @@ let
 in
 pkgs.writeShellScriptBin "build_outputs" ''
   # makes sure we don't garbage collect the build outputs
-  ${pkgs.coreutils}/bin/ln -sfn ${all_outputs} ${output_path}
-  ${pkgs.nix}/bin/nix-store --add-root -r ${output_path}
+  ${pkgs.nix}/bin/nix-store --add-root ${output_path} -r ${all_outputs}
 
   # print the size of the build outputs
   ${pkgs.nix}/bin/nix path-info --closure-size -h ${all_outputs}
