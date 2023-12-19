@@ -20,9 +20,6 @@
       ];
   };
 
-  # todo: Steam is totally broken
-  programs.steam.enable = true;
-
   # fingerprint login
   services.fprintd.enable = true;
 
@@ -35,6 +32,7 @@
       home-manager = true;
     };
     intel.enable = true;
+    gaming.enable = true;
     # gnome.enable = true;
     wayland.enable = true;
     # xmm7360.enable = true;
