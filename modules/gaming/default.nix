@@ -13,12 +13,15 @@ in
     programs.steam.enable = true;
 
     home-manager.users."${config.mayniklas.var.mainUser}".home.packages = with pkgs; [
+      # Lutris
       (lutris.override {
         extraPkgs = pkgs: [
           wine
           winetricks
         ];
       })
+      # A free, open source launcher for Minecraft
+      prismlauncher
     ];
 
     hardware.opengl = {
