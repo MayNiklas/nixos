@@ -11,6 +11,7 @@ self: super: {
     gen-module = super.pkgs.callPackage ../packages/gen-module { };
     mtu-check = super.pkgs.callPackage ../packages/mtu-check { };
     preview-update = super.pkgs.callPackage ../packages/preview-update { };
+    pycharm-fix = super.pkgs.callPackage ../packages/pycharm-fix { };
     s3uploader = super.pkgs.callPackage ../packages/s3uploader { };
     set-performance = super.pkgs.callPackage ../packages/set-performance { };
     vs-fix = super.pkgs.callPackage ../packages/vs-fix { };

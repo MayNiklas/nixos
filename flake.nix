@@ -246,6 +246,7 @@
             inherit (pkgs.mayniklas)
               darknet
               mtu-check
+              pycharm-fix
               set-performance
               vs-fix
               ;
