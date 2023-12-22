@@ -157,6 +157,7 @@
               # Visual Studio Code Server support
               services.vscode-server.enable = true;
 
+              nixpkgs.overlays = [ self.overlays.mayniklas ];
             };
           };
       };

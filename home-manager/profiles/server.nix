@@ -2,12 +2,6 @@
 
   # Install these packages for my user
   home.packages =
-    let
-      drone-gen = pkgs.callPackage ../../packages/drone-gen { };
-      gen-module = pkgs.callPackage ../../packages/gen-module { };
-      preview-update = pkgs.callPackage ../../packages/preview-update { };
-      vs-fix = pkgs.callPackage ../../packages/vs-fix { };
-    in
     with pkgs; [
       dnsutils
       glances
@@ -21,10 +15,9 @@
       nixpkgs-fmt
       unzip
 
-      drone-gen
-      gen-module
-      preview-update
-      vs-fix
+      mayniklas.gen-module
+      mayniklas.preview-update
+      mayniklas.vs-fix
 
       (pkgs.writeShellScriptBin "ci" ''
         # echo link to woodpecker
