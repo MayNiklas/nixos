@@ -8,9 +8,6 @@ self: super: {
   # Custom packages. Will be made available on all machines and used where
   # needed.
 
-  anki-bin = super.pkgs.callPackage ../packages/anki-bin { };
-  build-push = super.pkgs.callPackage ../packages/build-push { };
-  build-system = super.pkgs.callPackage ../packages/build-system { };
   bukkit-spigot = super.pkgs.callPackage ../packages/bukkit-spigot { };
   csgo-server = super.pkgs.callPackage ../packages/csgo-server { };
   darknet = super.pkgs.callPackage ../packages/darknet { };

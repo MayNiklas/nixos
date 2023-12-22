@@ -242,27 +242,17 @@
             build_outputs = pkgs.callPackage ./packages/build_outputs { inherit self; };
             woodpecker-pipeline = pkgs.callPackage ./woodpecker-pipeline.nix { inputs = inputs; flake-self = self; };
 
-            build-push = pkgs.build-push;
-            build-system = pkgs.build-system;
             csgo-server = pkgs.csgo-server;
             drone-gen = pkgs.drone-gen;
             gen-module = pkgs.gen-module;
             mtu-check = pkgs.mtu-check;
             preview-update = pkgs.preview-update;
             s3uploader = pkgs.s3uploader;
-            update-input = pkgs.update-input;
             vs-fix = pkgs.vs-fix;
           };
 
           # Allow custom packages to be run using `nix run`
           apps = {
-            build-system = flake-utils.lib.mkApp { drv = packages.build-system; };
-            drone-gen = flake-utils.lib.mkApp { drv = packages.drone-gen; };
-            gen-module = flake-utils.lib.mkApp { drv = packages.gen-module; };
-            s3uploader = flake-utils.lib.mkApp { drv = packages.s3uploader; };
-            update-input = flake-utils.lib.mkApp { drv = packages.update-input; };
-            vs-fix = flake-utils.lib.mkApp { drv = packages.vs-fix; };
-
             # lollypops deployment tool
             # https://github.com/pinpox/lollypops
             #
