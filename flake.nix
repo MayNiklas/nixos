@@ -243,15 +243,18 @@
             build_outputs = pkgs.callPackage ./packages/build_outputs { inherit self; };
             woodpecker-pipeline = pkgs.callPackage ./woodpecker-pipeline.nix { inputs = inputs; flake-self = self; };
 
-            darknet = pkgs.mayniklas.darknet;
+            inherit (pkgs.mayniklas)
+              darknet
+              mtu-check
+              set-performance
+              vs-fix
+              ;
 
             csgo-server = pkgs.csgo-server;
             drone-gen = pkgs.drone-gen;
             gen-module = pkgs.gen-module;
-            mtu-check = pkgs.mtu-check;
             preview-update = pkgs.preview-update;
             s3uploader = pkgs.s3uploader;
-            vs-fix = pkgs.vs-fix;
           };
 
           # Allow custom packages to be run using `nix run`

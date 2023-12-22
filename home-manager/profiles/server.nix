@@ -17,6 +17,7 @@
 
       mayniklas.gen-module
       mayniklas.preview-update
+      mayniklas.set-performance
       mayniklas.vs-fix
 
       (pkgs.writeShellScriptBin "ci" ''
