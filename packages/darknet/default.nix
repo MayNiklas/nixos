@@ -1,11 +1,13 @@
-{ lib, stdenv, pkgs, enableUnfree ? true, ... }:
+{ lib, stdenv, pkgs, fetchFromGitHub, ... }:
 stdenv.mkDerivation rec {
   pname = "darknet";
-  version = "a3714d0a2bf92c3dea84c4bea65b2b0c64dbc6b1";
+  version = "f6afaabcdf85f77e7aff2ec55c020c0e297c77f9";
 
-  src = fetchGit {
-    url = "https://github.com/pjreddie/darknet";
+  src = fetchFromGitHub {
+    owner = "pjreddie";
+    repo = pname;
     rev = version;
+    sha256 = "sha256-Bhvbc06IeA4oNz93WiPmz9TXwxz7LQ6L8HPr8UEvzvE=";
   };
 
   buildInputs = with pkgs; [
@@ -14,11 +16,20 @@ stdenv.mkDerivation rec {
     linuxPackages.nvidia_x11
     gcc
     pkg-config
-    (opencv3.override (old: { enableGtk2 = true; }))
+    (opencv3.override { enableGtk2 = true; })
     gtk2-x11
   ];
 
-  makeFlags = [ "GPU=1" "OPENCV=1" ];
+  makeFlags = [
+    "GPU=1"
+    # for some reason, opencv stopped working (won't build with it)
+    # "OPENCV=1"
+  ];
+
+  preConfigure = ''
+    # uncomment line 14
+    sed -i '14s/^# //' Makefile
+  '';
 
   shellHook = ''
     export CUDA_PATH=${pkgs.cudatoolkit}
@@ -29,7 +40,6 @@ stdenv.mkDerivation rec {
   installPhase = ''
     install -Dm755 darknet -t $out/bin
   '';
-
 
   doCheck = true;
 

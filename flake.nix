@@ -226,7 +226,7 @@
         let
           pkgs = import nixpkgs {
             inherit system;
-            overlays = [ self.overlays.default ];
+            overlays = [ self.overlays.default self.overlays.mayniklas ];
             config = {
               allowUnsupportedSystem = true;
               allowUnfree = true;
@@ -242,6 +242,8 @@
 
             build_outputs = pkgs.callPackage ./packages/build_outputs { inherit self; };
             woodpecker-pipeline = pkgs.callPackage ./woodpecker-pipeline.nix { inputs = inputs; flake-self = self; };
+
+            darknet = pkgs.mayniklas.darknet;
 
             csgo-server = pkgs.csgo-server;
             drone-gen = pkgs.drone-gen;
