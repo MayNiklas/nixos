@@ -1,9 +1,9 @@
-{ pkgs, github-copilot-intellij-agent, ... }:
-pkgs.writeShellScriptBin "pycharm-fix" ''
+{ writeShellScriptBin, nix, github-copilot-intellij-agent, ... }:
+writeShellScriptBin "pycharm-fix" ''
   for f in ~/.local/share/JetBrains/*; do
     if [[ $f == *"PyCharm"* ]]; then
-      echo "Fixing PyCharm at $f/copilot-agent-linux..."
-      ln -s ${github-copilot-intellij-agent}/bin/copilot-agent $f/copilot-agent-linux
+      ${nix}/bin/nix-store --add-root $f/copilot-agent-linux -r ${github-copilot-intellij-agent}/bin/copilot-agent
+      echo "Created link from $f/copilot-agent-linux to ${github-copilot-intellij-agent}/bin/copilot-agent..."
     fi
   done
 ''
