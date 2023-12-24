@@ -1,4 +1,5 @@
 # TTY: Control + Alt + F1
+# nix run github:numtide/nixos-anywhere -- --flake .#daisy root@192.168.5.61
 { config, lib, pkgs, nixos-hardware, ... }: {
 
   imports = [
@@ -14,17 +15,10 @@
       sway.enable = true;
       swaylock.enable = true;
     };
-    home.packages =
-      with pkgs; [
-        xournalpp
-      ];
   };
 
-  # fingerprint login
-  services.fprintd.enable = true;
-
   # automatic screen orientation
-  hardware.sensor.iio.enable = true;
+  hardware.sensor.iio.enable = false;
 
   mayniklas = {
     desktop = {

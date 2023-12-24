@@ -45,6 +45,7 @@
       virt-manager
       (vlc.override { libbluray = libbluray.override { withAACS = true; withBDplus = true; }; })
       xfce.thunar
+      xournalpp
       youtube-dl
       zoom-us
 
