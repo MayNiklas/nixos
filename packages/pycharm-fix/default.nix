@@ -13,8 +13,8 @@ in
 writeShellScriptBin "pycharm-fix" ''
   for f in ~/.local/share/JetBrains/*; do
     if [[ $f == *"PyCharm"* ]]; then
-      ${nix}/bin/nix-store --add-root $f/copilot-agent-linux -r ${my-github-copilot-intellij-agent}/bin/copilot-agent
-      echo "Created link from $f/copilot-agent-linux to ${my-github-copilot-intellij-agent}/bin/copilot-agent..."
+      ${nix}/bin/nix-store --add-root $f/github-copilot-intellij/copilot-agent/bin/copilot-agent-linux -r ${my-github-copilot-intellij-agent}/bin/copilot-agent
+      echo "Created link from $f/github-copilot-intellij/copilot-agent/bin/copilot-agent-linux to ${my-github-copilot-intellij-agent}/bin/copilot-agent..."
     fi
   done
 ''
