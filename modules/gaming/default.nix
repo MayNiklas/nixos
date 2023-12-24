@@ -15,6 +15,7 @@ in
     # .steampath
     # .steampid
     # .local/share/Steam
+    # rm -rf .steam/ .steampath .steampid .local/share/Steam
     programs.steam.enable = true;
 
     home-manager.users."${config.mayniklas.var.mainUser}".home.packages = with pkgs; [
