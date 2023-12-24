@@ -27,9 +27,11 @@ in
       rustfmt
 
       ### Jetbrains Software
-      # jetbrains.clion
-      # jetbrains.goland
-      # jetbrains.pycharm-professional
+      jetbrains.clion
+      jetbrains.goland
+      jetbrains.pycharm-professional
+
+      mayniklas.pycharm-fix
 
     ];
 

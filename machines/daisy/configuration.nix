@@ -15,6 +15,7 @@
       sway.enable = true;
       swaylock.enable = true;
     };
+    home.packages = [ ];
   };
 
   # automatic screen orientation
