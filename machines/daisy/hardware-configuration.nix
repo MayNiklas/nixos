@@ -11,6 +11,8 @@ let primaryDisk = "/dev/nvme0n1"; in {
 
   services.throttled.enable = false;
 
+  services.fwupd.enable = true;
+
   disko.devices.disk.main = {
     type = "disk";
     device = primaryDisk;
