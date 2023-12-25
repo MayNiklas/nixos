@@ -1,4 +1,4 @@
-{ config, pkgs, lib, flake-self, home-manager, wallpaper-generator, ... }:
+{ config, pkgs, lib, flake-self, home-manager, ... }:
 with lib;
 let cfg = config.mayniklas.home-manager;
 in
@@ -36,30 +36,15 @@ in
 
       imports = [
         {
-          nixpkgs.overlays = [ flake-self.overlays.default ];
+          nixpkgs.overlays = [
+            flake-self.overlays.default
+            (final: prev: {
+              wp-gen = flake-self.inputs.wallpaper-generator.packages.${pkgs.system}.wp-gen;
+            })
+          ];
         }
         ./profiles/${cfg.profile}.nix
       ];
-
-      # Set wallpaper for all screens
-      wayland.windowManager.sway.config.output = lib.mkIf config.home-manager.users."${cfg.username}".wayland.windowManager.sway.enable
-        {
-          "*" = {
-            bg =
-              let
-                wallpaper = pkgs.stdenv.mkDerivation {
-                  name = "wallpaper";
-                  dontUnpack = true;
-                  phases = [ "installPhase" ];
-                  installPhase = ''
-                    mkdir $out
-                    ${wallpaper-generator.packages.${pkgs.system}.wp-gen}/bin/wallpaper-generator prisma --width 1920 --height 1080 -o $out/bg.png
-                  '';
-                };
-              in
-              "${wallpaper}/bg.png fill #000000";
-          };
-        };
 
       nixpkgs.config = import ./nixpkgs-config.nix;
       xdg.configFile."nixpkgs/config.nix".source = ./nixpkgs-config.nix;
