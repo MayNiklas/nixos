@@ -30,6 +30,16 @@ in
         "terminal.integrated.fontFamily" = "source code pro";
         "workbench.colorTheme" = "GitHub Dark Default";
 
+        # Copilot
+        "github.copilot.enable" = {
+          # enabled
+          "*" = true;
+          "markdown" = true;
+          # disabled
+          "plaintext" = false;
+          "scminput" = false;
+        };
+
         # jnoortheen.nix-ide
         "nix" = {
           "enableLanguageServer" = true;
