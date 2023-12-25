@@ -8,9 +8,6 @@ self: super: {
   # Custom packages. Will be made available on all machines and used where
   # needed.
 
-  anki-bin = super.pkgs.callPackage ../packages/anki-bin { };
-  build-push = super.pkgs.callPackage ../packages/build-push { };
-  build-system = super.pkgs.callPackage ../packages/build-system { };
   bukkit-spigot = super.pkgs.callPackage ../packages/bukkit-spigot { };
   csgo-server = super.pkgs.callPackage ../packages/csgo-server { };
   darknet = super.pkgs.callPackage ../packages/darknet { };
@@ -23,8 +20,8 @@ self: super: {
   owncast = super.pkgs.callPackage ../packages/owncast { };
   plex = super.pkgs.callPackage ../packages/plex { };
   plexRaw = super.pkgs.callPackage ../packages/plex/raw.nix { };
-  s3uploader = super.pkgs.callPackage ../packages/s3uploader { };
   preview-update = super.pkgs.callPackage ../packages/preview-update { };
+  s3uploader = super.pkgs.callPackage ../packages/s3uploader { };
   update-input = super.pkgs.callPackage ../packages/update-input { };
   # tautulli = super.pkgs.python3Packages.callPackage ../packages/tautulli { };
   verification-listener =

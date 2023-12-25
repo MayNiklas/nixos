@@ -30,6 +30,16 @@ in
         "terminal.integrated.fontFamily" = "source code pro";
         "workbench.colorTheme" = "GitHub Dark Default";
 
+        # Copilot
+        "github.copilot.enable" = {
+          # enabled
+          "*" = true;
+          "markdown" = true;
+          # disabled
+          "plaintext" = false;
+          "scminput" = false;
+        };
+
         # jnoortheen.nix-ide
         "nix" = {
           "enableLanguageServer" = true;
@@ -43,6 +53,11 @@ in
           };
         };
 
+        # Markdown
+        "[markdown]" = {
+          "editor.defaultFormatter" = "DavidAnson.vscode-markdownlint";
+        };
+
         # Go
         "[go]" = {
           "editor.defaultFormatter" = "golang.go";
@@ -51,6 +66,7 @@ in
       };
 
       extensions = with pkgs.vscode-extensions; [
+        davidanson.vscode-markdownlint
         github.copilot
         github.github-vscode-theme
         github.vscode-github-actions

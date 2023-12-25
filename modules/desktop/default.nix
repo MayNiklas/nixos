@@ -1,4 +1,4 @@
-{ lib, pkgs, config, inputs, self-overlay, ... }:
+{ lib, pkgs, config, inputs, ... }:
 with lib;
 let cfg = config.mayniklas.desktop;
 in

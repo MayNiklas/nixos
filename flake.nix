@@ -20,6 +20,15 @@
       url = "github:numtide/flake-utils";
     };
 
+    ### Tools for managing NixOS
+
+    # https://github.com/nix-community/disko
+    # Format disks with nix-config
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # lollypops deployment tool
     # https://github.com/pinpox/lollypops
     lollypops = {
@@ -119,8 +128,14 @@
         (map
           (x: {
             name = x;
-            value = import (./modules + "/${x}");
-            _module.args.inputs = inputs;
+            value = { config, pkgs, lib, modulesPath, ... }: {
+              imports = [
+                (import ./modules/${x} {
+                  flake-self = self;
+                  inherit pkgs lib config modulesPath inputs nixpkgs;
+                })
+              ];
+            };
           })
           (builtins.attrNames (builtins.readDir ./modules)))
 
@@ -142,6 +157,7 @@
               # Visual Studio Code Server support
               services.vscode-server.enable = true;
 
+              nixpkgs.overlays = [ self.overlays.mayniklas ];
             };
           };
       };
@@ -210,7 +226,7 @@
         let
           pkgs = import nixpkgs {
             inherit system;
-            overlays = [ self.overlays.default ];
+            overlays = [ self.overlays.default self.overlays.mayniklas ];
             config = {
               allowUnsupportedSystem = true;
               allowUnfree = true;
@@ -223,29 +239,27 @@
           # allow using them from other flakes that import this one.
 
           packages = flake-utils.lib.flattenTree {
+
+            build_outputs = pkgs.callPackage ./packages/build_outputs { inherit self; };
             woodpecker-pipeline = pkgs.callPackage ./woodpecker-pipeline.nix { inputs = inputs; flake-self = self; };
 
-            build-push = pkgs.build-push;
-            build-system = pkgs.build-system;
+            inherit (pkgs.mayniklas)
+              darknet
+              mtu-check
+              pycharm-fix
+              set-performance
+              vs-fix
+              ;
+
             csgo-server = pkgs.csgo-server;
             drone-gen = pkgs.drone-gen;
             gen-module = pkgs.gen-module;
-            mtu-check = pkgs.mtu-check;
             preview-update = pkgs.preview-update;
             s3uploader = pkgs.s3uploader;
-            update-input = pkgs.update-input;
-            vs-fix = pkgs.vs-fix;
           };
 
           # Allow custom packages to be run using `nix run`
           apps = {
-            build-system = flake-utils.lib.mkApp { drv = packages.build-system; };
-            drone-gen = flake-utils.lib.mkApp { drv = packages.drone-gen; };
-            gen-module = flake-utils.lib.mkApp { drv = packages.gen-module; };
-            s3uploader = flake-utils.lib.mkApp { drv = packages.s3uploader; };
-            update-input = flake-utils.lib.mkApp { drv = packages.update-input; };
-            vs-fix = flake-utils.lib.mkApp { drv = packages.vs-fix; };
-
             # lollypops deployment tool
             # https://github.com/pinpox/lollypops
             #
@@ -261,3 +275,8 @@
           };
         });
 }
+
+
+
+
+

@@ -59,6 +59,21 @@ in
           };
         };
 
+        # Set wallpaper for all screens
+        output."*".bg =
+          let
+            wallpaper = pkgs.stdenv.mkDerivation {
+              name = "wallpaper";
+              dontUnpack = true;
+              phases = [ "installPhase" ];
+              installPhase = ''
+                mkdir $out
+                ${pkgs.wp-gen}/bin/wallpaper-generator batman --width 3840 --height 2160 -o $out/bg.png
+              '';
+            };
+          in
+          "${wallpaper}/bg.png fill #000000";
+
         modifier = "Mod4";
 
         terminal = "${pkgs.foot}/bin/foot";
@@ -134,10 +149,6 @@ in
     programs = {
       zsh = {
         shellAliases = rec {
-          # energy profiles
-          performance = "echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor";
-          powersave = "echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor";
-
           # suspend
           zzz = "${pkgs.swaylock}/bin/swaylock -fF && systemctl suspend";
         };

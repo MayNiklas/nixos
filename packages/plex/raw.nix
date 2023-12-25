@@ -16,16 +16,16 @@
 # server, and the FHS userenv and corresponding NixOS module should
 # automatically pick up the changes.
 stdenv.mkDerivation rec {
-  version = "1.32.6.7468-07e0d4a7e";
+  version = "1.32.8.7639-fb6452ebf";
   pname = "plexmediaserver";
 
   # Fetch the source
   src = if stdenv.hostPlatform.system == "aarch64-linux" then fetchurl {
     url = "https://downloads.plex.tv/plex-media-server-new/${version}/debian/plexmediaserver_${version}_arm64.deb";
-    sha256 = "01sdhm307zsnsj893qch9h2yc07y7yijz5j0y4p223v29picr3h6";
+    sha256 = "sha256-v9Fb5dlgIWqXfL9a4GkbGDEzYueyHs8P8R6TSyXDLrc=";
   } else fetchurl {
     url = "https://downloads.plex.tv/plex-media-server-new/${version}/debian/plexmediaserver_${version}_amd64.deb";
-    sha256 = "066hfidm25830xljj3ygq6vr142v2n4z3w94wnxfhxv2mx5fxall";
+    sha256 = "sha256-jdGVAdvm7kjxTP3CQ5w6dKZbfCRwSy9TrtxRHaV0/cs=";
   };
 
   outputs = [ "out" "basedb" ];
@@ -83,6 +83,7 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     homepage = "https://plex.tv/";
+    sourceProvenance = with sourceTypes; [ binaryNativeCode ];
     license = licenses.unfree;
     platforms = [ "x86_64-linux" "aarch64-linux" ];
     maintainers = with maintainers; [
@@ -91,7 +92,7 @@ stdenv.mkDerivation rec {
       lnl7
       pjones
       thoughtpolice
-      maxeaubrey
+      amaxine
       MayNiklas
     ];
     description = "Media library streaming server";

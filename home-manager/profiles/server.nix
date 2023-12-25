@@ -2,14 +2,6 @@
 
   # Install these packages for my user
   home.packages =
-    let
-      build-system = pkgs.callPackage ../../packages/build-system { };
-      drone-gen = pkgs.callPackage ../../packages/drone-gen { };
-      gen-module = pkgs.callPackage ../../packages/gen-module { };
-      preview-update = pkgs.callPackage ../../packages/preview-update { };
-      update-input = pkgs.callPackage ../../packages/update-input { };
-      vs-fix = pkgs.callPackage ../../packages/vs-fix { };
-    in
     with pkgs; [
       dnsutils
       glances
@@ -23,12 +15,10 @@
       nixpkgs-fmt
       unzip
 
-      build-system
-      drone-gen
-      gen-module
-      preview-update
-      update-input
-      vs-fix
+      mayniklas.gen-module
+      mayniklas.preview-update
+      mayniklas.set-performance
+      mayniklas.vs-fix
 
       (pkgs.writeShellScriptBin "ci" ''
         # echo link to woodpecker
@@ -46,16 +36,19 @@
       git.enable = true;
       tmux.enable = true;
       vim.enable = true;
+      zellij.enable = true;
       zsh.enable = true;
     };
   };
 
   # Imports
   imports = [
+    ../colorscheme.nix
     ../modules/direnv
     ../modules/git
     ../modules/nvim
     ../modules/tmux
+    ../modules/zellij
     ../modules/zsh
   ];
 

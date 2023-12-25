@@ -3,12 +3,11 @@
   # Install these packages for my user
   home.packages =
     let
-      drone-gen = pkgs.callPackage ../../packages/drone-gen { };
-      gen-module = pkgs.callPackage ../../packages/gen-module { };
       preview-update = pkgs.callPackage ../../packages/preview-update { };
     in
     with pkgs; [
       _1password-gui
+      ansible
       asciinema
       cura
       dconf
@@ -45,11 +44,12 @@
       virt-manager
       (vlc.override { libbluray = libbluray.override { withAACS = true; withBDplus = true; }; })
       xfce.thunar
+      xournalpp
       youtube-dl
       zoom-us
 
-      drone-gen
-      gen-module
+      mayniklas.gen-module
+      mayniklas.set-performance
     ];
 
   mayniklas = {

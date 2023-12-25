@@ -95,12 +95,12 @@
           "192.168.98.1"
         ];
         targets = [
-          "https://status.nik-ste.de"
+          "https://build.lounge.rocks"
           "https://cache.lounge.rocks/nix-cache/nix-cache-info"
-          "https://drone.lounge.rocks"
-          "https://matrix.lounge.rocks/.well-known/matrix/client"
           "https://git.lounge.rocks"
           "https://jellyfin.pamiro.net"
+          "https://matrix.lounge.rocks/.well-known/matrix/client"
+          "https://status.nik-ste.de"
         ];
       };
 

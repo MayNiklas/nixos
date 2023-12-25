@@ -1,4 +1,4 @@
-{ lib, pkgs, config, flake-self, home-manager, ... }:
+{ lib, pkgs, config, flake-self, ... }:
 with lib;
 let cfg = config.mayniklas.server;
 in
@@ -16,8 +16,6 @@ in
   };
 
   config = mkIf cfg.enable {
-
-    services.postgresql.package = pkgs.postgresql_11;
 
     environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 

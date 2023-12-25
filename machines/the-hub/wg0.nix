@@ -92,7 +92,7 @@
 
         # gpu-server
         {
-          publicKey = "gAZho29rXjjGAjXy6ImBgW+Ei0XGADQUuiI/r0s+bR8=";
+          publicKey = "aD6SXOOB3JJnRXUvB09yXlf/2kyFe1TZ5HEx2TIJKTQ=";
           allowedIPs = [ "10.88.88.17/32" ];
         }
 
