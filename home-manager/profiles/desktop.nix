@@ -9,6 +9,7 @@
     in
     with pkgs; [
       _1password-gui
+      ansible
       asciinema
       cura
       dconf
