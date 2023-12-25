@@ -39,7 +39,18 @@ in
           nixpkgs.overlays = [
             flake-self.overlays.default
             (final: prev: {
-              wp-gen = flake-self.inputs.wallpaper-generator.packages.${pkgs.system}.wp-gen;
+              my-wallpaper = pkgs.callPackage
+                ({ function ? "batman", width ? 3840, height ? 2160, extraArguments ? "", ... }:
+                  pkgs.stdenv.mkDerivation {
+                    name = "wallpaper";
+                    dontUnpack = true;
+                    phases = [ "installPhase" ];
+                    installPhase = ''
+                      mkdir $out
+                      ${flake-self.inputs.wallpaper-generator.packages.${pkgs.system}.wp-gen}/bin/wallpaper-generator ${function} --width ${toString width} --height ${toString height} ${extraArguments} -o $out/wallpaper.png
+                    '';
+                  })
+                { };
             })
           ];
         }

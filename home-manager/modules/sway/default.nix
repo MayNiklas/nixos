@@ -60,19 +60,7 @@ in
         };
 
         # Set wallpaper for all screens
-        output."*".bg =
-          let
-            wallpaper = pkgs.stdenv.mkDerivation {
-              name = "wallpaper";
-              dontUnpack = true;
-              phases = [ "installPhase" ];
-              installPhase = ''
-                mkdir $out
-                ${pkgs.wp-gen}/bin/wallpaper-generator batman --width 3840 --height 2160 -o $out/bg.png
-              '';
-            };
-          in
-          "${wallpaper}/bg.png fill #000000";
+        output."*".bg = "${pkgs.my-wallpaper}/wallpaper.png fill #000000";
 
         modifier = "Mod4";
 
