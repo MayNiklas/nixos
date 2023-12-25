@@ -68,7 +68,7 @@ in
               phases = [ "installPhase" ];
               installPhase = ''
                 mkdir $out
-                ${pkgs.wp-gen}/bin/wallpaper-generator prisma --width 3840 --height 2160 -o $out/bg.png
+                ${pkgs.wp-gen}/bin/wallpaper-generator batman --width 3840 --height 2160 -o $out/bg.png
               '';
             };
           in
