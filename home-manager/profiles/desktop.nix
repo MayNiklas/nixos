@@ -3,8 +3,6 @@
   # Install these packages for my user
   home.packages =
     let
-      drone-gen = pkgs.callPackage ../../packages/drone-gen { };
-      gen-module = pkgs.callPackage ../../packages/gen-module { };
       preview-update = pkgs.callPackage ../../packages/preview-update { };
     in
     with pkgs; [
@@ -50,8 +48,8 @@
       youtube-dl
       zoom-us
 
-      drone-gen
-      gen-module
+      mayniklas.gen-module
+      mayniklas.set-performance
     ];
 
   mayniklas = {
