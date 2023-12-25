@@ -4,16 +4,17 @@ let cfg = config.mayniklas.oneko;
 in
 {
   options.mayniklas.oneko = {
-    enable = mkEnableOption "activate oneko";
+    enable = mkEnableOption "release oneko";
   };
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [ oneko ];
     systemd.user.services.oneko = {
+      enable = true;
       description = "oneko";
       serviceConfig.PassEnvironment = "DISPLAY";
       serviceConfig.ExecStart = "${pkgs.oneko}/bin/oneko -sakura";
       path = with pkgs; [ oneko ];
-      wantedBy = [ "multi-user.target" ];
+      wantedBy = [ "graphical-session.target" ];
     };
   };
 }
