@@ -11,7 +11,7 @@ in
     systemd.user.services.oneko = {
       description = "oneko";
       serviceConfig.PassEnvironment = "DISPLAY";
-      serviceConfig.ExecStart = "oneko -sakura";
+      serviceConfig.ExecStart = "${pkgs.oneko}/bin/oneko -sakura";
       path = with pkgs; [ oneko ];
       wantedBy = [ "multi-user.target" ];
     };
