@@ -82,7 +82,7 @@ in
         redhat.vscode-yaml
         rust-lang.rust-analyzer
         yzhang.markdown-all-in-one
-      ];
+      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [ ];
 
     };
   };

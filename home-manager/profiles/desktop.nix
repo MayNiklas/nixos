@@ -7,7 +7,6 @@
     in
     with pkgs; [
       _1password-gui
-      ansible
       asciinema
       cura
       dconf
@@ -55,6 +54,7 @@
   mayniklas = {
     programs = {
       alacritty.enable = true;
+      ansible.enable = true;
       chromium.enable = true;
       devolopment.enable = true;
       direnv.enable = true;
@@ -75,6 +75,7 @@
   imports = [
     ../colorscheme.nix
     ../modules/alacritty
+    ../modules/ansible
     ../modules/chromium
     ../modules/devolopment
     ../modules/direnv
