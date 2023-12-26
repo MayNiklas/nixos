@@ -25,6 +25,7 @@ in
       userSettings = {
         # privacy
         "telemetry.telemetryLevel" = "off";
+        "redhat.telemetry.enabled" = false;
 
         # style
         "terminal.integrated.fontFamily" = "source code pro";
