@@ -8,10 +8,6 @@
   ];
 
   home-manager.users."${config.mayniklas.home-manager.username}" = {
-    mayniklas.programs = {
-      sway.enable = true;
-      swaylock.enable = true;
-    };
     home.packages = [ ];
   };
 
@@ -25,8 +21,9 @@
     };
     intel.enable = true;
     gaming.enable = true;
-    # gnome.enable = true;
-    wayland.enable = true;
+    # sway disables gnome
+    sway.enable = true;
+    gnome.enable = true;
     # xmm7360.enable = true;
   };
 
