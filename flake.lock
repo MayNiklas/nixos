@@ -5,19 +5,16 @@
         "adblockStevenBlack": [
           "adblockStevenBlack"
         ],
-        "flake-utils": [
-          "flake-utils"
-        ],
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1688055723,
-        "narHash": "sha256-8WtkSAr4qYA3o6kiOCESK3rHJmIsa6TMBrT3/Cbfvro=",
+        "lastModified": 1704805735,
+        "narHash": "sha256-JncemuolClX1eryh96Xqtmi71lMAG1B5OQvma9ogHFw=",
         "owner": "MayNiklas",
         "repo": "nixos-adblock-unbound",
-        "rev": "9356ccd526fdcf91bfee7f0ebebae831349d43cc",
+        "rev": "bde30b3b20f63ab62de77cc1eb82458f06db61ed",
         "type": "github"
       },
       "original": {
@@ -29,11 +26,11 @@
     "adblockStevenBlack": {
       "flake": false,
       "locked": {
-        "lastModified": 1702838035,
-        "narHash": "sha256-hTFIG1a/PNgDo5U57VmXDJvR3VWd8TKVinnLfJRlQGo=",
+        "lastModified": 1704596859,
+        "narHash": "sha256-LlTyhtx3DbtsQdkl6J7ktj/zLJULFqQWq5sCqKPX71g=",
         "owner": "StevenBlack",
         "repo": "hosts",
-        "rev": "885087bf64df37b10e936e88f0463dd5d6f8d7fa",
+        "rev": "539489187bf9f50adad0c4cbd628ffffae553878",
         "type": "github"
       },
       "original": {
