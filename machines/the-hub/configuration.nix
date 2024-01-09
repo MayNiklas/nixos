@@ -195,6 +195,11 @@
     size = (1024 * 1);
   }];
 
+  lollypops.deployment = {
+    local-evaluation = true;
+    ssh = { user = "root"; host = "wg.nik-ste.de"; };
+  };
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   system.stateVersion = "20.09";
 

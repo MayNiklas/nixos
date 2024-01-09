@@ -33,6 +33,11 @@
     firewall.interfaces.wg0.allowedTCPPorts = [ 9100 ];
   };
 
+  lollypops.deployment = {
+    local-evaluation = true;
+    ssh = { user = "root"; host = "matrix.lounge.rocks"; };
+  };
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   system.stateVersion = "20.09";
 
