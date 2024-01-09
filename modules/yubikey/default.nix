@@ -15,7 +15,7 @@ in
     programs.gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-      pinentryFlavor = "gtk2";
+      pinentryFlavor = "gnome3";
     };
 
     # Needed for yubikey to work
