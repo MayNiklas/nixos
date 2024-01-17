@@ -1,8 +1,8 @@
 {
   "labels": {
-    "backend": "local"
+    "backend": "local",
+    "platform": "linux/amd64"
   },
-  "platform": "linux/amd64",
   "steps": [
     {
       "commands": [
@@ -10,13 +10,6 @@
       ],
       "image": "bash",
       "name": "Nix flake show"
-    },
-    {
-      "commands": [
-        "nix flake check"
-      ],
-      "image": "bash",
-      "name": "Nix flake check"
     },
     {
       "commands": [

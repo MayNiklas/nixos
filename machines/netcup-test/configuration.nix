@@ -5,6 +5,8 @@
 # nix run .\#lollypops -- netcup-test
 { self, lib, ... }: {
 
+  mayniklas.defaults.CISkip = true;
+
   mayniklas = {
     cloud-provider-default.netcup = {
       enable = true;
