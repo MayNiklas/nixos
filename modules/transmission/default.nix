@@ -67,6 +67,7 @@ in
 
     services.transmission = {
       enable = true;
+      webHome = pkgs.flood-for-transmission;
       openFirewall = true;
 
       settings = {
