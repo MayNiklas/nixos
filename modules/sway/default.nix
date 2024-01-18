@@ -15,6 +15,16 @@ in
       gnome.enable = mkForce false;
     };
 
+    services.greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd start-sway";
+          user = "greeter";
+        };
+      };
+    };
+
     home-manager.users."${config.mayniklas.home-manager.username}" = {
       mayniklas.programs = {
         sway.enable = true;
