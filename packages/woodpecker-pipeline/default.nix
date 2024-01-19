@@ -52,7 +52,7 @@ let
                         name = "Build ${host}";
                         image = "bash";
                         commands = [
-                          "nix build '.#nixosConfigurations.${host}.config.system.build.toplevel' -o 'result-${host}'"
+                          "nix build --print-out-paths '.#nixosConfigurations.${host}.config.system.build.toplevel' -o 'result-${host}'"
                         ];
                       }
                       {

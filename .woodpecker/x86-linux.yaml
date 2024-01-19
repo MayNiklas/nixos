@@ -23,7 +23,7 @@
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.aida.config.system.build.toplevel' -o 'result-aida'"
+        "nix build --print-out-paths '.#nixosConfigurations.aida.config.system.build.toplevel' -o 'result-aida'"
       ],
       "image": "bash",
       "name": "Build aida"
@@ -44,7 +44,7 @@
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.daisy.config.system.build.toplevel' -o 'result-daisy'"
+        "nix build --print-out-paths '.#nixosConfigurations.daisy.config.system.build.toplevel' -o 'result-daisy'"
       ],
       "image": "bash",
       "name": "Build daisy"
@@ -65,7 +65,7 @@
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.deke.config.system.build.toplevel' -o 'result-deke'"
+        "nix build --print-out-paths '.#nixosConfigurations.deke.config.system.build.toplevel' -o 'result-deke'"
       ],
       "image": "bash",
       "name": "Build deke"
@@ -86,7 +86,7 @@
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.kora.config.system.build.toplevel' -o 'result-kora'"
+        "nix build --print-out-paths '.#nixosConfigurations.kora.config.system.build.toplevel' -o 'result-kora'"
       ],
       "image": "bash",
       "name": "Build kora"
@@ -107,7 +107,7 @@
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.simmons.config.system.build.toplevel' -o 'result-simmons'"
+        "nix build --print-out-paths '.#nixosConfigurations.simmons.config.system.build.toplevel' -o 'result-simmons'"
       ],
       "image": "bash",
       "name": "Build simmons"
@@ -128,7 +128,7 @@
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.snowflake.config.system.build.toplevel' -o 'result-snowflake'"
+        "nix build --print-out-paths '.#nixosConfigurations.snowflake.config.system.build.toplevel' -o 'result-snowflake'"
       ],
       "image": "bash",
       "name": "Build snowflake"
@@ -149,7 +149,7 @@
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.the-bus.config.system.build.toplevel' -o 'result-the-bus'"
+        "nix build --print-out-paths '.#nixosConfigurations.the-bus.config.system.build.toplevel' -o 'result-the-bus'"
       ],
       "image": "bash",
       "name": "Build the-bus"
@@ -170,7 +170,7 @@
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.the-hub.config.system.build.toplevel' -o 'result-the-hub'"
+        "nix build --print-out-paths '.#nixosConfigurations.the-hub.config.system.build.toplevel' -o 'result-the-hub'"
       ],
       "image": "bash",
       "name": "Build the-hub"
