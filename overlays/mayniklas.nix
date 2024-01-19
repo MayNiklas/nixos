@@ -6,6 +6,7 @@ let
 in
 self: super: {
   mayniklas = {
+    ASPM-status = super.pkgs.callPackage ../packages/ASPM-status { };
     darknet = super.pkgs.callPackage ../packages/darknet { };
     drone-gen = super.pkgs.callPackage ../packages/drone-gen { };
     gen-module = super.pkgs.callPackage ../packages/gen-module { };

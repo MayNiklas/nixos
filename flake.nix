@@ -243,6 +243,7 @@
             woodpecker-pipeline = pkgs.callPackage ./packages/woodpecker-pipeline { inputs = inputs; flake-self = self; };
 
             inherit (pkgs.mayniklas)
+              ASPM-status
               darknet
               mtu-check
               pycharm-fix
