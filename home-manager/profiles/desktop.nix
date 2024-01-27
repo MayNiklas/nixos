@@ -13,6 +13,7 @@
       discord
       dolphin
       drone-cli
+      # etcher
       filezilla
       firefox
       glances
@@ -22,6 +23,7 @@
       htop
       hugo
       iperf3
+      minicom
       nil
       nix-top
       nix-tree
@@ -29,6 +31,7 @@
       nvtop
       okular
       preview-update
+      screen
       signal-desktop
       speedtest-cli
       spotify
