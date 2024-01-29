@@ -30,6 +30,11 @@
     firewall = { allowedTCPPorts = [ 9100 9115 ]; };
   };
 
+  lollypops.deployment = {
+    local-evaluation = true;
+    ssh = { user = "root"; host = "192.168.30.95"; };
+  };
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   system.stateVersion = "20.09";
 
