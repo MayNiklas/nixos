@@ -8,8 +8,10 @@ let
     config = { allowUnfree = true; cudaSupport = true; };
   };
 
-  # packages that should be built with CUDA support on NVIDIA systems
   cudaoverlay = (self: super: {
+    # access overlay by using pkgs.withCUDA.<package>
+    inherit withCUDA;
+    # packages that should be built with CUDA support on NVIDIA systems
     inherit (withCUDA)
       nvtop
       ;
@@ -49,7 +51,7 @@ in
       opengl = {
         enable = true;
         driSupport = true;
-        driSupport32Bit = mkIf config.virtualisation.docker.enable true;
+        driSupport32Bit = true;
       };
 
       nvidia = {
