@@ -248,6 +248,7 @@
               mtu-check
               pycharm-fix
               set-performance
+              usb-serial
               vs-fix
               ;
 

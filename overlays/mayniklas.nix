@@ -15,6 +15,7 @@ self: super: {
     pycharm-fix = super.pkgs.callPackage ../packages/pycharm-fix { };
     s3uploader = super.pkgs.callPackage ../packages/s3uploader { };
     set-performance = super.pkgs.callPackage ../packages/set-performance { };
+    usb-serial = super.pkgs.callPackage ../packages/usb-serial { };
     vs-fix = super.pkgs.callPackage ../packages/vs-fix { };
   };
 }
