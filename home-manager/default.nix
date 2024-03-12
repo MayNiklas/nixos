@@ -42,6 +42,7 @@ in
           nixpkgs.overlays = [
             flake-self.overlays.default
             (final: prev: {
+              ondsel = flake-self.inputs.ondsel.packages.${pkgs.system}.ondsel;
               my-wallpaper = pkgs.callPackage
                 ({ function ? "batman", width ? 3840, height ? 2160, extraArguments ? "", ... }:
                   pkgs.stdenv.mkDerivation {

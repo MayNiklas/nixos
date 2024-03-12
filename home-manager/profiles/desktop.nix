@@ -8,6 +8,7 @@
     with pkgs; [
       _1password-gui
       asciinema
+      bambu-studio
       cura
       dconf
       discord
@@ -30,6 +31,8 @@
       nmap
       nvtop
       okular
+      ondsel
+      orca-slicer
       preview-update
       screen
       signal-desktop
