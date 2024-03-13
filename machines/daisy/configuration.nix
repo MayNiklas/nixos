@@ -14,6 +14,8 @@
   # automatic screen orientation
   # hardware.sensor.iio.enable = false;
 
+  services.fprintd.enable = true;
+
   mayniklas = {
     desktop = {
       enable = true;
@@ -21,12 +23,12 @@
     };
     gaming.enable = true;
     # sway disables gnome and KDE
-    # sway.enable = true;
+    sway.enable = true;
     # gnome.enable = true;
-    kde.enable = true;
+    # kde.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [ ];
+  environment.systemPackages = with pkgs; [ powertop ];
 
   networking = {
     hostName = "daisy";

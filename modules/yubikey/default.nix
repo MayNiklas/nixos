@@ -15,7 +15,7 @@ in
     programs.gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-      pinentryFlavor = "gnome3";
+      pinentryPackage = mkIf (!config.mayniklas.kde.enable) pkgs.pinentry-gnome3;
     };
 
     # Needed for yubikey to work
