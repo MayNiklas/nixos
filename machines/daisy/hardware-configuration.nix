@@ -5,56 +5,53 @@
 let primaryDisk = "/dev/nvme0n1"; in {
 
   imports = [
-    # https://github.com/NixOS/nixos-hardware/tree/master/lenovo/thinkpad/x390
-    nixos-hardware.nixosModules.lenovo-thinkpad-x390
+    # # https://github.com/NixOS/nixos-hardware/tree/master/lenovo/thinkpad/x390
+    # nixos-hardware.nixosModules.lenovo-thinkpad-x390
   ];
 
-  services.throttled.enable = false;
+  # services.throttled.enable = false;
 
   services.fwupd.enable = true;
 
-  disko.devices.disk.main = {
-    type = "disk";
-    device = primaryDisk;
-    content = {
-      type = "table";
-      format = "gpt";
-      partitions = [
-        {
-          name = "boot";
-          start = "0";
-          end = "1M";
-          flags = [ "bios_grub" ];
-        }
-        {
-          name = "ESP";
-          start = "1M";
-          end = "512M";
-          bootable = true;
-          content = {
-            type = "filesystem";
-            format = "vfat";
-            mountpoint = "/boot";
+  disko.devices = {
+    disk = {
+      main = {
+        type = "disk";
+        device = primaryDisk;
+        content = {
+          type = "gpt";
+          partitions = {
+            boot = {
+              size = "1M";
+              type = "EF02";
+            };
+            ESP = {
+              size = "512M";
+              type = "EF00";
+              content = {
+                type = "filesystem";
+                format = "vfat";
+                mountpoint = "/boot";
+              };
+            };
+            root = {
+              size = "100%";
+              content = {
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/";
+              };
+            };
           };
-        }
-        {
-          name = "nixos";
-          start = "512M";
-          end = "100%";
-          content = {
-            type = "filesystem";
-            format = "ext4";
-            mountpoint = "/";
-          };
-        }
-      ];
+        };
+      };
     };
   };
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   # Bootloader
@@ -71,6 +68,6 @@ let primaryDisk = "/dev/nvme0n1"; in {
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   hardware.enableRedistributableFirmware = config.nixpkgs.config.allowUnfree;
 }

@@ -1,5 +1,5 @@
 # TTY: Control + Alt + F1
-# nix run github:numtide/nixos-anywhere -- --flake .#daisy root@192.168.5.61
+# nix run github:numtide/nixos-anywhere -- --flake .#daisy root@192.168.5.140
 { config, lib, pkgs, ... }: {
 
   imports = [
@@ -12,19 +12,18 @@
   };
 
   # automatic screen orientation
-  hardware.sensor.iio.enable = false;
+  # hardware.sensor.iio.enable = false;
 
   mayniklas = {
     desktop = {
       enable = true;
       home-manager = true;
     };
-    intel.enable = true;
+    # intel.enable = true;
     gaming.enable = true;
     # sway disables gnome
-    sway.enable = true;
+    # sway.enable = true;
     gnome.enable = true;
-    # xmm7360.enable = true;
   };
 
   environment.systemPackages = with pkgs; [ ];

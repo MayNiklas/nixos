@@ -29,7 +29,7 @@ in
 
     environment.systemPackages = with pkgs; [
       gnomeExtensions.appindicator
-      gnomeExtensions.zoom-wayland-extension
+      # gnomeExtensions.zoom-wayland-extension
     ];
 
     services.udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
