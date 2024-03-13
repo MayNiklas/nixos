@@ -20,9 +20,10 @@
       home-manager = true;
     };
     gaming.enable = true;
-    # sway disables gnome
-    sway.enable = true;
-    gnome.enable = true;
+    # sway disables gnome and KDE
+    # sway.enable = true;
+    # gnome.enable = true;
+    kde.enable = true;
   };
 
   environment.systemPackages = with pkgs; [ ];

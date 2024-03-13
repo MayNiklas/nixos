@@ -13,6 +13,7 @@ in
     mayniklas = {
       wayland.enable = true;
       gnome.enable = mkForce false;
+      kde.enable = mkForce false;
     };
 
     services.greetd = {
