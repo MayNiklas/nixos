@@ -4,12 +4,7 @@
 { config, lib, pkgs, nixos-hardware, ... }:
 let primaryDisk = "/dev/nvme0n1"; in {
 
-  imports = [
-    # # https://github.com/NixOS/nixos-hardware/tree/master/lenovo/thinkpad/x390
-    # nixos-hardware.nixosModules.lenovo-thinkpad-x390
-  ];
-
-  # services.throttled.enable = false;
+  imports = [ ];
 
   services.fwupd.enable = true;
 
@@ -67,7 +62,7 @@ let primaryDisk = "/dev/nvme0n1"; in {
   swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   hardware.enableRedistributableFirmware = config.nixpkgs.config.allowUnfree;
 }

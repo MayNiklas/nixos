@@ -19,10 +19,9 @@
       enable = true;
       home-manager = true;
     };
-    # intel.enable = true;
     gaming.enable = true;
     # sway disables gnome
-    # sway.enable = true;
+    sway.enable = true;
     gnome.enable = true;
   };
 
