@@ -10,6 +10,7 @@ let cfg = config.mayniklas.programs.ansible; in
     home.packages = with pkgs; [
       ansible
       ansible-lint
+      vagrant
     ];
 
     programs.vscode = mkIf config.programs.vscode.enable {
