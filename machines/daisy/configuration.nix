@@ -8,7 +8,7 @@
   ];
 
   home-manager.users."${config.mayniklas.home-manager.username}" = {
-    home.packages = [ ];
+    home.packages = with pkgs; [ ];
   };
 
   # automatic screen orientation

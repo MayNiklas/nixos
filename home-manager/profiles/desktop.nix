@@ -66,6 +66,7 @@
       foot.enable = true;
       git.enable = true;
       gtk.enable = true;
+      kubernetes.enable = true;
       tmux.enable = true;
       vim.enable = true;
       vscode.enable = true;
@@ -88,6 +89,7 @@
     ../modules/git
     ../modules/gtk
     ../modules/i3
+    ../modules/kubernetes
     ../modules/nvim
     ../modules/sway
     ../modules/swaylock
