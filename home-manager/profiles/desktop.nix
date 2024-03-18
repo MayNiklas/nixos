@@ -14,7 +14,7 @@
       discord
       dolphin
       drone-cli
-      etcher
+      # etcher
       filezilla
       firefox
       glances
