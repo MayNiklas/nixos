@@ -46,24 +46,9 @@ in
       };
     };
 
-    # TODO: this needs to be worked on!
-    services = {
-      swayidle = {
-        enable = true;
-        timeouts = [
-          {
-            timeout = 180;
-            command = "${pkgs.swaylock}/bin/swaylock -fF && systemctl suspend";
-          }
-        ];
-        events = [
-          {
-            event = "before-sleep";
-            command = "${pkgs.swaylock}/bin/swaylock";
-          }
-        ];
-      };
-    };
+    wayland.windowManager.sway.config.startup = [
+      { command = "${pkgs.swayidle}/bin/swayidle -w timeout 120 '${pkgs.swaylock}/bin/swaylock -fF' timeout 240 '${pkgs.systemd}/bin/systemctl suspend'"; }
+    ];
 
   };
 }
