@@ -23,8 +23,8 @@
     };
     gaming.enable = true;
     # sway disables gnome and KDE
-    sway.enable = true;
-    # gnome.enable = true;
+    # sway.enable = true;
+    gnome.enable = true;
     # kde.enable = true;
   };
 
