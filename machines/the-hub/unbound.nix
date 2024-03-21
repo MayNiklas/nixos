@@ -45,6 +45,7 @@ in
             "\"${adlist.unbound-adblockStevenBlack}\""
           ];
           interface = [
+            "::1"
             "127.0.0.1"
             "10.10.10.1"
             "10.88.88.1"
