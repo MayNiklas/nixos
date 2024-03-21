@@ -22,6 +22,7 @@
       home-manager = true;
     };
     gaming.enable = true;
+    virtualisation.enable = true;
     # sway disables gnome and KDE
     # sway.enable = true;
     gnome.enable = true;
