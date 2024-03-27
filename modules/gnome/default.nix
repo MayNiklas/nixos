@@ -27,7 +27,23 @@ in
     # Enable CUPS to print documents.
     services.printing.enable = true;
 
+    environment.gnome.excludePackages = (with pkgs; [
+      gnome-photos
+      gnome-tour
+    ]) ++ (with pkgs.gnome; [
+      gnome-music
+      epiphany # web browser
+      geary # email reader
+      tali # poker game
+      iagno # go game
+      hitori # sudoku game
+      atomix # puzzle game
+      yelp # Help view
+      gnome-initial-setup
+    ]);
+
     environment.systemPackages = with pkgs; [
+      gnome.gnome-tweaks
       gnomeExtensions.appindicator
       # gnomeExtensions.zoom-wayland-extension
     ];

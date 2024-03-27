@@ -12,7 +12,10 @@
   };
 
   # automatic screen orientation
-  # hardware.sensor.iio.enable = false;
+  hardware.sensor.iio.enable = true;
+
+  # touchscreen support
+  services.xserver.wacom.enable = true;
 
   services.fprintd.enable = true;
 
@@ -24,8 +27,8 @@
     gaming.enable = true;
     virtualisation.enable = true;
     # sway disables gnome and KDE
-    # sway.enable = true;
-    gnome.enable = true;
+    sway.enable = true;
+    # gnome.enable = true;
     # kde.enable = true;
   };
 
