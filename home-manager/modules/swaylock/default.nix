@@ -47,7 +47,7 @@ in
     };
 
     wayland.windowManager.sway.config.startup = [
-      { command = "${pkgs.swayidle}/bin/swayidle -w timeout 120 '${pkgs.swaylock}/bin/swaylock -fF' timeout 240 '${pkgs.systemd}/bin/systemctl suspend'"; }
+      { command = "${pkgs.swayidle}/bin/swayidle -w timeout 180 '${pkgs.swaylock}/bin/swaylock -fF' timeout 240 '${pkgs.systemd}/bin/systemctl suspend'"; }
     ];
 
   };
