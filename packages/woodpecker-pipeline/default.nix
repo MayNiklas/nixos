@@ -39,7 +39,7 @@ let
                 when = pkgs.lib.lists.flatten ([
                   { event = "manual"; }
                   { event = "push"; branch = "main"; }
-                  { event = "pull_request"; branch = "main"; repo = "MayNiklas/update_flake_lock_action"; }
+                  { event = "pull_request"; branch = "update_flake_lock_action"; repo = "MayNiklas/nixos"; }
                 ]);
                 steps = pkgs.lib.lists.flatten ([ nixFlakeShow ] ++ [ atticSetupStep ]
                   ++ (map
