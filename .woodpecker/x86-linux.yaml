@@ -189,5 +189,19 @@
       "image": "bash",
       "name": "Push the-hub to Attic"
     }
+  ],
+  "when": [
+    {
+      "event": "manual"
+    },
+    {
+      "branch": "main",
+      "event": "push"
+    },
+    {
+      "branch": "main",
+      "event": "pull_request",
+      "repo": "MayNiklas/update_flake_lock_action"
+    }
   ]
 }
