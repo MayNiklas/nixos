@@ -13,6 +13,7 @@
       nix-tree
       nixfmt
       nixpkgs-fmt
+      pciutils
       unzip
 
       mayniklas.gen-module

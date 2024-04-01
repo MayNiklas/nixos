@@ -33,7 +33,7 @@
       okular
       ondsel
       # orca-slicer
-      preview-update
+      pciutils
       screen
       signal-desktop
       speedtest-cli
