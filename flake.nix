@@ -5,7 +5,7 @@
 
     # Nix Packages collection
     # https://github.com/NixOS/nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:MayNiklas/nixpkgs/orca-slicer";
 
     # Manage a user environment using Nix 
     # https://github.com/nix-community/home-manager

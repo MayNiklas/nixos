@@ -32,7 +32,7 @@
       nvtop
       okular
       ondsel
-      # orca-slicer
+      orca-slicer
       pciutils
       screen
       signal-desktop
