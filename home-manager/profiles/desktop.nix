@@ -55,6 +55,7 @@
       zoom-us
 
 
+      mayniklas.check-updates
       mayniklas.gen-module
       mayniklas.set-performance
     ];

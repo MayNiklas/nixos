@@ -262,6 +262,7 @@
 
             inherit (pkgs.mayniklas)
               ASPM-status
+              check-updates
               darknet
               mtu-check
               pycharm-fix
