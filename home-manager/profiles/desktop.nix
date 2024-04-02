@@ -8,7 +8,7 @@
     with pkgs; [
       _1password-gui
       asciinema
-      bambu-studio
+      # bambu-studio
       cura
       dconf
       discord
