@@ -26,8 +26,10 @@
       iperf3
       minicom
       nil
+      nix-fast-build
       nix-top
       nix-tree
+      nixpkgs-review
       nmap
       nvtop
       okular
@@ -51,6 +53,7 @@
       xournalpp
       youtube-dl
       zoom-us
+
 
       mayniklas.gen-module
       mayniklas.set-performance

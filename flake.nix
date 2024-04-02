@@ -100,6 +100,18 @@
       url = "github:zhaofengli/attic";
     };
 
+    # https://github.com/Mic92/nix-fast-build
+    # speed-up your evaluation and building process.
+    nix-fast-build = {
+      url = "github:Mic92/nix-fast-build";
+    };
+
+    # https://github.com/Mic92/nixpkgs-review
+    # Review pull-requests on https://github.com/NixOS/nixpkgs 
+    nixpkgs-review = {
+      url = "github:Mic92/nixpkgs-review";
+    };
+
     # https://github.com/pinpox/ondsel-nix
     # Ondsel (until https://github.com/NixOS/nixpkgs/pull/292995 is merged)
     ondsel = {

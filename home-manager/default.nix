@@ -42,7 +42,9 @@ in
           nixpkgs.overlays = [
             flake-self.overlays.default
             (final: prev: {
-              ondsel = flake-self.inputs.ondsel.packages.${pkgs.system}.ondsel;
+              inherit (flake-self.inputs.nix-fast-build.packages.${pkgs.system}) nix-fast-build;
+              inherit (flake-self.inputs.nixpkgs-review.packages.${pkgs.system}) nixpkgs-review;
+              inherit (flake-self.inputs.ondsel.packages.${pkgs.system}) ondsel;
               my-wallpaper = pkgs.callPackage
                 ({ function ? "batman", width ? 3840, height ? 2160, extraArguments ? "", ... }:
                   pkgs.stdenv.mkDerivation {
