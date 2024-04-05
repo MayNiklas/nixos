@@ -15,6 +15,7 @@
       nixpkgs-fmt
       pciutils
       unzip
+      wget
 
       mayniklas.gen-module
       mayniklas.preview-update

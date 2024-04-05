@@ -48,6 +48,7 @@
       unzip
       vagrant
       virt-manager
+      wget
       (vlc.override { libbluray = libbluray.override { withAACS = true; withBDplus = true; }; })
       xfce.thunar
       xournalpp
