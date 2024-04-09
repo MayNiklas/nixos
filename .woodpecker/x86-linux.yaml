@@ -199,7 +199,6 @@
       "event": "push"
     },
     {
-      "branch": "update_flake_lock_action",
       "event": "pull_request",
       "repo": "MayNiklas/nixos"
     }
