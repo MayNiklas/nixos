@@ -42,7 +42,7 @@ in
         server = {
           include = [
             "\"${dns-overwrites-config}\""
-            "\"${adlist.unbound-adblockStevenBlack}\""
+            # "\"${adlist.unbound-adblockStevenBlack}\""
           ];
           interface = [
             "::1"
