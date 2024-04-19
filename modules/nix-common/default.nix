@@ -77,5 +77,10 @@ in
     nix.registry.nixpkgs.flake = nixpkgs;
     nix.registry.mayniklas.flake = flake-self;
 
+    services.journald.extraConfig = ''
+      SystemMaxUse=1G
+      MaxRetentionSec=7day
+    '';
+
   };
 }
