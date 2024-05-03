@@ -54,7 +54,7 @@ myself using Ansible. Also, I like to check out new stuff!
 
 ### Other
 
-- Nix & NixOS: Installation with encrypted root [pablo.tools](https://pablo.tools/posts/computers/nixos-encrypted-install/)
+- Nix & NixOS: Installation with encrypted root [pablo.tools](https://pablo.tools/blog/computers/nixos-encrypted-install/)
 - Search NixOS options [search.nixos.org](https://search.nixos.org/options?channel=unstable/)
 - Nix Flakes Series by [Eelco Dolstra](https://github.com/edolstra). Great
   introduction to flakes.
