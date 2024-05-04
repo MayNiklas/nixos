@@ -47,6 +47,8 @@ let primaryDisk = "/dev/nvme0n1"; in {
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.supportedFilesystems = [ "zfs" ];
   boot.extraModulePackages = [ ];
 
   # Bootloader
@@ -60,6 +62,8 @@ let primaryDisk = "/dev/nvme0n1"; in {
   };
 
   swapDevices = [ ];
+
+  networking.hostId = "64159372";
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
