@@ -29,7 +29,12 @@ in
 
         # get github url of current repository
         gh() {
-          echo $(${pkgs.git}/bin/git config --get remote.origin.url | sed -e 's/\(.*\)git@\(.*\):[0-9\/]*/https:\/\/\2\//g')
+          url=$(${pkgs.git}/bin/git config --get remote.origin.url | sed -e 's/\(.*\)git@\(.*\):[0-9\/]*/https:\/\/\2\//g') 
+          echo $url
+          # if firefox is in the path, open the url
+          if command -v firefox &> /dev/null; then
+            firefox $url &
+          fi
         }
 
         flake_update() {
