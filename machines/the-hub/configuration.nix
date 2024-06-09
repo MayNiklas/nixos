@@ -62,7 +62,7 @@
 
     services.monitoring-server = {
       enable = true;
-      loki = { enable = true; };
+      # loki = { enable = true; };
       grafana = {
         enable = true;
         nginx = true;
