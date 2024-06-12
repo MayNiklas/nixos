@@ -36,9 +36,7 @@ in
 
       imports = [
         {
-          nixpkgs.config.permittedInsecurePackages = [
-            "electron-19.1.9"
-          ];
+          nixpkgs.config.permittedInsecurePackages = [ ];
           nixpkgs.overlays = [
             flake-self.overlays.default
             (final: prev: {
