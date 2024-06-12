@@ -14,6 +14,7 @@
       discord
       dolphin
       drone-cli
+      element-desktop
       # etcher
       filezilla
       firefox
