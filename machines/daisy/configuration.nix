@@ -2,6 +2,11 @@
 # nix run github:numtide/nixos-anywhere -- --flake .#daisy root@192.168.5.140
 { config, lib, pkgs, ... }: {
 
+  # TODO:
+  # - [ ] Sleep / Hibernate / Suspend
+  # - [ ] Disable keyboard when in tablet mode
+  # - [ ] Flip screen when in tablet mode
+
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
