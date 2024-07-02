@@ -9,7 +9,7 @@
       htop
       iperf3
       nil
-      nix-top
+      # nix-top
       nix-tree
       nixfmt
       nixpkgs-fmt
