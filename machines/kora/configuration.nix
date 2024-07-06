@@ -47,7 +47,7 @@
       enable = true;
       home-manager = true;
     };
-    smokeping = { enable = true; };
+    # smokeping = { enable = true; };
   };
 
   mayniklas.services.owncast = {
