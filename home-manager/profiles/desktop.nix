@@ -28,7 +28,6 @@
       minicom
       nil
       nix-fast-build
-      nix-top
       nix-tree
       nixpkgs-review
       nmap
