@@ -54,7 +54,7 @@
     # Generate wallpaper images from mathematical functions
     # https://github.com/pinpox/wallpaper-generator
     wallpaper-generator = {
-      url = "github:pinpox/wallpaper-generator/";
+      url = "github:pinpox/wallpaper-generator/6461fa794745fb18f2b04f58015e9a2871ca7099";
     };
 
     # Adblocking lists for Unbound DNS servers running on NixOS
