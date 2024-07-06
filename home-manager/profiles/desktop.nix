@@ -2,9 +2,10 @@
 
   # Install these packages for my user
   home.packages =
-    let
-      preview-update = pkgs.callPackage ../../packages/preview-update { };
-    in
+    # let
+    #   # override vlc to enable bluray support
+    #   vlc = (pkgs.vlc.override { libbluray = pkgs.libbluray.override { withAACS = true; withBDplus = true; }; });
+    # in
     with pkgs; [
       _1password-gui
       asciinema
@@ -49,12 +50,11 @@
       vagrant
       virt-manager
       wget
-      (vlc.override { libbluray = libbluray.override { withAACS = true; withBDplus = true; }; })
+      vlc
       xfce.thunar
       xournalpp
       youtube-dl
       zoom-us
-
 
       mayniklas.check-updates
       mayniklas.gen-module
