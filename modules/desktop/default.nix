@@ -20,6 +20,7 @@ in
     environment.systemPackages = with pkgs; [
       bash-completion
       dnsutils
+      file
       git
       nixfmt
       usbutils

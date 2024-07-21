@@ -4,6 +4,7 @@
   home.packages =
     with pkgs; [
       dnsutils
+      file
       glances
       h
       htop

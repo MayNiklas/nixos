@@ -17,6 +17,7 @@
       drone-cli
       element-desktop
       # etcher
+      file
       filezilla
       firefox
       glances
