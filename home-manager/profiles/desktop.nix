@@ -53,7 +53,7 @@
       vlc
       xfce.thunar
       xournalpp
-      youtube-dl
+      yt-dlp
       zoom-us
 
       mayniklas.check-updates
