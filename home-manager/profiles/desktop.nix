@@ -10,7 +10,6 @@
       _1password-gui
       asciinema
       bambu-studio
-      cura
       dconf
       discord
       dolphin
