@@ -9,6 +9,7 @@ in
 
     home.packages = with pkgs; [
       nil
+      nixd
       nixpkgs-fmt
     ];
 
@@ -44,11 +45,19 @@ in
         # jnoortheen.nix-ide
         "nix" = {
           "enableLanguageServer" = true;
-          "serverPath" = "nil";
+          "serverPath" = "nixd";
           "serverSettings" = {
-            "nil" = {
+            "nixd" = {
               "formatting" = {
-                "command" = [ "nixpkgs-fmt" ];
+                "command" = [ "nixpkgs-fmt" ]; # consider moving to nixfmt-rfc-style
+              };
+              "options" = {
+                "nixos" = {
+                  "expr" = "(builtins.getFlake .#nixosConfigurations.daisy.options";
+                };
+                "home-manager" = {
+                  "expr" = "(builtins.getFlake .#homeConfigurations.desktop.options";
+                };
               };
             };
           };
