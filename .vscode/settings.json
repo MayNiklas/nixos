@@ -1,0 +1,19 @@
+{
+    "nix.enableLanguageServer": true,
+    "nix.serverPath": "nixd",
+    "nix.serverSettings": {
+        "nixd": {
+            "formatting": {
+                "command": [
+                    "nixpkgs-fmt"
+                ]
+            },
+            "options": {
+                "enable": true,
+                "nixos": {
+                    "expr": ".#nixosConfigurations.daisy.options"
+                }
+            }
+        }
+    }
+}
