@@ -78,7 +78,7 @@ in
         "go.toolsManagement.checkForUpdates" = "off";
       };
 
-      extensions = with pkgs.vscode-extensions;        [
+      extensions = with pkgs.vscode-extensions; [
         davidanson.vscode-markdownlint
         github.copilot
         github.github-vscode-theme
