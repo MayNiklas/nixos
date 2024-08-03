@@ -42,10 +42,6 @@ in
           "scminput" = false;
         };
 
-        # jnoortheen.nix-ide
-        "[nix]" = {
-          "editor.defaultFormatter" = "jnoortheen.nix-ide";
-        };
         "nix" = {
           "enableLanguageServer" = true;
           "serverPath" = "nixd";
