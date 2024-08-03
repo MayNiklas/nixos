@@ -1,9 +1,4 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, config, ... }:
 with lib;
 let
   cfg = config.mayniklas.programs.vscode;
@@ -14,7 +9,7 @@ in
   config = mkIf cfg.enable {
 
     home.packages = with pkgs; [
-      nil
+      nixd
       nixpkgs-fmt
     ];
 
@@ -51,34 +46,22 @@ in
         "[nix]" = {
           "editor.defaultFormatter" = "jnoortheen.nix-ide";
         };
-        "nix.enableLanguageServer" = true;
-        # "serverPath" = "${pkgs.nil}/bin/nil";
-        "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
-        "nix.serverSettings" = {
-          # "nil" = {
-          #   "diagnostics" = {
-          #     "ignored" = [ "unused_binding" "unused_with" ];
-          #   };
-          #   "formatting" = {
-          #     "command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
-          #   };
-          # };
-          "nixd" = {
-            # "eval" = { };
-            "formatting" = {
-              "command" = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
-            };
-            "options" = {
-              "nixos" = {
-                "expr" = "(builtins.getFlake \"/home/l/nix\").nixosConfigurations.fn.options";
+        "nix" = {
+          "enableLanguageServer" = true;
+          "serverPath" = "nixd";
+          "serverSettings" = {
+            "nixd" = {
+              "formatting" = {
+                "command" = [ "nixpkgs-fmt" ]; # consider moving to nixfmt-rfc-style
               };
-              "home-manager" = {
-                "expr" = "(builtins.getFlake \"/home/l/nix\").homeConfigurations.laptop.options";
+              "options" = {
+                "nixos" = {
+                  "expr" = "(builtins.getFlake .#nixosConfigurations.daisy.options";
+                };
+                "home-manager" = {
+                  "expr" = "(builtins.getFlake .#homeConfigurations.desktop.options";
+                };
               };
-              # "target" = {
-              #   "args" = [ ];
-              #   "installable" = "(builtins.getFlake \"\${workspaceFolder}\")#nixosConfigurations.<name>.options";
-              # };
             };
           };
         };
