@@ -135,6 +135,11 @@
           publicKey = "dWMWrCKd/vTDhs+15YiFeSQziZACBiOK/f3vC5x73Qc=";
           allowedIPs = [ "10.88.88.24/32" ];
         }
+        # GL-AXT1800
+        {
+          publicKey = "ObJrghR4s+mcZpyxYfsf9XOngWYdvyqcrQ87LgzfZV0=";
+          allowedIPs = [ "10.88.88.25/32" "192.168.8.0/24" ];
+        }
 
         ### J.
 
