@@ -81,6 +81,10 @@ table inet filter {
 
         # Allow M. to connect to 192.168.42.0/24 & 192.168.52.0/24
         iifname "wg2" oifname "wg0" ip daddr { 192.168.42.0/24, 192.168.52.0/24 } accept
+        
+        # only allow specific traffic from travel router
+        iifname "wg0" oifname "wg0" ip saddr { 10.88.88.25/32, 192.168.8.0/24 } ip daddr { 10.88.88.17/32, 192.168.5.0/24, 192.168.20.0/24 } accept
+        iifname "wg0" oifname "wg0" ip saddr { 10.88.88.25/32, 192.168.8.0/24 } ct state new counter drop
 
         # allow packages staying on the same Wireguard Interface
         iifname "wg0" oifname "wg0" counter accept
