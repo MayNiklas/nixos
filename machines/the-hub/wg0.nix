@@ -70,7 +70,7 @@
         # S2S S.
         {
           publicKey = "AmA0/uMU6OB4AmBfCtcFMBBoqQHDCnvBI8Fn2pdmY0E=";
-          allowedIPs = [ "10.88.88.8/32" "192.168.72.0/24" ];
+          allowedIPs = [ "10.88.88.8/32" "192.168.72.0/24" "192.168.74.0/24" ];
         }
         # S2S B.
         {
