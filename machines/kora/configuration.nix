@@ -31,22 +31,11 @@
     cloud.pve-x86.enable = true;
     docker = { enable = true; };
     hosts = { enable = true; };
-    metrics = {
-      node = {
-        enable = true;
-        flake = true;
-      };
-    };
-    # plex-version-bot = { enable = true; };
-    librespeedtest = {
-      enable = true;
-      port = "8000";
-    };
+    iperf = { enable = true; openFirewall = true; };
     kernel = { enable = true; };
-    server = {
-      enable = true;
-      home-manager = true;
-    };
+    librespeedtest = { enable = true; port = "8000"; };
+    metrics = { node = { enable = true; flake = true; }; };
+    server = { enable = true; home-manager = true; };
     # smokeping = { enable = true; };
   };
 
