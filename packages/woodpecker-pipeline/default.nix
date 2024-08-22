@@ -37,7 +37,7 @@ let
                   platform = woodpecker-platforms."${arch}";
                 };
                 when = pkgs.lib.lists.flatten ([
-                  { event = "manual"; }
+                  # { event = "manual"; }
                   { event = "push"; branch = "main"; }
                   { event = "push"; branch = "update_flake_lock_action"; }
                   # could allow PRs from forks

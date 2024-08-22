@@ -192,9 +192,6 @@
   ],
   "when": [
     {
-      "event": "manual"
-    },
-    {
       "branch": "main",
       "event": "push"
     },

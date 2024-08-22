@@ -1,7 +1,14 @@
 matrix:
   HOSTS:
+    - aida
     - daisy
+    - deke
     - kora
+    - kora
+    - simmons
+    - snowflake
+    - the-bus
+    - the-hub
 
 labels:
   backend: local
