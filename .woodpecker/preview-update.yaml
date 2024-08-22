@@ -1,0 +1,51 @@
+matrix:
+  HOSTS:
+    - daisy
+    - kora
+
+labels:
+  backend: local
+  platform: linux/amd64
+
+when:
+  event: manual
+
+steps:
+  - name: Setup Attic
+    image: bash
+    commands:
+      - attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default
+    secrets:
+      - attic_key
+
+  - name: build ${HOSTS} before update
+    image: bash
+    commands:
+      - nix build --print-out-paths .#nixosConfigurations."${HOSTS}".config.system.build.toplevel -o "result-${HOSTS}"
+      - nix path-info --closure-size -h $(readlink -f "result-${HOSTS}")
+
+  - name: push ${HOSTS} to Attic
+    image: bash
+    commands:
+      - attic push lounge-rocks:nix-cache "result-${HOSTS}"
+
+  - name: Update ${HOSTS}
+    image: bash
+    commands:
+      - nix flake update
+
+  - name: build ${HOSTS} after update
+    image: bash
+    commands:
+      - nix build --print-out-paths .#nixosConfigurations."${HOSTS}".config.system.build.toplevel -o "result-after-${HOSTS}"
+      - nix path-info --closure-size -h $(readlink -f "result-after-${HOSTS}")
+
+  - name: push ${HOSTS} to Attic (after update)
+    image: bash
+    commands:
+      - attic push lounge-rocks:nix-cache "result-after-${HOSTS}"
+
+  - name: diff ${HOSTS}
+    image: bash
+    commands:
+      - nix store diff-closures $(readlink -f "result-${HOSTS}") $(readlink -f "result-after-${HOSTS}")
