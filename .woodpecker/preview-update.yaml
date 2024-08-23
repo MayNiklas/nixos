@@ -1,15 +1,3 @@
-matrix:
-  HOSTS:
-    - aida
-    - daisy
-    - deke
-    - kora
-    - kora
-    - simmons
-    - snowflake
-    - the-bus
-    - the-hub
-
 labels:
   backend: local
   platform: linux/amd64
@@ -25,34 +13,17 @@ steps:
     secrets:
       - attic_key
 
-  - name: build ${HOSTS} before update
+  - name: build flake preview diff
     image: bash
     commands:
-      - nix build --print-out-paths .#nixosConfigurations."${HOSTS}".config.system.build.toplevel -o "result-${HOSTS}"
-      - nix path-info --closure-size -h $(readlink -f "result-${HOSTS}")
+      - nix run 'github:MayNiklas/flake-preview-update' -- aida daisy deke kora kora simmons snowflake the-bus the-hub
 
-  - name: push ${HOSTS} to Attic
+  - name: output flake preview diff
     image: bash
     commands:
-      - attic push lounge-rocks:nix-cache "result-${HOSTS}"
+      - cat diff_list.txt
 
-  - name: Update ${HOSTS}
+  - name: push all hosts to Attic
     image: bash
     commands:
-      - nix flake update
-
-  - name: build ${HOSTS} after update
-    image: bash
-    commands:
-      - nix build --print-out-paths .#nixosConfigurations."${HOSTS}".config.system.build.toplevel -o "result-after-${HOSTS}"
-      - nix path-info --closure-size -h $(readlink -f "result-after-${HOSTS}")
-
-  - name: push ${HOSTS} to Attic (after update)
-    image: bash
-    commands:
-      - attic push lounge-rocks:nix-cache "result-after-${HOSTS}"
-
-  - name: diff ${HOSTS}
-    image: bash
-    commands:
-      - nix store diff-closures $(readlink -f "result-${HOSTS}") $(readlink -f "result-after-${HOSTS}")
+      - attic push lounge-rocks:nix-cache result*
