@@ -16,12 +16,52 @@ steps:
   - name: build flake preview diff
     image: bash
     commands:
-      - nix run 'github:MayNiklas/flake-preview-update' -- aida daisy deke kora kora simmons snowflake the-bus the-hub
+      - nix run 'github:MayNiklas/flake-preview-update' -- aida daisy deke kora simmons snowflake the-bus the-hub
 
-  - name: output flake preview diff
+  - name: output total flake diff
     image: bash
     commands:
-      - cat diff_list.txt
+      - cat diff_list.txtdiff_lists/diff_list.txt
+
+  - name: output diff aida
+    image: bash
+    commands:
+      - cat diff_lists/aida.txt
+
+  - name: output diff daisy
+    image: bash
+    commands:
+      - cat diff_lists/daisy.txt
+
+  - name: output diff deke
+    image: bash
+    commands:
+      - cat diff_lists/deke.txt
+
+  - name: output diff kora
+    image: bash
+    commands:
+      - cat diff_lists/kora.txt
+
+  - name: output diff simmons
+    image: bash
+    commands:
+      - cat diff_lists/simmons.txt
+
+  - name: output diff snowflake
+    image: bash
+    commands:
+      - cat diff_lists/snowflake.txt
+
+  - name: output diff the-bus
+    image: bash
+    commands:
+      - cat diff_lists/the-bus.txt
+
+  - name: output diff the-hub
+    image: bash
+    commands:
+      - cat diff_lists/the-hub.txt
 
   - name: push all hosts to Attic
     image: bash
