@@ -21,7 +21,7 @@ steps:
   - name: output total flake diff
     image: bash
     commands:
-      - cat diff_list.txtdiff_lists/diff_list.txt
+      - cat diff_lists/diff_list.txt
 
   - name: output diff aida
     image: bash
