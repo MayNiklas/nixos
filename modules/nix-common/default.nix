@@ -1,8 +1,7 @@
 { config, pkgs, lib, flake-self, nixpkgs, ... }:
 with lib;
 let cfg = config.mayniklas.nix-common;
-in
-{
+in {
 
   options.mayniklas.nix-common = {
     enable = mkEnableOption "activate nix-common";
@@ -48,12 +47,14 @@ in
       settings = {
         # binary cache -> build by DroneCI
         trusted-public-keys = mkIf (cfg.disable-cache != true) [
-          "nix-cache:4FILs79Adxn/798F8qk2PC1U8HaTlaPqptwNJrXNA1g="
           "mayniklas.cachix.org-1:gti3flcBaUNMoDN2nWCOPzCi2P68B5JbA/4jhUqHAFU="
+          "nix-cache:4FILs79Adxn/798F8qk2PC1U8HaTlaPqptwNJrXNA1g="
+          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         ];
         substituters = mkIf (cfg.disable-cache != true) [
           "https://cache.lounge.rocks/nix-cache"
           "https://mayniklas.cachix.org"
+          "https://nix-community.cachix.org"
         ];
 
         #Users allowed to run nix
