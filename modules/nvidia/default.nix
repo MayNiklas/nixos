@@ -5,25 +5,24 @@ let
 
   withCUDA = import flake-self.inputs.nixpkgs {
     system = "${pkgs.system}";
-    config = { allowUnfree = true; cudaSupport = true; };
+    config = {
+      allowUnfree = true;
+      cudaSupport = true;
+    };
   };
 
   cudaoverlay = (self: super: {
     # access overlay by using pkgs.withCUDA.<package>
     inherit withCUDA;
     # packages that should be built with CUDA support on NVIDIA systems
-    inherit (withCUDA)
-      nvtop
-      ;
+    inherit (withCUDA) nvtop;
   });
 
-in
-{
+in {
 
   options.mayniklas.nvidia = {
     enable = mkEnableOption "activate nvidia";
     cudaSupport = mkEnableOption "enable CUDA support";
-    beta-driver = mkEnableOption "use nvidia-beta driver";
   };
 
   config = mkIf cfg.enable {
@@ -42,9 +41,7 @@ in
       };
     };
 
-    services.xserver = {
-      videoDrivers = [ "nvidia" ];
-    };
+    services.xserver = { videoDrivers = [ "nvidia" ]; };
 
     hardware = {
 
@@ -54,16 +51,15 @@ in
       };
 
       nvidia = {
-        # use nvidia-beta driver when beta-driver is enabled
-        package = mkIf cfg.beta-driver config.boot.kernelPackages.nvidiaPackages.beta;
-
+        open = true;
         powerManagement.enable = true;
       };
 
     };
 
     # when docker is enabled, enable nvidia-docker
-    virtualisation.docker.enableNvidia = mkIf config.virtualisation.docker.enable true;
+    virtualisation.docker.enableNvidia =
+      mkIf config.virtualisation.docker.enable true;
 
     environment.systemPackages = with pkgs; [ nvtop ];
 
