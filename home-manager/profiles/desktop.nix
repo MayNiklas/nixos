@@ -46,7 +46,6 @@
       teamspeak_client
       thunderbird-bin
       unzip
-      vagrant
       virt-manager
       wget
       vlc
