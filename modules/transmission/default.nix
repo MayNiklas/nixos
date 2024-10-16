@@ -1,8 +1,13 @@
 { lib, pkgs, config, ... }:
 with lib;
-let cfg = config.mayniklas.transmission;
-in
-{
+let
+  cfg = config.mayniklas.transmission;
+  transmission_pkgs = import (builtins.fetchTarball {
+    url =
+      "https://github.com/NixOS/nixpkgs/archive/0c19708cf035f50d28eb4b2b8e7a79d4dc52f6bb.tar.gz";
+    sha256 = "sha256:0ngw2shvl24swam5pzhcs9hvbwrgzsbcdlhpvzqc7nfk8lc28sp3";
+  }) { system = "${pkgs.system}"; };
+in {
 
   options.mayniklas.transmission = {
     enable = mkEnableOption "activate transmission";
@@ -27,18 +32,19 @@ in
 
     services.samba = mkIf cfg.smb {
       enable = true;
-      securityType = "user";
-      extraConfig = ''
-        workgroup = WORKGROUP
-        server string = smbnix
-        netbios name = smbnix
-        security = user
-        hosts allow = 192.168.5.0/24
-        hosts deny = 0.0.0.0/0
-        guest account = nobody
-        map to guest = bad user
-      '';
-      shares = {
+      settings = {
+        global = {
+          "invalid users" = [ "root" ];
+          "passwd program" = "/run/wrappers/bin/passwd %u";
+          security = "user";
+          workgroup = "WORKGROUP";
+          "server string" = "smbnix";
+          "netbios name" = "smbnix";
+          "hosts allow" = "192.168.5.0/24";
+          "hosts deny" = "0.0.0.0/0";
+          "guest account" = "nobody";
+          "map to guest" = "bad user";
+        };
         public = {
           path = "/var/lib/transmission/Downloads";
           "read only" = true;
@@ -67,7 +73,8 @@ in
 
     services.transmission = {
       enable = true;
-      webHome = pkgs.flood-for-transmission;
+      package = transmission_pkgs.transmission_4;
+      webHome = transmission_pkgs.flood-for-transmission;
       openFirewall = true;
 
       settings = {
