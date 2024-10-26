@@ -1,8 +1,7 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.matrix;
-in
-{
+in {
 
   options.mayniklas.matrix = {
     enable = mkEnableOption "activate matrix";
@@ -15,7 +14,17 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
+  config = let
+    fqdn = "${cfg.host}";
+    baseUrl = "https://${fqdn}";
+    clientConfig."m.homeserver".base_url = baseUrl;
+    serverConfig."m.server" = "${fqdn}:443";
+    mkWellKnown = data: ''
+      default_type application/json;
+      add_header Access-Control-Allow-Origin *;
+      return 200 '${builtins.toJSON data}';
+    '';
+  in mkIf cfg.enable {
 
     # 1. get the path of the postgresql versions
     # > nix build --print-out-paths nixpkgs#postgresql_14
@@ -58,29 +67,10 @@ in
           forceSSL = true;
 
           locations."= /.well-known/matrix/server".extraConfig =
-            let
-              # use 443 instead of the default 8448 port to unite
-              # the client-server and server-server port for simplicity
-              server = { "m.server" = "${cfg.host}:443"; };
-            in
-            ''
-              add_header Content-Type application/json;
-              return 200 '${builtins.toJSON server}';
-            '';
+            mkWellKnown serverConfig;
 
           locations."= /.well-known/matrix/client".extraConfig =
-            let
-              client = {
-                "m.homeserver" = { "base_url" = "https://${cfg.host}"; };
-                "m.identity_server" = { "base_url" = "https://vector.im"; };
-              };
-              # ACAO required to allow element-web on any URL to request this json file
-            in
-            ''
-              add_header Content-Type application/json;
-              add_header Access-Control-Allow-Origin *;
-              return 200 '${builtins.toJSON client}';
-            '';
+            mkWellKnown clientConfig;
 
           # Reverse proxy for Matrix client-server and server-server communication
           # Or do a redirect instead of the 404, or whatever is appropriate for you.
@@ -103,6 +93,7 @@ in
       enable = true;
       settings = {
         server_name = "${cfg.host}";
+        public_baseurl = baseUrl;
         enable_registration = false;
         listeners = [{
           port = 8008;
@@ -112,7 +103,7 @@ in
           x_forwarded = true;
           resources = [{
             names = [ "client" "federation" ];
-            compress = false;
+            compress = true;
           }];
         }];
         # TODO: is this enough?
