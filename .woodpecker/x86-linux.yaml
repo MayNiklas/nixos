@@ -13,6 +13,13 @@
     },
     {
       "commands": [
+        "nix flake check"
+      ],
+      "image": "bash",
+      "name": "Nix flake check"
+    },
+    {
+      "commands": [
         "attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default"
       ],
       "image": "bash",
