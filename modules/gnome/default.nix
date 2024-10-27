@@ -48,7 +48,7 @@ in
       # gnomeExtensions.zoom-wayland-extension
     ];
 
-    services.udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
+    services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
   };
 }

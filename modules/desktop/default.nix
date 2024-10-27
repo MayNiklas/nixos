@@ -60,7 +60,7 @@ in
       enable = true;
       # Default package does not support all protocols. Use the full-featured
       # gnome version
-      package = lib.mkForce pkgs.gnome3.gvfs;
+      package = lib.mkForce pkgs.gnome.gvfs;
     };
 
   };

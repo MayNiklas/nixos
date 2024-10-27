@@ -21,7 +21,7 @@ in
       xorg.xdpyinfo
       pulsemixer
       alacritty
-      gnome3.gnome-screenshot
+      gnome.gnome-screenshot
     ];
 
     services = {
