@@ -16,7 +16,7 @@ stdenv.mkDerivation rec {
     linuxPackages.nvidia_x11
     gcc
     pkg-config
-    (opencv3.override { enableGtk2 = true; })
+    (opencv.override { enableGtk2 = true; })
     gtk2-x11
   ];
 
