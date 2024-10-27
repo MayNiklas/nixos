@@ -25,7 +25,7 @@ in {
 
     nix = {
 
-      package = pkgs.nixFlakes;
+      package = pkgs.nixVersions.stable;
       extraOptions = ''
         # this enables the technically experimental feature Flakes
         experimental-features = nix-command flakes
