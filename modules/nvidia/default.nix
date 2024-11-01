@@ -55,11 +55,11 @@ in {
         powerManagement.enable = true;
       };
 
-    };
+      # when docker is enabled, enable nvidia-docker
+      nvidia-container-toolkit.enable =
+        mkIf config.virtualisation.docker.enable true;
 
-    # when docker is enabled, enable nvidia-docker
-    virtualisation.docker.enableNvidia =
-      mkIf config.virtualisation.docker.enable true;
+    };
 
     environment.systemPackages = with pkgs; [ nvtop ];
 
