@@ -1,20 +1,16 @@
-{ pkgs, lib, config, attic, ... }: {
+{ pkgs, lib, config, ... }: {
 
   imports = [ ./cron.nix ];
 
   home-manager.users."${config.mayniklas.home-manager.username}" = {
-    home.packages =
-      with pkgs; [
-        go
-        gotools
+    home.packages = with pkgs; [
+      go
+      gotools
 
-        nix-init
+      nix-init
 
-        attic.packages.${pkgs.system}.attic
-
-        # https://github.com/ryantm/nixpkgs-update
-        # nixpkgs-update.packages.${pkgs.system}.nixpkgs-update
-      ];
+      attic-client
+    ];
   };
 
   # virtualisation.oci-containers = {
@@ -31,11 +27,25 @@
     cloud.pve-x86.enable = true;
     docker = { enable = true; };
     hosts = { enable = true; };
-    iperf = { enable = true; openFirewall = true; };
+    iperf = {
+      enable = true;
+      openFirewall = true;
+    };
     kernel = { enable = true; };
-    librespeedtest = { enable = true; port = "8000"; };
-    metrics = { node = { enable = true; flake = true; }; };
-    server = { enable = true; home-manager = true; };
+    librespeedtest = {
+      enable = true;
+      port = "8000";
+    };
+    metrics = {
+      node = {
+        enable = true;
+        flake = true;
+      };
+    };
+    server = {
+      enable = true;
+      home-manager = true;
+    };
     # smokeping = { enable = true; };
   };
 
