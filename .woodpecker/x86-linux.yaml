@@ -13,13 +13,6 @@
     },
     {
       "commands": [
-        "nix flake check"
-      ],
-      "image": "bash",
-      "name": "Nix flake check"
-    },
-    {
-      "commands": [
         "attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default"
       ],
       "image": "bash",
@@ -90,6 +83,27 @@
       ],
       "image": "bash",
       "name": "Push deke to Attic"
+    },
+    {
+      "commands": [
+        "nix build --print-out-paths '.#nixosConfigurations.fitz.config.system.build.toplevel' -o 'result-fitz'"
+      ],
+      "image": "bash",
+      "name": "Build fitz"
+    },
+    {
+      "commands": [
+        "nix path-info --closure-size -h $(readlink -f 'result-fitz')"
+      ],
+      "image": "bash",
+      "name": "Show fitz info"
+    },
+    {
+      "commands": [
+        "attic push lounge-rocks:nix-cache 'result-fitz'"
+      ],
+      "image": "bash",
+      "name": "Push fitz to Attic"
     },
     {
       "commands": [
