@@ -24,11 +24,13 @@
     nvidia.enable = true;
   };
 
+  hardware.nvidia.open = lib.mkForce false;
+
   lollypops.deployment = {
     local-evaluation = false;
     ssh = {
       user = "root";
-      host = "192.168.5.241";
+      host = "192.168.5.22";
     };
   };
 

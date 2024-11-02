@@ -71,10 +71,11 @@
 
   lollypops.deployment = {
     local-evaluation = false;
-    ssh = { user = "root"; host = "192.168.5.21"; };
+    ssh = {
+      user = "root";
+      host = "192.168.5.21";
+    };
   };
-
-  boot.kernelModules = [ "sg" ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   system.stateVersion = "20.09";
