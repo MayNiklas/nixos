@@ -2,6 +2,7 @@
 
   # Install these packages for my user
   home.packages = with pkgs; [
+    attic-client
     nil
     nixd
     nixpkgs-fmt
