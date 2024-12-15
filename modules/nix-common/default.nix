@@ -23,6 +23,9 @@ in {
     # Allow unfree licenced packages
     nixpkgs.config.allowUnfree = true;
 
+    # Todo: remove package if this is not beeing fixed in the near future
+    nixpkgs.config.permittedInsecurePackages = [ "dotnet-sdk-6.0.428" ];
+
     nix = {
 
       package = pkgs.nixVersions.stable;
