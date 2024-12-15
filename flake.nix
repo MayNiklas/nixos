@@ -94,12 +94,6 @@
       };
     };
 
-    # https://github.com/zhaofengli/attic
-    # Multi-tenant Nix Binary Cache
-    attic = {
-      url = "github:zhaofengli/attic";
-    };
-
     # https://github.com/Mic92/nix-fast-build
     # speed-up your evaluation and building process.
     nix-fast-build = {
