@@ -24,7 +24,8 @@ in {
     nixpkgs.config.allowUnfree = true;
 
     # Todo: remove package if this is not beeing fixed in the near future
-    nixpkgs.config.permittedInsecurePackages = [ "dotnet-sdk-6.0.428" ];
+    nixpkgs.config.permittedInsecurePackages =
+      [ "dotnet-sdk-6.0.428" "aspnetcore-runtime-6.0.36" ];
 
     nix = {
 
