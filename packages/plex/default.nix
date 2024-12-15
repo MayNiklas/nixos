@@ -1,17 +1,24 @@
 # The actual Plex package that we run is a FHS userenv of the "raw" package.
-{ stdenv
-, buildFHSUserEnv
-, writeScript
-, plexRaw
+{
+  stdenv,
+  buildFHSEnv,
+  writeScript,
+  plexRaw,
 
-# Old argument for overriding the Plex data directory; not used for this
-# version of Plex, but still around for backwards-compatibility.
-, dataDir ? "/var/lib/plex"
+  # Old argument for overriding the Plex data directory; not used for this
+  # version of Plex, but still around for backwards-compatibility.
+  dataDir ? "/var/lib/plex",
 }:
 
-buildFHSUserEnv {
-  name = "plexmediaserver";
-  inherit (plexRaw) meta;
+buildFHSEnv {
+  pname = "plexmediaserver";
+
+  inherit (plexRaw) version meta;
+
+  # Plex does some magic to detect if it is already running.
+  # The separate PID namespace somehow breaks this and Plex is thinking it's already
+  # running and refuses to start.
+  unsharePid = false;
 
   # This script is run when we start our Plex binary
   runScript = writeScript "plex-run-script" ''
@@ -63,13 +70,10 @@ buildFHSUserEnv {
       test -d "$pluginDir" || mkdir -p "$pluginDir"
 
       # First, remove all of the symlinks in the plugins directory.
-      echo "Removing old symlinks"
-      for f in $(ls "$pluginDir/"); do
-        if [[ -L "$pluginDir/$f" ]]; then
-          echo "Removing plugin symlink: $pluginDir/$f"
-          rm "$pluginDir/$f"
-        fi
-      done
+      while IFS= read -r -d $'\0' f; do
+        echo "Removing plugin symlink: $f"
+        rm "$f"
+      done < <(find "$pluginDir" -type l -print0)
 
       echo "Symlinking plugins"
       IFS=':' read -ra pluginsArray <<< "$PLEX_PLUGINS"
@@ -84,6 +88,40 @@ buildFHSUserEnv {
           echo "Symlinking plugin at: $path"
           ln -s "$path" "$dest"
         fi
+      done
+    fi
+
+    if [[ -n "''${PLEX_SCANNERS:-}" ]]; then
+      for scannerType in Common Movies Music Series; do
+        echo "Preparing $scannerType scanners directory"
+
+        scannerDir="$PLEX_DATADIR/Plex Media Server/Scanners/$scannerType"
+        test -d "$scannerDir" || mkdir -p "$scannerDir"
+
+        # First, remove all of the symlinks in the scanners directory.
+        echo "Removing old symlinks"
+        while IFS= read -r -d $'\0' f; do
+          echo "Removing scanner symlink: $f"
+          rm "$f"
+        done < <(find "$scannerDir" -type l -print0)
+
+        echo "Symlinking scanners"
+        IFS=':' read -ra scannersArray <<< "$PLEX_SCANNERS"
+        for path in "''${scannersArray[@]}"; do
+          # The provided source should contain a 'Scanners' directory; symlink
+          # from inside that.
+          subpath="$path/Scanners/$scannerType"
+          while IFS= read -r -d $'\0' file; do
+            dest="$scannerDir/$(basename "$file")"
+
+            if [[ -f "$dest" || -L "$dest" ]]; then
+              echo "Error symlinking scanner from $file to $dest: file or directory already exists"
+            else
+              echo "Symlinking scanner at: $file"
+              ln -s "$file" "$dest"
+            fi
+          done < <(find "$subpath" -type f -print0)
+        done
       done
     fi
 
