@@ -22,7 +22,7 @@ in
       gcc
 
       ### Formatter
-      nixfmt
+      nixfmt-classic
       nixpkgs-fmt
       rustfmt
 
