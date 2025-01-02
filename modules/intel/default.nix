@@ -13,7 +13,7 @@ in
     # tools to watch iGPU usage
     environment.systemPackages = with pkgs; [
       intel-gpu-tools
-      nvtop
+      nvtopPackages.full
       powertop
       config.boot.kernelPackages.turbostat
     ];

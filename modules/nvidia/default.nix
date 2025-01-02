@@ -65,7 +65,7 @@ in {
     virtualisation.docker.enableNvidia =
       mkIf config.virtualisation.docker.enable true;
 
-    environment.systemPackages = with pkgs; [ nvtop ];
+    environment.systemPackages = with pkgs; [ nvtopPackages.full ];
 
     nixpkgs.config = {
 

@@ -31,7 +31,7 @@
       nix-tree
       nixpkgs-review
       nmap
-      nvtop
+      nvtopPackages.full
       okular
       ondsel
       # orca-slicer
