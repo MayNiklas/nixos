@@ -62,7 +62,7 @@
   mayniklas = {
     programs = {
       alacritty.enable = true;
-      ansible.enable = true;
+      # currently broken ansible.enable = true;
       chromium.enable = true;
       devolopment.enable = true;
       direnv.enable = true;
