@@ -9,7 +9,7 @@
     with pkgs; [
       _1password-gui
       asciinema
-      bambu-studio
+      # currently broken bambu-studio
       dconf
       discord
       dolphin
