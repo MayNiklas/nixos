@@ -5,7 +5,8 @@
 
     # Nix Packages collection
     # https://github.com/NixOS/nixpkgs
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url =
+      "git+https://github.com/NixOS/nixpkgs?ref=nixos-unstable&shallow=1";
 
     # Manage a user environment using Nix 
     # https://github.com/nix-community/home-manager
