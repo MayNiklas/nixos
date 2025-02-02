@@ -60,7 +60,7 @@
   networking = {
     hostName = "kora";
     dhcpcd.enable = false;
-    interfaces.enp6s18.ipv4.addresses = [{
+    interfaces.ens18.ipv4.addresses = [{
       address = "192.168.5.21";
       prefixLength = 24;
     }];
