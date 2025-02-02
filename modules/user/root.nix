@@ -13,7 +13,7 @@ in
       openssh.authorizedKeys.keyFiles = [
         (pkgs.fetchurl {
           url = "https://github.com/mayniklas.keys";
-          hash = "sha256-QW7XAqj9EmdQXYEu8EU74eFWml5V0ALvbQOnjk8ce/U=";
+          hash = "sha256-+vEtEyhCnlDvz4l322G1yR/JAc891Qn9rzQivrJAdU8=";
         })
       ];
     };
