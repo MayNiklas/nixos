@@ -11,6 +11,7 @@ in {
 
     programs.zellij = {
       enable = true;
+      enableZshIntegration = false;
       settings = {
         theme = "custom";
         themes.custom = {
@@ -28,6 +29,17 @@ in {
         };
       };
     };
+
+    programs.zsh.initExtra = (mkOrder 200 ''
+      export IS_VSCODE=false
+      if [[ $(printenv | grep -c "VSCODE_") -gt 0 ]]; then
+        export IS_VSCODE=true
+      fi
+
+      if [[ $IS_VSCODE == false ]]; then
+        eval "$(${pkgs.zellij}/bin/zellij setup --generate-auto-start zsh)"
+      fi
+    '');
 
     home.sessionVariables = { ZELLIJ_AUTO_ATTACH = "true"; };
 
