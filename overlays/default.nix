@@ -27,7 +27,7 @@ in {
   # tautulli = super.pkgs.python3Packages.callPackage ../packages/tautulli { };
   verification-listener =
     super.pkgs.python3Packages.callPackage ../packages/verification-listener
-      { };
+    { };
   vs-fix = super.pkgs.callPackage ../packages/vs-fix { };
   inherit (super.pkgs.callPackages ../packages/unifi { })
     unifiLTS unifi5 unifi6 unifi7;
