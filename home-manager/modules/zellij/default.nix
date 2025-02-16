@@ -1,16 +1,13 @@
 { pkgs, lib, config, ... }:
 with lib;
 let cfg = config.mayniklas.programs.zellij;
-in
-{
+in {
   options.mayniklas.programs.zellij.enable =
     mkEnableOption "zellij terminal mutliplexer";
 
   config = mkIf cfg.enable {
 
-    home.packages = with pkgs; [
-      (pkgs.callPackage ./start-zellij.nix { })
-    ];
+    home.packages = with pkgs; [ (pkgs.callPackage ./start-zellij.nix { }) ];
 
     programs.zellij = {
       enable = true;
@@ -31,6 +28,8 @@ in
         };
       };
     };
+
+    home.sessionVariables = { ZELLIJ_AUTO_ATTACH = "true"; };
 
   };
 }
