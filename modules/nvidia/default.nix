@@ -52,7 +52,7 @@ in {
 
       nvidia = {
         open = true;
-        powerManagement.enable = true;
+        # powerManagement.enable = true;
       };
 
       # when docker is enabled, enable nvidia-docker
