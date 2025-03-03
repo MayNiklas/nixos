@@ -32,7 +32,7 @@
       nixpkgs-review
       nmap
       nvtopPackages.full
-      okular
+      kdePackages.okular
       ondsel
       # orca-slicer
       pciutils
