@@ -12,7 +12,7 @@
       bambu-studio
       dconf
       discord
-      dolphin
+      kdePackages.dolphin
       drone-cli
       element-desktop
       # etcher
