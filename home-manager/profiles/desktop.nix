@@ -12,7 +12,7 @@
       bambu-studio
       dconf
       discord
-      dolphin
+      kdePackages.dolphin
       drone-cli
       element-desktop
       # etcher
@@ -32,7 +32,7 @@
       nixpkgs-review
       nmap
       nvtopPackages.full
-      okular
+      kdePackages.okular
       ondsel
       # orca-slicer
       pciutils
