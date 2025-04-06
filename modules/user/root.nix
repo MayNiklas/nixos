@@ -1,8 +1,7 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.mayniklas.user.root;
-in
-{
+in {
 
   options.mayniklas.user.root = {
     enable = mkEnableOption "activate user root";
@@ -13,7 +12,7 @@ in
       openssh.authorizedKeys.keyFiles = [
         (pkgs.fetchurl {
           url = "https://github.com/mayniklas.keys";
-          hash = "sha256-+vEtEyhCnlDvz4l322G1yR/JAc891Qn9rzQivrJAdU8=";
+          hash = "sha256-eBO4j3NA/Jh01la5DZPwkl1r4tb0RKz7BNvhTBlH3Sk=";
         })
       ];
     };
