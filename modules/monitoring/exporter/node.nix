@@ -56,8 +56,7 @@ in
               concatStringsSep "," (mapAttrsToList (n: v: ''${n}="${v}"'')
                 (filterAttrs (n: v: (builtins.typeOf v) == "string")
                   self.inputs."${i}"))
-            }} ${toString self.inputs."${i}".lastModified}'')
-          (attrNames (filterAttrs (n: v: v.flake or false) self.inputs)))}
+            }} ${toString self.inputs."${i}".lastModified}'') [ "nixpkgs" ])}
 
       '';
     };
