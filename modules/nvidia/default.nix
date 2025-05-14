@@ -15,7 +15,7 @@ let
     # access overlay by using pkgs.withCUDA.<package>
     inherit withCUDA;
     # packages that should be built with CUDA support on NVIDIA systems
-    inherit (withCUDA) nvtop;
+    inherit (withCUDA) nvtopPackages;
   });
 
 in {
