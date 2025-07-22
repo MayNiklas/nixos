@@ -28,10 +28,10 @@ in
 
       ### Jetbrains Software
       # jetbrains.clion
-      jetbrains.goland
-      jetbrains.pycharm-professional
+      # jetbrains.goland
+      # jetbrains.pycharm-professional
 
-      mayniklas.pycharm-fix
+      # mayniklas.pycharm-fix
 
     ];
 
