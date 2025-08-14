@@ -36,7 +36,7 @@ in
 
       imports = [
         {
-          nixpkgs.config.permittedInsecurePackages = [ ];
+          nixpkgs.config.permittedInsecurePackages = [ "libsoup-2.74.3" ];
           nixpkgs.overlays = [
             flake-self.overlays.default
             (final: prev: {
