@@ -42,7 +42,7 @@
       sublime-merge
       sublime3
       tdesktop
-      teamspeak_client
+      # teamspeak_client
       thunderbird-bin
       unzip
       virt-manager
