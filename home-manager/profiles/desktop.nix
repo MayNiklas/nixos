@@ -33,7 +33,6 @@
       nmap
       nvtopPackages.full
       kdePackages.okular
-      ondsel
       # orca-slicer
       pciutils
       screen

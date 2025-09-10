@@ -100,12 +100,6 @@
       url = "github:Mic92/nix-fast-build";
     };
 
-    # https://github.com/pinpox/ondsel-nix
-    # Ondsel (until https://github.com/NixOS/nixpkgs/pull/292995 is merged)
-    ondsel = {
-      url = "github:pinpox/ondsel-nix";
-    };
-
   };
   outputs = { self, ... }@inputs:
     with inputs;
