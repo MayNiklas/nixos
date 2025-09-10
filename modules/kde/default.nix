@@ -12,7 +12,7 @@ in
     services.xserver = {
       enable = true;
       displayManager.sddm.enable = true;
-      desktopManager.plasma5.enable = true;
+      desktopManager.plasma6.enable = true;
       layout = "de";
       xkbOptions = "eurosign:e";
     };
