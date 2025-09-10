@@ -79,9 +79,9 @@ in
       options = [ "nosuid" "nodev" "relatime" "size=2G" ];
     };
     boot.tmp.useTmpfs = false;
-    services.logind.extraConfig = ''
-      RuntimeDirectorySize=2G
-    '';
+    services.logind.settings.Login={
+      RuntimeDirectorySize="2G";
+    };
 
   };
 
