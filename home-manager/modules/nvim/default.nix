@@ -26,7 +26,6 @@ in
       withPython3 = true;
 
       extraPackages = with pkgs; [
-        ansible-language-server
         nixpkgs-fmt
         tree-sitter
         yaml-language-server
