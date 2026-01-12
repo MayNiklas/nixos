@@ -41,7 +41,7 @@
       spotify
       sublime-merge
       sublime3
-      tdesktop
+      telegram-desktop
       # teamspeak_client
       thunderbird-bin
       unzip

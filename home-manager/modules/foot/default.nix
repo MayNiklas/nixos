@@ -10,7 +10,7 @@ in
   config = mkIf cfg.enable {
 
     home.packages = with pkgs; [
-      inconsolata-nerdfont # Fallback Nerd Font to provide special glyphs
+      nerd-fonts.inconsolata # Fallback Nerd Font to provide special glyphs
     ];
 
     programs.foot = {
