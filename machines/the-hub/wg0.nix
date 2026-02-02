@@ -59,7 +59,7 @@
         }
         # S2S K.
         {
-          publicKey = "x6r6/fKy1Yq2jqf0MngnpEJ6dPa/elf3nYPmNJ+5Myc=";
+          publicKey = "LGvH0XWRRimKWrwat6sHfpUN8dakcsIA2b/luQ4EBiU=";
           allowedIPs = [ "10.88.88.6/32" "192.168.22.0/24" ];
         }
         # S2S A.
