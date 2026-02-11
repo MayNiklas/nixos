@@ -116,6 +116,7 @@
           "deke:9100"
           "flint:9100"
           "gpu-server:9100"
+          "k-pi3b:9100"
           "kora:9100"
           "simmons:9100"
           "simone-pi4b:9100"
@@ -166,6 +167,7 @@
 
       # wg
       10.88.88.1 status.nik-ste.de
+      10.88.88.6 k-pi3b
       10.88.88.8 simone-pi4b
       10.88.88.9 bella-pi4b
       10.88.88.17 gpu-server
