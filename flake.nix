@@ -5,10 +5,9 @@
 
     # Nix Packages collection
     # https://github.com/NixOS/nixpkgs
-    nixpkgs.url =
-      "git+https://github.com/NixOS/nixpkgs?ref=nixos-unstable&shallow=1";
+    nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?ref=nixos-unstable&shallow=1";
 
-    # Manage a user environment using Nix 
+    # Manage a user environment using Nix
     # https://github.com/nix-community/home-manager
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -74,7 +73,7 @@
       flake = false;
     };
 
-    # A Shelly power metrics exporter written in golang. 
+    # A Shelly power metrics exporter written in golang.
     # https://github.com/MayNiklas/shelly-exporter
     shelly-exporter = {
       url = "github:MayNiklas/shelly-exporter";
@@ -84,7 +83,7 @@
       };
     };
 
-    # A valorant metrics exporter written in golang. 
+    # A valorant metrics exporter written in golang.
     # https://github.com/MayNiklas/valorant-exporter
     valorant-exporter = {
       url = "github:MayNiklas/valorant-exporter";
@@ -101,18 +100,27 @@
     };
 
   };
-  outputs = { self, ... }@inputs:
+  outputs =
+    { self, ... }@inputs:
     with inputs;
     let
-      supportedSystems = [ "aarch64-linux" "x86_64-linux" ];
+      supportedSystems = [
+        "aarch64-linux"
+        "x86_64-linux"
+      ];
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-      nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; overlays = [ self.overlays.default ]; });
+      nixpkgsFor = forAllSystems (
+        system:
+        import nixpkgs {
+          inherit system;
+          overlays = [ self.overlays.default ];
+        }
+      );
     in
     {
 
       # Use nixpkgs-fmt for `nix fmt'
-      formatter = forAllSystems
-        (system: nixpkgsFor.${system}.nixpkgs-fmt);
+      formatter = forAllSystems (system: nixpkgsFor.${system}.nixfmt-tree);
 
       # Expose overlay to flake outputs, to allow using it from other flakes.
       # Flake inputs are passed to the overlay so that the packages defined in
@@ -123,43 +131,64 @@
 
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
-      nixosModules = builtins.listToAttrs
-        (map
-          (x: {
+      nixosModules =
+        builtins.listToAttrs (
+          map (x: {
             name = x;
-            value = { config, pkgs, lib, modulesPath, ... }: {
-              imports = [
-                (import ./modules/${x} {
-                  flake-self = self;
-                  inherit pkgs lib config modulesPath inputs nixpkgs;
-                })
-              ];
-            };
-          })
-          (builtins.attrNames (builtins.readDir ./modules)))
+            value =
+              {
+                config,
+                pkgs,
+                lib,
+                modulesPath,
+                ...
+              }:
+              {
+                imports = [
+                  (import ./modules/${x} {
+                    flake-self = self;
+                    inherit
+                      pkgs
+                      lib
+                      config
+                      modulesPath
+                      inputs
+                      nixpkgs
+                      ;
+                  })
+                ];
+              };
+          }) (builtins.attrNames (builtins.readDir ./modules))
+        )
 
-      //
+        //
 
-      {
-        home-manager = { config, pkgs, lib, ... }:
-          let
-            cfg = config.mayniklas.home-manager;
-          in
           {
-            imports = [ ./home-manager ];
+            home-manager =
+              {
+                config,
+                pkgs,
+                lib,
+                ...
+              }:
+              let
+                cfg = config.mayniklas.home-manager;
+              in
+              {
+                imports = [ ./home-manager ];
 
-            home-manager.users."${cfg.username}" = lib.mkIf cfg.enable {
-              imports = [
-                vscode-server.nixosModules.home
-              ];
+                home-manager.users."${cfg.username}" = lib.mkIf cfg.enable {
+                  imports = [
+                    vscode-server.nixosModules.home
+                  ];
 
-              # Visual Studio Code Server support
-              services.vscode-server.enable = true;
+                  # Visual Studio Code Server support
+                  services.vscode-server.enable = true;
 
-              nixpkgs.overlays = [ self.overlays.mayniklas ];
-            };
+                  nixpkgs.overlays = [ self.overlays.mayniklas ];
+                };
+              };
           };
-      };
 
       # nix run .#homeConfigurations.nik@MacBook-Pro-14-2021.activationPackage
       # home-manager switch --flake .
@@ -168,7 +197,9 @@
           system = "aarch64-darwin";
           pkgs = import nixpkgs {
             inherit system;
-            config = { allowUnfree = true; };
+            config = {
+              allowUnfree = true;
+            };
             overlays = [ ];
           };
         in
@@ -183,49 +214,54 @@
           extraSpecialArgs = { } // inputs;
         };
 
-      homeManagerModules = builtins.listToAttrs (map
-        (name: {
+      homeManagerModules = builtins.listToAttrs (
+        map (name: {
           inherit name;
           value = import (./home-manager/modules + "/${name}");
-        })
-        (builtins.attrNames (builtins.readDir ./home-manager/modules)));
+        }) (builtins.attrNames (builtins.readDir ./home-manager/modules))
+      );
 
       # Each subdirectory in ./machines is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
-      nixosConfigurations = builtins.listToAttrs
-        (map
-          (x: {
-            name = x;
-            value = nixpkgs.lib.nixosSystem {
+      nixosConfigurations = builtins.listToAttrs (
+        map (x: {
+          name = x;
+          value = nixpkgs.lib.nixosSystem {
 
-              # Make inputs and the flake itself accessible as module parameters.
-              # Technically, adding the inputs is redundant as they can be also
-              # accessed with flake-self.inputs.X, but adding them individually
-              # allows to only pass what is needed to each module.
-              specialArgs = { flake-self = self; } // inputs;
+            # Make inputs and the flake itself accessible as module parameters.
+            # Technically, adding the inputs is redundant as they can be also
+            # accessed with flake-self.inputs.X, but adding them individually
+            # allows to only pass what is needed to each module.
+            specialArgs = {
+              flake-self = self;
+            }
+            // inputs;
 
-              modules = [
-                lollypops.nixosModules.lollypops
-                (./machines + "/${x}/configuration.nix")
-                { imports = builtins.attrValues self.nixosModules; }
-              ];
-            };
-          })
-          (builtins.attrNames (builtins.readDir ./machines)));
+            modules = [
+              lollypops.nixosModules.lollypops
+              (./machines + "/${x}/configuration.nix")
+              { imports = builtins.attrValues self.nixosModules; }
+            ];
+          };
+        }) (builtins.attrNames (builtins.readDir ./machines))
+      );
     }
 
     //
 
-    # All packages in the ./packages subfolder are also added to the flake.
-    # flake-utils is used for this part to make each package available for each
-    # system. This works as all packages are compatible with all architectures
-    (flake-utils.lib.eachSystem (flake-utils.lib.defaultSystems ++ [ "aarch64-darwin" ]))
-      (system:
+      # All packages in the ./packages subfolder are also added to the flake.
+      # flake-utils is used for this part to make each package available for each
+      # system. This works as all packages are compatible with all architectures
+      (flake-utils.lib.eachSystem (flake-utils.lib.defaultSystems ++ [ "aarch64-darwin" ])) (
+        system:
         let
           pkgs = import nixpkgs {
             inherit system;
-            overlays = [ self.overlays.default self.overlays.mayniklas ];
+            overlays = [
+              self.overlays.default
+              self.overlays.mayniklas
+            ];
             config = {
               allowUnsupportedSystem = true;
               allowUnfree = true;
@@ -240,7 +276,10 @@
           packages = flake-utils.lib.flattenTree {
 
             build_outputs = pkgs.callPackage ./packages/build_outputs { inherit self; };
-            woodpecker-pipeline = pkgs.callPackage ./packages/woodpecker-pipeline { inputs = inputs; flake-self = self; };
+            woodpecker-pipeline = pkgs.callPackage ./packages/woodpecker-pipeline {
+              inputs = inputs;
+              flake-self = self;
+            };
 
             inherit (pkgs.mayniklas)
               ASPM-status
@@ -275,10 +314,6 @@
             };
 
           };
-        });
+        }
+      );
 }
-
-
-
-
-
