@@ -1,6 +1,12 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.mayniklas.programs.vscode;
+let
+  cfg = config.mayniklas.programs.vscode;
 in
 {
   options.mayniklas.programs.vscode.enable = mkEnableOption "enable vscode";
@@ -10,7 +16,7 @@ in
     home.packages = with pkgs; [
       nil
       nixd
-      nixpkgs-fmt
+      nixfmt
     ];
 
     programs.vscode = {
@@ -49,7 +55,7 @@ in
           "serverSettings" = {
             "nixd" = {
               "formatting" = {
-                "command" = [ "nixpkgs-fmt" ]; # consider moving to nixfmt-rfc-style
+                "command" = [ "nixpkgs" ]; # consider moving to nixfmt-rfc-style
               };
               "options" = {
                 "nixos" = {
@@ -75,24 +81,27 @@ in
         "go.toolsManagement.checkForUpdates" = "off";
       };
 
-      extensions = with pkgs.vscode-extensions; [
-        davidanson.vscode-markdownlint
-        github.copilot
-        github.github-vscode-theme
-        github.vscode-github-actions
-        github.vscode-pull-request-github
-        golang.go
-        james-yu.latex-workshop
-        jnoortheen.nix-ide
-        ms-azuretools.vscode-docker
-        ms-python.python
-        ms-vscode-remote.remote-ssh
-        ms-vscode.cpptools
-        redhat.vscode-xml
-        redhat.vscode-yaml
-        rust-lang.rust-analyzer
-        yzhang.markdown-all-in-one
-      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [ ];
+      extensions =
+        with pkgs.vscode-extensions;
+        [
+          davidanson.vscode-markdownlint
+          github.copilot
+          github.github-vscode-theme
+          github.vscode-github-actions
+          github.vscode-pull-request-github
+          golang.go
+          james-yu.latex-workshop
+          jnoortheen.nix-ide
+          ms-azuretools.vscode-docker
+          ms-python.python
+          ms-vscode-remote.remote-ssh
+          ms-vscode.cpptools
+          redhat.vscode-xml
+          redhat.vscode-yaml
+          rust-lang.rust-analyzer
+          yzhang.markdown-all-in-one
+        ]
+        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [ ];
 
     };
   };

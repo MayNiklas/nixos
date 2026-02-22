@@ -22,7 +22,7 @@ in
       dnsutils
       file
       git
-      nixfmt-classic
+      nixfmt
       usbutils
       wget
     ];

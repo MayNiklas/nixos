@@ -21,7 +21,7 @@ in
       bash-completion
       file
       git
-      nixfmt-classic
+      nixfmt
       wget
     ];
 

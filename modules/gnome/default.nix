@@ -30,7 +30,6 @@ in
     environment.gnome.excludePackages = (with pkgs; [
       gnome-photos
       gnome-tour
-    ]) ++ (with pkgs.gnome; [
       gnome-music
       epiphany # web browser
       geary # email reader
@@ -40,15 +39,16 @@ in
       atomix # puzzle game
       yelp # Help view
       gnome-initial-setup
+    ]) ++ (with pkgs.gnome; [
     ]);
 
     environment.systemPackages = with pkgs; [
-      gnome.gnome-tweaks
+      gnome-tweaks
       gnomeExtensions.appindicator
       # gnomeExtensions.zoom-wayland-extension
     ];
 
-    services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+    services.udev.packages = with pkgs; [ gnome-settings-daemon ];
 
   };
 }
