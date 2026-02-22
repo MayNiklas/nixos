@@ -86,6 +86,7 @@ in
         [
           davidanson.vscode-markdownlint
           github.copilot
+          github.copilot-chat
           github.github-vscode-theme
           github.vscode-github-actions
           github.vscode-pull-request-github
