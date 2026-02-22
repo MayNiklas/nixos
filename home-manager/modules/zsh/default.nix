@@ -90,10 +90,10 @@ in
         # nix
 
         # switching within a flake repository
-        frb = "${pkgs.nixos-rebuild}/bin/nixos-rebuild --use-remote-sudo switch --flake";
+        frb = "${pkgs.nixos-rebuild}/bin/nixos-rebuild --sudo switch --flake";
 
         # always execute nixos-rebuild with sudo for switching
-        nixos-rebuild = "${pkgs.nixos-rebuild}/bin/nixos-rebuild --use-remote-sudo";
+        nixos-rebuild = "${pkgs.nixos-rebuild}/bin/nixos-rebuild --sudo";
 
         # list syslinks into nix-store
         nix-list = "${pkgs.nix}/bin/nix-store --gc --print-roots";
