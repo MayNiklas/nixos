@@ -1,6 +1,12 @@
 # TTY: Control + Alt + F1
-# nix run github:numtide/nixos-anywhere -- --flake .#daisy root@192.168.5.140
-{ config, lib, pkgs, ... }: {
+# nix run github:numtide/nixos-anywhere -- --flake .#daisy root@192.168.5.120
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
 
   # TODO:
   # - [ ] Sleep / Hibernate / Suspend
@@ -16,13 +22,13 @@
     home.packages = with pkgs; [ ];
   };
 
-  # automatic screen orientation
-  hardware.sensor.iio.enable = true;
+  # # automatic screen orientation
+  # hardware.sensor.iio.enable = true;
 
-  # touchscreen support
-  services.xserver.wacom.enable = true;
+  # # touchscreen support
+  # services.xserver.wacom.enable = true;
 
-  services.fprintd.enable = true;
+  # services.fprintd.enable = true;
 
   mayniklas = {
     desktop = {
@@ -45,10 +51,12 @@
   };
 
   # swapfile
-  swapDevices = [{
-    device = "/var/swapfile";
-    size = (32 * 1024);
-  }];
+  swapDevices = [
+    {
+      device = "/var/swapfile";
+      size = (48 * 1024);
+    }
+  ];
 
   system.stateVersion = "23.05";
 
