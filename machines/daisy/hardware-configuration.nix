@@ -65,7 +65,7 @@ in
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-  # boot.supportedFilesystems = [ "zfs" ];
+  boot.supportedFilesystems = [ "zfs" ];
   boot.extraModulePackages = [ ];
 
   # Bootloader
@@ -80,7 +80,14 @@ in
 
   swapDevices = [ ];
 
-  # networking.hostId = "64159372";
+  networking.hostId = "f9cad67b";
+  networking.modemmanager.enable = true;
+  networking.networkmanager.fccUnlockScripts = [
+    {
+      id = "2cb7:0210";
+      path = "${pkgs.modemmanager}/share/ModemManager/fcc-unlock.available.d/2c7c";
+    }
+  ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
