@@ -1,19 +1,26 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
 let
   cfg = config.mayniklas.programs.sway;
-  start-sway = pkgs.writeShellScriptBin "start-sway" /* sh */
-    ''
-      export WLR_DRM_NO_MODIFIERS=1
-      dbus-launch --sh-syntax --exit-with-session ${pkgs.sway}/bin/sway
-    '';
+  start-sway = pkgs.writeShellScriptBin "start-sway" /* sh */ ''
+    export WLR_DRM_NO_MODIFIERS=1
+    dbus-launch --sh-syntax --exit-with-session ${pkgs.sway}/bin/sway
+  '';
 in
 {
 
   options.mayniklas.programs.sway = {
     enable = mkEnableOption "enable sway";
     type = mkOption {
-      type = types.enum [ "desktop" "laptop" ];
+      type = types.enum [
+        "desktop"
+        "laptop"
+      ];
       default = "laptop";
       example = "desktop";
     };
@@ -27,7 +34,7 @@ in
       };
     };
 
-    home.packages = with pkgs;      [
+    home.packages = with pkgs; [
       mako
       start-sway
       wev # find out how a key is called
@@ -46,7 +53,7 @@ in
       wrapperFeatures.gtk = true;
 
       # Sway-specific Configuration
-      config = rec{
+      config = rec {
 
         input = {
           "type:keyboard" = {
@@ -68,7 +75,7 @@ in
         menu = "${pkgs.wofi}/bin/wofi --show run";
 
         # Status bar(s)
-        bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
+        bars = [ { command = "${pkgs.waybar}/bin/waybar"; } ];
 
         startup = [
           { command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"; }
@@ -80,7 +87,8 @@ in
             # general keybindings not specific to laptop or desktop
             (lib.optionalAttrs true {
               # take screenshot of whole screen
-              "Print" = "exec ${pkgs.grim}/bin/grim /home/nik/Pictures/Screenshots/Screenshot-$(date +'%Y-%m-%d_%H-%M-%S.png')";
+              "Print" =
+                "exec ${pkgs.grim}/bin/grim /home/nik/Pictures/Screenshots/Screenshot-$(date +'%Y-%m-%d_%H-%M-%S.png')";
               # control volume
               "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
               "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
@@ -103,36 +111,40 @@ in
           ])
         );
 
-        colors = let c = config.pinpox.colors; in {
-          focused = {
-            background = "#${c.Blue}";
-            border = "#${c.BrightBlue}";
-            childBorder = "#${c.Blue}";
-            indicator = "#${c.BrightBlue}";
-            text = "#${c.Black}";
+        colors =
+          let
+            c = config.pinpox.colors;
+          in
+          {
+            focused = {
+              background = "#${c.Blue}";
+              border = "#${c.BrightBlue}";
+              childBorder = "#${c.Blue}";
+              indicator = "#${c.BrightBlue}";
+              text = "#${c.Black}";
+            };
+            focusedInactive = {
+              background = "#${c.BrightWhite}";
+              border = "#${c.BrightBlack}";
+              childBorder = "#${c.BrightWhite}";
+              indicator = "#${c.BrightBlack}";
+              text = "#${c.White}";
+            };
+            unfocused = {
+              background = "#${c.Black}";
+              border = "#${c.BrightBlack}";
+              childBorder = "#${c.Black}";
+              indicator = "#${c.BrightBlack}";
+              text = "#${c.BrightBlack}";
+            };
+            urgent = {
+              background = "#${c.Red}";
+              border = "#${c.Black}";
+              childBorder = "#${c.Red}";
+              indicator = "#${c.Red}";
+              text = "#${c.White}";
+            };
           };
-          focusedInactive = {
-            background = "#${c.BrightWhite}";
-            border = "#${c.BrightBlack}";
-            childBorder = "#${c.BrightWhite}";
-            indicator = "#${c.BrightBlack}";
-            text = "#${c.White}";
-          };
-          unfocused = {
-            background = "#${c.Black}";
-            border = "#${c.BrightBlack}";
-            childBorder = "#${c.Black}";
-            indicator = "#${c.BrightBlack}";
-            text = "#${c.BrightBlack}";
-          };
-          urgent = {
-            background = "#${c.Red}";
-            border = "#${c.Black}";
-            childBorder = "#${c.Red}";
-            indicator = "#${c.Red}";
-            text = "#${c.White}";
-          };
-        };
       };
 
     };
