@@ -106,6 +106,9 @@ in
 
               # open wlay to control displays
               "XF86Display" = "exec ${pkgs.wlay}/bin/wlay";
+
+              # Screen lock
+              "${modifier}+Shift+l" = "exec ${pkgs.swaylock}/bin/swaylock";
             })
 
           ])
