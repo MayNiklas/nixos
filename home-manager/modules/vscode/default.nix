@@ -94,7 +94,13 @@ in
           james-yu.latex-workshop
           jnoortheen.nix-ide
           ms-azuretools.vscode-docker
+          ms-python.black-formatter
+          ms-python.flake8
+          ms-python.isort
+          ms-python.mypy-type-checker
+          ms-python.pylint
           ms-python.python
+          ms-python.vscode-pylance
           ms-vscode-remote.remote-ssh
           ms-vscode.cpptools
           redhat.vscode-xml
