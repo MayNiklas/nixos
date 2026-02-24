@@ -1,4 +1,9 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
 let
   cfg = config.mayniklas.programs.swaylock;
@@ -47,7 +52,9 @@ in
     };
 
     wayland.windowManager.sway.config.startup = [
-      { command = "${pkgs.swayidle}/bin/swayidle -w timeout 180 '${pkgs.swaylock}/bin/swaylock -fF' timeout 240 '${pkgs.systemd}/bin/systemctl suspend'"; }
+      {
+        command = "${pkgs.swayidle}/bin/swayidle -w timeout 240 '${pkgs.swaylock}/bin/swaylock -fF' timeout 300 '${pkgs.systemd}/bin/systemctl suspend'";
+      }
     ];
 
   };
