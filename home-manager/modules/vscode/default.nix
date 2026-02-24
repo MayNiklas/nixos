@@ -55,7 +55,7 @@ in
           "serverSettings" = {
             "nixd" = {
               "formatting" = {
-                "command" = [ "nixpkgs" ]; # consider moving to nixfmt-rfc-style
+                "command" = [ "nixfmt" ]; # consider moving to nixfmt-rfc-style
               };
               "options" = {
                 "nixos" = {
