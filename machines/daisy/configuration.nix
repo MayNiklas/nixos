@@ -50,6 +50,8 @@
     networkmanager.enable = true;
   };
 
+  services.avahi.enable = true;
+
   # swapfile
   swapDevices = [
     {
