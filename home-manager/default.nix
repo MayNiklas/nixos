@@ -32,6 +32,8 @@ in
     # nixpkgs.config`
     home-manager.useUserPackages = true;
 
+    home-manager.backupFileExtension = "hm-bak";
+
     home-manager.users."${cfg.username}" = {
 
       imports = [
