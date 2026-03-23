@@ -22,94 +22,97 @@ in
     programs.vscode = {
       enable = true;
       package = pkgs.vscode;
-      enableExtensionUpdateCheck = false;
-      enableUpdateCheck = false;
 
-      # https://rycee.gitlab.io/home-manager/options.html#opt-programs.vscode.keybindings
-      keybindings = [ ];
+      profiles.default = {
+        enableExtensionUpdateCheck = false;
+        enableUpdateCheck = false;
 
-      # ~/.config/Code/User/settings.json
-      userSettings = {
-        # privacy
-        "telemetry.telemetryLevel" = "off";
-        "redhat.telemetry.enabled" = false;
+        # https://rycee.gitlab.io/home-manager/options.html#opt-programs.vscode.keybindings
+        keybindings = [ ];
 
-        # style
-        "terminal.integrated.fontFamily" = "source code pro";
-        "workbench.colorTheme" = "GitHub Dark Default";
+        # ~/.config/Code/User/settings.json
+        userSettings = {
+          # privacy
+          "telemetry.telemetryLevel" = "off";
+          "redhat.telemetry.enabled" = false;
 
-        # Copilot
-        "github.copilot.enable" = {
-          # enabled
-          "*" = true;
-          "markdown" = true;
-          # disabled
-          "plaintext" = false;
-          "scminput" = false;
-        };
+          # style
+          "terminal.integrated.fontFamily" = "source code pro";
+          "workbench.colorTheme" = "GitHub Dark Default";
 
-        # jnoortheen.nix-ide
-        "nix" = {
-          "enableLanguageServer" = true;
-          "serverPath" = "nixd";
-          "serverSettings" = {
-            "nixd" = {
-              "formatting" = {
-                "command" = [ "nixfmt" ]; # consider moving to nixfmt-rfc-style
-              };
-              "options" = {
-                "nixos" = {
-                  "expr" = "(builtins.getFlake .#nixosConfigurations.daisy.options";
+          # Copilot
+          "github.copilot.enable" = {
+            # enabled
+            "*" = true;
+            "markdown" = true;
+            # disabled
+            "plaintext" = false;
+            "scminput" = false;
+          };
+
+          # jnoortheen.nix-ide
+          "nix" = {
+            "enableLanguageServer" = true;
+            "serverPath" = "nixd";
+            "serverSettings" = {
+              "nixd" = {
+                "formatting" = {
+                  "command" = [ "nixfmt" ]; # consider moving to nixfmt-rfc-style
                 };
-                "home-manager" = {
-                  "expr" = "(builtins.getFlake .#homeConfigurations.desktop.options";
+                "options" = {
+                  "nixos" = {
+                    "expr" = "(builtins.getFlake .#nixosConfigurations.daisy.options";
+                  };
+                  "home-manager" = {
+                    "expr" = "(builtins.getFlake .#homeConfigurations.desktop.options";
+                  };
                 };
               };
             };
           };
+
+          # Markdown
+          "[markdown]" = {
+            "editor.defaultFormatter" = "DavidAnson.vscode-markdownlint";
+          };
+
+          # Go
+          "[go]" = {
+            "editor.defaultFormatter" = "golang.go";
+          };
+          "go.toolsManagement.checkForUpdates" = "off";
         };
 
-        # Markdown
-        "[markdown]" = {
-          "editor.defaultFormatter" = "DavidAnson.vscode-markdownlint";
-        };
-
-        # Go
-        "[go]" = {
-          "editor.defaultFormatter" = "golang.go";
-        };
-        "go.toolsManagement.checkForUpdates" = "off";
+        extensions =
+          with pkgs.vscode-extensions;
+          [
+            # anthropic.claude-code
+            davidanson.vscode-markdownlint
+            github.copilot
+            github.copilot-chat
+            github.github-vscode-theme
+            github.vscode-github-actions
+            github.vscode-pull-request-github
+            golang.go
+            james-yu.latex-workshop
+            jnoortheen.nix-ide
+            ms-azuretools.vscode-docker
+            ms-python.black-formatter
+            ms-python.flake8
+            ms-python.isort
+            ms-python.mypy-type-checker
+            ms-python.pylint
+            ms-python.python
+            ms-python.vscode-pylance
+            ms-vscode-remote.remote-ssh
+            ms-vscode.cpptools
+            redhat.vscode-xml
+            redhat.vscode-yaml
+            rust-lang.rust-analyzer
+            yzhang.markdown-all-in-one
+          ]
+          ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [ ];
       };
-
-      extensions =
-        with pkgs.vscode-extensions;
-        [
-          davidanson.vscode-markdownlint
-          github.copilot
-          github.copilot-chat
-          github.github-vscode-theme
-          github.vscode-github-actions
-          github.vscode-pull-request-github
-          golang.go
-          james-yu.latex-workshop
-          jnoortheen.nix-ide
-          ms-azuretools.vscode-docker
-          ms-python.black-formatter
-          ms-python.flake8
-          ms-python.isort
-          ms-python.mypy-type-checker
-          ms-python.pylint
-          ms-python.python
-          ms-python.vscode-pylance
-          ms-vscode-remote.remote-ssh
-          ms-vscode.cpptools
-          redhat.vscode-xml
-          redhat.vscode-yaml
-          rust-lang.rust-analyzer
-          yzhang.markdown-all-in-one
-        ]
-        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [ ];
-
     };
   };
 }

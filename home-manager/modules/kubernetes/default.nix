@@ -13,7 +13,7 @@ let cfg = config.mayniklas.programs.kubernetes; in
       kubectl-convert
     ];
 
-    programs.vscode = mkIf config.programs.vscode.enable {
+    programs.vscode.profiles.default = mkIf config.programs.vscode.enable {
       userSettings = { };
       extensions = with pkgs.vscode-extensions; [
         ms-kubernetes-tools.vscode-kubernetes-tools
