@@ -102,18 +102,18 @@
         "x86_64-linux"
       ];
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-      nixpkgsFor = forAllSystems (
-        system:
-        import nixpkgs {
-          inherit system;
-          overlays = [ self.overlays.default ];
-        }
-      );
+      # nixpkgsFor = forAllSystems (
+      #   system:
+      #   import nixpkgs {
+      #     inherit system;
+      #     overlays = [ self.overlays.default ];
+      #   }
+      # );
     in
     {
 
       # Use nixfmt-tree for `nix fmt'
-      formatter = forAllSystems (system: nixpkgsFor.${system}.nixfmt-tree);
+      formatter = forAllSystems (system: (import nixpkgs { inherit system; }).nixfmt-tree);
 
       # Expose overlay to flake outputs, to allow using it from other flakes.
       # Flake inputs are passed to the overlay so that the packages defined in
