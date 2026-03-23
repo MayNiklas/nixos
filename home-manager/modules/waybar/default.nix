@@ -51,9 +51,15 @@ in
         position = "bottom";
         spacing = 4; # Gaps between modules (4px)
         modules-left = [ "sway/workspaces" "sway/mode" ];
-        modules-right = [ "tray" "cpu" "memory" "network" "pulseaudio" "battery" "clock" ];
+        modules-right = [ "tray" "cpu" "memory" "backlight" "network" "pulseaudio" "battery" "clock" ];
         tray = {
           spacing = 10;
+        };
+        backlight = {
+          format = "{percent}% {icon}";
+          format-icons = [ "󰃞" "󰃟" "󰃠" ];
+          on-scroll-up = "${pkgs.brightnessctl}/bin/brightnessctl set 5%+";
+          on-scroll-down = "${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
         };
         cpu = {
           interval = 5;
