@@ -1,6 +1,6 @@
 { stdenv
 , writeShellScriptBin
-, steamPackages
+, steamcmd
 , steam-run
 , ...
 }:
@@ -11,10 +11,10 @@ let
     mkdir -p $server_dir
 
     echo "Downloading and installing SteamCMD"
-    ${steamPackages.steamcmd}/bin/steamcmd --help
+    ${steamcmd}/bin/steamcmd --help
 
     echo "Downloading and installing CS2 server"
-    ${steamPackages.steamcmd}/bin/steamcmd +login anonymous +force_install_dir $server_dir +app_update 730 +quit
+    ${steamcmd}/bin/steamcmd +login anonymous +force_install_dir $server_dir +app_update 730 +quit
 
     # change to the csgo server directory
     cd $server_dir/game/bin/linuxsteamrt64
