@@ -61,10 +61,6 @@ in {
 
     };
 
-    # currently still needed for nvidia-container-toolkit
-    virtualisation.docker.enableNvidia =
-      mkIf config.virtualisation.docker.enable true;
-
     environment.systemPackages = with pkgs; [ nvtopPackages.full ];
 
     nixpkgs.config = {
