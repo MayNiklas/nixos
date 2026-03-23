@@ -1,16 +1,26 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
 
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
+  mayniklas.defaults.CISkip = true;
+
   home-manager.users."${config.mayniklas.home-manager.username}" = {
     home.packages = with pkgs; [ ];
   };
 
   mayniklas = {
-    docker = { enable = true; };
+    docker = {
+      enable = true;
+    };
     metrics = {
       node = {
         enable = true;

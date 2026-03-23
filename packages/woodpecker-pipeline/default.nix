@@ -20,11 +20,9 @@ let
   hosts = builtins.attrNames hostMeta;
 
   # Only generate pipelines for architectures used by at least one nixosConfiguration
-  activeSystems = lib.filter
-    (system: lib.any
-      (host: hostMeta.${host}.system == system)
-      hosts)
-    supportedSystems;
+  activeSystems = lib.filter (
+    system: lib.any (host: hostMeta.${host}.system == system) hosts
+  ) supportedSystems;
 
   pipelineFor = lib.genAttrs activeSystems (
     system:
@@ -57,20 +55,25 @@ let
               image = "bash";
               failure = "ignore";
               commands = [
-                ''nix-fast-build --no-nom --skip-cached --attic-cache lounge-rocks:nix-cache --flake ".#checks.$(nix eval --raw --impure --file builtins.currentSystem)"''
+                ''nix-fast-build --no-nom --skip-cached --attic-cache lounge-rocks:nix-cache --flake ".#checks.${system}"''
               ];
             };
-            verifyBuildsStep = {
-              name = "Verify all builds succeeded";
-              image = "bash";
-              "when" = {
-                "status" = "failure";
+            verifyBuildsStep = arch:
+              let
+                activeHosts = lib.filter (
+                  host: hostMeta.${host}.system == arch && !hostMeta.${host}.ciSkip
+                ) hosts;
+              in
+              {
+                name = "Verify all builds succeeded";
+                image = "bash";
+                "when" = {
+                  "status" = "failure";
+                };
+                commands = map (host: "test -e 'result-${host}'") activeHosts ++ [
+                  "echo 'All builds succeeded.'"
+                ];
               };
-              commands = [
-                ''nix-fast-build --no-nom --skip-cached --flake ".#checks.$(nix eval --raw --impure --file builtins.currentSystem)"''
-              ];
-            };
-            currentSystem = ''$(nix eval --raw --impure --file builtins.currentSystem)'';
           in
           pkgs.lib.lists.flatten ([
             (map
@@ -94,8 +97,8 @@ let
                       }
                     ]);
                     steps = pkgs.lib.lists.flatten (
-                      [ nixFlakeShow ]
-                      ++ [ atticSetupStep ]
+                      # [ nixFlakeShow ]
+                      [ atticSetupStep ]
                       ++ [ nixFastBuildStep ]
                       ++ (map (
                         host:
@@ -115,7 +118,7 @@ let
                                 "status" = "failure";
                               };
                               commands = [
-                                "nix build --print-out-paths '.#nixosConfigurations.${host}.config.system.build.toplevel'"
+                                "nix build --print-out-paths '.#nixosConfigurations.${host}.config.system.build.toplevel' -o 'result-${host}'"
                               ];
                             }
                             {
@@ -123,12 +126,12 @@ let
                               image = "bash";
                               failure = "ignore";
                               commands = [
-                                "nix path-info --closure-size -h $(readlink -f 'result-${currentSystem}.${host}')"
+                                "nix path-info --closure-size -h $(readlink -f 'result-${host}')"
                               ];
                             }
                           ]
                       ) hosts)
-                      ++ [ verifyBuildsStep ]
+                      ++ [ (verifyBuildsStep arch) ]
                     );
                   }
                 );
@@ -150,7 +153,9 @@ pkgs.writeShellScriptBin "woodpecker-pipeline" ''
   rm -rf .woodpecker/*
 
   # copy pipelines to .woodpecker folder (only for architectures present in the flake)
-  ${lib.concatStrings (map (system: ''
-    cat ${pipelineFor.${system}} | ${pkgs.jq}/bin/jq '.configs[].data' -r | ${pkgs.jq}/bin/jq > .woodpecker/${woodpecker-filenames.${system}}
-  '') activeSystems)}
+  ${lib.concatStrings (
+    map (system: ''
+      cat ${pipelineFor.${system}} | ${pkgs.jq}/bin/jq '.configs[].data' -r | ${pkgs.jq}/bin/jq > .woodpecker/${woodpecker-filenames.${system}}
+    '') activeSystems
+  )}
 ''

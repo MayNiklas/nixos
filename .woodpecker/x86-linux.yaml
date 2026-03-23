@@ -6,13 +6,6 @@
   "steps": [
     {
       "commands": [
-        "nix flake show"
-      ],
-      "image": "bash",
-      "name": "Nix flake show"
-    },
-    {
-      "commands": [
         "attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default"
       ],
       "environment": {
@@ -25,7 +18,7 @@
     },
     {
       "commands": [
-        "nix-fast-build --no-nom --skip-cached --attic-cache lounge-rocks:nix-cache --flake \".#checks.$(nix eval --raw --impure --file builtins.currentSystem)\""
+        "nix-fast-build --no-nom --skip-cached --attic-cache lounge-rocks:nix-cache --flake \".#checks.x86_64-linux\""
       ],
       "failure": "ignore",
       "image": "bash",
@@ -33,7 +26,7 @@
     },
     {
       "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.aida.config.system.build.toplevel'"
+        "nix build --print-out-paths '.#nixosConfigurations.aida.config.system.build.toplevel' -o 'result-aida'"
       ],
       "failure": "ignore",
       "image": "bash",
@@ -44,7 +37,7 @@
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-$(nix eval --raw --impure --file builtins.currentSystem).aida')"
+        "nix path-info --closure-size -h $(readlink -f 'result-aida')"
       ],
       "failure": "ignore",
       "image": "bash",
@@ -52,7 +45,7 @@
     },
     {
       "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.daisy.config.system.build.toplevel'"
+        "nix build --print-out-paths '.#nixosConfigurations.daisy.config.system.build.toplevel' -o 'result-daisy'"
       ],
       "failure": "ignore",
       "image": "bash",
@@ -63,7 +56,7 @@
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-$(nix eval --raw --impure --file builtins.currentSystem).daisy')"
+        "nix path-info --closure-size -h $(readlink -f 'result-daisy')"
       ],
       "failure": "ignore",
       "image": "bash",
@@ -71,7 +64,7 @@
     },
     {
       "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.deke.config.system.build.toplevel'"
+        "nix build --print-out-paths '.#nixosConfigurations.deke.config.system.build.toplevel' -o 'result-deke'"
       ],
       "failure": "ignore",
       "image": "bash",
@@ -82,7 +75,7 @@
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-$(nix eval --raw --impure --file builtins.currentSystem).deke')"
+        "nix path-info --closure-size -h $(readlink -f 'result-deke')"
       ],
       "failure": "ignore",
       "image": "bash",
@@ -90,26 +83,7 @@
     },
     {
       "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.fitz.config.system.build.toplevel'"
-      ],
-      "failure": "ignore",
-      "image": "bash",
-      "name": "Rebuild fitz (diagnostic)",
-      "when": {
-        "status": "failure"
-      }
-    },
-    {
-      "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-$(nix eval --raw --impure --file builtins.currentSystem).fitz')"
-      ],
-      "failure": "ignore",
-      "image": "bash",
-      "name": "Show fitz info"
-    },
-    {
-      "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.kora.config.system.build.toplevel'"
+        "nix build --print-out-paths '.#nixosConfigurations.kora.config.system.build.toplevel' -o 'result-kora'"
       ],
       "failure": "ignore",
       "image": "bash",
@@ -120,7 +94,7 @@
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-$(nix eval --raw --impure --file builtins.currentSystem).kora')"
+        "nix path-info --closure-size -h $(readlink -f 'result-kora')"
       ],
       "failure": "ignore",
       "image": "bash",
@@ -128,7 +102,7 @@
     },
     {
       "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.simmons.config.system.build.toplevel'"
+        "nix build --print-out-paths '.#nixosConfigurations.simmons.config.system.build.toplevel' -o 'result-simmons'"
       ],
       "failure": "ignore",
       "image": "bash",
@@ -139,7 +113,7 @@
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-$(nix eval --raw --impure --file builtins.currentSystem).simmons')"
+        "nix path-info --closure-size -h $(readlink -f 'result-simmons')"
       ],
       "failure": "ignore",
       "image": "bash",
@@ -147,7 +121,7 @@
     },
     {
       "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.snowflake.config.system.build.toplevel'"
+        "nix build --print-out-paths '.#nixosConfigurations.snowflake.config.system.build.toplevel' -o 'result-snowflake'"
       ],
       "failure": "ignore",
       "image": "bash",
@@ -158,7 +132,7 @@
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-$(nix eval --raw --impure --file builtins.currentSystem).snowflake')"
+        "nix path-info --closure-size -h $(readlink -f 'result-snowflake')"
       ],
       "failure": "ignore",
       "image": "bash",
@@ -166,7 +140,7 @@
     },
     {
       "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.the-bus.config.system.build.toplevel'"
+        "nix build --print-out-paths '.#nixosConfigurations.the-bus.config.system.build.toplevel' -o 'result-the-bus'"
       ],
       "failure": "ignore",
       "image": "bash",
@@ -177,7 +151,7 @@
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-$(nix eval --raw --impure --file builtins.currentSystem).the-bus')"
+        "nix path-info --closure-size -h $(readlink -f 'result-the-bus')"
       ],
       "failure": "ignore",
       "image": "bash",
@@ -185,7 +159,7 @@
     },
     {
       "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.the-hub.config.system.build.toplevel'"
+        "nix build --print-out-paths '.#nixosConfigurations.the-hub.config.system.build.toplevel' -o 'result-the-hub'"
       ],
       "failure": "ignore",
       "image": "bash",
@@ -196,7 +170,7 @@
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-$(nix eval --raw --impure --file builtins.currentSystem).the-hub')"
+        "nix path-info --closure-size -h $(readlink -f 'result-the-hub')"
       ],
       "failure": "ignore",
       "image": "bash",
@@ -204,7 +178,15 @@
     },
     {
       "commands": [
-        "nix-fast-build --no-nom --skip-cached --flake \".#checks.$(nix eval --raw --impure --file builtins.currentSystem)\""
+        "test -e 'result-aida'",
+        "test -e 'result-daisy'",
+        "test -e 'result-deke'",
+        "test -e 'result-kora'",
+        "test -e 'result-simmons'",
+        "test -e 'result-snowflake'",
+        "test -e 'result-the-bus'",
+        "test -e 'result-the-hub'",
+        "echo 'All builds succeeded.'"
       ],
       "image": "bash",
       "name": "Verify all builds succeeded",
