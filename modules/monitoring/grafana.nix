@@ -52,6 +52,7 @@ in
           http_addr = "127.0.0.1";
           domain = cfg.domain;
         };
+        security.secret_key = "SW2YcwTIb9zpOOhoPsMm";
         "auth.anonymous".enabled' = true;
       };
 
