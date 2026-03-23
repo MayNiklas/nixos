@@ -143,6 +143,15 @@ workspace numbers
 /* } */
 
 /*********************
+ *  IDLE INHIBITOR   *
+ *********************/
+
+#idle_inhibitor.activated {
+	background-color: @Green;
+	color: @Black;
+}
+
+/*********************
  *       TRAY        *
  *********************/
 

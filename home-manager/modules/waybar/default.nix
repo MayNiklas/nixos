@@ -51,9 +51,16 @@ in
         position = "bottom";
         spacing = 4; # Gaps between modules (4px)
         modules-left = [ "sway/workspaces" "sway/mode" ];
-        modules-right = [ "tray" "cpu" "memory" "backlight" "network" "pulseaudio" "battery" "clock" ];
+        modules-right = [ "tray" "idle_inhibitor" "cpu" "memory" "backlight" "network" "pulseaudio" "battery" "clock" ];
         tray = {
           spacing = 10;
+        };
+        idle_inhibitor = {
+          format = "{icon}";
+          format-icons = {
+            activated = "󰒳";
+            deactivated = "󰒲";
+          };
         };
         backlight = {
           format = "{percent}% {icon}";
