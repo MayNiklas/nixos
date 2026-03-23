@@ -143,6 +143,22 @@ workspace numbers
 /* } */
 
 /*********************
+ *      MPRIS        *
+ *********************/
+
+#mpris {
+	padding: 5px 10px;
+	margin: 3px 3px;
+	color: @White;
+	border-radius: 3;
+	background-color: @Black;
+}
+
+#mpris.paused {
+	color: @BrightBlack;
+}
+
+/*********************
  *  IDLE INHIBITOR   *
  *********************/
 

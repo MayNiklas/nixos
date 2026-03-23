@@ -50,10 +50,25 @@ in
         layer = "top";
         position = "bottom";
         spacing = 4; # Gaps between modules (4px)
-        modules-left = [ "sway/workspaces" "sway/mode" ];
+        modules-left = [ "sway/workspaces" "sway/mode" "mpris" ];
         modules-right = [ "tray" "idle_inhibitor" "cpu" "memory" "backlight" "network" "pulseaudio" "battery" "clock" ];
         tray = {
           spacing = 10;
+        };
+        mpris = {
+          format = "{player_icon} {dynamic}";
+          format-paused = "{status_icon} {dynamic}";
+          dynamic-len = 40;
+          dynamic-importance-order = [ "title" "artist" "album" "position" "length" ];
+          player-icons = {
+            default = "▶";
+            spotify = "";
+            firefox = "󰈹";
+            mpv = "󰎁";
+          };
+          status-icons = {
+            paused = "⏸";
+          };
         };
         idle_inhibitor = {
           format = "{icon}";
