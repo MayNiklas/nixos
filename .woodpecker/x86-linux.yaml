@@ -25,8 +25,17 @@
     },
     {
       "commands": [
+        "nix-fast-build --no-nom --skip-cached --attic-cache lounge-rocks:nix-cache --flake \".#checks.$(nix eval --raw --impure --file builtins.currentSystem)\""
+      ],
+      "failure": "ignore",
+      "image": "bash",
+      "name": "Build all outputs for this architecture"
+    },
+    {
+      "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.aida.config.system.build.toplevel' -o 'result-aida'"
       ],
+      "failure": "ignore",
       "image": "bash",
       "name": "Build aida"
     },
@@ -34,20 +43,15 @@
       "commands": [
         "nix path-info --closure-size -h $(readlink -f 'result-aida')"
       ],
+      "failure": "ignore",
       "image": "bash",
       "name": "Show aida info"
     },
     {
       "commands": [
-        "attic push lounge-rocks:nix-cache 'result-aida'"
-      ],
-      "image": "bash",
-      "name": "Push aida to Attic"
-    },
-    {
-      "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.daisy.config.system.build.toplevel' -o 'result-daisy'"
       ],
+      "failure": "ignore",
       "image": "bash",
       "name": "Build daisy"
     },
@@ -55,20 +59,15 @@
       "commands": [
         "nix path-info --closure-size -h $(readlink -f 'result-daisy')"
       ],
+      "failure": "ignore",
       "image": "bash",
       "name": "Show daisy info"
     },
     {
       "commands": [
-        "attic push lounge-rocks:nix-cache 'result-daisy'"
-      ],
-      "image": "bash",
-      "name": "Push daisy to Attic"
-    },
-    {
-      "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.deke.config.system.build.toplevel' -o 'result-deke'"
       ],
+      "failure": "ignore",
       "image": "bash",
       "name": "Build deke"
     },
@@ -76,20 +75,15 @@
       "commands": [
         "nix path-info --closure-size -h $(readlink -f 'result-deke')"
       ],
+      "failure": "ignore",
       "image": "bash",
       "name": "Show deke info"
     },
     {
       "commands": [
-        "attic push lounge-rocks:nix-cache 'result-deke'"
-      ],
-      "image": "bash",
-      "name": "Push deke to Attic"
-    },
-    {
-      "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.fitz.config.system.build.toplevel' -o 'result-fitz'"
       ],
+      "failure": "ignore",
       "image": "bash",
       "name": "Build fitz"
     },
@@ -97,20 +91,15 @@
       "commands": [
         "nix path-info --closure-size -h $(readlink -f 'result-fitz')"
       ],
+      "failure": "ignore",
       "image": "bash",
       "name": "Show fitz info"
     },
     {
       "commands": [
-        "attic push lounge-rocks:nix-cache 'result-fitz'"
-      ],
-      "image": "bash",
-      "name": "Push fitz to Attic"
-    },
-    {
-      "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.kora.config.system.build.toplevel' -o 'result-kora'"
       ],
+      "failure": "ignore",
       "image": "bash",
       "name": "Build kora"
     },
@@ -118,20 +107,15 @@
       "commands": [
         "nix path-info --closure-size -h $(readlink -f 'result-kora')"
       ],
+      "failure": "ignore",
       "image": "bash",
       "name": "Show kora info"
     },
     {
       "commands": [
-        "attic push lounge-rocks:nix-cache 'result-kora'"
-      ],
-      "image": "bash",
-      "name": "Push kora to Attic"
-    },
-    {
-      "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.simmons.config.system.build.toplevel' -o 'result-simmons'"
       ],
+      "failure": "ignore",
       "image": "bash",
       "name": "Build simmons"
     },
@@ -139,20 +123,15 @@
       "commands": [
         "nix path-info --closure-size -h $(readlink -f 'result-simmons')"
       ],
+      "failure": "ignore",
       "image": "bash",
       "name": "Show simmons info"
     },
     {
       "commands": [
-        "attic push lounge-rocks:nix-cache 'result-simmons'"
-      ],
-      "image": "bash",
-      "name": "Push simmons to Attic"
-    },
-    {
-      "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.snowflake.config.system.build.toplevel' -o 'result-snowflake'"
       ],
+      "failure": "ignore",
       "image": "bash",
       "name": "Build snowflake"
     },
@@ -160,20 +139,15 @@
       "commands": [
         "nix path-info --closure-size -h $(readlink -f 'result-snowflake')"
       ],
+      "failure": "ignore",
       "image": "bash",
       "name": "Show snowflake info"
     },
     {
       "commands": [
-        "attic push lounge-rocks:nix-cache 'result-snowflake'"
-      ],
-      "image": "bash",
-      "name": "Push snowflake to Attic"
-    },
-    {
-      "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.the-bus.config.system.build.toplevel' -o 'result-the-bus'"
       ],
+      "failure": "ignore",
       "image": "bash",
       "name": "Build the-bus"
     },
@@ -181,20 +155,15 @@
       "commands": [
         "nix path-info --closure-size -h $(readlink -f 'result-the-bus')"
       ],
+      "failure": "ignore",
       "image": "bash",
       "name": "Show the-bus info"
     },
     {
       "commands": [
-        "attic push lounge-rocks:nix-cache 'result-the-bus'"
-      ],
-      "image": "bash",
-      "name": "Push the-bus to Attic"
-    },
-    {
-      "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.the-hub.config.system.build.toplevel' -o 'result-the-hub'"
       ],
+      "failure": "ignore",
       "image": "bash",
       "name": "Build the-hub"
     },
@@ -202,18 +171,22 @@
       "commands": [
         "nix path-info --closure-size -h $(readlink -f 'result-the-hub')"
       ],
+      "failure": "ignore",
       "image": "bash",
       "name": "Show the-hub info"
     },
     {
       "commands": [
-        "attic push lounge-rocks:nix-cache 'result-the-hub'"
+        "nix-fast-build --no-nom --skip-cached --flake \".#checks.$(nix eval --raw --impure --file builtins.currentSystem)\""
       ],
       "image": "bash",
-      "name": "Push the-hub to Attic"
+      "name": "Verify all builds succeeded"
     }
   ],
   "when": [
+    {
+      "event": "manual"
+    },
     {
       "branch": "main",
       "event": "push"

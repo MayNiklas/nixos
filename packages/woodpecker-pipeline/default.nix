@@ -38,6 +38,21 @@ let
                 ATTIC_KEY.from_secret = "attic_key";
               };
             };
+            nixFastBuildStep = {
+              name = "Build all outputs for this architecture";
+              image = "bash";
+              failure = "ignore";
+              commands = [
+                ''nix-fast-build --no-nom --skip-cached --attic-cache lounge-rocks:nix-cache --flake ".#checks.$(nix eval --raw --impure --file builtins.currentSystem)"''
+              ];
+            };
+            verifyBuildsStep = {
+              name = "Verify all builds succeeded";
+              image = "bash";
+              commands = [
+                ''nix-fast-build --no-nom --skip-cached --flake ".#checks.$(nix eval --raw --impure --file builtins.currentSystem)"''
+              ];
+            };
           in
           pkgs.lib.lists.flatten ([
             (map
@@ -50,7 +65,7 @@ let
                       platform = woodpecker-platforms."${arch}";
                     };
                     when = pkgs.lib.lists.flatten ([
-                      # { event = "manual"; }
+                      { event = "manual"; }
                       {
                         event = "push";
                         branch = "main";
@@ -59,12 +74,11 @@ let
                         event = "push";
                         branch = "update_flake_lock_action";
                       }
-                      # could allow PRs from forks
-                      # { event = "pull_request"; repo = "MayNiklas/nixos"; }
                     ]);
                     steps = pkgs.lib.lists.flatten (
                       [ nixFlakeShow ]
                       ++ [ atticSetupStep ]
+                      ++ [ nixFastBuildStep ]
                       ++ (map (
                         host:
                         # only build hosts for the arch we are currently building
@@ -78,6 +92,7 @@ let
                             {
                               name = "Build ${host}";
                               image = "bash";
+                              failure = "ignore";
                               commands = [
                                 "nix build --print-out-paths '.#nixosConfigurations.${host}.config.system.build.toplevel' -o 'result-${host}'"
                               ];
@@ -85,17 +100,20 @@ let
                             {
                               "name" = "Show ${host} info";
                               "image" = "bash";
+                              "failure" = "ignore";
                               "commands" = [
                                 "nix path-info --closure-size -h $(readlink -f 'result-${host}')"
                               ];
                             }
-                            {
-                              name = "Push ${host} to Attic";
-                              image = "bash";
-                              commands = [ "attic push lounge-rocks:nix-cache 'result-${host}'" ];
-                            }
+                            # {
+                            #   name = "Push ${host} to Attic";
+                            #   image = "bash";
+                            #   failure = "ignore";
+                            #   commands = [ "attic push lounge-rocks:nix-cache 'result-${host}'" ];
+                            # }
                           ]
                       ) (builtins.attrNames flake-self.nixosConfigurations))
+                      ++ [ verifyBuildsStep ]
                     );
                   }
                 );
@@ -117,6 +135,6 @@ pkgs.writeShellScriptBin "woodpecker-pipeline" ''
   rm -rf .woodpecker/*
     
   # copy pipelines to .woodpecker folder
-  # cat ${pipelineFor.aarch64-linux} | ${pkgs.jq}/bin/jq '.configs[].data' -r | ${pkgs.jq}/bin/jq > .woodpecker/arm64-linux.yaml
+  cat ${pipelineFor.aarch64-linux} | ${pkgs.jq}/bin/jq '.configs[].data' -r | ${pkgs.jq}/bin/jq > .woodpecker/arm64-linux.yaml
   cat ${pipelineFor.x86_64-linux} | ${pkgs.jq}/bin/jq '.configs[].data' -r | ${pkgs.jq}/bin/jq > .woodpecker/x86-linux.yaml
 ''
