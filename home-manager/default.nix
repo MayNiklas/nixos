@@ -42,7 +42,7 @@ in
           nixpkgs.overlays = [
             flake-self.overlays.default
             (final: prev: {
-              inherit (flake-self.inputs.nix-fast-build.packages.${pkgs.system}) nix-fast-build;
+              inherit (flake-self.inputs.nix-fast-build.packages.${pkgs.stdenv.hostPlatform.system}) nix-fast-build;
               my-wallpaper = pkgs.callPackage
                 ({ function ? "batman", width ? 3840, height ? 2160, extraArguments ? "", ... }:
                   pkgs.stdenv.mkDerivation {
@@ -51,7 +51,7 @@ in
                     phases = [ "installPhase" ];
                     installPhase = ''
                       mkdir $out
-                      ${flake-self.inputs.wallpaper-generator.packages.${pkgs.system}.wp-gen}/bin/wallpaper-generator ${function} --width ${toString width} --height ${toString height} ${extraArguments} -o $out/wallpaper.png
+                      ${flake-self.inputs.wallpaper-generator.packages.${pkgs.stdenv.hostPlatform.system}.wp-gen}/bin/wallpaper-generator ${function} --width ${toString width} --height ${toString height} ${extraArguments} -o $out/wallpaper.png
                     '';
                   })
                 { };
