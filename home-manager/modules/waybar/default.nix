@@ -51,9 +51,18 @@ in
         position = "bottom";
         spacing = 4; # Gaps between modules (4px)
         modules-left = [ "sway/workspaces" "sway/mode" ];
-        modules-right = [ "tray" "network" "pulseaudio" "battery" "clock" ];
+        modules-right = [ "tray" "cpu" "memory" "network" "pulseaudio" "battery" "clock" ];
         tray = {
           spacing = 10;
+        };
+        cpu = {
+          interval = 5;
+          format = "{usage}% ";
+          tooltip = false;
+        };
+        memory = {
+          interval = 5;
+          format = "{}% ";
         };
         network = {
           format-wifi = "{essid} ({signalStrength}%)  ";
