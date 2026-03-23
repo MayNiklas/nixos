@@ -17,7 +17,7 @@ in
       let
         my-python-packages =
           python-packages: with python-packages; [
-            requestsaiohttp
+            aiohttp
             beautifulsoup4
             black
             dateparser

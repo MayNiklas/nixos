@@ -1,4 +1,10 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
 
   # Install these packages for my user
   home.packages =
@@ -69,6 +75,7 @@
       git.enable = true;
       gtk.enable = true;
       kubernetes.enable = true;
+      python.enable = true;
       tmux.enable = true;
       vim.enable = true;
       vscode.enable = true;
@@ -77,7 +84,9 @@
     };
   };
 
-  services.gnome-keyring = { enable = true; };
+  services.gnome-keyring = {
+    enable = true;
+  };
 
   # Imports
   imports = [
@@ -94,6 +103,7 @@
     ../modules/i3
     ../modules/kubernetes
     ../modules/nvim
+    ../modules/python
     ../modules/sway
     ../modules/swaylock
     ../modules/tmux
