@@ -86,7 +86,7 @@ in
         extensions =
           with pkgs.vscode-extensions;
           [
-            # anthropic.claude-code
+            anthropic.claude-code
             davidanson.vscode-markdownlint
             github.copilot
             github.copilot-chat

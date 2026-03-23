@@ -1,10 +1,15 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.mayniklas.programs.devolopment;
+let
+  cfg = config.mayniklas.programs.devolopment;
 in
 {
-  options.mayniklas.programs.devolopment.enable =
-    mkEnableOption "enable devolopment applications";
+  options.mayniklas.programs.devolopment.enable = mkEnableOption "enable devolopment applications";
 
   config = mkIf cfg.enable {
 
@@ -25,6 +30,9 @@ in
       nixfmt
       nixpkgs-fmt
       rustfmt
+
+      ### Vibes
+      claude-code
 
       ### Jetbrains Software
       # jetbrains.clion

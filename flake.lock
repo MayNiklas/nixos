@@ -275,6 +275,23 @@
         "type": "github"
       }
     },
+    "nixpkgs-new": {
+      "locked": {
+        "lastModified": 1774106199,
+        "narHash": "sha256-US5Tda2sKmjrg2lNHQL3jRQ6p96cgfWh3J1QBliQ8Ws=",
+        "ref": "nixos-unstable",
+        "rev": "6c9a78c09ff4d6c21d0319114873508a6ec01655",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/NixOS/nixpkgs"
+      },
+      "original": {
+        "ref": "nixos-unstable",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/NixOS/nixpkgs"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1768127708,
@@ -333,6 +350,7 @@
         "nix-fast-build": "nix-fast-build",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-new": "nixpkgs-new",
         "shelly-exporter": "shelly-exporter",
         "valorant-exporter": "valorant-exporter",
         "vscode-server": "vscode-server",

@@ -3,9 +3,25 @@ let
   # Pass flake inputs to overlay so we can use the sources pinned in flake.lock
   # instead of having to keep sha256 hashes in each package for src
   inherit inputs;
-in self: super:
-let system = super.system;
-in {
+in
+self: super:
+let
+  system = super.stdenv.hostPlatform.system;
+in
+{
+  # Get claude-code from nixpkgs-new for the latest version
+  claude-code =
+    (import inputs.nixpkgs-new {
+      inherit system;
+      config.allowUnfree = true;
+    }).claude-code;
+  vscode-extensions = super.vscode-extensions // {
+    anthropic =
+      (import inputs.nixpkgs-new {
+        inherit system;
+        config.allowUnfree = true;
+      }).vscode-extensions.anthropic;
+  };
   # Custom packages. Will be made available on all machines and used where
   # needed.
 
@@ -27,10 +43,14 @@ in {
   # tautulli = super.pkgs.python3Packages.callPackage ../packages/tautulli { };
   verification-listener =
     super.pkgs.python3Packages.callPackage ../packages/verification-listener
-    { };
+      { };
   vs-fix = super.pkgs.callPackage ../packages/vs-fix { };
   inherit (super.pkgs.callPackages ../packages/unifi { })
-    unifiLTS unifi5 unifi6 unifi7;
+    unifiLTS
+    unifi5
+    unifi6
+    unifi7
+    ;
   unifi = super.pkgs.unifi7;
 
 }
