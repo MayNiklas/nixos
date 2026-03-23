@@ -53,7 +53,7 @@ in
 
     wayland.windowManager.sway.config.startup = [
       {
-        command = "${pkgs.swayidle}/bin/swayidle -w timeout 1200 '${pkgs.swaylock}/bin/swaylock -fF' timeout 1800 '${pkgs.systemd}/bin/systemctl suspend'";
+        command = "${pkgs.swayidle}/bin/swayidle -w timeout 180 '${pkgs.swaylock}/bin/swaylock -fF' timeout 300 '${pkgs.systemd}/bin/systemctl suspend'";
       }
     ];
 
