@@ -36,6 +36,7 @@ in
 
     home.packages = with pkgs; [
       mako
+      slurp # select region on screen (for screenshots)
       start-sway
       wev # find out how a key is called
       wlay
@@ -89,6 +90,9 @@ in
               # take screenshot of whole screen
               "Print" =
                 "exec ${pkgs.grim}/bin/grim /home/nik/Pictures/Screenshots/Screenshot-$(date +'%Y-%m-%d_%H-%M-%S.png')";
+              # take screenshot of selected region
+              "Shift+Print" =
+                "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" /home/nik/Pictures/Screenshots/Screenshot-$(date +'%Y-%m-%d_%H-%M-%S.png')";
               # control volume via wireplumber (native pipewire)
               "XF86AudioMute" = "exec ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
               "XF86AudioRaiseVolume" = "exec ${pkgs.wireplumber}/bin/wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+";
