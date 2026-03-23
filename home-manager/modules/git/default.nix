@@ -36,9 +36,13 @@ in
           "develop-eggs/"
           "dist/"
         ];
-        extraConfig = { pull.rebase = false; };
-        userEmail = "info@niklas-steffen.de";
-        userName = "MayNiklas";
+        settings = {
+          pull.rebase = false;
+          user = {
+            email = "info@niklas-steffen.de";
+            name = "MayNiklas";
+          };
+        };
       };
     };
     home.packages = [ pkgs.pre-commit ];
