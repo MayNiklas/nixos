@@ -30,7 +30,7 @@ in
       };
     };
 
-    programs.light.enable = true;
+    environment.systemPackages = [ pkgs.brightnessctl ];
 
     security = {
       # Allow swaylock to unlock the computer for us
