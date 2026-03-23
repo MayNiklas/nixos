@@ -85,12 +85,13 @@ in
         };
         cpu = {
           interval = 5;
-          format = "{usage}% ";
+          format = "CPU {usage}% ";
           tooltip = false;
         };
         memory = {
           interval = 5;
-          format = "{}% ";
+          format = "RAM {percentage}% ({used:0.1f}G) ";
+          tooltip-format = "{used:0.1f}G / {total:0.1f}G";
         };
         network = {
           format-wifi = "{essid} ({signalStrength}%)  ";
