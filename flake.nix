@@ -94,12 +94,6 @@
       };
     };
 
-    # https://github.com/Mic92/nix-fast-build
-    # speed-up your evaluation and building process.
-    nix-fast-build = {
-      url = "github:Mic92/nix-fast-build";
-    };
-
   };
   outputs =
     { self, ... }@inputs:

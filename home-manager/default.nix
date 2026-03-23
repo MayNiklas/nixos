@@ -42,7 +42,6 @@ in
           nixpkgs.overlays = [
             flake-self.overlays.default
             (final: prev: {
-              inherit (flake-self.inputs.nix-fast-build.packages.${pkgs.stdenv.hostPlatform.system}) nix-fast-build;
               my-wallpaper = pkgs.callPackage
                 ({ function ? "batman", width ? 3840, height ? 2160, extraArguments ? "", ... }:
                   pkgs.stdenv.mkDerivation {
