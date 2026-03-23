@@ -1,6 +1,12 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.mayniklas.programs.git;
+let
+  cfg = config.mayniklas.programs.git;
 in
 {
   options.mayniklas.programs.git.enable = mkEnableOption "enable git";
@@ -35,6 +41,8 @@ in
           "build/"
           "develop-eggs/"
           "dist/"
+          # IDE/editor files
+          ".claude/settings.local.json"
         ];
         settings = {
           pull.rebase = false;
