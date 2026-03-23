@@ -54,7 +54,7 @@
       virt-manager
       wget
       vlc
-      xfce.thunar
+      thunar
       xournalpp
       yt-dlp
       zoom-us
