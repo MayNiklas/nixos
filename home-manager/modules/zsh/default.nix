@@ -11,14 +11,14 @@ in
 
     programs.zsh = {
       enable = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       enableCompletion = true;
       # autocd = true;
-      dotDir = ".config/zsh";
+      dotDir = "${config.home.homeDirectory}/.config/zsh";
 
-      sessionVariables = { ZDOTDIR = "/home/nik/.config/zsh"; };
+      sessionVariables = { ZDOTDIR = "${config.home.homeDirectory}/.config/zsh"; };
 
-      initExtra = ''
+      initContent = ''
         bindkey "^[[1;5C" forward-word
         bindkey "^[[1;5D" backward-word
 
