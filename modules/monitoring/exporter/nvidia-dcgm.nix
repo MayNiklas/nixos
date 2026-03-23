@@ -27,7 +27,7 @@ in
       autoStart = true;
       image = "nvcr.io/nvidia/k8s/dcgm-exporter:3.1.8-3.1.5-ubuntu20.04";
       # ports = [ "9400:9400" ];
-      extraOptions = [ "--network" "host" "--cap-add" "SYS_ADMIN" "--gpus" "all" ];
+      extraOptions = [ "--network" "host" "--cap-add" "SYS_ADMIN" "--device=nvidia.com/gpu=all" ];
     };
     
     networking.firewall.interfaces.wg0.allowedTCPPorts = lib.optional cfg.enable 9400;
