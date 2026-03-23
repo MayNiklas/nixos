@@ -9,19 +9,6 @@ let
   system = super.stdenv.hostPlatform.system;
 in
 {
-  # Get claude-code from nixpkgs-new for the latest version
-  claude-code =
-    (import inputs.nixpkgs-new {
-      inherit system;
-      config.allowUnfree = true;
-    }).claude-code;
-  vscode-extensions = super.vscode-extensions // {
-    anthropic =
-      (import inputs.nixpkgs-new {
-        inherit system;
-        config.allowUnfree = true;
-      }).vscode-extensions.anthropic;
-  };
   # Custom packages. Will be made available on all machines and used where
   # needed.
 
