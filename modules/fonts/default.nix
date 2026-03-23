@@ -12,7 +12,7 @@ in
 
       fontDir.enable = true;
 
-      fonts = with pkgs; [
+      packages = with pkgs; [
         carlito
         dejavu_fonts
         ipafont
