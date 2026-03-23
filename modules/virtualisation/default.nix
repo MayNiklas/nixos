@@ -28,7 +28,7 @@ in
 
     programs.dconf.enable = true;
 
-    users.extraUsers.${config.mayniklas.var.mainUser}.extraGroups =
+    users.users.${config.mayniklas.var.mainUser}.extraGroups =
       [ "libvirtd" ];
 
   };

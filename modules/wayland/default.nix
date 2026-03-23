@@ -40,7 +40,7 @@ in
       rtkit.enable = true;
     };
 
-    users.extraUsers.${config.mayniklas.var.mainUser}.extraGroups = [ "video" "audio" ];
+    users.users.${config.mayniklas.var.mainUser}.extraGroups = [ "video" "audio" ];
 
     hardware = {
       # fixes'ÈGL_EXT_platform_base not supported'

@@ -30,7 +30,7 @@ in
     # still needed?
     # environment.systemPackages = with pkgs; [ pavucontrol ];
 
-    users.extraUsers.${config.mayniklas.var.mainUser}.extraGroups = [ "audio" ];
+    users.users.${config.mayniklas.var.mainUser}.extraGroups = [ "audio" ];
 
   };
 }

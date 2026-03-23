@@ -26,7 +26,7 @@ in
     services.mjpg-streamer.enable = true;
 
     networking.firewall.allowedTCPPorts = [ 5000 5050 ];
-    users.extraUsers.octoprint.extraGroups = [ "dialout" ];
+    users.users.octoprint.extraGroups = [ "dialout" ];
 
   };
 }

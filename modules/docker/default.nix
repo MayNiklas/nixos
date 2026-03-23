@@ -22,7 +22,7 @@ in
       backend = "docker";
     };
 
-    users.extraUsers.${config.mayniklas.var.mainUser}.extraGroups =
+    users.users.${config.mayniklas.var.mainUser}.extraGroups =
       [ "docker" ];
 
   };

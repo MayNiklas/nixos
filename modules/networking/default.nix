@@ -14,7 +14,7 @@ in
       # Enable networkmanager
       networkmanager.enable = true;
     };
-    users.extraUsers.${config.mayniklas.var.mainUser}.extraGroups =
+    users.users.${config.mayniklas.var.mainUser}.extraGroups =
       [ "networkmanager" ];
   };
 
