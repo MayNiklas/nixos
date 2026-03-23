@@ -124,6 +124,8 @@ in
           gtk-application-prefer-dark-theme = 1;
         };
       };
+
+      gtk4.theme = null;
     };
 
     home.sessionVariables.GTK_THEME = "Generated";

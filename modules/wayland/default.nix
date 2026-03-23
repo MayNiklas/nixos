@@ -27,6 +27,7 @@ in
           xdg-desktop-portal-wlr
           xdg-desktop-portal-gtk
         ];
+        config.common.default = [ "wlr" "gtk" ];
       };
     };
 
@@ -43,7 +44,7 @@ in
 
     hardware = {
       # fixes'ÈGL_EXT_platform_base not supported'
-      opengl.enable = true;
+      graphics.enable = true;
       # nvidia-drm.modeset=1 is required for some wayland compositors, e.g. sway
       nvidia.modesetting.enable = mkIf config.mayniklas.nvidia.enable true;
     };

@@ -51,6 +51,7 @@ in
             name = "MayNiklas";
           };
         };
+        signing.format = null;
       };
     };
     home.packages = [ pkgs.pre-commit ];
