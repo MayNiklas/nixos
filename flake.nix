@@ -290,8 +290,10 @@
 
             build_outputs = pkgs.callPackage ./packages/build_outputs { inherit self; };
             woodpecker-pipeline = pkgs.callPackage ./packages/woodpecker-pipeline {
-              inputs = inputs;
-              flake-self = self;
+              hostMeta = builtins.mapAttrs (_: cfg: {
+                system = cfg.pkgs.stdenv.hostPlatform.system;
+                ciSkip = cfg.config.mayniklas.defaults.CISkip;
+              }) self.nixosConfigurations;
             };
 
             inherit (pkgs.mayniklas)

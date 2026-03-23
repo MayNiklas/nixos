@@ -2,7 +2,7 @@
 {
   pkgs,
   lib,
-  flake-self,
+  hostMeta,
   ...
 }:
 with pkgs;
@@ -17,11 +17,13 @@ let
     "x86_64-linux" = "x86-linux.yaml";
   };
 
+  hosts = builtins.attrNames hostMeta;
+
   # Only generate pipelines for architectures used by at least one nixosConfiguration
   activeSystems = lib.filter
     (system: lib.any
-      (host: flake-self.nixosConfigurations.${host}.pkgs.stdenv.hostPlatform.system == system)
-      (builtins.attrNames flake-self.nixosConfigurations))
+      (host: hostMeta.${host}.system == system)
+      hosts)
     supportedSystems;
 
   pipelineFor = lib.genAttrs activeSystems (
@@ -94,10 +96,10 @@ let
                       ++ (map (
                         host:
                         # only build hosts for the arch we are currently building
-                        if (flake-self.nixosConfigurations.${host}.pkgs.stdenv.hostPlatform.system != arch) then
+                        if (hostMeta.${host}.system != arch) then
                           [ ]
                         # Skip hosts with this option set
-                        else if flake-self.nixosConfigurations.${host}.config.mayniklas.defaults.CISkip then
+                        else if hostMeta.${host}.ciSkip then
                           [ ]
                         else
                           [
@@ -124,7 +126,7 @@ let
                             #   commands = [ "attic push lounge-rocks:nix-cache 'result-${host}'" ];
                             # }
                           ]
-                      ) (builtins.attrNames flake-self.nixosConfigurations))
+                      ) hosts)
                       ++ [ verifyBuildsStep ]
                     );
                   }
