@@ -12,16 +12,22 @@ let
     "x86_64-linux"
   ];
 
+  woodpecker-platforms = {
+    "aarch64-linux" = "linux/arm64";
+    "x86_64-linux" = "linux/amd64";
+  };
+
   woodpecker-filenames = {
     "aarch64-linux" = "arm64-linux.yaml";
     "x86_64-linux" = "x86-linux.yaml";
   };
 
   hosts = builtins.attrNames hostMeta;
+  checkedHosts = lib.filter (host: hostMeta.${host}.inChecks) hosts;
 
   # Only generate pipelines for architectures used by at least one nixosConfiguration
   activeSystems = lib.filter (
-    system: lib.any (host: hostMeta.${host}.system == system) hosts
+    system: lib.any (host: hostMeta.${host}.system == system) checkedHosts
   ) supportedSystems;
 
   pipelineFor = lib.genAttrs activeSystems (
@@ -30,11 +36,6 @@ let
       builtins.toJSON {
         configs =
           let
-            # Map platform names between woodpecker and nix
-            woodpecker-platforms = {
-              "aarch64-linux" = "linux/arm64";
-              "x86_64-linux" = "linux/amd64";
-            };
             nixFlakeShow = {
               name = "Nix flake show";
               image = "bash";
@@ -58,11 +59,10 @@ let
                 ''nix-fast-build --no-nom --skip-cached --attic-cache lounge-rocks:nix-cache --flake ".#checks.${system}"''
               ];
             };
-            verifyBuildsStep = arch:
+            verifyBuildsStep =
+              arch:
               let
-                activeHosts = lib.filter (
-                  host: hostMeta.${host}.system == arch && !hostMeta.${host}.ciSkip
-                ) hosts;
+                activeHosts = lib.filter (host: hostMeta.${host}.system == arch) checkedHosts;
               in
               {
                 name = "Verify all builds succeeded";
@@ -105,8 +105,8 @@ let
                         # only build hosts for the arch we are currently building
                         if (hostMeta.${host}.system != arch) then
                           [ ]
-                        # Skip hosts with this option set
-                        else if hostMeta.${host}.ciSkip then
+                        # Only include hosts that are part of flake checks
+                        else if !hostMeta.${host}.inChecks then
                           [ ]
                         else
                           [

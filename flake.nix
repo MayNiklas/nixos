@@ -102,6 +102,19 @@
         "x86_64-linux"
       ];
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+      checkHostsBySystem = {
+        aarch64-linux = [ ];
+        x86_64-linux = [
+          "aida"
+          "daisy"
+          "deke"
+          "kora"
+          "simmons"
+          "snowflake"
+          "the-bus"
+          "the-hub"
+        ];
+      };
       # nixpkgsFor = forAllSystems (
       #   system:
       #   import nixpkgs {
@@ -246,19 +259,7 @@
             system: names:
             nixpkgs.lib.genAttrs names (name: self.nixosConfigurations.${name}.config.system.build.toplevel);
         in
-        {
-          aarch64-linux = hostsForSystem "aarch64-linux" [ ];
-          x86_64-linux = hostsForSystem "x86_64-linux" [
-            "aida"
-            "daisy"
-            "deke"
-            "kora"
-            "simmons"
-            "snowflake"
-            "the-bus"
-            "the-hub"
-          ];
-        };
+        nixpkgs.lib.mapAttrs hostsForSystem checkHostsBySystem;
     }
 
     //
@@ -290,9 +291,9 @@
 
             build_outputs = pkgs.callPackage ./packages/build_outputs { inherit self; };
             woodpecker-pipeline = pkgs.callPackage ./packages/woodpecker-pipeline {
-              hostMeta = builtins.mapAttrs (_: cfg: {
+              hostMeta = builtins.mapAttrs (name: cfg: {
                 system = cfg.pkgs.stdenv.hostPlatform.system;
-                ciSkip = cfg.config.mayniklas.defaults.CISkip;
+                inChecks = builtins.elem name (checkHostsBySystem.${cfg.pkgs.stdenv.hostPlatform.system} or [ ]);
               }) self.nixosConfigurations;
             };
 
