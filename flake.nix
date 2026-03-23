@@ -119,7 +119,7 @@
     in
     {
 
-      # Use nixpkgs-fmt for `nix fmt'
+      # Use nixfmt-tree for `nix fmt'
       formatter = forAllSystems (system: nixpkgsFor.${system}.nixfmt-tree);
 
       # Expose overlay to flake outputs, to allow using it from other flakes.
@@ -328,8 +328,8 @@
             # nix run '.#lollypops' -- aida
             # nix run '.#lollypops' -- aida kora
             # nix run '.#lollypops' -- aida deke kora simmons snowflake the-bus -p
-            default = self.apps.${pkgs.system}.lollypops;
-            lollypops = lollypops.apps.${pkgs.system}.default {
+            default = self.apps.${system}.lollypops;
+            lollypops = lollypops.apps.${system}.default {
               configFlake = self;
             };
           };
