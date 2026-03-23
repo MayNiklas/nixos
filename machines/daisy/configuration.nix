@@ -43,6 +43,24 @@
     # kde.enable = true;
   };
 
+  specialisation = {
+    "without-greetd".configuration = {
+      services.greetd.enable = lib.mkForce false;
+    };
+    "gnome".configuration = {
+      mayniklas = {
+        sway.enable = lib.mkForce false;
+        gnome.enable = true;
+      };
+    };
+    "kde".configuration = {
+      mayniklas = {
+        sway.enable = lib.mkForce false;
+        kde.enable = true;
+      };
+    };
+  };
+
   environment.systemPackages = with pkgs; [ powertop ];
 
   networking = {
