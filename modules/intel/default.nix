@@ -21,7 +21,7 @@ in
     # I have to check, which of the following options are really needed
     # for hardware transcoding to work
     hardware = {
-      opengl = {
+      graphics = {
         enable = true;
         extraPackages = with pkgs; [
           intel-media-driver
