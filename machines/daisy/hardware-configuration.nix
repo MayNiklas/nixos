@@ -82,7 +82,7 @@ in
 
   networking.hostId = "f9cad67b";
   networking.modemmanager.enable = true;
-  networking.networkmanager.fccUnlockScripts = [
+  networking.modemmanager.fccUnlockScripts = [
     {
       id = "2cb7:0210";
       path = "${pkgs.modemmanager}/share/ModemManager/fcc-unlock.available.d/2c7c";
