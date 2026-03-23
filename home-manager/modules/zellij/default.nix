@@ -30,7 +30,7 @@ in {
       };
     };
 
-    programs.zsh.initExtra = (mkOrder 200 ''
+    programs.zsh.initContent = (mkOrder 200 ''
       export IS_VSCODE=false
       if [[ $(printenv | grep -c "VSCODE_") -gt 0 ]]; then
         export IS_VSCODE=true
