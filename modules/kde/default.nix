@@ -8,13 +8,13 @@ in
 
   config = mkIf cfg.enable {
 
-    # Enable the Plasma 5 Desktop Environment.
+    # Enable the Plasma 6 Desktop Environment.
     services.xserver = {
       enable = true;
-      displayManager.sddm.enable = true;
-      desktopManager.plasma6.enable = true;
-      layout = "de";
-      xkbOptions = "eurosign:e";
+      xkb.layout = "de";
+      xkb.options = "eurosign:e";
     };
+    services.displayManager.sddm.enable = true;
+    services.desktopManager.plasma6.enable = true;
   };
 }

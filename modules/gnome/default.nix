@@ -8,19 +8,15 @@ in
 
   config = mkIf cfg.enable {
 
-    services.xserver = {
-      # Enable the X11 windowing system.
-      enable = true;
-      # Enable the GNOME Desktop Environment.
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-    };
+    services.xserver.enable = true;
+    services.displayManager.gdm.enable = true;
+    services.desktopManager.gnome.enable = true;
 
     services.gnome = {
       core-developer-tools.enable = true;
       core-os-services.enable = true;
       core-shell.enable = true;
-      core-utilities.enable = true;
+      core-apps.enable = true;
       gnome-settings-daemon.enable = true;
     };
 
