@@ -80,6 +80,7 @@
       vim.enable = true;
       vscode.enable = true;
       wofi.enable = true;
+      zellij.enable = true;
       zsh.enable = true;
     };
   };
@@ -111,6 +112,7 @@
     ../modules/vscode
     ../modules/waybar
     ../modules/wofi
+    ../modules/zellij
     ../modules/zsh
   ];
 
