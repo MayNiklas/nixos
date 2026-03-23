@@ -29,7 +29,7 @@ in
           style = "beam";
           blink = "yes";
         };
-        colors = {
+        colors-dark = {
           # alpha=1.0
           background = "${config.pinpox.colors.Black}";
           foreground = "${config.pinpox.colors.White}";
