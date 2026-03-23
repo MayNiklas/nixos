@@ -4,7 +4,7 @@ let
   cfg = config.mayniklas.nvidia;
 
   withCUDA = import flake-self.inputs.nixpkgs {
-    system = "${pkgs.system}";
+    system = pkgs.stdenv.hostPlatform.system;
     config = {
       allowUnfree = true;
       cudaSupport = true;
@@ -45,9 +45,9 @@ in {
 
     hardware = {
 
-      opengl = {
+      graphics = {
         enable = true;
-        driSupport32Bit = true;
+        enable32Bit = true;
       };
 
       nvidia = {
