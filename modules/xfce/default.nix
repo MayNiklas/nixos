@@ -8,8 +8,6 @@ in
 
   config = mkIf cfg.enable {
 
-    nixpkgs.config.pulseaudio = true;
-
     services.xserver = {
       enable = true;
       desktopManager = {
