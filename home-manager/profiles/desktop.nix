@@ -69,7 +69,7 @@
       alacritty.enable = true;
       ansible.enable = true;
       chromium.enable = true;
-      devolopment.enable = true;
+      development.enable = true;
       direnv.enable = true;
       foot.enable = true;
       git.enable = true;
@@ -96,7 +96,7 @@
     ../modules/alacritty
     ../modules/ansible
     ../modules/chromium
-    ../modules/devolopment
+    ../modules/development
     ../modules/direnv
     ../modules/foot
     ../modules/git

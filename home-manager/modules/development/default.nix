@@ -6,10 +6,10 @@
 }:
 with lib;
 let
-  cfg = config.mayniklas.programs.devolopment;
+  cfg = config.mayniklas.programs.development;
 in
 {
-  options.mayniklas.programs.devolopment.enable = mkEnableOption "enable devolopment applications";
+  options.mayniklas.programs.development.enable = mkEnableOption "enable development applications";
 
   config = mkIf cfg.enable {
 
