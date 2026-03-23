@@ -27,7 +27,6 @@ in
   preview-update = super.pkgs.callPackage ../packages/preview-update { };
   s3uploader = super.pkgs.callPackage ../packages/s3uploader { };
   update-input = super.pkgs.callPackage ../packages/update-input { };
-  # tautulli = super.pkgs.python3Packages.callPackage ../packages/tautulli { };
   verification-listener =
     super.pkgs.python3Packages.callPackage ../packages/verification-listener
       { };
