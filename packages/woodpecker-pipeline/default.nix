@@ -11,8 +11,20 @@ let
     "aarch64-linux"
     "x86_64-linux"
   ];
-  forAllSystems = lib.genAttrs supportedSystems;
-  pipelineFor = forAllSystems (
+
+  woodpecker-filenames = {
+    "aarch64-linux" = "arm64-linux.yaml";
+    "x86_64-linux" = "x86-linux.yaml";
+  };
+
+  # Only generate pipelines for architectures used by at least one nixosConfiguration
+  activeSystems = lib.filter
+    (system: lib.any
+      (host: flake-self.nixosConfigurations.${host}.pkgs.stdenv.hostPlatform.system == system)
+      (builtins.attrNames flake-self.nixosConfigurations))
+    supportedSystems;
+
+  pipelineFor = lib.genAttrs activeSystems (
     system:
     writeText "pipeline" (
       builtins.toJSON {
@@ -133,8 +145,9 @@ pkgs.writeShellScriptBin "woodpecker-pipeline" ''
 
   # empty content of .woodpecker folder
   rm -rf .woodpecker/*
-    
-  # copy pipelines to .woodpecker folder
-  cat ${pipelineFor.aarch64-linux} | ${pkgs.jq}/bin/jq '.configs[].data' -r | ${pkgs.jq}/bin/jq > .woodpecker/arm64-linux.yaml
-  cat ${pipelineFor.x86_64-linux} | ${pkgs.jq}/bin/jq '.configs[].data' -r | ${pkgs.jq}/bin/jq > .woodpecker/x86-linux.yaml
+
+  # copy pipelines to .woodpecker folder (only for architectures present in the flake)
+  ${lib.concatStrings (map (system: ''
+    cat ${pipelineFor.${system}} | ${pkgs.jq}/bin/jq '.configs[].data' -r | ${pkgs.jq}/bin/jq > .woodpecker/${woodpecker-filenames.${system}}
+  '') activeSystems)}
 ''
