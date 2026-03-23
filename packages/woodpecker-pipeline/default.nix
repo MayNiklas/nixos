@@ -63,10 +63,14 @@ let
             verifyBuildsStep = {
               name = "Verify all builds succeeded";
               image = "bash";
+              "when" = {
+                "status" = "failure";
+              };
               commands = [
                 ''nix-fast-build --no-nom --skip-cached --flake ".#checks.$(nix eval --raw --impure --file builtins.currentSystem)"''
               ];
             };
+            currentSystem = ''$(nix eval --raw --impure --file builtins.currentSystem)'';
           in
           pkgs.lib.lists.flatten ([
             (map
@@ -104,27 +108,24 @@ let
                         else
                           [
                             {
-                              name = "Build ${host}";
+                              name = "Rebuild ${host} (diagnostic)";
                               image = "bash";
                               failure = "ignore";
+                              "when" = {
+                                "status" = "failure";
+                              };
                               commands = [
-                                "nix build --print-out-paths '.#nixosConfigurations.${host}.config.system.build.toplevel' -o 'result-${host}'"
+                                "nix build --print-out-paths '.#nixosConfigurations.${host}.config.system.build.toplevel'"
                               ];
                             }
                             {
-                              "name" = "Show ${host} info";
-                              "image" = "bash";
-                              "failure" = "ignore";
-                              "commands" = [
-                                "nix path-info --closure-size -h $(readlink -f 'result-${host}')"
+                              name = "Show ${host} info";
+                              image = "bash";
+                              failure = "ignore";
+                              commands = [
+                                "nix path-info --closure-size -h $(readlink -f 'result-${currentSystem}.${host}')"
                               ];
                             }
-                            # {
-                            #   name = "Push ${host} to Attic";
-                            #   image = "bash";
-                            #   failure = "ignore";
-                            #   commands = [ "attic push lounge-rocks:nix-cache 'result-${host}'" ];
-                            # }
                           ]
                       ) hosts)
                       ++ [ verifyBuildsStep ]
