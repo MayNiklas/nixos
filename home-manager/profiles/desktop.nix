@@ -34,6 +34,7 @@
       iperf3
       minicom
       nix-fast-build
+      nix-init
       nix-tree
       nixpkgs-review
       nmap
