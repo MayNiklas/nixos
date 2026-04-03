@@ -36,16 +36,55 @@ in
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
+                mountOptions = [ "umask=0077" ];
               };
             };
-            root = {
+            swap = {
+              size = "48G";
+              content = {
+                type = "swap";
+              };
+            };
+            zfs = {
               size = "100%";
               content = {
-                type = "filesystem";
-                format = "ext4";
-                mountpoint = "/";
+                type = "zfs";
+                pool = "zroot";
               };
             };
+          };
+        };
+      };
+    };
+    zpool = {
+      zroot = {
+        type = "zpool";
+        options.cachefile = "none";
+        rootFsOptions = {
+          compression = "zstd";
+          acltype = "posixacl";
+          xattr = "sa";
+          atime = "off";
+          "com.sun:auto-snapshot" = "false";
+        };
+        postCreateHook = "zfs list -t snapshot -H -o name | grep -E '^zroot@blank$' || zfs snapshot zroot@blank";
+
+        datasets = {
+          root = {
+            type = "zfs_fs";
+            mountpoint = "/";
+            options.mountpoint = "legacy";
+          };
+          home = {
+            type = "zfs_fs";
+            mountpoint = "/home";
+            options.mountpoint = "legacy";
+            options."com.sun:auto-snapshot" = "true";
+          };
+          nix = {
+            type = "zfs_fs";
+            mountpoint = "/nix";
+            options.mountpoint = "legacy";
           };
         };
       };
