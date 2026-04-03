@@ -14,6 +14,7 @@ in {
       enableZshIntegration = false;
       settings = {
         theme = "custom";
+        show_startup_tips =false;
         themes.custom = {
           fg = "#${config.pinpox.colors.White}";
           bg = "#${config.pinpox.colors.Black}";
