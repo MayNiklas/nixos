@@ -10,6 +10,7 @@
 }:
 let
   primaryDisk = "/dev/nvme0n1";
+  GiB = 1024 * 1024 * 1024;
 in
 {
 
@@ -90,6 +91,16 @@ in
       };
     };
   };
+
+  services.zfs.trim.enable = true;
+  services.zfs.autoScrub.enable = true;
+
+  # cat /sys/module/zfs/parameters/zfs_arc_max
+  # cat /sys/module/zfs/parameters/zfs_arc_min
+  boot.extraModprobeConfig = ''
+    options zfs zfs_arc_min=${toString (1 * GiB)}
+    options zfs zfs_arc_max=${toString (4 * GiB)}
+  '';
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   boot.initrd.availableKernelModules = [
