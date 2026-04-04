@@ -114,7 +114,7 @@ in
               # Screen lock
               "${modifier}+Shift+l" = "exec ${pkgs.swaylock}/bin/swaylock";
               # Suspend
-              "${modifier}+Shift+h" = "exec ${pkgs.swaylock}/bin/swaylock -fF && systemctl suspend";
+              "${modifier}+Shift+s" = "exec ${pkgs.swaylock}/bin/swaylock -fF && systemctl suspend";
               # Hibernate
               "${modifier}+Shift+h" = "exec ${pkgs.swaylock}/bin/swaylock -fF && systemctl hibernate";
             })
