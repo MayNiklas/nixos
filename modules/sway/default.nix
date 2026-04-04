@@ -16,6 +16,12 @@ in
       kde.enable = mkForce false;
     };
 
+    # Lock screen before suspend, then suspend on lid close
+    services.logind.settings.Login = {
+      HandleLidSwitch = "suspend";
+      HandleLidSwitchExternalPower = "suspend";
+    };
+
     services.greetd = {
       enable = true;
       settings = {
