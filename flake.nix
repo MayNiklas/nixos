@@ -187,6 +187,10 @@
               {
                 imports = [ ./home-manager ];
 
+                home-manager.extraSpecialArgs = {
+                  homeManagerModules = self.homeManagerModules;
+                };
+
                 home-manager.users."${cfg.username}" = lib.mkIf cfg.enable {
                   nixpkgs.overlays = [ self.overlays.mayniklas ];
                 };
@@ -214,7 +218,7 @@
           ];
           # Optionally use extraSpecialArgs
           # to pass through arguments to home.nix
-          extraSpecialArgs = { flake-self = self; } // inputs;
+          extraSpecialArgs = { flake-self = self; homeManagerModules = self.homeManagerModules; } // inputs;
         };
 
       homeManagerModules =

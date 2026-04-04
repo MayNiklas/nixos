@@ -1,6 +1,6 @@
 {
   pkgs,
-  flake-self,
+  homeManagerModules,
   ...
 }:
 {
@@ -97,7 +97,7 @@
   imports = [
     ./common.nix
     ../colorscheme.nix
-  ] ++ builtins.attrValues flake-self.homeManagerModules;
+  ] ++ builtins.attrValues homeManagerModules;
 
   programs.obs-studio = {
     enable = true;

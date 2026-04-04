@@ -1,4 +1,4 @@
-{ config, pkgs, lib, flake-self, ... }: {
+{ config, pkgs, lib, homeManagerModules, ... }: {
 
   # Install these packages for my user
   home.packages =
@@ -48,13 +48,13 @@
   imports = [
     ./common.nix
     ../colorscheme.nix
-    flake-self.homeManagerModules.direnv
-    flake-self.homeManagerModules.git
-    flake-self.homeManagerModules.nixos-vscode-claude
-    flake-self.homeManagerModules.nvim
-    flake-self.homeManagerModules.tmux
-    flake-self.homeManagerModules.zellij
-    flake-self.homeManagerModules.zsh
+    homeManagerModules.direnv
+    homeManagerModules.git
+    homeManagerModules.nixos-vscode-claude
+    homeManagerModules.nvim
+    homeManagerModules.tmux
+    homeManagerModules.zellij
+    homeManagerModules.zsh
   ];
 
 }
