@@ -49,6 +49,10 @@
       url = "github:msteen/nixos-vscode-server";
     };
 
+    nixos-vscode-claude = {
+      url = "github:MayNiklas/nixos-vscode-claude";
+    };
+
     # Generate wallpaper images from mathematical functions
     # https://github.com/pinpox/wallpaper-generator
     wallpaper-generator = {
@@ -186,10 +190,12 @@
                 home-manager.users."${cfg.username}" = lib.mkIf cfg.enable {
                   imports = [
                     vscode-server.nixosModules.home
+                    nixos-vscode-claude.homeModules.default
                   ];
 
                   # Visual Studio Code Server support
                   services.vscode-server.enable = true;
+                  services.nixos-vscode-claude.enable = true;
 
                   nixpkgs.overlays = [ self.overlays.mayniklas ];
                 };
