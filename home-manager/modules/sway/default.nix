@@ -113,6 +113,10 @@ in
 
               # Screen lock
               "${modifier}+Shift+l" = "exec ${pkgs.swaylock}/bin/swaylock";
+              # Suspend
+              "${modifier}+Shift+h" = "exec ${pkgs.swaylock}/bin/swaylock -fF && systemctl suspend";
+              # Hibernate
+              "${modifier}+Shift+h" = "exec ${pkgs.swaylock}/bin/swaylock -fF && systemctl hibernate";
             })
 
           ])
@@ -161,6 +165,8 @@ in
         shellAliases = rec {
           # suspend
           zzz = "${pkgs.swaylock}/bin/swaylock -fF && systemctl suspend";
+          # hibernate
+          ZZZ = "${pkgs.swaylock}/bin/swaylock -fF && systemctl hibernate";
         };
       };
     };
