@@ -128,6 +128,10 @@ in
 
   swapDevices = [ ];
 
+  boot.zfs.allowHibernation = true;
+  boot.zfs.forceImportRoot = false;
+  boot.resumeDevice = "/dev/nvme0n1p3";
+
   networking.hostId = "f9cad67b";
   networking.modemmanager.enable = true;
   networking.modemmanager.fccUnlockScripts = [
