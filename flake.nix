@@ -189,6 +189,8 @@
 
                 home-manager.extraSpecialArgs = {
                   homeManagerModules = self.homeManagerModules;
+                  vscode-server = self.inputs.vscode-server;
+                  nixos-vscode-claude = self.inputs.nixos-vscode-claude;
                 };
 
                 home-manager.users."${cfg.username}" = lib.mkIf cfg.enable {
