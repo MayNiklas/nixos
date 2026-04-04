@@ -9,7 +9,7 @@
 {
 
   # TODO:
-  # - [ ] Sleep / Hibernate / Suspend
+  # - [x] Sleep / Hibernate / Suspend
   # - [ ] Disable keyboard when in tablet mode
   # - [ ] Flip screen when in tablet mode
 

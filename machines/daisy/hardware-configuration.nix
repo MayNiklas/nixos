@@ -147,4 +147,9 @@ in
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   hardware.enableRedistributableFirmware = config.nixpkgs.config.allowUnfree;
+
+  # Disable keyboard backlight (no see-through keycaps, just wastes power)
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="leds", KERNEL=="*::kbd_backlight", ATTR{brightness}="0"
+  '';
 }
