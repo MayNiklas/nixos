@@ -80,6 +80,7 @@
       tmux.enable = true;
       vim.enable = true;
       vscode.enable = true;
+      kanshi.enable = true;
       mako.enable = true;
       wlsunset.enable = true;
       wofi.enable = true;
@@ -105,6 +106,7 @@
     ../modules/git
     ../modules/gtk
     ../modules/i3
+    ../modules/kanshi
     ../modules/kubernetes
     ../modules/mako
     ../modules/wlsunset
