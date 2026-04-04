@@ -34,6 +34,8 @@ in
 
     home-manager.backupFileExtension = "hm-bak";
 
+    home-manager.extraSpecialArgs = { inherit flake-self; };
+
     home-manager.users."${cfg.username}" = {
 
       imports = [

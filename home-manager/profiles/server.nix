@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, flake-self, ... }: {
 
   # Install these packages for my user
   home.packages =
@@ -42,16 +42,19 @@
     };
   };
 
+  services.vscode-server.enable = true;
+
   # Imports
   imports = [
     ./common.nix
     ../colorscheme.nix
-    ../modules/direnv
-    ../modules/git
-    ../modules/nvim
-    ../modules/tmux
-    ../modules/zellij
-    ../modules/zsh
+    flake-self.homeManagerModules.direnv
+    flake-self.homeManagerModules.git
+    flake-self.homeManagerModules.nixos-vscode-claude
+    flake-self.homeManagerModules.nvim
+    flake-self.homeManagerModules.tmux
+    flake-self.homeManagerModules.zellij
+    flake-self.homeManagerModules.zsh
   ];
 
 }

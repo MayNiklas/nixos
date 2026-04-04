@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, flake-self, ... }: {
 
   home.packages = with pkgs;[
     # GUI apps
@@ -42,8 +42,8 @@
         (self: super: { })
       ];
     }
-    ../modules/git
-    ../modules/tmux
+    flake-self.homeManagerModules.git
+    flake-self.homeManagerModules.tmux
   ];
 
   home = {

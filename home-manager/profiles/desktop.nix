@@ -1,7 +1,6 @@
 {
-  config,
   pkgs,
-  lib,
+  flake-self,
   ...
 }:
 {
@@ -87,6 +86,7 @@
       zellij.enable = true;
       zsh.enable = true;
     };
+    services.nixos-vscode-claude.enable = true;
   };
 
   services.gnome-keyring = {
@@ -97,36 +97,12 @@
   imports = [
     ./common.nix
     ../colorscheme.nix
-    ../modules/alacritty
-    ../modules/ansible
-    ../modules/chromium
-    ../modules/development
-    ../modules/direnv
-    ../modules/foot
-    ../modules/git
-    ../modules/gtk
-    ../modules/i3
-    ../modules/kanshi
-    ../modules/kubernetes
-    ../modules/mako
-    ../modules/wlsunset
-    ../modules/nvim
-    ../modules/python
-    ../modules/sway
-    ../modules/swaylock
-    ../modules/tmux
-    ../modules/vs-fix
-    ../modules/vscode
-    ../modules/waybar
-    ../modules/wofi
-    ../modules/zellij
-    ../modules/zsh
-  ];
+  ] ++ builtins.attrValues flake-self.homeManagerModules;
 
   programs.obs-studio = {
     enable = true;
     package = pkgs.obs-studio;
-    plugins = with pkgs.obs-studio-plugins; [ ];
+    plugins = [ ];
   };
 
 }

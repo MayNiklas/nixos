@@ -188,15 +188,6 @@
                 imports = [ ./home-manager ];
 
                 home-manager.users."${cfg.username}" = lib.mkIf cfg.enable {
-                  imports = [
-                    vscode-server.nixosModules.home
-                    nixos-vscode-claude.homeModules.default
-                  ];
-
-                  # Visual Studio Code Server support
-                  services.vscode-server.enable = true;
-                  services.nixos-vscode-claude.enable = true;
-
                   nixpkgs.overlays = [ self.overlays.mayniklas ];
                 };
               };
@@ -223,15 +214,19 @@
           ];
           # Optionally use extraSpecialArgs
           # to pass through arguments to home.nix
-          extraSpecialArgs = { } // inputs;
+          extraSpecialArgs = { flake-self = self; } // inputs;
         };
 
-      homeManagerModules = builtins.listToAttrs (
-        map (name: {
-          inherit name;
-          value = import (./home-manager/modules + "/${name}");
-        }) (builtins.attrNames (builtins.readDir ./home-manager/modules))
-      );
+      homeManagerModules =
+        let
+          modulesDir = builtins.readDir ./home-manager/modules;
+        in
+        builtins.listToAttrs (
+          map (name: {
+            inherit name;
+            value = import (./home-manager/modules + "/${name}");
+          }) (builtins.filter (name: modulesDir.${name} == "directory") (builtins.attrNames modulesDir))
+        );
 
       # Each subdirectory in ./machines is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
