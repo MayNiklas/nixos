@@ -81,6 +81,7 @@
       vim.enable = true;
       vscode.enable = true;
       mako.enable = true;
+      wlsunset.enable = true;
       wofi.enable = true;
       zellij.enable = true;
       zsh.enable = true;
@@ -106,6 +107,7 @@
     ../modules/i3
     ../modules/kubernetes
     ../modules/mako
+    ../modules/wlsunset
     ../modules/nvim
     ../modules/python
     ../modules/sway
