@@ -35,7 +35,6 @@ in
     };
 
     home.packages = with pkgs; [
-      mako
       slurp # select region on screen (for screenshots)
       start-sway
       wev # find out how a key is called

@@ -80,6 +80,7 @@
       tmux.enable = true;
       vim.enable = true;
       vscode.enable = true;
+      mako.enable = true;
       wofi.enable = true;
       zellij.enable = true;
       zsh.enable = true;
@@ -104,6 +105,7 @@
     ../modules/gtk
     ../modules/i3
     ../modules/kubernetes
+    ../modules/mako
     ../modules/nvim
     ../modules/python
     ../modules/sway
