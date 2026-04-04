@@ -5,7 +5,10 @@ let
   vars = import ../vars.nix;
 in
 {
-  options.mayniklas.programs.zsh.enable = mkEnableOption "enable zsh";
+  options.mayniklas.programs.zsh = {
+    enable = mkEnableOption "enable zsh";
+    zfs = mkEnableOption "enable ZFS ARC metrics in htop";
+  };
 
   config = mkIf cfg.enable {
 
@@ -152,6 +155,12 @@ in
         show_cpu_usage = true;
         show_program_path = true;
         tree_view = false;
+      } // lib.optionalAttrs cfg.zfs {
+        header_layout = "two_50_50";
+        column_meters_0 = "LeftCPUs Memory Swap ZFSARC ZFSCARC";
+        column_meter_modes_0 = "1 1 1 2 2";
+        column_meters_1 = "RightCPUs Tasks LoadAverage Uptime";
+        column_meter_modes_1 = "1 2 2 2";
       };
     };
 

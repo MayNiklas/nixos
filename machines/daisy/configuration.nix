@@ -20,6 +20,7 @@
 
   home-manager.users."${config.mayniklas.home-manager.username}" = {
     home.packages = with pkgs; [ ];
+    mayniklas.programs.zsh.zfs = true;
   };
 
   # # automatic screen orientation
