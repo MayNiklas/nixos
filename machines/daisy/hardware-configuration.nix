@@ -95,11 +95,9 @@ in
   services.zfs.trim.enable = true;
   services.zfs.autoScrub.enable = true;
 
-  # cat /sys/module/zfs/parameters/zfs_arc_min
   # cat /sys/module/zfs/parameters/zfs_arc_max
   boot.extraModprobeConfig = ''
-    options zfs zfs_arc_min=${toString (1 * GiB)}
-    options zfs zfs_arc_max=${toString (4 * GiB)}
+    options zfs zfs_arc_max=${toString (2 * GiB)}
   '';
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
