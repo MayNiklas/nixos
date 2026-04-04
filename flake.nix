@@ -220,7 +220,11 @@
           ];
           # Optionally use extraSpecialArgs
           # to pass through arguments to home.nix
-          extraSpecialArgs = { flake-self = self; homeManagerModules = self.homeManagerModules; } // inputs;
+          extraSpecialArgs = {
+            flake-self = self;
+            homeManagerModules = self.homeManagerModules;
+          }
+          // inputs;
         };
 
       homeManagerModules =

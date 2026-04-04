@@ -1,6 +1,13 @@
-{ config, pkgs, lib, homeManagerModules, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  homeManagerModules,
+  ...
+}:
+{
 
-  home.packages = with pkgs;[
+  home.packages = with pkgs; [
     # GUI apps
     obsidian
 

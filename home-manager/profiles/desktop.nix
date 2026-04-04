@@ -86,7 +86,10 @@
       zellij.enable = true;
       zsh.enable = true;
     };
-    services.nixos-vscode-claude.enable = true;
+    services.vscode-remote-ssh = {
+      enable = true;
+      claude = true;
+    };
   };
 
   services.gnome-keyring = {
@@ -97,7 +100,8 @@
   imports = [
     ./common.nix
     ../colorscheme.nix
-  ] ++ builtins.attrValues homeManagerModules;
+  ]
+  ++ builtins.attrValues homeManagerModules;
 
   programs.obs-studio = {
     enable = true;
