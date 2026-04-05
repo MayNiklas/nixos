@@ -31,7 +31,7 @@ in
         }
 
         # get github url of current repository
-        gh() {
+        repo() {
           url=$(${pkgs.git}/bin/git config --get remote.origin.url | sed -e 's/\(.*\)git@\(.*\):[0-9\/]*/https:\/\/\2\//g') 
           echo $url
           # if firefox is in the path, open the url

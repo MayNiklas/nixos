@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     attic-client
     btop
+    gh
     nil
     nixd
     nixpkgs-fmt
