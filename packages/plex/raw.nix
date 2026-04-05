@@ -18,7 +18,7 @@
 # server, and the FHS userenv and corresponding NixOS module should
 # automatically pick up the changes.
 stdenv.mkDerivation rec {
-  version = "1.42.1.10060-4e8b05daf";
+  version = "1.43.0.10492-121068a07";
   pname = "plexmediaserver";
 
   # Fetch the source
@@ -26,14 +26,13 @@ stdenv.mkDerivation rec {
     if stdenv.hostPlatform.system == "aarch64-linux" then
       fetchurl {
         url = "https://downloads.plex.tv/plex-media-server-new/${version}/debian/plexmediaserver_${version}_arm64.deb";
-        sha256 = "f10c635b17a8aedc3f3a3d5d6cad8dff9e7fb534384d601eb832a3e3de91b0e7";
+        sha256 = "sha256-YrIH51MyyL6gPWneAaV4sMUDygau5ytZnOBgQ1YCcLo=";
       }
     else
       fetchurl {
         url = "https://downloads.plex.tv/plex-media-server-new/${version}/debian/plexmediaserver_${version}_amd64.deb";
-        sha256 = "3a822dbc6d08a6050a959d099b30dcd96a8cb7266b94d085ecc0a750aa8197f4";
+        sha256 = "sha256-HA779rkjy8QBlW2+IsRmgu4t5PT2Gy0oaqcJm+9zCYE=";
       };
-
   outputs = [
     "out"
     "basedb"
@@ -89,15 +88,15 @@ stdenv.mkDerivation rec {
     done
   '';
 
-  meta = with lib; {
+  meta = {
     homepage = "https://plex.tv/";
-    sourceProvenance = with sourceTypes; [ binaryNativeCode ];
-    license = licenses.unfree;
+    sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
+    license = lib.licenses.unfree;
     platforms = [
       "x86_64-linux"
       "aarch64-linux"
     ];
-    maintainers = with maintainers; [
+    maintainers = with lib.maintainers; [
       badmutex
       forkk
       lnl7
