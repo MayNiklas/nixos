@@ -175,7 +175,13 @@
             "192.168.8.0/24"
           ];
         }
-
+        # ESP32
+        {
+          publicKey = "+GGMfDGc2mJ9fy4YVVN9GDrskSO4d4l+SLTtL4wFXSA=";
+          allowedIPs = [
+            "10.88.88.26/32"
+          ];
+        }
         ### J.
 
         # # J. Thinkpad T15 G2
