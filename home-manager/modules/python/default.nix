@@ -39,7 +39,7 @@ in
             plotly
             psutil
             pydantic
-            pypdf2
+            pypdf
             pytest
             python-dateutil
             python-dotenv
