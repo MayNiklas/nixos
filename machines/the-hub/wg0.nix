@@ -1,13 +1,24 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
 
   networking = {
 
     firewall = {
       allowedUDPPorts = [ 58102 ];
-      interfaces.wg0.allowedTCPPorts = [ 80 443 ];
+      interfaces.wg0.allowedTCPPorts = [
+        80
+        443
+      ];
     };
 
-    interfaces.wg0 = { mtu = 1412; };
+    interfaces.wg0 = {
+      mtu = 1412;
+    };
 
     wireguard.interfaces.wg0 = {
 
@@ -55,12 +66,18 @@
         # S2S Lep.
         {
           publicKey = "qGTvKWwkrdbaUvnTmkwvypWwmslKYitZ3h50F6JLFFM=";
-          allowedIPs = [ "10.88.88.5/32" "192.168.98.0/24" ];
+          allowedIPs = [
+            "10.88.88.5/32"
+            "192.168.98.0/24"
+          ];
         }
         # S2S K.
         {
           publicKey = "LGvH0XWRRimKWrwat6sHfpUN8dakcsIA2b/luQ4EBiU=";
-          allowedIPs = [ "10.88.88.6/32" "192.168.22.0/24" ];
+          allowedIPs = [
+            "10.88.88.6/32"
+            "192.168.22.0/24"
+          ];
         }
         # S2S A.
         {
@@ -70,22 +87,37 @@
         # S2S S.
         {
           publicKey = "AmA0/uMU6OB4AmBfCtcFMBBoqQHDCnvBI8Fn2pdmY0E=";
-          allowedIPs = [ "10.88.88.8/32" "192.168.72.0/24" "192.168.74.0/24" ];
+          allowedIPs = [
+            "10.88.88.8/32"
+            "192.168.72.0/24"
+            "192.168.74.0/24"
+          ];
         }
         # S2S B.
         {
           publicKey = "yxr6ZTmho6hbM7zNwWhxloZxmfv7ETthNYWsn6eNSC0=";
-          allowedIPs = [ "10.88.88.9/32" "192.168.21.0/24" ];
+          allowedIPs = [
+            "10.88.88.9/32"
+            "192.168.21.0/24"
+          ];
         }
         # S2S A. pfSense
         {
           publicKey = "gCo7+rsUa21TMG4RK8UYeYLOtt8wxtFgtcdm49epRx4=";
-          allowedIPs = [ "10.88.88.10/32" "192.168.97.0/24" ];
+          allowedIPs = [
+            "10.88.88.10/32"
+            "192.168.97.0/24"
+          ];
         }
         # S2S A. / O. pfSense
         {
           publicKey = "Bk93ocUWLtUO4sJYjWp7KdBb8V3X3oquVe5HXCWeelw=";
-          allowedIPs = [ "10.88.88.11/32" "192.168.87.0/24" "192.168.86.0/24" "192.168.96.0/24" ];
+          allowedIPs = [
+            "10.88.88.11/32"
+            "192.168.87.0/24"
+            "192.168.86.0/24"
+            "192.168.96.0/24"
+          ];
         }
 
         ### servers
@@ -138,7 +170,10 @@
         # GL-AXT1800
         {
           publicKey = "ObJrghR4s+mcZpyxYfsf9XOngWYdvyqcrQ87LgzfZV0=";
-          allowedIPs = [ "10.88.88.25/32" "192.168.8.0/24" ];
+          allowedIPs = [
+            "10.88.88.25/32"
+            "192.168.8.0/24"
+          ];
         }
 
         ### J.
