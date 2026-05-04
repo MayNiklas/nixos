@@ -19,7 +19,7 @@ in
           "tags"
           "*.swp"
           # Nix builds
-          "result"
+          "result*"
           # Core latex/pdflatex auxiliary files
           "*.aux"
           "*.lof"
@@ -42,6 +42,7 @@ in
           "develop-eggs/"
           "dist/"
           # IDE/editor files
+          ".codex"
           ".claude/settings.local.json"
         ];
         settings = {
