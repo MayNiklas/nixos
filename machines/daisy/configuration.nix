@@ -36,7 +36,7 @@
       enable = true;
       home-manager = true;
     };
-    gaming.enable = true;
+    # gaming.enable = true; # disabled: openldap build fails in lutris fhsenv
     virtualisation.enable = true;
     # sway disables gnome and KDE
     sway.enable = true;
