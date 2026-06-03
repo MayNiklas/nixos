@@ -45,16 +45,13 @@ in {
       '';
 
       settings = {
-        # binary cache -> build by DroneCI
         trusted-public-keys = mkIf (cfg.disable-cache != true) [
-          "mayniklas.cachix.org-1:gti3flcBaUNMoDN2nWCOPzCi2P68B5JbA/4jhUqHAFU="
           "nix-cache:4FILs79Adxn/798F8qk2PC1U8HaTlaPqptwNJrXNA1g="
-          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+          "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
         ];
         substituters = mkIf (cfg.disable-cache != true) [
           "https://cache.lounge.rocks/nix-cache"
-          "https://mayniklas.cachix.org"
-          "https://nix-community.cachix.org"
+          "https://cache.nixos-cuda.org"
         ];
 
         #Users allowed to run nix
