@@ -2,10 +2,10 @@
 let
   vs-fix-skript = pkgs.writeShellScriptBin "vs-fix" ''
     for f in ~/.vscode-server/bin/*; do
-      rm $f/node            
-      ln -s $(which ${pkgs.nodejs_20}/bin/node) $f/node
+      rm $f/node
+      ln -s $(which ${pkgs.nodejs_22}/bin/node) $f/node
     done
-    ${pkgs.nix}/bin/nix-store --add-root ~/.vscode-server/.keep-node -r ${pkgs.nodejs_20}
+    ${pkgs.nix}/bin/nix-store --add-root ~/.vscode-server/.keep-node -r ${pkgs.nodejs_22}
     echo "Done patching vs-code server!"
   '';
 in
