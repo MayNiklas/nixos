@@ -45,9 +45,10 @@
       zellij.enable = true;
       zsh.enable = true;
     };
+    services.vscode-remote-ssh = {
+      enable = true;
+    };
   };
-
-  services.vscode-server.enable = true;
 
   # Imports
   imports = [
