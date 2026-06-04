@@ -128,7 +128,7 @@ in
 
   swapDevices = [ ];
 
-  boot.zfs.allowHibernation = true;
+  boot.zfs.unsafeAllowHibernation = true;
   boot.zfs.forceImportRoot = false;
   boot.resumeDevice = "/dev/nvme0n1p3";
 
