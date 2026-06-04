@@ -24,6 +24,7 @@ in
       viAlias = true;
       vimAlias = true;
       withPython3 = true;
+      withRuby = false;
 
       extraPackages = with pkgs; [
         nixpkgs-fmt
