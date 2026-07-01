@@ -42,4 +42,13 @@
 
     };
   };
+
+  # Bind the scripted address/MTU service to the wireguard unit so it is ordered
+  # after the wg1 device exists and restarts together with it, avoiding a race
+  # on rebuild switch. Same fix as modules/wg/default.nix.
+  systemd.services.network-addresses-wg1 = {
+    after = [ "wireguard-wg1.service" ];
+    bindsTo = [ "wireguard-wg1.service" ];
+    partOf = [ "wireguard-wg1.service" ];
+  };
 }

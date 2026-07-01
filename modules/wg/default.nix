@@ -84,5 +84,16 @@ in
     # Enable ip forwarding, so wireguard peers can reach eachother
     boot.kernel.sysctl."net.ipv4.ip_forward" = mkIf cfg.server 1;
 
+    # The MTU set via networking.interfaces.wg0 generates a scripted
+    # network-addresses-wg0.service. On a switch, wireguard-wg0.service tears
+    # down and recreates the wg0 link; without ordering the address service can
+    # run while the device is briefly gone and fail. Bind it to the wireguard
+    # unit so the two are torn down / brought up together, in order.
+    systemd.services.network-addresses-wg0 = {
+      after = [ "wireguard-wg0.service" ];
+      bindsTo = [ "wireguard-wg0.service" ];
+      partOf = [ "wireguard-wg0.service" ];
+    };
+
   };
 }
