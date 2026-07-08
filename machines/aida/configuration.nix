@@ -54,7 +54,7 @@
     after = [
       "remote-fs.target"
       "mnt-media.mount"
-      "mnt-plexx2dmedia.mount"
+      "mnt-plex\\x2dmedia.mount"
       "mnt-snowflake.mount"
       "mnt-deke.mount"
     ];
