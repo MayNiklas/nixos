@@ -79,7 +79,7 @@ in
             name = "google.*.";
             forward-addr = [
               "8.8.8.8@853#dns.google"
-              "8.8.8.4@853#dns.google"
+              "8.8.4.4@853#dns.google"
             ];
             forward-tls-upstream = "yes";
           }
