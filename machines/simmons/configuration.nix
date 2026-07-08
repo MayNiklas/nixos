@@ -64,7 +64,7 @@
         MAX_FILES = "20";
       };
       "git.timeout" = {
-        DEFAUlT = "3600";
+        DEFAULT = "3600";
         MIGRATE = "600";
         MIRROR = "300";
         CLONE = "300";
