@@ -76,7 +76,7 @@ in
             forward-tls-upstream = "no";
           }
           {
-            name = "google.*.";
+            name = "google.com.";
             forward-addr = [
               "8.8.8.8@853#dns.google"
               "8.8.4.4@853#dns.google"
