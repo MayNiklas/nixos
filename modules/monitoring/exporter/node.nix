@@ -48,7 +48,7 @@ in
     environment.etc."nix/flake_inputs.prom" = mkIf cfg.flake {
       mode = "0555";
       text = ''
-        # HELP flake_registry_last_modified Last modification date of flake input in unixtime
+        # HELP flake_input_last_modified Last modification date of flake input in unixtime
         # TYPE flake_input_last_modified gauge
         ${concatStringsSep "\n" (map (i:
           ''
