@@ -17,7 +17,7 @@ in
     systemd.services.hellonik = {
       wantedBy = [ "multi-user.target" ];
       serviceConfig.ExecStart =
-        "${pkgs.hello}/bin/hello -g'Hello, ${escapeShellArg cfg.greeter}!'";
+        "${pkgs.hello}/bin/hello -g${escapeShellArg "Hello, ${cfg.greeter}!"}";
     };
   };
 }
