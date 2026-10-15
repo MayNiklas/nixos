@@ -11,7 +11,7 @@ let
 in
 {
   imports = [
-    vscode-server.nixosModules.home
+    vscode-server.homeModules.default
     nixos-vscode-claude.homeModules.default
   ];
 
