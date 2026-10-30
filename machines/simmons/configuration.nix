@@ -44,7 +44,6 @@
     settings = {
       server = {
         ROOT_URL = "https://git.lounge.rocks/";
-        DOMAIN = "git.lounge.rocks";
         HTTP_ADDR = "127.0.0.1";
         HTTP_PORT = 3000;
         SSH_PORT = 22;
