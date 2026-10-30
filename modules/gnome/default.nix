@@ -24,7 +24,6 @@ in
     services.printing.enable = true;
 
     environment.gnome.excludePackages = (with pkgs; [
-      gnome-photos
       gnome-tour
       gnome-music
       epiphany # web browser
