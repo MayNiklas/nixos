@@ -19,6 +19,7 @@
     {
       "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.aida.config.system.build.toplevel' -o 'result-aida'",
+        "nix path-info --closure-size -h $(readlink -f 'result-aida')",
         "attic push lounge-rocks:nix-cache 'result-aida'"
       ],
       "failure": "ignore",
@@ -27,15 +28,8 @@
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-aida')"
-      ],
-      "failure": "ignore",
-      "image": "bash",
-      "name": "Show aida info"
-    },
-    {
-      "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.daisy.config.system.build.toplevel' -o 'result-daisy'",
+        "nix path-info --closure-size -h $(readlink -f 'result-daisy')",
         "attic push lounge-rocks:nix-cache 'result-daisy'"
       ],
       "failure": "ignore",
@@ -44,15 +38,8 @@
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-daisy')"
-      ],
-      "failure": "ignore",
-      "image": "bash",
-      "name": "Show daisy info"
-    },
-    {
-      "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.deke.config.system.build.toplevel' -o 'result-deke'",
+        "nix path-info --closure-size -h $(readlink -f 'result-deke')",
         "attic push lounge-rocks:nix-cache 'result-deke'"
       ],
       "failure": "ignore",
@@ -61,15 +48,8 @@
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-deke')"
-      ],
-      "failure": "ignore",
-      "image": "bash",
-      "name": "Show deke info"
-    },
-    {
-      "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.kora.config.system.build.toplevel' -o 'result-kora'",
+        "nix path-info --closure-size -h $(readlink -f 'result-kora')",
         "attic push lounge-rocks:nix-cache 'result-kora'"
       ],
       "failure": "ignore",
@@ -78,15 +58,8 @@
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-kora')"
-      ],
-      "failure": "ignore",
-      "image": "bash",
-      "name": "Show kora info"
-    },
-    {
-      "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.simmons.config.system.build.toplevel' -o 'result-simmons'",
+        "nix path-info --closure-size -h $(readlink -f 'result-simmons')",
         "attic push lounge-rocks:nix-cache 'result-simmons'"
       ],
       "failure": "ignore",
@@ -95,15 +68,8 @@
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-simmons')"
-      ],
-      "failure": "ignore",
-      "image": "bash",
-      "name": "Show simmons info"
-    },
-    {
-      "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.snowflake.config.system.build.toplevel' -o 'result-snowflake'",
+        "nix path-info --closure-size -h $(readlink -f 'result-snowflake')",
         "attic push lounge-rocks:nix-cache 'result-snowflake'"
       ],
       "failure": "ignore",
@@ -112,15 +78,8 @@
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-snowflake')"
-      ],
-      "failure": "ignore",
-      "image": "bash",
-      "name": "Show snowflake info"
-    },
-    {
-      "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.the-bus.config.system.build.toplevel' -o 'result-the-bus'",
+        "nix path-info --closure-size -h $(readlink -f 'result-the-bus')",
         "attic push lounge-rocks:nix-cache 'result-the-bus'"
       ],
       "failure": "ignore",
@@ -129,28 +88,13 @@
     },
     {
       "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-the-bus')"
-      ],
-      "failure": "ignore",
-      "image": "bash",
-      "name": "Show the-bus info"
-    },
-    {
-      "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.the-hub.config.system.build.toplevel' -o 'result-the-hub'",
+        "nix path-info --closure-size -h $(readlink -f 'result-the-hub')",
         "attic push lounge-rocks:nix-cache 'result-the-hub'"
       ],
       "failure": "ignore",
       "image": "bash",
       "name": "Build the-hub"
-    },
-    {
-      "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-the-hub')"
-      ],
-      "failure": "ignore",
-      "image": "bash",
-      "name": "Show the-hub info"
     }
   ],
   "when": [
