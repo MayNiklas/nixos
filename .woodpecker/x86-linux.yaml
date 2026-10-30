@@ -18,22 +18,12 @@
     },
     {
       "commands": [
-        "nix-fast-build --no-nom --skip-cached --attic-cache lounge-rocks:nix-cache --flake \".#checks.x86_64-linux\""
+        "nix build --print-out-paths '.#nixosConfigurations.aida.config.system.build.toplevel' -o 'result-aida'",
+        "attic push lounge-rocks:nix-cache 'result-aida'"
       ],
       "failure": "ignore",
       "image": "bash",
-      "name": "Build all outputs for this architecture"
-    },
-    {
-      "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.aida.config.system.build.toplevel' -o 'result-aida'"
-      ],
-      "failure": "ignore",
-      "image": "bash",
-      "name": "Rebuild aida (diagnostic)",
-      "when": {
-        "status": "failure"
-      }
+      "name": "Build aida"
     },
     {
       "commands": [
@@ -45,14 +35,12 @@
     },
     {
       "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.daisy.config.system.build.toplevel' -o 'result-daisy'"
+        "nix build --print-out-paths '.#nixosConfigurations.daisy.config.system.build.toplevel' -o 'result-daisy'",
+        "attic push lounge-rocks:nix-cache 'result-daisy'"
       ],
       "failure": "ignore",
       "image": "bash",
-      "name": "Rebuild daisy (diagnostic)",
-      "when": {
-        "status": "failure"
-      }
+      "name": "Build daisy"
     },
     {
       "commands": [
@@ -64,14 +52,12 @@
     },
     {
       "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.deke.config.system.build.toplevel' -o 'result-deke'"
+        "nix build --print-out-paths '.#nixosConfigurations.deke.config.system.build.toplevel' -o 'result-deke'",
+        "attic push lounge-rocks:nix-cache 'result-deke'"
       ],
       "failure": "ignore",
       "image": "bash",
-      "name": "Rebuild deke (diagnostic)",
-      "when": {
-        "status": "failure"
-      }
+      "name": "Build deke"
     },
     {
       "commands": [
@@ -83,14 +69,12 @@
     },
     {
       "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.kora.config.system.build.toplevel' -o 'result-kora'"
+        "nix build --print-out-paths '.#nixosConfigurations.kora.config.system.build.toplevel' -o 'result-kora'",
+        "attic push lounge-rocks:nix-cache 'result-kora'"
       ],
       "failure": "ignore",
       "image": "bash",
-      "name": "Rebuild kora (diagnostic)",
-      "when": {
-        "status": "failure"
-      }
+      "name": "Build kora"
     },
     {
       "commands": [
@@ -102,14 +86,12 @@
     },
     {
       "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.simmons.config.system.build.toplevel' -o 'result-simmons'"
+        "nix build --print-out-paths '.#nixosConfigurations.simmons.config.system.build.toplevel' -o 'result-simmons'",
+        "attic push lounge-rocks:nix-cache 'result-simmons'"
       ],
       "failure": "ignore",
       "image": "bash",
-      "name": "Rebuild simmons (diagnostic)",
-      "when": {
-        "status": "failure"
-      }
+      "name": "Build simmons"
     },
     {
       "commands": [
@@ -121,14 +103,12 @@
     },
     {
       "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.snowflake.config.system.build.toplevel' -o 'result-snowflake'"
+        "nix build --print-out-paths '.#nixosConfigurations.snowflake.config.system.build.toplevel' -o 'result-snowflake'",
+        "attic push lounge-rocks:nix-cache 'result-snowflake'"
       ],
       "failure": "ignore",
       "image": "bash",
-      "name": "Rebuild snowflake (diagnostic)",
-      "when": {
-        "status": "failure"
-      }
+      "name": "Build snowflake"
     },
     {
       "commands": [
@@ -140,14 +120,12 @@
     },
     {
       "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.the-bus.config.system.build.toplevel' -o 'result-the-bus'"
+        "nix build --print-out-paths '.#nixosConfigurations.the-bus.config.system.build.toplevel' -o 'result-the-bus'",
+        "attic push lounge-rocks:nix-cache 'result-the-bus'"
       ],
       "failure": "ignore",
       "image": "bash",
-      "name": "Rebuild the-bus (diagnostic)",
-      "when": {
-        "status": "failure"
-      }
+      "name": "Build the-bus"
     },
     {
       "commands": [
@@ -159,14 +137,12 @@
     },
     {
       "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.the-hub.config.system.build.toplevel' -o 'result-the-hub'"
+        "nix build --print-out-paths '.#nixosConfigurations.the-hub.config.system.build.toplevel' -o 'result-the-hub'",
+        "attic push lounge-rocks:nix-cache 'result-the-hub'"
       ],
       "failure": "ignore",
       "image": "bash",
-      "name": "Rebuild the-hub (diagnostic)",
-      "when": {
-        "status": "failure"
-      }
+      "name": "Build the-hub"
     },
     {
       "commands": [
@@ -175,24 +151,6 @@
       "failure": "ignore",
       "image": "bash",
       "name": "Show the-hub info"
-    },
-    {
-      "commands": [
-        "test -e 'result-aida'",
-        "test -e 'result-daisy'",
-        "test -e 'result-deke'",
-        "test -e 'result-kora'",
-        "test -e 'result-simmons'",
-        "test -e 'result-snowflake'",
-        "test -e 'result-the-bus'",
-        "test -e 'result-the-hub'",
-        "echo 'All builds succeeded.'"
-      ],
-      "image": "bash",
-      "name": "Verify all builds succeeded",
-      "when": {
-        "status": "failure"
-      }
     }
   ],
   "when": [
