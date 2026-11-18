@@ -277,8 +277,8 @@
 
       # All packages in the ./packages subfolder are also added to the flake.
       # flake-utils is used for this part to make each package available for each
-      # system. This works as all packages are compatible with all architectures
-      (flake-utils.lib.eachSystem (flake-utils.lib.defaultSystems ++ [ "aarch64-darwin" ])) (
+      # supported system.
+      (flake-utils.lib.eachSystem supportedSystems) (
         system:
         let
           pkgs = import nixpkgs {
