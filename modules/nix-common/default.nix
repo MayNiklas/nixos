@@ -10,6 +10,8 @@ in {
 
   config = mkIf cfg.enable {
 
+    mayniklas.journald.enable = mkDefault true;
+
     # Set the $NIX_PATH entry for nixpkgs. This is necessary in
     # this setup with flakes, otherwise commands like `nix-shell
     # -p pkgs.htop` will keep using an old version of nixpkgs.
@@ -74,11 +76,6 @@ in {
       nixpkgs.lib.mkIf (flake-self ? rev) flake-self.rev;
     nix.registry.nixpkgs.flake = nixpkgs;
     nix.registry.mayniklas.flake = flake-self;
-
-    # services.journald.extraConfig = ''
-    #   SystemMaxUse=1G
-    #   MaxRetentionSec=7day
-    # '';
 
   };
 }
